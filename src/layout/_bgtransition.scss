@@ -1,0 +1,21 @@
+@use '../util' as *;
+
+.bgtransition {
+    //background-image: linear-gradient(var(--clr-primary-darkblue) 70%, var(--clr-primary-teal));
+    //background-size: cover;
+    //background-repeat: no-repeat;
+    padding: 0 0;
+
+    &-whiteTeal {
+        background: linear-gradient(var(--clr-primary-white), hsl(177, 31%, 53%));
+        width: 100%;
+        height: 15vh;
+    }
+
+    &-tealWhite {
+        background: linear-gradient(hsl(212, 38%, 38%),var(--clr-primary-white));
+        width: 100%;
+        height: 15vh;
+    }
+}
+

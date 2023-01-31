@@ -1,0 +1,26 @@
+@use '../util' as *;
+
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* General Styling */
+body {
+	//min-height: 100vh;
+    font-size: var(--fs-body);
+    font-family: var(--ff-primary);
+    color: var(--clr-primary-black);
+}
+
+button {
+	border: 0;
+	outline: none;
+	background: none;
+	padding: 0;
+	color: var(--text-primary-white);
+}

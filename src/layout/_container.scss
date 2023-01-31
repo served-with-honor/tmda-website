@@ -1,0 +1,21 @@
+@use '../util' as *;
+
+.container {
+    --max-width: 1200px;
+    --padding: 1rem;
+    width: min(var(--max-width), 100% - (var(--padding) * 2));
+    margin-inline: auto;
+    padding: 2rem 0;
+
+    /* Below sets a min width to not stretch for big screens */
+    // width: min(100% - 40px, rem(1200));
+    // margin-inline: auto;
+
+    &-sm {
+        max-width: 800px;
+    }
+
+    &-lg {
+        max-width: 1500px;
+    }
+}

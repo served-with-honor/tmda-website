@@ -1,0 +1,33 @@
+@use '../util' as *;
+
+.flex {
+
+    &-parent {
+        display: flex;
+
+        &--med {
+            @include breakpoint(medium) {
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        &--large {
+            @include breakpoint(large) {
+                display: flex;
+            }
+        }
+    }
+
+    //use below if wanting to align items vertically up-down
+    &-main {
+        flex: 1;
+        //display: flex;
+
+        // &--large {
+        //     @include util.breakpoint(large){
+        //         background-color: hsl(39, 96%, 31%);
+        //     }
+        // }
+    }
+}

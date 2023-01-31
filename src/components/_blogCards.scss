@@ -1,0 +1,147 @@
+@use '../util' as *;
+
+.blogCards {
+    position: relative;
+    background-color: var(--clr-primary-white);
+    text-align: center;
+
+    @include breakpoint(medium) {
+        height: auto;
+    }
+
+    .container {
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: rem(2);
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+    }
+
+    &__item {
+        padding: rem(8) 0;
+    }
+
+    h1 {
+        color: var(--clr-primary-black);
+        margin: 0;
+        padding-bottom: 0;
+    }
+
+    h1:after {
+        background-color: var(--clr-primary-teal);
+        //border-bottom: solid 3px;
+        content: "";
+        display: block;
+        height: 2px;
+        position: relative;
+        margin: rem(15) auto 0;
+        max-width: 100%;
+        width: rem(120);
+    }
+
+    h4 {
+        margin-top: 0;
+
+        @include breakpoint(medium) {
+            margin-top: auto;
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+
+        @include breakpoint(medium) {
+            gap: rem(20);
+            // .card__item {
+            //     //flex: 1;
+            //     justify-content: space-between;
+            // }
+        }
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        width: clamp(18rem, calc(18rem + 2vw), 20rem);
+        overflow: hidden;
+        box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.3);
+        border-radius: rem(20) rem(20); //Two values: first applies top-left/bottom-right corners, second applies to top-right/bottom-left corners
+        background: #ECE9E6;
+        background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+        margin: rem(20) rem(20);
+
+        @include breakpoint(medium) {
+            width: clamp(18rem, calc(18rem + 2vw), 20rem);
+        }
+    }
+
+    .card__body {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .tag {
+        align-self: flex-start;
+        padding: .25em .75em;
+        border-radius: 1em;
+        font-size: .75rem;
+      }
+      
+      .tag + .tag {
+        margin-left: .5em;
+      }
+      .tag-blue {
+        background: #56CCF2;
+        background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+        color: #fafafa;
+      }
+      
+      .tag-green {
+        background: #59a759;
+        background: linear-gradient(to bottom, #68c060, #7ef57e);
+        color: #fafafa;
+      }
+      
+      .tag-red {
+        background: #cb2d3e;
+        background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+        color: #fafafa;
+      }
+
+      .card__body h4 {
+        color: var(--clr-primary-black);
+        font-size: 1.5rem;
+        text-transform: capitalize;
+      }
+
+      //below are not used at the moment
+      
+    //   .card__footer {
+    //     display: flex;
+    //     padding: 1rem;
+    //     margin-top: auto;
+    //   }
+      
+    //   .user {
+    //     display: flex;
+    //     gap: .5rem;
+    //   }
+      
+    //   .user__image {
+    //     border-radius: 50%;
+    //   }
+      
+    //   .user__info > small {
+    //     color: #666;
+    //   }
+
+}

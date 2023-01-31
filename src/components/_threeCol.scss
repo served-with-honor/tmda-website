@@ -1,0 +1,73 @@
+@use '../util' as *;
+
+.threeCol {
+    position: relative;
+    background-image: var(--clr-primary-white);
+    text-align: center;
+
+    @include breakpoint(medium) {
+        height: auto;
+    }
+
+    .container {
+        flex-wrap: wrap;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // &__item {
+    //     padding: rem(8) 0;
+    // }
+
+    // h1 {
+    //     color: var(--clr-primary-black);
+    //     margin: 0;
+    //     padding-bottom: 0;
+    // }
+
+    h1:after {
+        background-color: var(--clr-primary-teal);
+        //border-bottom: solid 3px;
+        content: "";
+        display: block;
+        height: 2px;
+        position: relative;
+        margin: rem(15) auto 0;
+        max-width: 100%;
+        width: rem(120);
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 50px;
+
+        @include breakpoint(medium) {
+            gap: rem(40);
+            .threeCol__item {
+                flex: 1;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .centered-div {
+        justify-content: center;
+    }
+
+    .button {
+
+        &.dark-blue {
+            font-size: rem(24);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        &.teal {
+            width: 13em;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@use '../util' as *;
+
+.header {
+    
+    padding-top: rem(16);
+    padding-bottom: rem(16);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+
+    &.is-sticky {
+        //background-color:var(--vaci-theme-color-body)!important;
+        box-shadow:0 2px 4px rgba(0,0,0,.1);
+        position: fixed!important;
+    }
+
+    &.hero-behind-header {
+        background-color:transparent;
+        left:0;
+        position:absolute;
+        top:0;
+    }
+}

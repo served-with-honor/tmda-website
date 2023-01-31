@@ -1,0 +1,11 @@
+@use '../util' as *;
+
+.even-columns {
+    display: grid;
+    gap: 1em;
+
+    @include breakpoint(medium) {
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
+}
