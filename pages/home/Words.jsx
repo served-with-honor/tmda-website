@@ -49,7 +49,7 @@ const WordsWrapper = styled.span`
 `
 
 export default function Words ({ items }) {
- return <WordsWrapper count={items.length}>
+ return <WordsWrapper count={items ? items.length : 0}>
     {items ? items.map((text, i) => <span key={`word-${i}`}>
       {text}
       <Image src={underlineImage} alt="" />
