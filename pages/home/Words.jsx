@@ -24,13 +24,20 @@ const WordsWrapper = styled.span`
   text-transform: uppercase;
   vertical-align: text-bottom;
 
-  span {
+  > span {
+    display: block;
     position: absolute;
-    left: 5px;
     opacity: 0;
-    overflow: hidden;
     animation: fade ${({ count }) => count * 2000}ms infinite;
     white-space: nowrap;
+    img {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;  
+      width: 100%;
+      height: auto;
+    }
   }
   ${({ count = 0 }) => createCSS(count)}
   
@@ -40,19 +47,12 @@ const WordsWrapper = styled.span`
     16% { opacity: 0; }
   }
 `
-const Underline = styled.div`
-  position: relative;
-  height: auto;
-  width: auto;
-  margin-inline: auto;
-  margin-top: -12px;
-  img { width: 100%; height: auto; }
-`
+
 export default function Words ({ items }) {
  return <WordsWrapper count={items.length}>
-    {items.map((text, i) => <span key={`words-${i}`}>
+    {items ? items.map((text, i) => <span key={`word-${i}`}>
       {text}
-      <Underline><Image src={underlineImage} alt="" /></Underline>
-    </span>)}
+      <Image src={underlineImage} alt="" />
+    </span>) : null}
   </WordsWrapper>
 }
