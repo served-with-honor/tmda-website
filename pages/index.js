@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { motion } from 'framer-motion'
 import { getAllPostsForHome } from '../lib/api'
 import {
 	Avatar,
@@ -15,11 +16,15 @@ import {
 } from '@mui/material';
 import Page from '../components/Page'
 import Hero from '../components/Hero'
+import Counter from '../components/Counter'
+import CircleFiller from '../components/CircleFiller'
 import { BodyText } from '../components/typography'
 import { SectionDivider } from '../components/layout'
+import Thingy from '../components/Thingy'
 import FAQs from './home/FAQs'
 import Testimonials from './home/Testimonials'
 import Words from './home/Words'
+import { theme } from '../theme'
 
 export default function Home({ posts }) {
 	return (
@@ -37,25 +42,44 @@ export default function Home({ posts }) {
 				</Typography>
 			</Hero>
 
-			<Box paddingY={12}>
-				<Container>
-					<Typography variant={'sectionHeading'} component={'h2'}>How Can We Help?</Typography>
-					<Grid container={true} spacing={2}>
-						<Grid item xs={4}>
-							<Typography varian={'body1'} align={'center'}><Button variant={'contained'} href="">Get Started</Button></Typography>
-							<Typography varian={'body1'} align={'center'}>For new or returning clients</Typography>
+			<Thingy>
+				<Box paddingY={12}>
+					<Container sx={{ position: 'relative' }}>
+						<motion.div
+							initial={{ y: 100, opacity: 0 }}
+							whileInView={{ y: 0, opacity: 1 }}
+						>
+							<Typography variant={'sectionHeading'} component={'h2'} marginBottom={10}>How Can We Help?</Typography>
+						</motion.div>
+						<Grid container={true} spacing={2}>{[
+							{
+								button: { label: 'Get Started', url: '#' },
+								body: 'For new or returning clients'
+							},
+							{
+								button: { label: 'Patient Portal', url: '' },
+								body: 'Booking, pay invoices, upload documents'
+							},
+							{
+								button: { label: 'Provider Portal', url: '' },
+								body: 'For current Telemedica providers'
+							},
+						].map((item, index) => (
+							<Grid item xs={4}>
+								<motion.div
+									initial={{ y: 100, opacity: 0 }}
+									whileInView={{ y: 0, opacity: 1 }}
+									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
+								>
+									<Typography variant={'body1'} align={'center'} marginBottom={3}><Button size={'large'} variant={'contained'} href={item.button.url}>{item.button.label}</Button></Typography>
+									<Typography variant={'h6'} align={'center'} component={'p'}>{item.body}</Typography>
+								</motion.div>
+							</Grid>
+						))}
 						</Grid>
-						<Grid item xs={4}>
-							<Typography varian={'body1'} align={'center'}><Button variant={'contained'} href="">Patient Portal</Button></Typography>
-							<Typography varian={'body1'} align={'center'}>Booking, pay invoices, upload documents</Typography>
-						</Grid>
-						<Grid item xs={4}>
-							<Typography varian={'body1'} align={'center'}><Button variant={'contained'} href="">Provider Portal</Button></Typography>
-							<Typography varian={'body1'} align={'center'}>For current Telemedica providers</Typography>
-						</Grid>
-					</Grid>
-				</Container>
-			</Box>
+					</Container>
+				</Box>
+			</Thingy>
 			
 			<Box sx={{
 				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
@@ -69,7 +93,31 @@ export default function Home({ posts }) {
 							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 15,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <b><u>read what other Veterans are saying</u></b> about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item xs={4}>
-							<img src="/images/counter10k.svg" alt= "" />
+							<Box sx={{ position: 'relative' }}>
+								<Box sx={{
+									position: 'absolute',
+									height: '100%',
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+								}}>
+									<CircleFiller color={theme.palette.primary.main} color2={theme.palette.secondary.main} radius={120} stroke={35} percent={65} />
+								</Box>
+								<Box sx={{
+									fontSize: 30,
+									textAlign: 'center',
+									textTransform: 'uppercase',
+									position: 'relative',
+								}}>
+									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>More Than</Typography>
+									<Typography component={'span'} sx={{ display: 'block', fontSize: 40, lineHeight: 1.2 }}>
+										<Counter to={15000} />
+									</Typography>
+									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>Veterans</Typography>
+									<Typography component={'span'} sx={{ display: 'block', fontSize: 30, lineHeight: 1.2 }}>Served</Typography>
+								</Box>
+							</Box>
 						</Grid>
 					</Grid>
 				</Container>
@@ -99,7 +147,13 @@ export default function Home({ posts }) {
 
 			<Box paddingY={12}>
 				<Container>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>What We Do</Typography>
+					<motion.div
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 1 }}
+					>
+						<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>What We Do</Typography>
+					</motion.div>
 					<Grid container spacing={5}>
 						{([
 							{
@@ -116,9 +170,15 @@ export default function Home({ posts }) {
 							},
 						]).map(({ title, text }, index) => (
 							<Grid item sm={4} key={index} sx={{ mb: 3 }}>
-								<Box align={'center'} sx={{ mb: 3 }}><Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50 }}>{index}</Avatar></Box>
-								<Typography align={'center'} variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
-								<Typography align={'center'} variant={'body1'}>{text}</Typography>
+								<motion.div
+									initial={{ y: 100, opacity: 0 }}
+									whileInView={{ y: 0, opacity: 1 }}
+									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
+								>
+									<Box align={'center'} sx={{ mb: 3 }}><Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50 }}>{index + 1}</Avatar></Box>
+									<Typography align={'center'} variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
+									<Typography align={'center'} variant={'body1'}>{text}</Typography>
+								</motion.div>
 							</Grid>
 
 						))}
