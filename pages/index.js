@@ -20,7 +20,7 @@ import Hero from '../components/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
 import { SectionDivider } from '../components/layout'
-import { SectionFeatures1, FAQs, Testimonials, Words, ContactForm } from './home'
+import { SectionFeatures1, FAQs, Testimonials, Words, ContactForm } from '../components/home'
 import { slugify } from '../src/utils';
 
 export default function Home({ posts }) {
