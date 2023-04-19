@@ -1,58 +1,50 @@
 import Image from 'next/image';
-import styled, { css } from 'styled-components';
+import { styled, keyframes } from '@mui/system';
 import underlineImage from '../../public/images/Underline3.png'
 
-function createCSS(count = 0) {
-  let styles = '';
-
-  for (let i = 1; i < count; i += 1) {
-    styles += `
-      span:nth-child(${i}) { animation-delay: ${i* 2000}ms; }
-     `
-  }
-
-  return css`${styles}`;
-}
-
-const WordsWrapper = styled.span`
-  position: relative;
-  display: inline-block;
-  font-size: 2.188rem;
-  line-height: 1em;
-  margin-left: 5px;
-  height: 1em;
-  text-transform: uppercase;
-  vertical-align: text-bottom;
-
-  > span {
-    display: block;
-    position: absolute;
-    opacity: 0;
-    animation: fade ${({ count }) => count * 2000}ms infinite;
-    white-space: nowrap;
-    img {
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 0;  
-      width: 100%;
-      height: auto;
-    }
-  }
-  ${({ count = 0 }) => createCSS(count)}
-  
-  @keyframes fade {
-    0% { opacity: 0; }
-    6%, 10% { opacity: 1; }
-    16% { opacity: 0; }
-  }
+const animation = keyframes` 
+  0% { opacity: 0 }
+  6%, 10% { opacity: 1 }
+  16% { opacity: 0 }
 `
 
+const Wrapper = styled('span')({
+  position: 'relative',
+  display: 'inline-block',
+  fontSize: '2.188rem',
+  lineHeight: '1em',
+  marginLeft: '5px',
+  height: '1em',
+  textTransform: 'uppercase',
+  verticalAlign: 'text-bottom',
+});
+
+const Item = styled('span')(({ count, num }) => ({
+  display: 'block',
+  position: 'absolute',
+  opacity: 0,
+  animation: `${animation} ${count * 2000}ms ${num * 2000}ms infinite`,
+  whiteSpace: 'nowrap',
+}));
+  
+const Test = styled(Image)({
+  display: 'block',
+  position: 'absolute',
+  top: '50%',
+  left: '0; ',
+  width: '100%',
+  height: 'auto',
+});
+
 export default function Words ({ items }) {
- return <WordsWrapper count={items ? items.length : 0}>
-    {items ? items.map((text, i) => <span key={`word-${i}`}>
-      {text}
-      <Image src={underlineImage} alt="" />
-    </span>) : null}
-  </WordsWrapper>
+  return items && items.length > 0 ? (
+    <Wrapper count={items ? items.length : 0}>
+      {items.map((text, index) => (
+        <Item key={`word-${index}`} count={items.length} num={index}>
+          {text}
+          <Test src={underlineImage} alt="" />
+        </Item>
+      ))}
+    </Wrapper>
+   ) : null
 }

@@ -1,10 +1,10 @@
-import { createTheme } from "@mui/material/styles";
-import { Oswald, Montserrat } from '@next/font/google'
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { Oswald, Montserrat } from 'next/font/google'
 
 const oswald = Oswald({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
 
-export const theme = createTheme({
+const baseTheme = responsiveFontSizes(createTheme({
   typography: {
     fontFamily: montserrat.style.fontFamily,
     h1: {
@@ -38,7 +38,9 @@ export const theme = createTheme({
       fontWeight: 700,
     },
     sectionHeading: {
+      fontFamily: oswald.style.fontFamily,
       fontSize: 48,
+      lineHeight: 1,
       textAlign: 'center',
       '&::after': {
         backgroundColor: 'hsl(165, 48%, 62%)',
@@ -82,4 +84,24 @@ export const theme = createTheme({
       }
     }
   }
+}));
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+  // components: {
+  // 	MuiLink: {
+  // 		styleOverrides: {
+  // 			root: {
+  // 				textDecoration: 'none',
+  // 			},
+  // 		},
+  // 	},
+  // }
 });
+
+export {
+  baseTheme,
+  darkTheme,
+}

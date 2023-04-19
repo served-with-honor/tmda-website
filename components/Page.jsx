@@ -7,7 +7,7 @@ import settings from '../src/siteSettings';
 // import { Montserrat, Oswald } from 'next/font/google'
 
 
-export default function Page({ title, children }) {
+export default function Page({ title, posts, children }) {
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
 
@@ -18,12 +18,12 @@ export default function Page({ title, children }) {
   return (
     <>
       <Head>
-        <title>{settings.name} | {title ? title : settings.defaultPageTitle}</title>
+        <title>{`${settings.name} | ${title ? title : settings.defaultPageTitle}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header ref={ref} />
 			<main style={{ marginTop: headerHeight }}>{children}</main>
-      <Footer />
+      <Footer posts={posts} />
     </>
   )
 }

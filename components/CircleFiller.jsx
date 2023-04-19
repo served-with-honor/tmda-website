@@ -51,8 +51,8 @@ export default function CircleFiller({
           fill="none"
           stroke={color}
           strokeWidth={stroke}
-          stroke-dasharray={circumference}
-          stroke-dashoffset={offset}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
           strokeLinecap="round"
           cx={radius}
           cy={radius}

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { getAllPostsForHome } from '../lib/api'
 import {
+	useTheme,
 	Avatar,
 	Button,
 	Box,
@@ -18,15 +19,13 @@ import Page from '../components/Page'
 import Hero from '../components/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
-import { BodyText } from '../components/typography'
 import { SectionDivider } from '../components/layout'
-import Thingy from '../components/Thingy'
-import FAQs from './home/FAQs'
-import Testimonials from './home/Testimonials'
-import Words from './home/Words'
-import { theme } from '../theme'
+import { SectionFeatures1, FAQs, Testimonials, Words, ContactForm } from './home'
+import { slugify } from '../src/utils';
 
 export default function Home({ posts }) {
+  const theme = useTheme();
+
 	return (
 		<Page>
     
@@ -41,49 +40,12 @@ export default function Home({ posts }) {
 					<Words items={[ 'Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.', ]} />
 				</Typography>
 			</Hero>
-
-			<Thingy>
-				<Box paddingY={12}>
-					<Container sx={{ position: 'relative' }}>
-						<motion.div
-							initial={{ y: 100, opacity: 0 }}
-							whileInView={{ y: 0, opacity: 1 }}
-						>
-							<Typography variant={'sectionHeading'} component={'h2'} marginBottom={10}>How Can We Help?</Typography>
-						</motion.div>
-						<Grid container={true} spacing={2}>{[
-							{
-								button: { label: 'Get Started', url: '#' },
-								body: 'For new or returning clients'
-							},
-							{
-								button: { label: 'Patient Portal', url: '' },
-								body: 'Booking, pay invoices, upload documents'
-							},
-							{
-								button: { label: 'Provider Portal', url: '' },
-								body: 'For current Telemedica providers'
-							},
-						].map((item, index) => (
-							<Grid item xs={4}>
-								<motion.div
-									initial={{ y: 100, opacity: 0 }}
-									whileInView={{ y: 0, opacity: 1 }}
-									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
-								>
-									<Typography variant={'body1'} align={'center'} marginBottom={3}><Button size={'large'} variant={'contained'} href={item.button.url}>{item.button.label}</Button></Typography>
-									<Typography variant={'h6'} align={'center'} component={'p'}>{item.body}</Typography>
-								</motion.div>
-							</Grid>
-						))}
-						</Grid>
-					</Container>
-				</Box>
-			</Thingy>
+		
+			<SectionFeatures1 />
 			
 			<Box sx={{
 				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
-				color: '#fff',
+				color: theme.palette.primary.contrastText,
 				paddingY: 12,
 			}}>
 				<Container>
@@ -137,7 +99,7 @@ export default function Home({ posts }) {
 							<Typography variant={'body1'} gutterBottom>To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.</Typography>
 							<Typography variant={'h6'} component={'h3'}>Purpose:</Typography>
 							<Typography variant={'body1'}>To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.</Typography>
-							<Button variant={'contained'} href={'#'} sx={{ mt: 5 }}>Learn More...</Button>
+							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More...</Button>
 						</Grid>
 					</Grid>
 				</Container>
@@ -169,7 +131,7 @@ export default function Home({ posts }) {
 								text: 'Ongoing therapy tailored to the Veteran Client experience. Receive mental health care from the comfort of your own home through our convenient and secure HIPAA-Compliant telehealth platform.',
 							},
 						]).map(({ title, text }, index) => (
-							<Grid item sm={4} key={index} sx={{ mb: 3 }}>
+							<Grid item sm={4} key={`section-what-we-do-item-${slugify(title)}`} sx={{ mb: 3 }}>
 								<motion.div
 									initial={{ y: 100, opacity: 0 }}
 									whileInView={{ y: 0, opacity: 1 }}
@@ -183,9 +145,9 @@ export default function Home({ posts }) {
 
 						))}
 					</Grid>
-					<BodyText align={'center'}>
-							<Button variant={'contained'} href={'#'}>Learn More...</Button>
-					</BodyText>
+					<Box align={'center'}>
+						<Button variant={'contained'} href={'/services'}>Learn More...</Button>
+					</Box>
 				</Container>
 			</Box>
 			
@@ -203,7 +165,7 @@ export default function Home({ posts }) {
 				<Container size={'sm'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>Five-Star Ratings from Our Veteran Clients &amp; Providers Working with Telemedica.</Typography>
-					<Testimonials />
+					<Box sx={{ marginY: 5 }}><Testimonials /></Box>
 					<Box align={'center'} sx={{ mt: 5 }}>
 							<Button variant={'contained'} href={'#'}>Write a Review</Button>
 					</Box>
@@ -215,12 +177,15 @@ export default function Home({ posts }) {
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Check Out These Free Resources!<br />Find out more about _____.</Typography>
 					<Grid container spacing={{ xs: 3, lg: 10 }}>
 						{posts && posts.length > 0 ? posts.map(({ slug, image, title, tags, excerpt }, index) =>
-							<Grid item sm={6} md={4} key={`post-${index}-${slug}`}>
+							<Grid item sm={6} md={4} key={`post-listing-${slug}`}>
 								<Card sx={{ height: '100%' }}>
 									{image ? <CardMedia sx={{ height: '15rem' }} image={image} title="" /> : null}
 									<CardContent>
 										{tags && tags.length > 0 ? <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
-											{tags.map(({ slug, name }) => <Chip key={`article-category-${slug}`} label={name} />)}
+											{tags.map((tag) => {
+												const key = `post-listing-${slug}-category-${tag.slug || slugify(tag.name)}`;
+												return <Chip key={key} label={tag.name} />
+											})}
 										</Stack> : null }
 										{title ? <h4>{title}</h4> : null}
 										{excerpt ? <p>{excerpt}</p> : null}
@@ -230,41 +195,16 @@ export default function Home({ posts }) {
 						) : null}
 					</Grid>
 						<Box align={'center'} sx={{ mt: 5 }}>
-							<Button variant={'contained'} href={'#'}>Read More...</Button>
+							<Button variant={'contained'} href={'/blog'}>Read More...</Button>
 						</Box>
 				</Container>
 			</Box>
 
-			<Box>
-				<Container>
-					<Typography variant={'sectionHeading'} component={'h2'}>Contact Us</Typography>
-					<Typography variant={'body1'} align={'center'} maxWidth={420}>Fill out the form below. A member of our Customer Service Team will be in touch soon!</Typography>
-					
-					<form>
-						<Grid container>
-							<Grid item>
-								<label htmlFor="nfame">First Name</label>
-								<input id="fname" type="text" name="fname" />
-							</Grid>
-							<Grid item>
-								<label htmlFor="lname">Last Name</label>
-								<input id="lname" type="text" name="lname" />
-							</Grid>
-						</Grid>
-
-						<Grid container>
-							<Grid item>
-								<label htmlFor="phone">Phone Number</label>
-								<input id="phone" type="text" name="phone" />
-							</Grid>
-							<Grid item>
-								<label htmlFor="email">Email</label>
-								<input id="email" type="text" name="email" />
-							</Grid>
-						</Grid>
-
-						<Button sx={{ minWidth: '20rem' }} variant={'contained'}>Submit</Button>
-					</form>
+			<Box sx={{ backgroundColor: '#333', paddingY: 5 }}>
+				<Container maxWidth={'sm'}>
+					<Typography variant={'sectionHeading'} component={'h2'} marginBottom={5}>Contact Us</Typography>
+					<Typography variant={'body1'} align={'center'} gutterBottom marginBottom={5}>Fill out the form below. A member of our Customer Service Team will be in touch soon!</Typography>
+					<ContactForm />
 				</Container>
 			</Box>
 		</Page>
@@ -272,40 +212,6 @@ export default function Home({ posts }) {
 }
 
 export async function getServerSideProps(context) {
-	const { posts } = await getAllPostsForHome(false);
-	const blah = posts.edges.map(post => ({
-		title: post?.node?.title,
-		excerpt: post?.node?.excerpt,
-		slug: post?.node?.slug,
-		date: post?.node?.date,
-		image: post?.node?.featuredImage?.node?.mediaItemUrl,
-		categories: post?.node?.categories.edges?.map(a => a.node),
-		tags: post?.node?.tags.edges?.map(a => a.node),
-	}));
-
-  return {
-		props: {
-			posts: blah
-			// articles: [
-			// 	{
-			// 		image: '/images/AdobeStock_404333096-540x360-1.jpeg',
-			// 		title: 'The Top 5 Symptoms of Chronic Pain in Veterans',
-			// 		tags: [{ color: 'green', label: 'Health' }],
-			// 		text: 'Top 5 Symptoms of Chronic Pain in Veterans Chronic pain may affect more than 50% of the 18 million Veterans in the United States, so if you\'re a Veteran living with the symptoms of chronic pain, you\'re not alone. However, at Telemedica we believe...',
-			// 	},
-			// 	{
-			// 		image: '/images/RESIZEDshutterstock_1681616224-1.jpeg',
-			// 		title: 'Career Opportunities for Veterans',
-			// 		tags: [{ color: 'blue', label: 'Tech' }],
-			// 		text: 'What to Do on National Hire a Veteran Day July 25th is National Hire a Veteran Day As Veterans leave the armed forces, our nation\'s heroes suddenly find themselves without a job. For many Veterans it can be hard to know where to start in the job...',
-			// 	},
-			// 	{
-			// 		image: '/images/RESIZEDEDITED_AdobeStock_171054820.jpeg',
-			// 		title: 'Is There a Link Between PTSD and Migraines?',
-			// 		tags: [{ color: 'red', label: 'Medical' }],
-			// 		text: 'Is There a Link Between PTSD and Migraines? Living with PTSD can be stressful enough on its own, but when recurring migraines start showing up as well, it can make navigating day to day life even more difficult and challenging. Few people discuss...',
-			// 	},
-			// ]
-		},
-  }
+	const posts = await getAllPostsForHome(false);
+	return { props: { posts } }
 }

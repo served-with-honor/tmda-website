@@ -12,11 +12,16 @@
     "@mui/material": "^5.11.15",
     "@mui/styled-engine-sc": "^5.11.11",
     "@mui/system": "^5.11.15",
-    "@next/font": "^13.2.4",
+    "@testing-library/jest-dom": "^5.16.5",
     "framer-motion": "^10.11.2",
+    "jest": "^29.5.0",
+    "jest-environment": "^9.0.4",
+    "jest-environment-jsdom": "^29.5.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {

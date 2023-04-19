@@ -1,10 +1,14 @@
-import { Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import Page from '../components/Page'
 
-export default function ResoucesPage() {
+export default function ResourcesPage() {
 	return (
 		<Page title={'Resources'}>
-   		<Typography variant={'h1'}>Resources</Typography>
+			<Box marginTop={10}>
+				<Container>
+					<Typography variant={'h1'}>Resources</Typography>
+				</Container>
+			</Box>
   	</Page>
   )
 }
