@@ -1,13 +1,5 @@
 import { useTheme, Box, Container, Grid } from '@mui/material'
 
-// const VideoWrapper = styled.div`  
-//   video {
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover;
-//   }
-// `
-
 export default function Hero({ bgvideo, children }) {
   return (
     <Box sx={{
