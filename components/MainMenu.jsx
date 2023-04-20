@@ -22,6 +22,7 @@ export default function MainMenu() {
     { href: '/resources', text: 'Resources' },
   ];
   const items2 = [
+    { href: '#', text: 'Provider Portal' },
     { href: '/administrative-services', text: 'Administrative Services' },
     { href: '/careers', text: 'Careers' },
   ];
@@ -31,14 +32,19 @@ export default function MainMenu() {
       <Button><MenuIcon /></Button>
     ) : (
       <nav>
-        <Grid container>
-            <Grid item>
-              <MenuGroup label={'For Veterans'} items={items1} selected={selected} />
+        <Grid container spacing={1}>
+          <Grid item>
+            <MenuGroup label={'For Veterans'} items={items1} selected={selected} />
           </Grid>
           <Grid item>
             <MenuGroup label={'For Providers'} items={items2} selected={selected} />
           </Grid>
-          <Button variant={'outlined'} size={'small'} href="/contact-us">Get In Touch</Button>
+          <Grid item>
+            <Button variant={'outlined'} size={'small'} href="/contact-us">Get In Touch</Button>
+          </Grid>
+          <Grid item>
+            <Button variant={'contained'} size={'small'} href="#">Patient Portal</Button>
+          </Grid>
         </Grid>
       </nav>
     )}
@@ -48,7 +54,6 @@ export default function MainMenu() {
 const MenuGroup = ({ label, items,  selected }) => {
   const [isHover, setIsHover] = useState(false);
   const toggleHoverMenu = () => { setIsHover(!isHover); };
-  const router = useRouter();
   
   const subMenuAnimate = {
     initial: {
@@ -90,7 +95,8 @@ const MenuGroup = ({ label, items,  selected }) => {
     >
       <Button variant={'text'} size={'small'}>{label}</Button>
       <motion.div
-        initial="initial"
+        style={subMenuAnimate.initial}
+        initial={false}
         animate={isHover ? "enter" : "exit"}
         variants={subMenuAnimate}
         whileFocus={'enter'}
@@ -111,6 +117,7 @@ const MenuGroup = ({ label, items,  selected }) => {
 
 const SubItem = ({ href, text, selected }) => {
   const [isFocus, setIsFocus] = useState(false);
+  const router = useRouter();
   const cur = href === selected;
   return (
     <motion.div
@@ -137,7 +144,6 @@ const SubItem = ({ href, text, selected }) => {
         <Typography variant={'body2'}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae atque fugiat quasi veniam.
         </Typography>
-        <Button aria-hidden="true" variant={isFocus ? 'contained' : 'outlined'} size={'small'} sx={{ marginTop: 3 }}>Learn More</Button>
       </Box>
     </motion.div>
   );

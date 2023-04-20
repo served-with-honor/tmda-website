@@ -8,23 +8,25 @@ export default function CircleFiller({
   color = '#000',
   color2 = '#999',
   duration = 1,
+  parentRef,
   children
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref);
+  const inViewAll = useInView(parentRef || ref, { amount: 'all' });
+  const inViewSome = useInView(parentRef || ref, { amount: 'some' });
   const circumference = 2 * Math.PI * radius;
   const offset = useMotionValue(circumference);
   const viewBox = (radius * 2) + stroke;
   const transform = `rotate(-90, ${radius}, ${radius})`;
   
   useEffect(() => {
-    if (inView) {
+    if (inViewAll) {
       const amount = circumference - (circumference * (percent / 100));
       animate(offset, amount, { duration });
-    } else {
-      animate(offset, circumference, { druation: 0 });
+    } else if (!inViewSome) {
+      offset.set(circumference);
     }
-  }, [offset, inView]);
+  }, [offset, inViewAll, inViewSome]);
 
   return (
     <div ref={ref}>

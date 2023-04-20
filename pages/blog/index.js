@@ -1,7 +1,7 @@
-import { Box, Button, Card, CardActions, CardContent, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import Page from '../../components/Page'
 import { getPosts, getFooterPosts } from '../../lib/api'
-import Link from '../../src/Link';
+import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 
 export default function Blog({ posts, footerPosts }) {
@@ -17,14 +17,7 @@ export default function Blog({ posts, footerPosts }) {
 					<Grid container spacing={5}>
 						{posts && posts.length > 0 ? posts.map(post => (
 							<Grid item sm={4} key={slugify(`post-listing-item-${post.title}`)}>
-								<Card>
-									<CardContent>
-										<Typography variant={'h6'} component={'h3'}>{post.title}</Typography>
-									</CardContent>
-									<CardActions>
-										<Button variant={'contained'} color={'primary'} size={'small'} href="/blog/abc">Learn More</Button>
-									</CardActions>
-								</Card>
+								<ArticleCard {...post} />
 							</Grid>
 						)) : null}
 					</Grid>

@@ -5,8 +5,8 @@ import dividerImage from '../../public/images/section-divider.png';
 export default function SectionDivider() {
   return (
     <Box>
-      <Container>
-        <Image src={dividerImage} alt="" layout = "responsive" width={1200} height={300} />
+      <Container sx={{ position: 'relative' }}>
+        <Image src={dividerImage} alt="" fill />
       </Container>
     </Box>
   );

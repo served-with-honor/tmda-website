@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { getAllPostsForHome } from '../lib/api'
@@ -6,25 +7,23 @@ import {
 	Avatar,
 	Button,
 	Box,
-	Card,
-	CardMedia,
-	CardContent,
-	Chip,
 	Container,
 	Grid,
-	Stack,
 	Typography
 } from '@mui/material';
+import Link from '../src/Link';
 import Page from '../components/Page'
 import Hero from '../components/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
+import ArticleCard from '../components/ArticleCard'
 import { SectionDivider } from '../components/layout'
 import { SectionFeatures1, FAQs, Testimonials, Words, ContactForm } from '../components/home'
 import { slugify } from '../src/utils';
 
 export default function Home({ posts }) {
-  const theme = useTheme();
+	const theme = useTheme();
+	const counterRef = useRef(null);
 
 	return (
 		<Page>
@@ -43,19 +42,24 @@ export default function Home({ posts }) {
 		
 			<SectionFeatures1 />
 			
-			<Box sx={{
+			<Box ref={counterRef} sx={{
 				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
 				color: theme.palette.primary.contrastText,
-				paddingY: 12,
+				paddingY: 10,
 			}}>
 				<Container>
-					<Grid container={true} spacing={2} sx={{ alignItems: 'center', }}>
-						<Grid item xs={8}>
-							<Typography variant={'h3'} component={'h2'} gutterBottom>Changing Lives, One Veteran At A Time</Typography>
-							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 15,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <b><u>read what other Veterans are saying</u></b> about Telemedica LLC.</Typography>
+					<Grid container={true} spacing={5} sx={{ alignItems: 'center' }}>
+						<Grid item md={8}>
+							<Typography variant={'h3'} component={'h2'} gutterBottom sx={{ marginBottom: 5 }}>
+								Changing Lives&nbsp;
+								<Box component={'span'} sx={{  fontWeight: 300 }}>
+									One Veteran At A Time
+								</Box>
+							</Typography>
+							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 15,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
 						</Grid>
-						<Grid item xs={4}>
-							<Box sx={{ position: 'relative' }}>
+						<Grid item md={4}>
+							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 								<Box sx={{
 									position: 'absolute',
 									height: '100%',
@@ -64,7 +68,7 @@ export default function Home({ posts }) {
 									justifyContent: 'center',
 									alignItems: 'center',
 								}}>
-									<CircleFiller color={theme.palette.primary.main} color2={theme.palette.secondary.main} radius={120} stroke={35} percent={65} />
+									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.secondary.main} radius={120} stroke={35} percent={65} />
 								</Box>
 								<Box sx={{
 									fontSize: 30,
@@ -74,7 +78,7 @@ export default function Home({ posts }) {
 								}}>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>More Than</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 40, lineHeight: 1.2 }}>
-										<Counter to={15000} />
+										<Counter to={15000} parentRef={counterRef} />
 									</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>Veterans</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 30, lineHeight: 1.2 }}>Served</Typography>
@@ -89,8 +93,10 @@ export default function Home({ posts }) {
 				<Container>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Who is Telemedica LLC?</Typography>
 					<Grid container spacing={5}>
-						<Grid item sm={6}>
-							<Image width="100" height="100" src="/images/Dr_Smiling_Resized (1).jpeg" alt="" />
+						<Grid item sm={6} sx={{ width: '100%' }}>
+							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
+								<Image fill src="/images/Dr_Smiling_Resized (1).jpeg" alt="" style={{ objectFit: 'cover' }} />
+							</Box>
 						</Grid>
 						<Grid item sm={6}>
 							<Typography variant={'h6'} component={'h3'}>Mission:</Typography>
@@ -176,21 +182,9 @@ export default function Home({ posts }) {
 				<Container>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Check Out These Free Resources!<br />Find out more about _____.</Typography>
 					<Grid container spacing={{ xs: 3, lg: 10 }}>
-						{posts && posts.length > 0 ? posts.map(({ slug, image, title, tags, excerpt }, index) =>
-							<Grid item sm={6} md={4} key={`post-listing-${slug}`}>
-								<Card sx={{ height: '100%' }}>
-									{image ? <CardMedia sx={{ height: '15rem' }} image={image} title="" /> : null}
-									<CardContent>
-										{tags && tags.length > 0 ? <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
-											{tags.map((tag) => {
-												const key = `post-listing-${slug}-category-${tag.slug || slugify(tag.name)}`;
-												return <Chip key={key} label={tag.name} />
-											})}
-										</Stack> : null }
-										{title ? <h4>{title}</h4> : null}
-										{excerpt ? <p>{excerpt}</p> : null}
-									</CardContent>
-								</Card>
+						{posts && posts.length > 0 ? posts.map(post =>
+							<Grid item sm={6} md={4} key={`post-listing-${post.slug}`}>
+								<ArticleCard {...post} />
 							</Grid>
 						) : null}
 					</Grid>

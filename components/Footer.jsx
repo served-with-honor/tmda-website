@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from '../theme'
-import { Avatar, Box, Container, Grid, List, ListItemText, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Container, colors, Grid, List, ListItemText, Stack, Typography } from '@mui/material'
 import logo from '../public/images/logo.png'
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
-import { getPosts } from '../lib/api'
+import { getSocialIcon } from '../src/utils';
+import { getPosts, slugify } from '../lib/api'
 
 export default function Footer({ posts }) {
 	const firstYear = settings.copyrightYearInitial;
@@ -28,12 +29,12 @@ export default function Footer({ posts }) {
 								<Grid item sm>
 									<Typography variant={'h6'} component={'h3'}>Quick Links</Typography>
 									<List>
-										<ListItemText><Link href={'#'}>About</Link></ListItemText>
-										<ListItemText><Link href={'#'}>Veteran Resources</Link></ListItemText>
-										<ListItemText><Link href={'#'}>News & Updates</Link></ListItemText>
-										<ListItemText><Link href={'#'}>How it Works</Link></ListItemText>
-										<ListItemText><Link href={'#'}>Services</Link></ListItemText>
-										<ListItemText><Link href={'#'}>Careers</Link></ListItemText>
+										<ListItemText><Link href={'/about'}>About</Link></ListItemText>
+										<ListItemText><Link href={'/resources'}>Veteran Resources</Link></ListItemText>
+										<ListItemText><Link href={'/blog'}>News & Updates</Link></ListItemText>
+										<ListItemText><Link href={'/how-it-works'}>How it Works</Link></ListItemText>
+										<ListItemText><Link href={'/services'}>Services</Link></ListItemText>
+										<ListItemText><Link href={'/careers'}>Careers</Link></ListItemText>
 									</List>
 								</Grid>
 
@@ -41,13 +42,13 @@ export default function Footer({ posts }) {
 									<Typography variant={'h6'} component={'h3'}>Get Help</Typography>
 									<List>
 										<ListItemText><Link href={'#'}>Submit a Ticket</Link></ListItemText>
-										<ListItemText><Link href={'#'}>Contact Us</Link></ListItemText>
+										<ListItemText><Link href={'/contact'}>Contact Us</Link></ListItemText>
 									</List>
 									
 									<Typography variant={'h6'} component={'h3'} marginTop={3}>Legal Pages</Typography>
 									<List>
-										<ListItemText><Link href={'#'}>Privacy Policy</Link></ListItemText>
-										<ListItemText><Link href={'#'}>Terms & Conditions</Link></ListItemText>
+										<ListItemText><Link href={'/privacy-policy'}>Privacy Policy</Link></ListItemText>
+										<ListItemText><Link href={'/terms-and-conditions'}>Terms & Conditions</Link></ListItemText>
 									</List>
 								</Grid>
 
@@ -81,14 +82,18 @@ export default function Footer({ posts }) {
 								</Grid>
 								{settings.social ? (
 									<Grid item>
-										<Stack direction={'row'}>
-											{settings.social.map((item, index) => (
-												<Link key={`social-link-${index}`} href={item} target="_blank" rel="noopener">
-													<Avatar color={'primary'}>
-														<img src="/images/Social/facebook (1).svg" />
-													</Avatar>
-												</Link>
-											))}
+										<Stack direction={'row'} spacing={1}>
+											{settings.social.map((item, index) => {
+												const key = `social-link-${index}`;
+												const { Icon, text, name } = getSocialIcon(item);
+												return (
+													<Link key={key} href={item} target="_blank" rel="noopener">
+														<Avatar sx={{ backgroundColor: 'common.white' }} size={'small'}>
+															<Icon sx={{ color: 'primary.dark' }} />
+														</Avatar>
+													</Link>
+												);
+											})}
 										</Stack>
 									</Grid>
 							) : null}

@@ -12,5 +12,10 @@ export default {
   contact: {
     phone: '+15128838446',
     email: 'mailto:email@email.com',
+  },
+  articleCategoryColors: {
+    'nexus-letter': 'primary',
+    'mental-health': 'secondary',
+    'physical-conditions': 'primary',
   }
 }

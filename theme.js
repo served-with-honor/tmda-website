@@ -80,6 +80,7 @@ const baseTheme = responsiveFontSizes(createTheme({
         root: {
           fontSize: 18,
           color: ({ theme }) => theme.palette.primary.contrastText,
+          boxShadow: 0,
         }
       }
     }
@@ -87,7 +88,9 @@ const baseTheme = responsiveFontSizes(createTheme({
 }));
 
 const darkTheme = createTheme({
+  ...baseTheme,
   palette: {
+    ...baseTheme.palette,
     mode: 'dark',
   },
   // components: {
