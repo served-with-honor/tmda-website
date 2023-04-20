@@ -8,8 +8,6 @@ import {
 } from '@mui/material';
 
 export default function ContactForm() {
-  const formName = 'Contact Form Home';
-
   const [values, setValues] = useState({
     firstName: { value: '', error: null },
     lastName: { value: '', error: null },
@@ -47,10 +45,9 @@ export default function ContactForm() {
   const submitForm = async (form) => {
     try {
       const formData = new FormData(form);
-      console.log(formData);
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
+      const response = await fetch('/', {
+        method: 'POST',
+        body: new URLSearchParams(formData).toString(),
       });
       setSubmission(true)
     } catch (error) {
@@ -66,7 +63,7 @@ export default function ContactForm() {
   return submission ? (
     <Alert severity="success">Success!</Alert>
   ) : (
-      <form onSubmit={handleSubmit} method='POST' name={formName} action='/' data-netlify-recaptcha='true'>
+      <form onSubmit={handleSubmit} name="Contact Form Home" netlify data-netlify-recaptcha="true">
       <Grid container spacing={2}>
         <Grid item sm={6}>
           <TextField
@@ -125,7 +122,6 @@ export default function ContactForm() {
       </Grid>
 
       <Box align={'center'} marginTop={3}>
-          <input type='hidden' name='form-name' value={formName} />
         <Button sx={{ minWidth: '20rem' }} variant={'contained'} onClick={handleSubmit}>
           Submit
         </Button>
