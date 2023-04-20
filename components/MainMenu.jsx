@@ -4,7 +4,7 @@ import Link from '../src/Link';
 import { Avatar, Box, Button, Grid, Paper, Typography, useMediaQuery } from '@mui/material'
 import { visuallyHidden } from '@mui/utils';
 import { useTheme } from '@mui/material/styles';
-import { Menu } from '@mui/icons-material'
+import MenuIcon from '@mui/icons-material/Menu'
 import { motion } from "framer-motion";
 import { slugify } from '../src/utils';
 
@@ -28,7 +28,7 @@ export default function MainMenu() {
 
   return <>
     {isMobile ? (
-      <Button><Menu /></Button>
+      <Button><MenuIcon /></Button>
     ) : (
       <nav>
         <Grid container>
