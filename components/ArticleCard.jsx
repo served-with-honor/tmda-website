@@ -48,7 +48,7 @@ const Tags = ({ items, parentSlug }) => {
       {items.map(({ slug, name }) => {
         const key = `post-listing-${parentSlug}-category-${slug || slugify(name)}`;
         const color = settings.articleCategoryColors[slug];
-        return <Chip key={key} variant={'outlined'} label={name} color={color || 'default'} size={'small'} />;
+        return <Chip key={key} variant={'outlined'} label={name} sx={color ? { color, borderColor: color } : {}} size={'small'} />
       })}
     </Stack>
   );

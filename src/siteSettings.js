@@ -1,3 +1,5 @@
+import { blue, green, purple, red } from '@mui/material/colors';
+
 export default {
   name: 'Telemedica',
   defaultPageTitle: '#1 Telehealth Platform for Veterans | Nexus Letter Experts',
@@ -14,8 +16,9 @@ export default {
     email: 'mailto:email@email.com',
   },
   articleCategoryColors: {
-    'nexus-letter': 'primary',
-    'mental-health': 'secondary',
-    'physical-conditions': 'primary',
+    'nexus-letter': red[400],
+    'mental-health': blue[300],
+    'physical-conditions': green[400],
+    'veteran-resources': purple[400],
   }
 }
