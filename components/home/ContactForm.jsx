@@ -1,131 +1,88 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useForm, Controller } from "react-hook-form";
+import { useFormSubmit } from '../../hooks'
 import {
   Alert,
   Button,
   Box,
+  CircularProgress,
   Grid,
   TextField,
 } from '@mui/material';
 
 export default function ContactForm() {
-  const [values, setValues] = useState({
-    firstName: { value: '', error: null },
-    lastName: { value: '', error: null },
-    email: { value: '', error: null },
-    phone: { value: '', error: null },
-  });
-  const [submission, setSubmission] = useState();
+  const formName = 'Contact Form Home';
+  const { handleSubmit, control, formState: { errors } } = useForm();
+  const { submit, isLoading, hasSubmited, error } = useFormSubmit();
+  const onSubmit = async (data) => await submit('/', data);
 
-  const fieldTests = {
-    firstName: [{ pattern: /.+/, text: 'First name is required' },],
-    email: [{ pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, text: 'A valid email is required' },],
-  }
-
-  const handleFieldChange = (e) => {
-    const { name, value } = e.target;
-    const error = fieldTests[name] ? validateField(value, fieldTests[name])[0] : null;
-    setValues(prev => ({
-      ...prev,
-      ...({ [name]: { value, error } })
-    }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmission(undefined);
-    
-    const errors = Object.fromEntries(Object.keys(fieldTests).map(key => [key, { error: validateField(values[key].value, fieldTests[key])[0] }]))
-    const hasErrors = Object.entries(errors).some(item => item.error);
-    
-    setValues(prev => ({ ...prev, ...errors }));
-    const form = e.target.closest('form');  
-    if (!hasErrors) submitForm(form);
-  }
-
-  const submitForm = async (form) => {
-    try {
-      const formData = new FormData(form);
-      const response = await fetch('/', {
-        method: 'POST',
-        body: new URLSearchParams(formData).toString(),
-      });
-      setSubmission(true)
-    } catch (error) {
-      console.error(error);
-      setSubmission(false);
-    }
-  }
-
-  const validateField = (input, rules) => {
-    return rules.filter(({ pattern }) => !(pattern.test(input))).map(({ text }) => text);
-  }
-
-  return submission ? (
+  return hasSubmited ? (
     <Alert severity="success">Success!</Alert>
+  ) : isLoading ? (
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <CircularProgress />
+    </Box>
   ) : (
-      <form onSubmit={handleSubmit} name="Contact Form Home" netlify data-netlify-recaptcha="true">
+      <form
+        method="POST"
+        action="/"
+        onSubmit={handleSubmit(onSubmit)}
+        name={formName}
+        data-netlify="true"
+      >
       <Grid container spacing={2}>
         <Grid item sm={6}>
-          <TextField
-            required
-            fullWidth
-            variant="outlined"
-            label="First Name"
+          <Controller
             name="firstName"
-            id="outlined-basic"
-            value={values.firstName.value}
-            error={!!(values.firstName.error)}
-            helperText={values.firstName.error}
-            onChange={handleFieldChange}
+            control={control}
+            rules={{ required: 'First name is required' }}
+            render={({ field }) => <TextField label='First Name' fullWidth required error={!!(errors?.firstName?.message)} {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
-          <TextField
-            error={!!(values.lastName.error)}
-            fullWidth
-            variant="outlined"
-            label="Last Name"
+          <Controller
             name="lastName"
-            id="outlined-basic"
-            value={values.lastName.value}
-            helperText={values.lastName.error}
-            onChange={handleFieldChange}
+            control={control}
+            render={({ field }) => <TextField label='Last Name' fullWidth {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
-          <TextField
-            error={!!(values.phone.error)}
-            fullWidth
-            variant="outlined"
-            label="Phone Number"
+          <Controller
             name="phone"
-            id="outlined-basic"
-            value={values.phone.value}
-            helperText={values.phone.error}
-            onChange={handleFieldChange}
+            control={control}
+            render={({ field }) => <TextField label='Phone' fullWidth {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
-          <TextField
-            required
-            fullWidth
-            variant="outlined"
-            label="Email"
+          <Controller
             name="email"
-            id="outlined-basic"
-            value={values.email.value}
-            error={!!(values.email.error)}
-            helperText={values.email.error}
-            onChange={handleFieldChange}
+            control={control}
+            rules={{ required: 'Email is required', pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'A valid email is required' } }}
+            render={({ field }) => <TextField label='Email' fullWidth helperText={errors?.email?.message} error={!!(errors?.email)} {...field} /> }
+          />
+        </Grid>
+        <Grid item sm>
+          <Controller
+            name="message"
+            control={control}
+            rules={{ required: 'Message is required' }}
+            render={({ field }) => <TextField multiline minRows={3} label='Message' fullWidth helperText={errors?.message?.message} error={!!(errors?.message)} {...field} /> }
           />
         </Grid>
       </Grid>
 
       <Box align={'center'} marginTop={3}>
-        <Button sx={{ minWidth: '20rem' }} variant={'contained'} onClick={handleSubmit}>
+        <input type="hidden" name="form-name" value={formName} />
+        <Button
+          type="submit"
+          sx={{ minWidth: '20rem' }}
+          variant={'contained'}
+          onClick={handleSubmit}
+          disabled={Object.values(errors).length > 0}
+        >
           Submit
         </Button>
-          {submission === false && <Alert severity="error" sx={{ marginTop: 3 }}>Oh no, something went wrong!</Alert>}
+          {error ? <Alert severity="error" sx={{ marginTop: 3 }}>Oh no, something went wrong!</Alert> : null}
       </Box>
     </form>
   )
