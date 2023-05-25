@@ -2,14 +2,14 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import { Button, Box, Container, Grid, Typography } from '@mui/material';
 import { slugify } from '../../src/utils';
-
+import settings from '../../src/siteSettings';
 
 export default function SectionFeatures1() {
   const title = 'How Can We Help?'
   const items = [
     { body: 'For new or returning clients', button: { label: 'Get Started', url: '#' }, },
-    { body: 'Booking, pay invoices, upload documents', button: { label: 'Patient Portal', url: '' }, },
-    { body: 'For current Telemedica providers', button: { label: 'Provider Portal', url: '' }, },
+    { body: 'Booking, pay invoices, upload documents', button: { label: 'Patient Portal', url: settings.externalLinks.patientPortal }, },
+    { body: 'For current Telemedica providers', button: { label: 'Provider Portal', url: settings.externalLinks.providerPortal }, },
   ];
 
   return (

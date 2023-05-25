@@ -23,8 +23,8 @@ export default function Testimonials() {
   return (
     <Slider {...settings}>
       {items.map((text, index) => (
-        <Box sx={{ padding: 3 }} key={`testimonials-items-${index}`}>
-          <Paper sx={{ padding: 5 }} elevation={5}>
+        <Box sx={{ padding: 1 }} key={`testimonials-items-${index}`}>
+          <Paper sx={{ padding: { xs: 3, md: 5 } }} elevation={5}>
             <Typography variant={'body1'}>{text}</Typography>
           </Paper>
         </Box>

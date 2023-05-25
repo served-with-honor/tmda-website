@@ -7,6 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu'
 import { motion } from "framer-motion";
 import { slugify } from '../src/utils';
+import settings from '../src/siteSettings';
 
 export default function MainMenu() {
   const theme = useTheme();
@@ -16,13 +17,12 @@ export default function MainMenu() {
 
   const items1 = [
     { href: '/about', text: 'About' },
-    { href: '/how-it-works', text: 'How it works' },
     { href: '/services', text: 'Services' },
     { href: '/blog', text: 'Blog' },
     { href: '/resources', text: 'Resources' },
   ];
   const items2 = [
-    { href: '#', text: 'Provider Portal' },
+    { href: settings.externalLinks.providerPortal, text: 'Provider Portal' },
     { href: '/administrative-services', text: 'Administrative Services' },
     { href: '/careers', text: 'Careers' },
   ];
@@ -32,7 +32,7 @@ export default function MainMenu() {
       <Button><MenuIcon /></Button>
     ) : (
       <nav>
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid item>
             <MenuGroup label={'For Veterans'} items={items1} selected={selected} />
           </Grid>
@@ -43,7 +43,7 @@ export default function MainMenu() {
             <Button variant={'outlined'} size={'small'} href="/contact-us">Get In Touch</Button>
           </Grid>
           <Grid item>
-            <Button variant={'contained'} size={'small'} href="#">Patient Portal</Button>
+            <Button variant={'contained'} size={'small'} href={settings.externalLinks.patientPortal}>Patient Portal</Button>
           </Grid>
         </Grid>
       </nav>
@@ -102,7 +102,7 @@ const MenuGroup = ({ label, items,  selected }) => {
         whileFocus={'enter'}
       >
         <Paper elevation={5} sx={{ overflow: 'hidden' }}>
-          <Grid container columns={10}>
+          <Grid container columns={8}>
             {items.map(props => (
               <Grid item md={2} key={`main-menu-item${slugify(props.text)}`}>
                 <SubItem {...props} selected={selected} />

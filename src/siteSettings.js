@@ -1,10 +1,11 @@
 import { blue, green, purple, red } from '@mui/material/colors';
+import { LoremIpsum } from "lorem-ipsum";
 
 export default {
   name: 'Telemedica',
   defaultPageTitle: '#1 Telehealth Platform for Veterans | Nexus Letter Experts',
   company: 'Telemedica LLC',
-  copyrightYearInitial: 2022,
+  copyrightYearInitial: 2023,
   social: [
     'https://www.facebook.com/telemedicallc',
     'https://instagram.com/telemedicallc',
@@ -20,5 +21,21 @@ export default {
     'mental-health': blue[300],
     'physical-conditions': green[400],
     'veteran-resources': purple[400],
-  }
+  },
+  externalLinks: {
+    patientPortal: 'https://telemedicallc.intakeq.com/portal',
+    helpDesk: '',
+    providerPortal: 'https://intakeq.com/',
+    booking: 'http://booking.telemedicallc.com/',
+  },
+  dummyText: new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 8,
+      min: 4
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4
+    }
+  }),
 }

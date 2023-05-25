@@ -1,11 +1,11 @@
-import { useTheme, Box, Container, Grid } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 export default function Hero({ bgvideo, children }) {
   return (
     <Box sx={{
       backgroundColor: '#eee',
-      clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)',
-      minHeight: '60vh',
+      // clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)',
+      minHeight: '80vh',
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
@@ -18,12 +18,12 @@ export default function Hero({ bgvideo, children }) {
           height: '100%',
           opacity: '0.75',
         }}>
-          <video autoPlay loop muted playsInline>
+          <video autoPlay loop muted playsInline style={{ height: '100%', width: '100%', objectFit: 'cover' }}>
             <source src={bgvideo} type="video/mp4" />
           </video>
         </Box>
       : null}
-      <Container>
+      <Container sx={{ position: 'relative' }}>
         {children}
       </Container>
     </Box>

@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
 import { useForm, Controller } from "react-hook-form";
-import { useFormSubmit } from '../../hooks'
-import {
-  Alert,
-  Button,
-  Box,
-  CircularProgress,
-  Grid,
-  TextField,
-} from '@mui/material';
+import { useFormSubmit } from '../hooks'
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from '@mui/material/FormHelperText';
+import Select from '@mui/material/Select';
 
 export default function ContactForm() {
   const formName = 'Contact Form Home';
@@ -61,7 +63,26 @@ export default function ContactForm() {
             render={({ field }) => <TextField label='Email' fullWidth helperText={errors?.email?.message} error={!!(errors?.email)} {...field} /> }
           />
         </Grid>
-        <Grid item sm>
+        <Grid item xs={12}>
+          <FormControl fullWidth error={!!(errors?.type)} >
+            <InputLabel id="stuff">Request Type</InputLabel>
+            <Controller
+              name="type"
+              control={control}
+              rules={{ required: 'Type is required' }}
+              render={({ field }) =>
+                <Select labelId="stuff" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
+                  <MenuItem value="Customer Service">Customer Service</MenuItem>
+                  <MenuItem value="Billing">Billing</MenuItem>
+                  <MenuItem value="Pricing">Pricing</MenuItem>
+                  <MenuItem value="General inquiry">General inquiry</MenuItem>
+                </Select>
+              }
+            />
+            <FormHelperText>{errors?.type?.message}</FormHelperText>
+          </FormControl>  
+        </Grid>
+        <Grid item xs={12}>
           <Controller
             name="message"
             control={control}
@@ -77,7 +98,7 @@ export default function ContactForm() {
           type="submit"
           sx={{ minWidth: '20rem' }}
           variant={'contained'}
-          onClick={handleSubmit}
+          onClick={handleSubmit(onSubmit)}
           disabled={Object.values(errors).length > 0}
         >
           Submit

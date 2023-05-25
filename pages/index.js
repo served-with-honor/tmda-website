@@ -18,7 +18,7 @@ import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
 import ArticleCard from '../components/ArticleCard'
 import { SectionDivider } from '../components/layout'
-import { SectionFeatures1, FAQs, Testimonials, Words, ContactForm } from '../components/home'
+import { SectionFeatures1, FAQs, Testimonials, Words } from '../components/home'
 import { slugify } from '../src/utils';
 
 export default function Home({ posts }) {
@@ -29,9 +29,9 @@ export default function Home({ posts }) {
 		<Page>
     
 			<Hero
-			// bgvideo="images/Website Headers/TMDA Hero Reel_01.mp4"
+				// bgvideo="images/Website Headers/TMDA Hero Reel_01.mp4"
 			>
-				<Typography variant={'h1'} color={'secondary'} fontSize={60} sx={{ textTransform: 'uppercase' }}>
+				<Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
 					Serving Those Who Served
 				</Typography>
 				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600 }}>
@@ -191,14 +191,6 @@ export default function Home({ posts }) {
 						<Box align={'center'} sx={{ mt: 5 }}>
 							<Button variant={'contained'} href={'/blog'}>Read More...</Button>
 						</Box>
-				</Container>
-			</Box>
-
-			<Box sx={{ backgroundColor: '#333', paddingY: 5 }}>
-				<Container maxWidth={'sm'}>
-					<Typography variant={'sectionHeading'} component={'h2'} marginBottom={5}>Contact Us</Typography>
-					<Typography variant={'body1'} align={'center'} gutterBottom marginBottom={5}>Fill out the form below. A member of our Customer Service Team will be in touch soon!</Typography>
-					<ContactForm />
 				</Container>
 			</Box>
 		</Page>

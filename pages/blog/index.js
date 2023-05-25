@@ -6,10 +6,10 @@ import { slugify } from '../../src/utils';
 
 export default function Blog({ posts, footerPosts }) {
 	return (
-		<Page title={'News & Updates'} posts={footerPosts}>
+		<Page title={'Telemedica Blog'} posts={footerPosts}>
 			<Box marginTop={10}>
 				<Container>
-					<Typography variant={'h1'}>News & Updates</Typography>
+					<Typography variant={'h1'}>Telemedica Blog</Typography>
 				</Container>
 			</Box>
 			<Box sx={{ marginY: 10 }}>
