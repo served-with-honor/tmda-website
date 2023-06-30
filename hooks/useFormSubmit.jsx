@@ -5,22 +5,24 @@ export default function useFormSubmit() {
   const [hasSubmited, setHasSubmited] = useState(false);
   const [error, setError] = useState();
 
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   const submit = async (url, data) => {
     try {
       setIsLoading(true);
-      const { ok, status, statusText } = await fetch(url, {
+      const { ok, status, statusText, body } = await fetch(url, {
         method: 'POST',
-        body: new URLSearchParams(data).toString(),
+        body: JSON.stringify(data),
       });
-      await delay(2000);
-      if (!ok) throw `${status}: ${statusText}`;
+      const responseError = await body.json();
+      // #TODO - PICKUPHERE
+
+      if (!ok) {
+        if (responseError) throw new Error(responseError);
+        throw new Error(`${status}: ${statusText}`);
+      }
+        
       setHasSubmited(true);
     } catch (error) {
-      setError(error);
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }

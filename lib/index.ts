@@ -1,9 +1,18 @@
 import { addDoc, getFirestore, collection, Timestamp } from "firebase/firestore/lite";
 import firebase from './firebaseConfig';
-import client from './sanityConfig'
+import sanityClient from './sanityConfig'
+import settings from '../src/siteSettings';
+
 const retry = require('retry');
 
-const mailchimpClient = require("@mailchimp/mailchimp_transactional")(process.env.MANDRILL_API_KEY);
+const mandrillClient = require("@mailchimp/mailchimp_transactional")(process.env.MANDRILL_API_KEY);
+const mailchimpClient = require("@mailchimp/mailchimp_marketing");
+
+mailchimpClient.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_SERVER,
+});
+
 const db = getFirestore(firebase);
 const retryOperationConfig = {
   retries: 3,
@@ -43,7 +52,7 @@ const emailContactForm = async (data: Object) => {
   return new Promise((resolve, reject) => {
     operation.attempt(async () => {
       try {
-        const response = await mailchimpClient.messages.send({ message });
+        const response = await mandrillClient.messages.send({ message });
         if (response.isAxiosError) throw response;
         resolve(response);
       } catch (error) {
@@ -63,11 +72,35 @@ const getTeamMembers = async (): Promise<{ name: string, position: string, image
     }
   `;
 
-  return await client.fetch(query);
+  return await sanityClient.fetch(query);
+}
+
+const newsletterSignup = async (email: string) => {
+  // const operation = retry.operation(retryOperationConfig);
+
+  return new Promise(async (resolve, reject) => {
+    // operation.attempt(async () => {
+      try {
+        const response = await mailchimpClient.lists.batchListMembers(settings.newsletter.listId, {
+          members: [{ email_address: email, status: 'subscribed' }],
+        });
+        
+        if (response.isAxiosError) throw response;
+        if (response.errors) throw response.errors[0].error;
+
+        resolve(response);
+      } catch (error) {
+        reject(error);
+        // if (operation.retry(error)) return;
+        // reject(operation.mainError(error));
+      }
+    // })
+  });
 }
 
 export {
   logContactForm,
   emailContactForm,
   getTeamMembers,
+  newsletterSignup,
 }

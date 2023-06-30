@@ -4,9 +4,6 @@ import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
 
-// import { Montserrat, Oswald } from 'next/font/google'
-
-
 export default function Page({ title, posts, children }) {
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
@@ -20,6 +17,18 @@ export default function Page({ title, posts, children }) {
       <Head>
         <title>{`${settings.name} | ${title ? title : settings.defaultPageTitle}`}</title>
         <link rel="icon" href="/favicon.ico" />
+        {settings.googleAnalyticsId !== undefined ? (<>
+          <script src={`https://www.googletagmanager.com/gtag/js?id=${settings.googleAnalyticsId}`} />
+          <script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', '${settings.googleAnalyticsId}');
+            `}
+          </script>
+        </>) : null}
       </Head>
       <Header ref={ref} />
 			<main style={{ marginTop: headerHeight }}>{children}</main>

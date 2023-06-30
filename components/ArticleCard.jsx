@@ -1,22 +1,20 @@
 import { useRouter } from 'next/router';
-import { motion } from "framer-motion";
-import {
-  Box,
-  Card,
-  CardMedia,
-  CardContent,
-  Chip,
-  Stack,
-  Typography
-} from '@mui/material';
+import { motion } from 'framer-motion';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 
-export default function ArticleCard({ slug, image, tags, title, excerpt = settings.dummyText.generateWords(32) }) {
+export default function ArticleCard({ slug: articleSlug, image, tags, title, excerpt = settings.dummyText.generateWords(32) }) {
   const router = useRouter();
   const handleClick = (a) => router.push(`/blog${a}`);
-  const url = `/blog/${slug}`;
+  const url = `/blog/${articleSlug}`;
   
   return (
     <motion.div
@@ -36,20 +34,20 @@ export default function ArticleCard({ slug, image, tags, title, excerpt = settin
           {tags && tags.length > 0 ? (
             <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
               {tags.map(({ slug: tagSlug, name }) => {
-                const color = settings.articleCategoryColors[tagSlug];
+                const color = settings.articleTagColors[tagSlug];
                 return <Chip
-                  key={`post-listing-${slug}-category-${tagSlug || slugify(name)}`}
+                  key={`post-listing-${articleSlug}-tag-${tagSlug || slugify(name)}`}
                   variant={'contained'}
                   label={name}
                   sx={color ? { color: '#fff', backgroundColor: color } : {}}
                   size={'small'}
-                  onClick={() => handleClick(`?category=${slug}`)}
+                  onClick={() => handleClick(`?tag=${tagSlug}`)}
                 />
               })}
             </Stack>
           ) : null}
 
-          <Box onClick={() => handleClick(`/${slug}`)}>
+          <Box onClick={() => handleClick(`/${articleSlug}`)}>
             
             {/* TITLE */}
             {title ? (

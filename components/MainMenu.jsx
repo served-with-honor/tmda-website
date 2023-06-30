@@ -1,10 +1,21 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
-import { Avatar, Box, Button, Grid, Paper, Typography, useMediaQuery } from '@mui/material'
-import { visuallyHidden } from '@mui/utils';
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu'
+import { visuallyHidden } from '@mui/utils';
 import { motion } from "framer-motion";
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
@@ -52,99 +63,47 @@ export default function MainMenu() {
 }
 
 const MenuGroup = ({ label, items,  selected }) => {
-  const [isHover, setIsHover] = useState(false);
-  const toggleHoverMenu = () => { setIsHover(!isHover); };
-  
-  const subMenuAnimate = {
-    initial: {
-      display: 'none',
-      left: 0,
-      position: 'absolute',
-      paddingTop: 15,
-      width: '100%',
-      zIndex: 100,
-    },
-    enter: {
-      display: 'block',
-      scale: 1,
-      opacity: 1,
-      top: '50px',
-      transition: {
-        duration: 0.25
-      },
-    },
-    exit: {
-      display: 'block',
-      scale: 0.75,
-      opacity: 0,
-      top: '100px',
-      transition: {
-        duration: 0.15,
-      },
-      transitionEnd: {
-        display: "none",
-        top: 0,
-      }
-    }
-  };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleOpen = (event) => { setAnchorEl(event.currentTarget); };
+  const handleClose = () => { setAnchorEl(null); };
 
-  return (
-    <motion.div
-      onHoverStart={toggleHoverMenu}
-      onHoverEnd={toggleHoverMenu}
+  const menuName = `basic-${slugify(label)}`;
+  const buttonId = `${menuName}-button`;
+  const menuId = `${menuName}-menu`;
+
+  return <>
+    <Button variant={'text'} size={'small'}
+      id={buttonId}
+      aria-controls={open ? menuId : undefined}
+      aria-haspopup="true"
+      aria-expanded={open ? 'true' : undefined}
+      onMouseEnter={handleOpen}
     >
-      <Button variant={'text'} size={'small'}>{label}</Button>
-      <motion.div
-        style={subMenuAnimate.initial}
-        initial={false}
-        animate={isHover ? "enter" : "exit"}
-        variants={subMenuAnimate}
-        whileFocus={'enter'}
-      >
-        <Paper elevation={5} sx={{ overflow: 'hidden' }}>
-          <Grid container columns={8}>
-            {items.map(props => (
-              <Grid item md={2} key={`main-menu-item${slugify(props.text)}`}>
-                <SubItem {...props} selected={selected} />
-              </Grid>
-            ))}
-          </Grid>
-        </Paper>
-      </motion.div>
-    </motion.div>
-  )
-}
-
-const SubItem = ({ href, text, selected }) => {
-  const [isFocus, setIsFocus] = useState(false);
-  const router = useRouter();
-  const cur = href === selected;
-  return (
-    <motion.div
-      initial={{ height: '100%', }}
-      whileHover={{
-        backgroundColor: 'rgba(0,0,0,0.05)',
-        // scale: 1.1,
-        transition: { duration: 0.25 },
-      }}>
-      <Box
-        sx={{ height: '100%', textAlign: 'center', cursor: cur ? 'normal' : 'pointer', paddingX: 3, paddingY: 5 }}
-        onClick={() => cur ? null : router.push(href)}
-        onMouseEnter={() => setIsFocus(true)}
-        onMouseLeave={() => setIsFocus(false)}
-      >
-        <Avatar color={'primary.dark'} sx={{ marginX: 'auto', marginBottom: 3 }}>{text[0]}</Avatar>
-        <Typography gutterBottom variant={'h5'} component={'p'} color={'primary.main'}>
-          {cur ? (
-            <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
-          ) : (
-            <Link href={href} color='inherit' sx={{ textDecoration: 'none' }}>{text}</Link>
-          )}
-        </Typography>
-        <Typography variant={'body2'}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae atque fugiat quasi veniam.
-        </Typography>
-      </Box>
-    </motion.div>
-  );
+      {label}
+    </Button>  
+    <Menu
+      id={menuId}
+      anchorEl={anchorEl}
+      open={open}
+      onMouseLeave={handleClose}
+      onClose={handleClose}
+      MenuListProps={{
+        'aria-labelledby': buttonId,
+        onMouseLeave: handleClose,
+      }}
+    >
+      {items.map(({ href, text }) => (
+        <MenuItem key={`main-menu-item-${slugify(text)}`} selected={href === selected} disabled={href === selected}>
+          <Typography variant={'subtitle1'} component={'span'} color={'primary.main'} sx={{ lineHeight: 1 }}>
+            {href === selected ? (
+              <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
+            ) : (
+              <Link href={href} color='inherit' sx={{ textDecoration: 'none' }}>{text}</Link>
+            )}
+          </Typography>
+        </MenuItem>
+      ))}
+    </Menu>
+  </>
 }

@@ -1,10 +1,10 @@
+import { forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import { motion } from 'framer-motion'
 
-export default function MapAnim({ pinCount = 17, sizeVariant = 0.1 }) {
+export default forwardRef(function MapAnim(props, ref) {
   const height = 593;
-  const width = 959;
-
+  const width = 959;  
   const defaultPinSize = 64;
 
   const pins = [
@@ -339,6 +339,8 @@ export default function MapAnim({ pinCount = 17, sizeVariant = 0.1 }) {
               key={`map-pin-${index}`}
               initial={{ opacity: 0, x, y: 0 }}
               animate={{ opacity: 1, x, y }}
+              // whileInView={{ opacity: 1, x, y }}
+              // viewport={{ root: ref }}
               transition={{ delay: 0.05 * index }}
             >
               <path transform={`scale(${size})`} fill="#74C8B4" d="M54.1,13.6l-0.1-1.1l-1.1,0c-1.5-0.1-3-0.2-4.4-0.4c-1.4-0.2-2.7-0.5-4-0.8 c-0.8-0.2-1.6-0.5-2.4-0.7c-0.8-0.3-1.5-0.6-2.2-0.9c-0.4-0.1-0.7-0.3-1-0.5c-2.7-1.2-4.9-2.7-6.6-4c-0.2-0.2-0.4-0.3-0.6-0.5 c-1.8-1.4-2.9-2.6-3.4-3.1c-0.1-0.1-0.2-0.2-0.2-0.2c0,0,0,0,0,0l-1-1.2l0,0l0,0l-1,1.2c-0.1,0.1-8.6,10.6-24.8,11.2l-1.1,0 l-0.1,1.1c0,0.4-0.7,9.4,2.1,20.2c3.8,14.3,12.3,24.7,24.4,30l0.5,0.2l0.5-0.2c9.1-4,16.1-10.8,20.7-20c1.5-3.1,2.8-6.4,3.7-10 c0.3-1,0.5-2,0.7-3c0.3-1.6,0.6-3.2,0.8-4.7c0-0.3,0.1-0.6,0.1-0.9c0.2-1.7,0.4-3.3,0.4-4.8c0-0.5,0-0.9,0.1-1.4s0-0.9,0-1.2 C54.3,15.3,54.2,13.7,54.1,13.6z"/>
@@ -349,4 +351,4 @@ export default function MapAnim({ pinCount = 17, sizeVariant = 0.1 }) {
       </svg>
     </Box>
   );
-}
+})

@@ -5,37 +5,12 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import { motion } from 'framer-motion'
+import { slugify } from '../src/utils';
 // import imageUrlBuilder from "@sanity/image-url"
 // import Image from 'next/image'
 import defaultProfile from '../public/default-profile.png'
 // const builder = imageUrlBuilder(client);
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
@@ -43,32 +18,27 @@ export default function Directory({ items }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return <>
-    <Tabs
-      value={value}
-      onChange={handleChange}
-      aria-label="basic tabs example"
-      centered
-      sx={{ margin: 5 }}
-    >
-      {items.map(({ label }, index) => (
-        <Tab label={label} {...a11yProps(index)} />
-      ))}
-    </Tabs>
+    <DirectoryNav items={items.map(({ label }) => label)} value={value} handleChange={handleChange} />
+
     {items ? items.map(({ people }, index) => (
-      <TabPanel value={value} index={index}>
+      <TabPanel key={`directory-panel-${index}`} value={value} index={index}>
         {people ? (
           <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
             {people.map(({ name, position, image }, index) => {
-              const imageUrl = image ? builder.image(image).size(500, 500).url() : defaultProfile.src;
-              console.log(imageUrl);
-              return <Grid item sm={4} md={3} lg={2} key={`team-member-${index}`}>
-                <Box align='center'>
-                  <Avatar src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
-                  <Typography variant='h6' component='p'>{name}</Typography>
-                  <Typography variant='body2'>{position}</Typography>
-                </Box>
-              </Grid>
+              return (
+                <Grid key={`directory-team-member-${slugify(name)}`} item sm={4} md={3} lg={2}>
+                  <motion.Box
+                    align="center"
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 * index }}
+                  >
+                    <Person name={name} image={image} position={position} />
+                  </motion.Box>
+                </Grid>
+              );
             })}
           </Grid>
         ) : null}
@@ -76,3 +46,47 @@ export default function Directory({ items }) {
     )) : null}
   </>
 }
+
+const DirectoryNav = ({ items, handleChange, value }) => (
+  <Tabs
+    value={value}
+    onChange={handleChange}
+    aria-label="Team Members"
+    centered
+    sx={{ margin: 5 }}
+  >
+    {items.map((label, index) => (
+      <Tab
+        key={`directory-tab-${index}`}
+        label={label}
+        id={`directory-tab-${index}`}
+        aria-controls={`directory-panel-${index}`}
+      />
+    ))}
+  </Tabs>
+);
+
+const TabPanel = ({ children, value, index, ...other }) => (
+  <div
+    role="tabpanel"
+    hidden={value !== index}
+    id={`simple-tabpanel-${index}`}
+    aria-labelledby={`simple-tab-${index}`}
+    {...other}
+  >
+    {value === index && (
+      <Box sx={{ p: 3 }}>
+        {children}
+      </Box>
+    )}
+  </div>
+);
+
+const Person = ({ name, position, image }) => {
+  const imageUrl = image ? builder.image(image).size(500, 500).url() : defaultProfile.src;
+  return <>
+    <Avatar src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
+    <Typography variant='h6' component='p'>{name}</Typography>
+    <Typography variant='body2'>{position}</Typography>
+  </>
+};

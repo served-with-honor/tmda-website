@@ -1,12 +1,18 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme } from '../theme'
-import { Avatar, Box, Container, colors, Grid, List, ListItemText, Stack, Typography } from '@mui/material'
-import logo from '../public/images/logo.png'
+import { darkTheme } from '../theme';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItemText from '@mui/material/ListItemText';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import logo from '../public/images/logo.png';
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
 import { getSocialIcon } from '../src/utils';
-import { getPosts, slugify } from '../lib/api'
 
 export default function Footer({ posts }) {
 	const firstYear = settings.copyrightYearInitial;
@@ -41,7 +47,7 @@ export default function Footer({ posts }) {
 								<Grid item sm>
 									<Typography variant={'h6'} component={'h3'}>Get Help</Typography>
 									<List>
-										<ListItemText><Link href={'#'}>Submit a Ticket</Link></ListItemText>
+										<ListItemText><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></ListItemText>
 										<ListItemText><Link href={'/contact'}>Contact Us</Link></ListItemText>
 									</List>
 									
@@ -56,10 +62,10 @@ export default function Footer({ posts }) {
 									<Typography variant={'h6'} component={'h3'}>Recent Updates</Typography>
 									{posts && posts.length > 0 ? (
 										<List>
-											{posts.map(post => {
+											{posts.map(({ title, slug }) => {
 												const limit = 48;
-												const text = post.title.length > limit ? `${post.title.substring(0, limit).trim()}...` : post.title;
-												return <ListItemText sx={{ mb: 2 }}><Link href={`/blog/${post.slug}`}>{text}</Link></ListItemText>
+												const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
+												return <ListItemText key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></ListItemText>
 											})}
 										</List>
 										): null}
