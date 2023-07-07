@@ -7,10 +7,10 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { motion } from 'framer-motion'
 import { slugify } from '../src/utils';
-// import imageUrlBuilder from "@sanity/image-url"
-// import Image from 'next/image'
+import imageUrlBuilder from "@sanity/image-url"
 import defaultProfile from '../public/default-profile.png'
-// const builder = imageUrlBuilder(client);
+import sanityClient from '../lib/sanityConfig'
+const builder = imageUrlBuilder(sanityClient);
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
@@ -83,7 +83,7 @@ const TabPanel = ({ children, value, index, ...other }) => (
 );
 
 const Person = ({ name, position, image }) => {
-  const imageUrl = image ? builder.image(image).size(500, 500).url() : defaultProfile.src;
+  const imageUrl = image ? builder.image(image).size(300, 300).url() : defaultProfile.src;
   return <>
     <Avatar src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
     <Typography variant='h6' component='p'>{name}</Typography>
