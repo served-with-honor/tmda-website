@@ -110,16 +110,23 @@ const darkTheme = createTheme({
   palette: {
     ...baseTheme.palette,
     mode: 'dark',
+    text: {
+      primary: 'rgba(255,255,255,0.87)',
+    },
   },
-  // components: {
-  // 	MuiLink: {
-  // 		styleOverrides: {
-  // 			root: {
-  // 				textDecoration: 'none',
-  // 			},
-  // 		},
-  // 	},
-  // }
+  components: {
+  	MuiLink: {
+  		styleOverrides: {
+        root: {
+          color: '#fff',
+  				textDecoration: 'none',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
+  		},
+  	},
+  }
 });
 
 export {

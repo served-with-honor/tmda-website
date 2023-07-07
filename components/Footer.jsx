@@ -23,7 +23,9 @@ export default function Footer({ posts }) {
 			<footer>
 				<Box sx={{
 					background: 'linear-gradient(180deg, #1F2C52, #000)',
-					padding: 10,
+					pt: 8,
+					pb: 3,
+					color: 'text.primary',
 				}}>
 					<Container>
 						<Grid container spacing={5}>
@@ -31,9 +33,9 @@ export default function Footer({ posts }) {
 								<Link href="/"><Image src={logo} alt="Telemedica Logo" /></Link>
 							</Grid>
 								
-							<Grid container item md={9} spacing={5}>
-								<Grid item sm>
-									<Typography variant={'h6'} component={'h3'}>Quick Links</Typography>
+							<Grid container item sm={12} md={9} spacing={5}>
+								<Grid item xs={12} sm={6} md={3}>
+									<Typography variant={'h6'} component={'h3'} color={'secondary.400'}>Quick Links</Typography>
 									<List>
 										<ListItemText><Link href={'/about'}>About</Link></ListItemText>
 										<ListItemText><Link href={'/resources'}>Veteran Resources</Link></ListItemText>
@@ -44,22 +46,22 @@ export default function Footer({ posts }) {
 									</List>
 								</Grid>
 
-								<Grid item sm>
-									<Typography variant={'h6'} component={'h3'}>Get Help</Typography>
+								<Grid item xs={12} sm={6} md={3}>
+									<Typography variant={'h6'} component={'h3'} color={'secondary.400'}>Get Help</Typography>
 									<List>
 										<ListItemText><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></ListItemText>
 										<ListItemText><Link href={'/contact'}>Contact Us</Link></ListItemText>
 									</List>
 									
-									<Typography variant={'h6'} component={'h3'} marginTop={3}>Legal Pages</Typography>
+									<Typography variant={'h6'} component={'h3'} marginTop={3} color={'secondary.400'}>Legal Pages</Typography>
 									<List>
 										<ListItemText><Link href={'/privacy-policy'}>Privacy Policy</Link></ListItemText>
 										<ListItemText><Link href={'/terms-and-conditions'}>Terms & Conditions</Link></ListItemText>
 									</List>
 								</Grid>
 
-								<Grid item sm>
-									<Typography variant={'h6'} component={'h3'}>Recent Updates</Typography>
+								<Grid item xs={12} sm={6} md={3}>
+									<Typography variant={'h6'} component={'h3'} color={'secondary.400'}>Recent Updates</Typography>
 									{posts && posts.length > 0 ? (
 										<List>
 											{posts.map(({ title, slug }) => {
@@ -71,8 +73,8 @@ export default function Footer({ posts }) {
 										): null}
 								</Grid>
 
-								<Grid item sm>
-									<Typography variant={'h6'} component={'h3'}>Get In Touch</Typography>
+								<Grid item xs={12} sm={6} md={3}>
+									<Typography variant={'h6'} component={'h3'} color={'secondary.400'}>Get In Touch</Typography>
 									<List>
 										<ListItemText><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></ListItemText>
 										<ListItemText><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></ListItemText>
@@ -81,8 +83,8 @@ export default function Footer({ posts }) {
 
 							</Grid>
 					</Grid>
-					<div>
-							<Grid container spacing={3} alignItems={'center'} justifyContent={'space-between'}>
+					<Box sx={{ mt: 5 }}>
+						<Grid container spacing={3} alignItems={'center'} justifyContent={'space-between'}>
 							<Grid item>
 								<Typography variant={'body2'}>Copyright @ {copyrightYear} | {settings.company}</Typography>
 								</Grid>
@@ -94,8 +96,8 @@ export default function Footer({ posts }) {
 												const { Icon, text, name } = getSocialIcon(item);
 												return (
 													<Link key={key} href={item} target="_blank" rel="noopener">
-														<Avatar sx={{ backgroundColor: 'common.white' }} size={'small'}>
-															<Icon sx={{ color: 'primary.dark' }} />
+														<Avatar sx={{ backgroundColor: 'secondary.700' }} size={'small'}>
+															<Icon sx={{ color: 'common.white' }} />
 														</Avatar>
 													</Link>
 												);
@@ -104,7 +106,7 @@ export default function Footer({ posts }) {
 									</Grid>
 							) : null}
 						</Grid>
-						</div>
+						</Box>
 					</Container>
 				</Box>
 			</footer>
