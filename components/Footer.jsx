@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import logo from '../public/images/logo.png';
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
-import { getSocialIcon } from '../src/utils';
+import { getSocialIcon, formatPhoneNumber } from '../src/utils';
 
 export default function Footer({ posts }) {
 	const firstYear = settings.copyrightYearInitial;
@@ -74,7 +74,7 @@ export default function Footer({ posts }) {
 								<Grid item sm>
 									<Typography variant={'h6'} component={'h3'}>Get In Touch</Typography>
 									<List>
-										<ListItemText><Link href={`tel:${settings.contact.phone}`}>{settings.contact.phone}</Link></ListItemText>
+										<ListItemText><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></ListItemText>
 										<ListItemText><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></ListItemText>
 									</List>
 								</Grid>
