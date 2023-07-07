@@ -3,15 +3,10 @@ import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu'
@@ -31,9 +26,10 @@ export default function MainMenu() {
     { href: '/services', text: 'Services' },
     { href: '/blog', text: 'Blog' },
     { href: '/resources', text: 'Resources' },
+    { href: settings.externalLinks.patientPortal, text: 'Patient Portal', target: '_blank' },
   ];
   const items2 = [
-    { href: settings.externalLinks.providerPortal, text: 'Provider Portal' },
+    { href: settings.externalLinks.providerPortal, text: 'Provider Portal', target: '_blank' },
     { href: '/administrative-services', text: 'Administrative Services' },
     { href: '/careers', text: 'Careers' },
   ];
@@ -51,10 +47,7 @@ export default function MainMenu() {
             <MenuGroup label={'For Providers'} items={items2} selected={selected} />
           </Grid>
           <Grid item>
-            <Button variant={'outlined'} size={'small'} href="/contact-us">Get In Touch</Button>
-          </Grid>
-          <Grid item>
-            <Button variant={'contained'} size={'small'} href={settings.externalLinks.patientPortal}>Patient Portal</Button>
+            <Button variant={'contained'} size={'small'} href="/contact-us">Get In Touch</Button>
           </Grid>
         </Grid>
       </nav>
@@ -93,13 +86,13 @@ const MenuGroup = ({ label, items,  selected }) => {
         onMouseLeave: handleClose,
       }}
     >
-      {items.map(({ href, text }) => (
+      {items.map(({ href, text, target }) => (
         <MenuItem key={`main-menu-item-${slugify(text)}`} selected={href === selected} disabled={href === selected}>
           <Typography variant={'subtitle1'} component={'span'} color={'primary.main'} sx={{ lineHeight: 1 }}>
             {href === selected ? (
               <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
             ) : (
-              <Link href={href} color='inherit' sx={{ textDecoration: 'none' }}>{text}</Link>
+              <Link href={href} color='inherit' sx={{ textDecoration: 'none' }} target={target || ''}>{text}</Link>
             )}
           </Typography>
         </MenuItem>
