@@ -5,11 +5,12 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+// import Button from '@mui/material/Button';
+// import ButtonGroup from '@mui/material/ButtonGroup';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
+import Link from '@mui/material/Link';
 
 export default function FAQsPage() {
 	const items = [
@@ -30,10 +31,10 @@ export default function FAQsPage() {
 		},
 	]
 
-	const topics = ["Nexus Service", "Mental Health Eval", "Telemedicine Eval", "Therapy"]
+	const topics = ["Nexus Service FAQ", "Mental Health Eval FAQ", "Telemedicine Eval FAQ", "Therapy FAQ"]
 	return (
 		<Page title={'FAQs'}>
-			<Box sx={{ paddingTop: 20, paddingBottom: 20 , position: 'relative', }}>
+			{/* <Box sx={{ paddingTop: 20, paddingBottom: 20 , position: 'relative', }}>
 				<Container>
 					<Grid container spacing={3}>
 						<Grid item md={6}>
@@ -41,35 +42,36 @@ export default function FAQsPage() {
 						</Grid>
 					</Grid>
 				</Container>
-			</Box>
+			</Box> */}
 
-			<Box sx={{ backgroundColor: 'secondary.100', padding: 10 }}>
-				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, marginX: 'auto' }}>Frequently Asked Questions</Typography>
+			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 20, }}>
+				<Container sx={{alignItems: "center" }}>
+					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, marginX: 'auto' }}>FAQ</Typography>
 					
 					{items.map(item => 
 						(
-							<Accordion>
+							<Accordion key={item}>
 								<AccordionSummary
 									expandIcon={<ExpandMoreIcon />}
 									aria-controls="panel1a-content"
 									id="panel1a-header"
+									sx={{ margin: 2}}
 									>
 									<Typography variant='subtitle1'>{item.question}</Typography>
 								</AccordionSummary>
-								<AccordionDetails>
+								<AccordionDetails sx={{ paddingLeft: 4}}>
 									<Typography variant='body1'>{item.answer}</Typography>
 								</AccordionDetails>
 							</Accordion>
 						))}
 				
-					<ButtonGroup variant='text' sx={{ padding: 5, alignContent: 'center'}}>
+					<div style={{ paddingTop: 50, display: "flex", justifyContent: "center", alignItems: "center" }}>
 						{topics.map(topic => 
-							<Button variant='link'>
+							<Link href="" color="inherit" sx={{ padding: 1, alignContent: "center"}}>
 								{topic}
-							</Button>	
+							</Link>	
 						)}
-					</ButtonGroup>
+					</div>
 				</Container>
 			</Box>
   		</Page>
