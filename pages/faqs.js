@@ -66,6 +66,18 @@ export default function FAQsPage() {
 						>
 						FAQ
 					</Typography>
+					<Box sx={{ py: 3, display: "flex", justifyContent: "center", alignItems: "center" }}>
+						{topics.map( (topic, index) => 
+							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
+								{topic}
+							</Button>	
+						)}
+							{selectedCategory === '' ? <div></div> :
+							<Button onClick={() => onSelectFilter('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
+								All
+							</Button>	
+							}
+					</Box>
 					{filteredItems.map( (item, index) => 
 						(
 							<Accordion key={index}>
@@ -83,18 +95,7 @@ export default function FAQsPage() {
 							</Accordion>
 						))}
 				
-					<Box sx={{ pt: 5, display: "flex", justifyContent: "center", alignItems: "center" }}>
-						{topics.map( (topic, index) => 
-							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
-								{topic}
-							</Button>	
-						)}
-							{selectedCategory === '' ? <div></div> :
-							<Button onClick={() => onSelectFilter('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
-								All
-							</Button>	
-							}
-					</Box>
+					
 				</Container> 
 			</Box>
   		</Page>
