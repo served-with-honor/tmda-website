@@ -61,8 +61,8 @@ export default function FAQsPage({ items, topics }) {
 							</Button>	
 							}
 					</Box>
-					{filteredItems.map( (item, index) => 
-						(
+					{filteredItems.length > 0 ? (
+						filteredItems.map((item, index) => (
 							<Accordion
 								key={index}
 								expanded={expanded === `panel${index}`}
@@ -80,7 +80,10 @@ export default function FAQsPage({ items, topics }) {
 									<Typography variant='body1'>{item.answer}</Typography>
 								</AccordionDetails>
 							</Accordion>
-						))}
+						))
+					) : (
+						<Typography variant='subtitle1' align='center'>Sorry, there are no items for this topic</Typography>	
+					)}
 				
 					
 				</Container> 
