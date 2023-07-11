@@ -11,11 +11,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
 
 export default function FAQsPage({ items, topics }) {
+	const [expanded, setExpanded] = useState(false);
+	
 	// state for selecting filter topic
 	const [selectedCategory, setSelectedCategory] = useState('')
 	
 	// state for storing array of objects for filtered Q&As
 	const [filteredItems, setFilteredItems] = useState(items)	
+
+  const handlePanelChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+	};
 
 	// callback function passing in selected topic to filter items
 	const onSelectFilter = (topic) => {
@@ -57,7 +63,11 @@ export default function FAQsPage({ items, topics }) {
 					</Box>
 					{filteredItems.map( (item, index) => 
 						(
-							<Accordion key={index}>
+							<Accordion
+								key={index}
+								expanded={expanded === `panel${index}`}
+								onChange={handlePanelChange(`panel${index}`)}
+							>
 								<AccordionSummary
 									expandIcon={<ExpandMoreIcon />}
 									aria-controls={`panel${index}-content`}
