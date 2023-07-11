@@ -41,6 +41,7 @@ export default function Footer({ posts }) {
 										<ListItemText><Link href={'/how-it-works'}>How it Works</Link></ListItemText>
 										<ListItemText><Link href={'/services'}>Services</Link></ListItemText>
 										<ListItemText><Link href={'/careers'}>Careers</Link></ListItemText>
+										<ListItemText><Link href={'/faqs'}>FAQs</Link></ListItemText>
 									</List>
 								</Grid>
 
