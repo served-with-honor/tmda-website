@@ -10,36 +10,14 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
 
-export default function FAQsPage() {
+export default function FAQsPage({ items, topics }) {
 	// state for selecting filter topic
 	const [selectedCategory, setSelectedCategory] = useState('')
 	
-	// array of objects for Q&A - questions
-	const items = [
-		{
-			question: 'Why is the sky blue?', 
-			answer: 'blue light is scattered more than the other colors because it travels in shorter, smaller waves',
-			topic: 'Nexus Service FAQ',
-		},
-		{
-			question: 'Is the Earth round of flat?', 
-			answer: 'round',
-			topic: 'Mental Health Eval FAQ',
-		},
-		{
-			question: 'Who is the apex predator of the sea?', 
-			answer: 'orcas or killer whales',
-			topic: '',
-		},
-	]
-	
 	// state for storing array of objects for filtered Q&As
-	const [filteredItems, setFilteredItems] = useState(items)
-	
-	// array of categories of Q&A
-	const topics = ["Nexus Service FAQ", "Mental Health Eval FAQ", "Telemedicine Eval FAQ", "Therapy FAQ"]
+	const [filteredItems, setFilteredItems] = useState(items)	
 
-	// callback function passing in 
+	// callback function passing in selected topic to filter items
 	const onSelectFilter = (topic) => {
 		setSelectedCategory(topic)
 		if(topic === '') {
@@ -51,7 +29,6 @@ export default function FAQsPage() {
 		}
 	}
 
-	
 	return (
 		<Page title={'FAQs'}>
 			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 20, }}>
@@ -100,4 +77,27 @@ export default function FAQsPage() {
 			</Box>
   		</Page>
   )
+}
+
+export const getServerSideProps = async () => {
+	const items = [
+		{
+			question: 'Why is the sky blue?', 
+			answer: 'blue light is scattered more than the other colors because it travels in shorter, smaller waves',
+			topic: 'Nexus Service FAQ',
+		},
+		{
+			question: 'Is the Earth round of flat?', 
+			answer: 'round',
+			topic: 'Mental Health Eval FAQ',
+		},
+		{
+			question: 'Who is the apex predator of the sea?', 
+			answer: 'orcas or killer whales',
+			topic: '',
+		},
+	]
+
+	const topics = ["Nexus Service FAQ", "Mental Health Eval FAQ", "Telemedicine Eval FAQ", "Therapy FAQ"]
+	return { props: {items, topics}}
 }
