@@ -47,7 +47,7 @@ export default function FAQsPage({ items, topics }) {
 						{filteredItems.length > 0 ? (
 							filteredItems.map((item, index) => (
 								<Accordion
-									key={index}
+									key={`faq-panel-${index}`}
 									expanded={expanded === `panel${index}`}
 									onChange={handlePanelChange(`panel${index}`)}
 								>
