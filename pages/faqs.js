@@ -39,16 +39,7 @@ export default function FAQsPage({ items, topics }) {
 		<Page title={'FAQs'}>
 			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 20, }}>
 				<Container sx={{alignItems: "center" }}>
-					<Typography 
-						variant='sectionHeading' 
-						component='h2' 
-						sx={{ 
-							marginBottom: 10, 
-							marginX: 'auto', 
-						}}
-						>
-						FAQ
-					</Typography>
+					<Typography variant='h1' color='primary' gutterBottom>FAQs</Typography>
 					<Box sx={{ py: 3, display: "flex", justifyContent: "center", alignItems: "center" }}>
 						{topics.map( (topic, index) => 
 							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
