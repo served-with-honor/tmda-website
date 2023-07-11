@@ -89,6 +89,9 @@ export default function FAQsPage() {
 								{topic}
 							</Button>	
 						)}
+							<Button onClick={() => onSelectFilter('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
+								All
+							</Button>	
 					</Box>
 				</Container> 
 			</Box>
