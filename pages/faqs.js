@@ -52,30 +52,31 @@ export default function FAQsPage({ items, topics }) {
 							</Button>	
 							}
 					</Stack>
-					{filteredItems.length > 0 ? (
-						filteredItems.map((item, index) => (
-							<Accordion
-								key={index}
-								expanded={expanded === `panel${index}`}
-								onChange={handlePanelChange(`panel${index}`)}
-							>
-								<AccordionSummary
-									expandIcon={<ExpandMoreIcon />}
-									aria-controls={`panel${index}-content`}
-									id={`panel${index}-header`}
-									sx={{ margin: 2}}
+					
+					<Box>
+						{filteredItems.length > 0 ? (
+							filteredItems.map((item, index) => (
+								<Accordion
+									key={index}
+									expanded={expanded === `panel${index}`}
+									onChange={handlePanelChange(`panel${index}`)}
+								>
+									<AccordionSummary
+										expandIcon={<ExpandMoreIcon />}
+										aria-controls={`panel${index}-content`}
+										id={`panel${index}-header`}
 									>
-									<Typography variant='subtitle1'>{item.question}</Typography>
-								</AccordionSummary>
-								<AccordionDetails sx={{ paddingLeft: 4}}>
-									<Typography variant='body1'>{item.answer}</Typography>
-								</AccordionDetails>
-							</Accordion>
-						))
-					) : (
-						<Typography variant='subtitle1' align='center'>Sorry, there are no items for this topic</Typography>	
-					)}
-				
+										<Typography variant='subtitle1'>{item.question}</Typography>
+									</AccordionSummary>
+									<AccordionDetails>
+										<Typography variant='body1'>{item.answer}</Typography>
+									</AccordionDetails>
+								</Accordion>
+							))
+						) : (
+							<Typography variant='subtitle1' align='center'>Sorry, there are no items for this topic</Typography>	
+						)}
+					</Box>
 					
 				</Container> 
 			</Box>
