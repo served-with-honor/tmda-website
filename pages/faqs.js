@@ -85,13 +85,10 @@ export default function FAQsPage() {
 				
 					<Box sx={{ pt: 5, display: "flex", justifyContent: "center", alignItems: "center" }}>
 						{topics.map( (topic, index) => 
-							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
+							<Button key={index} onClick={() => onSelectFilter(topic)} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
 								{topic}
 							</Button>	
 						)}
-							<Button onClick={() => onSelectFilter('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
-								All
-							</Button>	
 					</Box>
 				</Container> 
 			</Box>
