@@ -91,7 +91,7 @@ export default function FAQsPage() {
 					
 						<div style={{ paddingTop: 50, display: "flex", justifyContent: "center", alignItems: "center" }}>
 							{topics.map( (topic, index) => 
-								<Button key={index} onClick={() => selectFilter(topic)} variant='text' size='small' color="inherit">
+								<Button key={index} onClick={() => selectFilter(topic)} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
 									{topic}
 								</Button>	
 							)}
@@ -125,9 +125,9 @@ export default function FAQsPage() {
 							</Accordion>
 						))}
 				
-					<div style={{ paddingTop: 50, display: "flex", justifyContent: "center", alignItems: "center" }}>
+					<div style={{ paddingTop: 50, display: "flex", justifyContent: "center", alignItems: "center", }}>
 						{topics.map( (topic, index) => 
-							<Button key={index} onClick={() => selectFilter(topic)} variant='text' size='small' color="inherit">
+							<Button key={index} onClick={() => selectFilter(topic)} variant='text' size='small' color="inherit" sx={{padding: 1, textTransform: "none",}}>
 								{topic}
 							</Button>	
 						)}
