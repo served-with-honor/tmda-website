@@ -11,8 +11,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
 
 export default function FAQsPage() {
+	// state for selecting filter topic
 	const [selectedCategory, setSelectedCategory] = useState('')
 	
+	// array of objects for Q&A - questions
 	const items = [
 		{
 			question: 'Why is the sky blue?', 
@@ -31,11 +33,14 @@ export default function FAQsPage() {
 		},
 	]
 	
+	// state for storing array of objects for filtered Q&As
 	const [filteredItems, setFilteredItems] = useState(items)
 	
+	// array of categories of Q&A
 	const topics = ["Nexus Service FAQ", "Mental Health Eval FAQ", "Telemedicine Eval FAQ", "Therapy FAQ"]
 
-	const selectFilter = (topic) => {
+	// callback function passing in 
+	const onSelectFilter = (topic) => {
 		setSelectedCategory(topic)
 		if(topic === '') {
 			setFilteredItems(items)
@@ -49,55 +54,8 @@ export default function FAQsPage() {
 	
 	return (
 		<Page title={'FAQs'}>
-			{/* <Box sx={{ paddingTop: 20, paddingBottom: 20 , position: 'relative', }}>
-				<Container>
-					<Grid container spacing={3}>
-						<Grid item md={6}>
-							<Typography variant={'h1'}>FAQs</Typography>
-						</Grid>
-					</Grid>
-				</Container>
-			</Box> */}
-
 			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 20, }}>
-				{selectedCategory === '' ?
-					<Container sx={{alignItems: "center" }}>
-						<Typography 
-							variant='sectionHeading' 
-							component='h2' 
-							sx={{ 
-								marginBottom: 10, 
-								marginX: 'auto', 
-							}}
-						>
-							FAQ
-						</Typography>
-						{items.map( (item, index) => 
-							(
-								<Accordion key={index}>
-									<AccordionSummary
-										expandIcon={<ExpandMoreIcon />}
-										aria-controls="panel1a-content"
-										id="panel1a-header"
-										sx={{ margin: 2}}
-										>
-										<Typography variant='subtitle1'>{item.question}</Typography>
-									</AccordionSummary>
-									<AccordionDetails sx={{ paddingLeft: 4}}>
-										<Typography variant='body1'>{item.answer}</Typography>
-									</AccordionDetails>
-								</Accordion>
-							))}
-					
-						<div style={{ paddingTop: 50, display: "flex", justifyContent: "center", alignItems: "center" }}>
-							{topics.map( (topic, index) => 
-								<Button key={index} onClick={() => selectFilter(topic)} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
-									{topic}
-								</Button>	
-							)}
-						</div>
-					</Container> :
-					<Container sx={{alignItems: "center" }}>
+				<Container sx={{alignItems: "center" }}>
 					<Typography 
 						variant='sectionHeading' 
 						component='h2' 
@@ -105,10 +63,10 @@ export default function FAQsPage() {
 							marginBottom: 10, 
 							marginX: 'auto', 
 						}}
-					>
+						>
 						FAQ
 					</Typography>
-					{filteredItems.map((item, index) =>
+					{filteredItems.map( (item, index) => 
 						(
 							<Accordion key={index}>
 								<AccordionSummary
@@ -125,15 +83,17 @@ export default function FAQsPage() {
 							</Accordion>
 						))}
 				
-					<div style={{ paddingTop: 50, display: "flex", justifyContent: "center", alignItems: "center", }}>
+					<Box sx={{ pt: 5, display: "flex", justifyContent: "center", alignItems: "center" }}>
 						{topics.map( (topic, index) => 
-							<Button key={index} onClick={() => selectFilter(topic)} variant='text' size='small' color="inherit" sx={{padding: 1, textTransform: "none",}}>
+							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
 								{topic}
 							</Button>	
 						)}
-					</div>
-				</Container>
-				}
+							<Button onClick={() => onSelectFilter('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
+								All
+							</Button>	
+					</Box>
+				</Container> 
 			</Box>
   		</Page>
   )
