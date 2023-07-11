@@ -12,27 +12,17 @@ import Page from '../components/Page'
 
 export default function FAQsPage({ items, topics }) {
 	const [expanded, setExpanded] = useState(false);
-	
-	// state for selecting filter topic
 	const [selectedCategory, setSelectedCategory] = useState('')
-	
-	// state for storing array of objects for filtered Q&As
 	const [filteredItems, setFilteredItems] = useState(items)	
 
   const handlePanelChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
 	};
 
-	// callback function passing in selected topic to filter items
-	const onSelectFilter = (topic) => {
-		setSelectedCategory(topic)
-		if(topic === '') {
-			setFilteredItems(items)
-		}
-		else {
-			const filtered = items.filter(item => item.topic === topic)
-			setFilteredItems(filtered)
-		}
+	const handleTopicChange = (topic) => {
+		setSelectedCategory(topic);
+		const newItems = topic ? items.filter(item => item.topic === topic) : items;
+		setFilteredItems(newItems);
 	}
 
 	return (
@@ -42,12 +32,12 @@ export default function FAQsPage({ items, topics }) {
 					<Typography variant='h1' color='primary' gutterBottom>FAQs</Typography>
 					<Stack direction={'row'} spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 						{topics.map( (topic, index) => 
-							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
+							<Button key={`new-${topic}-item-${index}`} onClick={() => handleTopicChange(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
 								{topic}
 							</Button>	
 						)}
 							{selectedCategory === '' ? <div></div> :
-							<Button onClick={() => onSelectFilter('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
+							<Button onClick={() => handleTopicChange('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
 								All
 							</Button>	
 							}
