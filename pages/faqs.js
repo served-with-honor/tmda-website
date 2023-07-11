@@ -27,8 +27,8 @@ export default function FAQsPage({ items, topics }) {
 
 	return (
 		<Page title={'FAQs'}>
-			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 20, }}>
-				<Container sx={{alignItems: "center" }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 20, }}>
+				<Container>
 					<Typography variant='h1' color='primary' gutterBottom>FAQs</Typography>
 					<Stack direction={'row'} spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 						{topics.map( (topic, index) => 
