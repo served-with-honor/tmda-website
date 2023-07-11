@@ -79,12 +79,12 @@ export const getServerSideProps = async () => {
 		{
 			question: 'Why is the sky blue?', 
 			answer: 'blue light is scattered more than the other colors because it travels in shorter, smaller waves',
-			topic: 'Nexus Service FAQ',
+			topic: 'Nexus Service',
 		},
 		{
 			question: 'Is the Earth round of flat?', 
 			answer: 'round',
-			topic: 'Mental Health Eval FAQ',
+			topic: 'Mental Health Eval',
 		},
 		{
 			question: 'Who is the apex predator of the sea?', 
@@ -93,6 +93,6 @@ export const getServerSideProps = async () => {
 		},
 	]
 
-	const topics = ["Nexus Service FAQ", "Mental Health Eval FAQ", "Telemedicine Eval FAQ", "Therapy FAQ"]
-	return { props: {items, topics}}
+	const topics = ['Nexus Service', 'Mental Health Eval', 'Telemedicine Eval', 'Therapy']
+	return { props: { items, topics } }
 }
