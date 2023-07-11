@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
@@ -40,7 +40,7 @@ export default function FAQsPage({ items, topics }) {
 			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 20, }}>
 				<Container sx={{alignItems: "center" }}>
 					<Typography variant='h1' color='primary' gutterBottom>FAQs</Typography>
-					<Box sx={{ py: 3, display: "flex", justifyContent: "center", alignItems: "center" }}>
+					<Stack direction={'row'} spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 						{topics.map( (topic, index) => 
 							<Button key={`new-${topic}-item-${index}`} onClick={() => onSelectFilter(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
 								{topic}
@@ -51,7 +51,7 @@ export default function FAQsPage({ items, topics }) {
 								All
 							</Button>	
 							}
-					</Box>
+					</Stack>
 					{filteredItems.length > 0 ? (
 						filteredItems.map((item, index) => (
 							<Accordion
