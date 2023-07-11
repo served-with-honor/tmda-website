@@ -60,8 +60,8 @@ export default function FAQsPage({ items, topics }) {
 							<Accordion key={index}>
 								<AccordionSummary
 									expandIcon={<ExpandMoreIcon />}
-									aria-controls="panel1a-content"
-									id="panel1a-header"
+									aria-controls={`panel${index}-content`}
+									id={`panel${index}-header`}
 									sx={{ margin: 2}}
 									>
 									<Typography variant='subtitle1'>{item.question}</Typography>
