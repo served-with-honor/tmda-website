@@ -41,7 +41,6 @@ export default function Footer({ posts }) {
 										<ListItemText><Link href={'/about'}>About</Link></ListItemText>
 										<ListItemText><Link href={'/resources'}>Veteran Resources</Link></ListItemText>
 										<ListItemText><Link href={'/blog'}>News & Updates</Link></ListItemText>
-										<ListItemText><Link href={'/how-it-works'}>How it Works</Link></ListItemText>
 										<ListItemText><Link href={'/services'}>Services</Link></ListItemText>
 										<ListItemText><Link href={'/careers'}>Careers</Link></ListItemText>
 									</List>
@@ -51,7 +50,7 @@ export default function Footer({ posts }) {
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get Help</Typography>
 									<List>
 										<ListItemText><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></ListItemText>
-										<ListItemText><Link href={'/contact'}>Contact Us</Link></ListItemText>
+										<ListItemText><Link href={'/contact-us'}>Contact Us</Link></ListItemText>
 									</List>
 									
 									<Typography variant={'h6'} component={'h3'} marginTop={3} color={'secondary.700'}>Legal Pages</Typography>
