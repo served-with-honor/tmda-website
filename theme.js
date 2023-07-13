@@ -107,18 +107,11 @@ const baseTheme = responsiveFontSizes(createTheme({
 
 const darkTheme = createTheme({
   ...baseTheme,
-  palette: {
-    ...baseTheme.palette,
-    mode: 'dark',
-    text: {
-      primary: 'rgba(255,255,255,0.87)',
-    },
-  },
   components: {
   	MuiLink: {
   		styleOverrides: {
         root: {
-          color: '#fff',
+          color:  baseTheme.palette.primary['700'],
   				textDecoration: 'none',
           '&:hover': {
             textDecoration: 'underline',
