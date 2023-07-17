@@ -25,11 +25,10 @@ export default function Post({ post }) {
 
 
 	return (
-		<Page title={'News & Updates'} sx={{width: '100%'}}>
-
+		<Page title={post.title}>
 			<Box sx={{
-				paddingTop: 20,
-				paddingBottom: 10,
+				pt: 15,
+				pb: 10,
 				position: 'relative',
 				height: 750,
 				width: '100%',
@@ -44,7 +43,7 @@ export default function Post({ post }) {
 					height: '100%',
 					left: 0,
 					top: 0,
-					backgroundColor: 'rgba(0, 0, 0, 0.5)'
+					backgroundColor: 'rgba(0, 0, 0, 0.2)'
 				}}>
 				</Box>
 				<Box sx={{
@@ -74,7 +73,9 @@ export default function Post({ post }) {
 
 			<Box sx={{py: 10}}>
 				<Container>
-					<div dangerouslySetInnerHTML={{__html: post.content}}></div>
+					<Box sx={{ wordWrap: 'break-word' }} >
+						<div dangerouslySetInnerHTML={{__html: post.content}}></div>
+					</Box>
 					<Box sx={{pt: 10}}>
 					{postTags.map((tag, index) => {
 						return(
