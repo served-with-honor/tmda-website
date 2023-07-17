@@ -1,4 +1,10 @@
-import { Box, Card, CardContent, Chip, Container, Stack, Typography } from '@mui/material';
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Chip from '@mui/material/Chip'
+import Container from '@mui/material/Container'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
+import Avatar from '@mui/material/Avatar'
 import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
 
@@ -10,28 +16,64 @@ export default function Post({ post }) {
 
 	const postTags = post.tags.nodes
 
-	debugger
+	const postImage = post.featuredImage.node.mediaItemUrl
+
+	const authorImage = post.author.node.avatar.url
+
+	const authorName = post.author.node.name
+
+
 
 	return (
-		<Page title={'News & Updates'}>
-			<Box sx={{py: 20}}>
+		<Page title={'News & Updates'} sx={{width: '100%'}}>
+
+			<Box sx={{
+				paddingTop: 20,
+				paddingBottom: 10,
+				position: 'relative',
+				height: 750,
+				width: '100%',
+				backgroundImage: `url(${postImage})`,
+				backgroundSize: "cover", 
+				backgroundPosition: 'center',
+				}}
+			>
+				<Box sx={{
+					position: 'absolute',
+					width: '100%',
+					height: '100%',
+					left: 0,
+					top: 0,
+					backgroundColor: 'rgba(0, 0, 0, 0.5)'
+				}}>
+				</Box>
+				<Box sx={{
+					position: 'relative',
+					zIndex: 1,
+				}}>
+					<Container sx={{pt: 10}}>
+						<Grid container spacing={3}>
+							<Grid item md={10}>
+								<Typography variant='h1' color='#FFF'>{post.title}</Typography>
+								<Stack direction="row" spacing={4} sx={{pt: 10}}>
+									<Avatar alt={authorName} src={authorImage} sx={{width: 75, height: 75}}></Avatar>
+									<Typography variant={'body1'} color='#FFF' sx={{py: 4}}>
+										By {authorName} - {dateWritten}
+									</Typography>
+								</Stack>
+								
+								{dateModified !== dateWritten ?
+									<Typography variant={'body2'}>Last Modified on {dateModified}</Typography> :
+									<div></div>
+								}
+							</Grid>
+						</Grid>
+					</Container>
+				</Box>
+			</Box>
+
+			<Box sx={{py: 10}}>
 				<Container>
-					<Typography variant={'h1'}>{post.title}</Typography>
-					<Typography variant={'body1'} sx={{py: 4}}>By {post.author.node.name} - {dateWritten} </Typography>
-					{dateModified !== dateWritten ?
-						<Typography variant={'body2'}>Modified on {dateModified}</Typography> :
-						<div></div>
-					}
-					<Box
-						component="img"
-						sx={{
-							maxWidthidth: 100,
-							py: 4,
-						}}
-						alt={post.featuredImage.node.altText}	
-						src={post.featuredImage.node.mediaItemUrl}
-					>
-					</Box>
 					<div dangerouslySetInnerHTML={{__html: post.content}}></div>
 					<Box sx={{pt: 10}}>
 					{postTags.map((tag, index) => {
