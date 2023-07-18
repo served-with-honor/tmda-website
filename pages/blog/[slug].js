@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
 import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
+import { filterProps } from 'framer-motion'
 
 export default function Post({ post }) {
 
@@ -43,7 +44,8 @@ export default function Post({ post }) {
 					height: '100%',
 					left: 0,
 					top: 0,
-					backgroundColor: 'rgba(0, 0, 0, 0.2)'
+					backgroundColor: 'black',
+					opacity: '0.65'
 				}}>
 				</Box>
 				<Box sx={{
