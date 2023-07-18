@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from '../theme';
@@ -9,12 +10,32 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 import logo from '../public/images/logo.png';
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
+import { getFooterPosts } from '../lib/api'
 import { getSocialIcon, formatPhoneNumber } from '../src/utils';
 
-export default function Footer({ posts }) {
+export default function Footer() {
+	const [posts, setPosts] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+ 
+  useEffect(() => {
+		setIsLoading(true)
+		fetch('/api/posts', { method: 'GET' }).then(response => response.json()).then(response => {
+			const responsePosts = response.data.posts.edges.map(post => ({
+				title: post?.node?.title,
+				slug: post?.node?.slug,
+			}));
+			setPosts(responsePosts);
+			setIsLoading(false);
+		}).catch((error) => {
+			setIsLoading(false);
+			console.error(error);
+		});
+	}, [])
+	
 	const firstYear = settings.copyrightYearInitial;
 	const thisYear = new Date().getFullYear();
 	const copyrightYear = thisYear > firstYear ? `${firstYear} - ${thisYear}` : firstYear;
@@ -62,7 +83,12 @@ export default function Footer({ posts }) {
 
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Recent Updates</Typography>
-									{posts && posts.length > 0 ? (
+									{isLoading ? <Box>
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+									</Box> : posts && posts.length > 0 ? (
 										<List>
 											{posts.map(({ title, slug }) => {
 												const limit = 48;

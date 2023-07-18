@@ -4,7 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
 
-export default function Page({ title, posts, children }) {
+export default function Page({ title, children }) {
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
 
@@ -32,7 +32,7 @@ export default function Page({ title, posts, children }) {
       </Head>
       <Header ref={ref} />
 			<main style={{ marginTop: headerHeight }}>{children}</main>
-      <Footer posts={posts} />
+      <Footer />
     </>
   )
 }
