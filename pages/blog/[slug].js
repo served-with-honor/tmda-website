@@ -64,7 +64,7 @@ export default function Post({ post }) {
 								</Stack>
 								
 								{dateModified !== dateWritten ?
-									<Typography variant={'body2'}>Last Modified on {dateModified}</Typography> :
+									<Typography sx={{py: 1}} variant={'body2'} color='#FFF'>Last Modified on {dateModified}</Typography> :
 									<div></div>
 								}
 							</Grid>
