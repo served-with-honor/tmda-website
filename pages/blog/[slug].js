@@ -43,10 +43,10 @@ export default function Post({ post }) {
 						<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
 					) : null }
 					<Stack direction="row" spacing={1} sx={{ mt: 5 }}>
-						{tags.map((tag, index) => {
+						{tags.map((tag) => {
 							const color = settings.articleTagColors[tag.slug];
 							return(
-								<Chip key={`${tag.name}-${index}`} label={tag.name} onClick={() => handleTagClick(tag.slug)} sx={color ? { color: '#fff', backgroundColor: color } : {}}></Chip>
+								<Chip key={`post-tag-${tag.slug}`} label={tag.name} onClick={() => handleTagClick(tag.slug)} sx={color ? { color: '#fff', backgroundColor: color } : {}}></Chip>
 							)}
 						)}
 					</Stack>
