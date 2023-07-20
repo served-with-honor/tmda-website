@@ -107,19 +107,19 @@ const baseTheme = responsiveFontSizes(createTheme({
 
 const darkTheme = createTheme({
   ...baseTheme,
-  palette: {
-    ...baseTheme.palette,
-    mode: 'dark',
-  },
-  // components: {
-  // 	MuiLink: {
-  // 		styleOverrides: {
-  // 			root: {
-  // 				textDecoration: 'none',
-  // 			},
-  // 		},
-  // 	},
-  // }
+  components: {
+  	MuiLink: {
+  		styleOverrides: {
+        root: {
+          color:  baseTheme.palette.primary['700'],
+  				textDecoration: 'none',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
+  		},
+  	},
+  }
 });
 
 export {

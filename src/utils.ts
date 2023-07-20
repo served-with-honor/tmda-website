@@ -14,7 +14,20 @@ const getSocialIcon = (str: string) => {
   return { name: 'Site', text: '', Icon: LinkIcon };
 }
 
+function formatPhoneNumber(phone: string, sep: string) {
+  const cleaned = phone.toString().replace(/\D/g, '');
+  const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+  if (!match) return;
+
+  const intlCode = (match[1] ? '+1' : '');
+  const idk = match.splice(2);
+
+  if(sep) return `${intlCode} ${idk.join(sep)}`.trim();
+  return `${intlCode} (${idk[0]}) ${idk[1]}-${idk[2]}`.trim();
+}
+
 export {
   slugify,
   getSocialIcon,
+  formatPhoneNumber,
 }

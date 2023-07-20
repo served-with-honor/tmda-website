@@ -9,12 +9,12 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress'
 import { visuallyHidden } from '@mui/utils';
 import Page from '../../components/Page'
-import { getPosts, getFooterPosts, getTags } from '../../lib/api'
+import { getPosts, getTags } from '../../lib/api'
 import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
-export default function Blog({ posts, footerPosts, tags, selection, hasMorePosts }) {
+export default function Blog({ posts, tags, selection, hasMorePosts }) {
 	const loadMoreRef = useRef(null);
 	const [a11yAlertText, setA11yAlertText] = useState(null);
 	const [popupOpen, setPopupOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function Blog({ posts, footerPosts, tags, selection, hasMorePosts
 	
 
 	return (
-		<Page title={'Telemedica Blog'} posts={footerPosts}>
+		<Page title={'Telemedica Blog'}>
 			
 			{/* HERO */}
 			<Box sx={{ backgroundColor: 'secondary.800', paddingTop: 20, paddingBottom: 10 , position: 'relative', }}>
@@ -126,15 +126,9 @@ export async function getServerSideProps({ query }) {
 		categories: post.categories.edges?.map(a => a.node),
 		tags: post.tags.edges?.map(a => a.node),
 	}));
-	
-	const response2 = await getFooterPosts();
-	const footerPosts = response2.posts.edges.map(post => ({
-		title: post?.node?.title,
-		slug: post?.node?.slug,
-	}));
 
 	const tagsResponse = await getTags(999);
 	
 	const tags = tagsResponse.tags.nodes;
-  return { props: { posts, footerPosts, tags, selection, hasMorePosts: true }}
+  return { props: { posts, tags, selection, hasMorePosts: true }}
 }
