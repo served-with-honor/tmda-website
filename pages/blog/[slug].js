@@ -68,7 +68,6 @@ export default function Post({ post }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-	const idSlug = params.slug
-	const { post } = await getPost(idSlug);
+	const { post } = await getPost(params.slug);
 	return { props: { post } }
 }
