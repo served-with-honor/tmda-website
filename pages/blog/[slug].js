@@ -42,14 +42,14 @@ export default function Post({ post }) {
 					{modifedDate && modifedDate !== publishDate ? (
 						<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
 					) : null }
-					<Box sx={{mt: 5}}>
+					<Stack direction="row" spacing={1} sx={{ mt: 5 }}>
 						{tags.map((tag, index) => {
-						const color = settings.articleTagColors[tag.slug];
-						return(
-							<Chip key={`${tag.name}-${index}`} label={tag.name} onClick={() => handleTagClick(tag.slug)} sx={color ? { color: '#fff', backgroundColor: color } : {}}></Chip>
+							const color = settings.articleTagColors[tag.slug];
+							return(
+								<Chip key={`${tag.name}-${index}`} label={tag.name} onClick={() => handleTagClick(tag.slug)} sx={color ? { color: '#fff', backgroundColor: color } : {}}></Chip>
+							)}
 						)}
-					)}
-					</Box>
+					</Stack>
 				</Container>
 			</Box>
 
