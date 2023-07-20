@@ -37,6 +37,13 @@ export default function Post({ post }) {
 					{modifedDate && modifedDate !== publishDate ? (
 						<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
 					) : null }
+					<Box sx={{mt: 5}}>
+					{tags.map((tag, index) => {
+						return(
+							<Chip key={`${tag.name}-${index}`} label={tag.name}></Chip>
+						)}
+					)}
+					</Box>
 				</Container>
 			</Box>
 
@@ -44,13 +51,6 @@ export default function Post({ post }) {
 				<Container>
 					<Box sx={{ wordWrap: 'break-word' }} >
 						<div dangerouslySetInnerHTML={{__html: content}}></div>
-					</Box>
-					<Box sx={{pt: 10}}>
-					{tags.map((tag, index) => {
-						return(
-							<Chip key={`${tag.name}-${index}`} label={tag.name}></Chip>
-						)}
-					)}
 					</Box>
 				</Container>
 			</Box>
