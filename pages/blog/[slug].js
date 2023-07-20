@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
@@ -28,21 +27,17 @@ export default function Post({ post }) {
 			}}
 			>
 				<Container sx={{pt: 10}}>
-					<Grid container spacing={3}>
-						<Grid item md={10}>
-							<Typography variant='h1' color='secondary'>{title}</Typography>
-							<Stack direction="row" spacing={4} sx={{pt: 10}}>
-								<Avatar alt={author.name} src={author.image} sx={{width: 75, height: 75}}></Avatar>
-								<Typography variant={'body1'} sx={{py: 4}}>
-									By {author.name} - {publishDate}
-								</Typography>
-							</Stack>
-							
-							{modifedDate && modifedDate !== publishDate ? (
-								<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
-							) : null }
-						</Grid>
-					</Grid>
+					<Typography variant='h1' color='secondary'>{title}</Typography>
+					<Stack direction="row" spacing={4} sx={{pt: 10}}>
+						<Avatar alt={author.name} src={author.image} sx={{width: 75, height: 75}}></Avatar>
+						<Typography variant={'body1'} sx={{py: 4}}>
+							By {author.name} - {publishDate}
+						</Typography>
+					</Stack>
+					
+					{modifedDate && modifedDate !== publishDate ? (
+						<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
+					) : null }
 				</Container>
 			</Box>
 
