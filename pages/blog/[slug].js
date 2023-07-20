@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
@@ -11,6 +12,9 @@ export default function Post({ post }) {
 	const { author, tags, title, content, featuredImage } = post;
 	const publishDate = new Date(post.publishDate).toLocaleDateString();
 	const modifedDate = post.modifedDate ? new Date(post.modifedDate).toLocaleDateString() : null;
+
+	const router = useRouter();
+  const handleTagClick = (slug) => router.push(`/blog?tag=${slug}`);
 
 	return (
 		<Page title={title}>
@@ -40,7 +44,7 @@ export default function Post({ post }) {
 					<Box sx={{mt: 5}}>
 					{tags.map((tag, index) => {
 						return(
-							<Chip key={`${tag.name}-${index}`} label={tag.name}></Chip>
+							<Chip key={`${tag.name}-${index}`} label={tag.name} onClick={() => handleTagClick(tag.slug)}></Chip>
 						)}
 					)}
 					</Box>
