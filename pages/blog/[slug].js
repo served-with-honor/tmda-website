@@ -10,30 +10,19 @@ import Page from '../../components/Page'
 import { filterProps } from 'framer-motion'
 
 export default function Post({ post }) {
-
-	const dateWritten = new Date(post.date).toLocaleDateString()
-
-	const dateModified = new Date(post.modified).toLocaleDateString()
-
-	const postTags = post.tags.nodes
-
-	const postImage = post.featuredImage.node.mediaItemUrl
-
-	const authorImage = post.author.node.avatar.url
-
-	const authorName = post.author.node.name
-
-
+	const { author, tags, title, content, featuredImage } = post;
+	const publishDate = new Date(post.publishDate).toLocaleDateString();
+	const modifedDate = post.modifedDate ? new Date(post.modifedDate).toLocaleDateString() : null;
 
 	return (
-		<Page title={post.title}>
+		<Page title={title}>
 			<Box sx={{
 				pt: 15,
 				pb: 10,
 				position: 'relative',
 				height: 750,
 				width: '100%',
-				backgroundImage: `url(${postImage})`,
+				backgroundImage: `url(${featuredImage})`,
 				backgroundSize: "cover", 
 				backgroundPosition: 'center',
 				}}
@@ -55,18 +44,17 @@ export default function Post({ post }) {
 					<Container sx={{pt: 10}}>
 						<Grid container spacing={3}>
 							<Grid item md={10}>
-								<Typography variant='h1' color='#FFF'>{post.title}</Typography>
+								<Typography variant='h1' color='#FFF'>{title}</Typography>
 								<Stack direction="row" spacing={4} sx={{pt: 10}}>
-									<Avatar alt={authorName} src={authorImage} sx={{width: 75, height: 75}}></Avatar>
+									<Avatar alt={author.name} src={author.image} sx={{width: 75, height: 75}}></Avatar>
 									<Typography variant={'body1'} color='#FFF' sx={{py: 4}}>
-										By {authorName} - {dateWritten}
+										By {author.name} - {publishDate}
 									</Typography>
 								</Stack>
 								
-								{dateModified !== dateWritten ?
-									<Typography sx={{py: 1}} variant={'body2'} color='#FFF'>Last Modified on {dateModified}</Typography> :
-									<div></div>
-								}
+								{modifedDate && modifedDate !== publishDate ? (
+									<Typography sx={{ py: 1 }} variant={'body2'} color='#FFF'>Last Modified on {modifedDate}</Typography>
+								) : null }
 							</Grid>
 						</Grid>
 					</Container>
@@ -76,10 +64,10 @@ export default function Post({ post }) {
 			<Box sx={{py: 10}}>
 				<Container>
 					<Box sx={{ wordWrap: 'break-word' }} >
-						<div dangerouslySetInnerHTML={{__html: post.content}}></div>
+						<div dangerouslySetInnerHTML={{__html: content}}></div>
 					</Box>
 					<Box sx={{pt: 10}}>
-					{postTags.map((tag, index) => {
+					{tags.map((tag, index) => {
 						return(
 							<Chip key={`${tag.name}-${index}`} label={tag.name}></Chip>
 						)}
@@ -93,8 +81,6 @@ export default function Post({ post }) {
 
 export const getServerSideProps = async ({ params }) => {
 	const idSlug = params.slug
-	const response = await getPost(idSlug)
-	const post = response.post
-
+	const { post } = await getPost(idSlug);
 	return { props: { post } }
 }
