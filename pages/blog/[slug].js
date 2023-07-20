@@ -59,9 +59,7 @@ export default function Post({ post }) {
 
 			<Box sx={{py: 10}}>
 				<Container>
-					<Box sx={{ wordWrap: 'break-word' }} >
-						<div dangerouslySetInnerHTML={{__html: content}}></div>
-					</Box>
+					<Box sx={{ wordWrap: 'break-word' }} dangerouslySetInnerHTML={{__html: content}} />
 				</Container>
 			</Box>
   	</Page>
