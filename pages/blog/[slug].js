@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
 import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
+import settings from '../../src/siteSettings';
 
 export default function Post({ post }) {
 	const { author, tags, title, content, featuredImage } = post;
@@ -42,9 +43,10 @@ export default function Post({ post }) {
 						<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
 					) : null }
 					<Box sx={{mt: 5}}>
-					{tags.map((tag, index) => {
+						{tags.map((tag, index) => {
+						const color = settings.articleTagColors[tag.slug];
 						return(
-							<Chip key={`${tag.name}-${index}`} label={tag.name} onClick={() => handleTagClick(tag.slug)}></Chip>
+							<Chip key={`${tag.name}-${index}`} label={tag.name} onClick={() => handleTagClick(tag.slug)} sx={color ? { color: '#fff', backgroundColor: color } : {}}></Chip>
 						)}
 					)}
 					</Box>
