@@ -19,46 +19,31 @@ export default function Post({ post }) {
 			<Box sx={{
 				pt: 15,
 				pb: 10,
-				position: 'relative',
-				height: 750,
 				width: '100%',
+				backgroundColor: 'primary.100',
 				backgroundImage: `url(${featuredImage})`,
 				backgroundSize: "cover", 
 				backgroundPosition: 'center',
-				}}
+				backgroundBlendMode: 'overlay',
+			}}
 			>
-				<Box sx={{
-					position: 'absolute',
-					width: '100%',
-					height: '100%',
-					left: 0,
-					top: 0,
-					backgroundColor: 'black',
-					opacity: '0.65'
-				}}>
-				</Box>
-				<Box sx={{
-					position: 'relative',
-					zIndex: 1,
-				}}>
-					<Container sx={{pt: 10}}>
-						<Grid container spacing={3}>
-							<Grid item md={10}>
-								<Typography variant='h1' color='#FFF'>{title}</Typography>
-								<Stack direction="row" spacing={4} sx={{pt: 10}}>
-									<Avatar alt={author.name} src={author.image} sx={{width: 75, height: 75}}></Avatar>
-									<Typography variant={'body1'} color='#FFF' sx={{py: 4}}>
-										By {author.name} - {publishDate}
-									</Typography>
-								</Stack>
-								
-								{modifedDate && modifedDate !== publishDate ? (
-									<Typography sx={{ py: 1 }} variant={'body2'} color='#FFF'>Last Modified on {modifedDate}</Typography>
-								) : null }
-							</Grid>
+				<Container sx={{pt: 10}}>
+					<Grid container spacing={3}>
+						<Grid item md={10}>
+							<Typography variant='h1' color='secondary'>{title}</Typography>
+							<Stack direction="row" spacing={4} sx={{pt: 10}}>
+								<Avatar alt={author.name} src={author.image} sx={{width: 75, height: 75}}></Avatar>
+								<Typography variant={'body1'} sx={{py: 4}}>
+									By {author.name} - {publishDate}
+								</Typography>
+							</Stack>
+							
+							{modifedDate && modifedDate !== publishDate ? (
+								<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
+							) : null }
 						</Grid>
-					</Container>
-				</Box>
+					</Grid>
+				</Container>
 			</Box>
 
 			<Box sx={{py: 10}}>
