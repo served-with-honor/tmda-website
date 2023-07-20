@@ -10,9 +10,9 @@ import Page from '../../components/Page'
 import settings from '../../src/siteSettings';
 
 export default function Post({ post }) {
-	const { author, tags, title, content, featuredImage } = post;
-	const publishDate = new Date(post.publishDate).toLocaleDateString();
-	const modifedDate = post.modifedDate ? new Date(post.modifedDate).toLocaleDateString() : null;
+	const { author, tags, title, content, featuredImage, date, modifed } = post;
+	const publishDate = new Date(date).toLocaleDateString();
+	const modifedDate = modifed ? new Date(modifed).toLocaleDateString() : null;
 
 	const router = useRouter();
   const handleTagClick = (slug) => router.push(`/blog?tag=${slug}`);
@@ -31,17 +31,16 @@ export default function Post({ post }) {
 			}}
 			>
 				<Container sx={{pt: 10}}>
-					<Typography variant='h1' color='secondary'>{title}</Typography>
-					<Stack direction="row" spacing={4} sx={{pt: 10}}>
-						<Avatar alt={author.name} src={author.image} sx={{width: 75, height: 75}}></Avatar>
-						<Typography variant={'body1'} sx={{py: 4}}>
-							By {author.name} - {publishDate}
-						</Typography>
+					<Typography variant='h1' color='secondary' gutterBottom>{title}</Typography>
+					<Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+						<Avatar alt={author.name} src={author.image} sx={{ width: 48, height: 48 }}></Avatar>
+						<Box>
+							<Typography variant={'body1'}>By {author.name} - {publishDate}</Typography>
+							{modifedDate && modifedDate !== publishDate ? (
+								<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
+							) : null}
+						</Box>
 					</Stack>
-					
-					{modifedDate && modifedDate !== publishDate ? (
-						<Typography sx={{ py: 1 }} variant={'body2'}>Last Modified on {modifedDate}</Typography>
-					) : null }
 					<Stack direction="row" spacing={1} sx={{ mt: 5 }}>
 						{tags.map(({ slug, name }) => {
 							const color = settings.articleTagColors[slug];
