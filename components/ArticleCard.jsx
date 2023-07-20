@@ -26,7 +26,7 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
     >
       <Card sx={{ cursor: 'pointer', height: '100%' }}>
         {image ? (
-          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(`/${slug}`)} />
+          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(`/${articleSlug}`)} />
         ) : null}
         <CardContent>
 
