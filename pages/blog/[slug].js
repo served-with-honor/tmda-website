@@ -41,19 +41,21 @@ export default function Post({ post }) {
 							) : null}
 						</Box>
 					</Stack>
-					<Stack direction="row" spacing={1} sx={{ mt: 5 }}>
-						{tags.map(({ slug, name }) => {
-							const color = settings.articleTagColors[slug];
-							return(
-								<Chip
-									key={`post-tag-${slug}`}
-									label={name}
-									onClick={() => handleTagClick(slug)}
-									sx={color ? { color: '#fff', backgroundColor: color } : {}}
-								/>
-							)}
-						)}
-					</Stack>
+					{tags ? (
+						<Stack direction="row" spacing={1} sx={{ mt: 5 }}>
+							{tags.map(({ slug, name }) => {
+								const color = settings.articleTagColors[slug];
+								return (
+									<Chip
+										key={`post-tag-${slug}`}
+										label={name}
+										onClick={() => handleTagClick(slug)}
+										sx={color ? { color: '#fff', backgroundColor: color } : {}}
+									/>
+								);
+							})}
+						</Stack>
+					) : null}
 				</Container>
 			</Box>
 
