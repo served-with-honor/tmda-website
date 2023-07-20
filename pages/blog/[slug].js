@@ -30,7 +30,7 @@ export default function Post({ post }) {
 				backgroundBlendMode: 'overlay',
 			}}
 			>
-				<Container sx={{pt: 10}}>
+				<Container>
 					<Typography variant='h1' color='secondary' gutterBottom>{title}</Typography>
 					<Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
 						<Avatar alt={author.name} src={author.image} sx={{ width: 48, height: 48 }}></Avatar>
@@ -58,8 +58,7 @@ export default function Post({ post }) {
 					) : null}
 				</Container>
 			</Box>
-
-			<Box sx={{py: 10}}>
+			<Box sx={{ my: 10 }}>
 				<Container>
 					<Box sx={{ wordWrap: 'break-word' }} dangerouslySetInnerHTML={{__html: content}} />
 				</Container>
