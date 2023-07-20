@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
 import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
-import { filterProps } from 'framer-motion'
 
 export default function Post({ post }) {
 	const { author, tags, title, content, featuredImage } = post;
