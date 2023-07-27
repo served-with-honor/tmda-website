@@ -5,12 +5,16 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import Dialog from '@mui/material/Dialog';
 import Page from '../components/Page'
 import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
+import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
 
 export default function ContactUsPage() {
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+
 	return (
 		<Page title={'Contact Us'}>
 			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
@@ -43,7 +47,7 @@ export default function ContactUsPage() {
 					<Grid container gap={5}>
 						<Grid item xs={12} sm align="center">
 							<Grid container gap={3} sx={{ justifyContent: 'center' }}>
-								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.booking} target="_blank">Book Now</Button></Grid>
+								<Grid item><Button color='secondary' variant={'outlined'} onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.patientPortal} target="_blank">Patient Portal</Button></Grid>
 								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.providerPortal} target="_blank">Provider Portal</Button></Grid>
 							</Grid>
@@ -52,6 +56,10 @@ export default function ContactUsPage() {
 				</Container>
 			</Box>
 			<NewsletterDialog delay={0} />
+
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} maxWidth='md' fullWidth={true}>
+				<BookingWidget />
+			</Dialog>
   	</Page>
   )
 }

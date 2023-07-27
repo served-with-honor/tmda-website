@@ -27,7 +27,6 @@ export default {
     patientPortal: 'https://telemedicallc.intakeq.com/portal',
     helpDesk: 'https://help.telemedicallc.com/',
     providerPortal: 'https://intakeq.com/',
-    booking: 'http://booking.telemedicallc.com/',
   },
   // googleAnalyticsId: 'G-73TKHSVTNZ',
   dummyText: new LoremIpsum({

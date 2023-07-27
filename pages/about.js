@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -20,9 +20,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import BookingWidget from '../components/BookingWidget'
 import texture01 from '../public/texture-01.jpg'
 
 export default function AboutPage({ teamMembers, providers }) {
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	const heroRef = useRef(null);
 	const sliderSettings = {
 		dots: true,
@@ -64,7 +67,7 @@ export default function AboutPage({ teamMembers, providers }) {
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }} gutterBottom>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
-								<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button></Grid>
+								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 							</Grid>
 							<Grid container spacing={5}>
 								{[
@@ -147,7 +150,7 @@ export default function AboutPage({ teamMembers, providers }) {
 			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 10 }}>
 				<Container>
 					<Grid container spacing={2} justifyContent='center'>
-						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button></Grid>
+						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 					</Grid>
 				</Container>
@@ -202,6 +205,9 @@ export default function AboutPage({ teamMembers, providers }) {
 				</Container>
 			</Box>
 			
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} maxWidth='md' fullWidth={true}>
+				<BookingWidget />
+			</Dialog>			
 		</Page>
 	)
 }
