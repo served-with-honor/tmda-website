@@ -1,4 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import Image from 'next/image';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -10,6 +12,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Page from '../components/Page'
 import MapAnim from '../components/MapAnim'
 import { getTeamMembers } from '../lib'
@@ -21,6 +25,47 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import texture01 from '../public/texture-01.jpg'
+import Stack from '@mui/material/Stack';
+
+function CustomTabPanel(props) {
+	const { children, children2, value, index, ...other } = props;
+  
+	return (
+	  <div
+		role="tabpanel"
+		hidden={value !== index}
+		id={`simple-tabpanel-${index}`}
+		aria-labelledby={`simple-tab-${index}`}
+		{...other}
+	  >
+		{value === index && (
+		  <Box sx={{ p: 3 }}>
+			<Stack direction={'row'}>
+				<Stack>
+					<Typography variant='h6' sx={{px: 4, pt: 3, }}>{children}</Typography>
+					<Typography variant='body1' sx={{py:3, px: 4}}>{children2}</Typography>
+				</Stack>
+				<Image width={250} height={250} src="/images/Dr_Smiling_Resized (1).jpeg" alt="" />
+			</Stack>
+		  </Box>
+		)}
+	  </div>
+	);
+  }
+  
+  CustomTabPanel.propTypes = {
+	children: PropTypes.node,
+	children2: PropTypes.node,
+	index: PropTypes.number.isRequired,
+	value: PropTypes.number.isRequired,
+  };
+  
+  function a11yProps(index) {
+	return {
+	  id: `simple-tab-${index}`,
+	  'aria-controls': `simple-tabpanel-${index}`,
+	};
+  }
 
 export default function AboutPage({ teamMembers, providers }) {
 	const heroRef = useRef(null);
@@ -35,6 +80,12 @@ export default function AboutPage({ teamMembers, providers }) {
 		centerPadding: '100px',
 		initialSlide: 1,
 	};
+
+	const [value, setValue] = useState(0);
+
+  	const handleChange = (event, newValue) => {
+    	setValue(newValue);
+  	};
 
 	return (
 		<Page title={'About'}>
@@ -88,7 +139,7 @@ export default function AboutPage({ teamMembers, providers }) {
 			</Box>
 
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 20 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 30  }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
 					<Grid container spacing={3}>
@@ -111,11 +162,38 @@ export default function AboutPage({ teamMembers, providers }) {
 			</Box>
 			
 			{/* SECTION */}
-			<Box sx={{ paddingY: 20 }}>
-				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>STUFF HERE</Typography>
-				</Container>
-			</Box>
+			<Container sx={{ mt: -4, }}>
+				<Box sx={{ border: 3, borderColor: 'lightGray', borderRadius: 1, backgroundColor: '#fff', pt: 4 }}>
+					<Tabs sx={{ px: 5, pb: 2 }} value={value} onChange={handleChange} aria-label="basic tabs example">
+						<Tab sx={{fontWeight: 'bold'}} label="Who We Serve" {...a11yProps(0)} />
+						<Tab sx={{fontWeight: 'bold'}} label="How We Serve" {...a11yProps(1)} />
+						<Tab sx={{fontWeight: 'bold'}} label="Why We Serve" {...a11yProps(2)} />
+					</Tabs>
+					<Box sx={{ backgroundColor: '#ebeef7', borderRadius: 1, pb: 15 }}>
+						<CustomTabPanel 
+							value={value} 
+							index={0}
+							children='Who'
+							children2='We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.'
+						>
+						</CustomTabPanel>
+						<CustomTabPanel 
+							value={value} 
+							index={1} 
+							children='How'
+							children2='High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere. '
+						>
+						</CustomTabPanel>
+						<CustomTabPanel 
+							value={value} 
+							index={2} 
+							children='Why'
+							children2='No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing. '
+						>
+						</CustomTabPanel>
+					</Box>
+				</Box>
+			</Container>
 
 			{/* SECTION */}
 			<Box sx={{ paddingY: 20 }}>
