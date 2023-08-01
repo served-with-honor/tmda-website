@@ -31,7 +31,9 @@ function CustomTabPanel(props) {
 	const { children, children2, value, index, ...other } = props;
   
 	return (
-	  <div
+	  <Grid
+		container
+		spacing={2}
 		role="tabpanel"
 		hidden={value !== index}
 		id={`simple-tabpanel-${index}`}
@@ -41,15 +43,23 @@ function CustomTabPanel(props) {
 		{value === index && (
 		  <Box sx={{ p: 3 }}>
 			<Stack direction={'row'}>
-				<Stack>
+				<Grid item md={8}>
 					<Typography variant='h6' sx={{px: 4, pt: 3, }}>{children}</Typography>
 					<Typography variant='body1' sx={{py:3, px: 4}}>{children2}</Typography>
-				</Stack>
-				<Image width={250} height={250} src="/images/Dr_Smiling_Resized (1).jpeg" alt="" />
+				</Grid>
+				<Grid item md>
+					<Image 
+						width={300} 
+						height={400} 
+						src="/images/serve-tabs-image.png" 
+						alt="doctor" 
+						style={{position: 'absolute', marginTop: '-150px'}}
+					/>
+				</Grid>
 			</Stack>
 		  </Box>
 		)}
-	  </div>
+	  </Grid>
 	);
   }
   
