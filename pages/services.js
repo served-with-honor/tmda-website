@@ -106,6 +106,14 @@ export default function ServicesPage() {
 							</TableBody>
 						</Table>
 					</TableContainer>
+					<Box sx={{ py: 6, px: 10}}>
+						<Typography display='inline' variant='h6'>Discounts: </Typography>
+						<Typography sx={{ fontStyle: 'italic'}} display='inline'>A volume discount of 15% applies when you purchase three (3) or more documents.</Typography>
+						<Typography sx={{ fontStyle: 'italic', pt: 1.5, pb: 2}} >First-time discounts and 3rd-party discounts may apply. Inquire within.</Typography>
+						<Typography variant='h6'>Disclaimers:</Typography>
+						<Typography sx={{ fontStyle: 'italic', pt: 1.5}}>*The non-refundable appointment/booking fee covers the cost of the Telemedica provider's time/effort to review the veteran's case and to ensure they can assist the veteran.</Typography>
+						<Typography sx={{ fontStyle: 'italic', py: 1.5}} >**$50 fee not applicable in all cases. Fee charged on a case-by-case basis.</Typography>
+					</Box>
 				</Container>
 			</Box>
   	</Page>
