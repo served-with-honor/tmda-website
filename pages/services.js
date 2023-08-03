@@ -78,7 +78,7 @@ export default function ServicesPage() {
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ padding: 10 }}>
+			<Box sx={{ pt: 8, pb: 4 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>At-A-Glance Pricing</Typography>
 					<TableContainer sx={{ p: 2, border: 1, borderRadius: 2 }}>
@@ -107,9 +107,11 @@ export default function ServicesPage() {
 						</Table>
 					</TableContainer>
 					<Box sx={{ py: 6, px: 10}}>
+						{/* Discount Section */}
 						<Typography display='inline' variant='h6'>Discounts: </Typography>
 						<Typography sx={{ fontStyle: 'italic'}} display='inline'>A volume discount of 15% applies when you purchase three (3) or more documents.</Typography>
 						<Typography sx={{ fontStyle: 'italic', pt: 1.5, pb: 2}} >First-time discounts and 3rd-party discounts may apply. Inquire within.</Typography>
+						{/* Disclaimer Section */}
 						<Typography variant='h6'>Disclaimers:</Typography>
 						<Typography sx={{ fontStyle: 'italic', pt: 1.5}}>*The non-refundable appointment/booking fee covers the cost of the Telemedica provider's time/effort to review the veteran's case and to ensure they can assist the veteran.</Typography>
 						<Typography sx={{ fontStyle: 'italic', py: 1.5}} >**$50 fee not applicable in all cases. Fee charged on a case-by-case basis.</Typography>
