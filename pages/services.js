@@ -86,9 +86,6 @@ export default function ServicesPage({ prices }) {
 }
 
 export async function getStaticProps() {
-	function createData(name, bookingFee, price) {
-		return { name, bookingFee, price }
-	}
 	const prices = {
 		columns: [
 			'Service',
@@ -96,16 +93,16 @@ export async function getStaticProps() {
 			'Price',
 		],
 		rows: [
-			createData('Psych Eval/IMO*', '$100', '$1,395'),
-			createData('Telemedicine Evaluation*', '$100', '$895'),
-			createData('Medical Nexus Letter*', '$199', '$1,345'),
-			createData('Medical Nexus Letter Enhanced*', '$199', '$1,595'),
-			createData('DBQ Document*', '$199', '$1,145'),
-			createData('DBQ Document Enhanced*', '$199', '$1,400'),
-			createData('P&T Request Letter*', '$199', '$1,345'),
-			createData('Psych Rebuttal Letter', '$0', '$175'),
-			createData('Med Team Rebuttal Letter**', '$50', '$250'),
-			createData('Recurring Therapy', '$0', '$155 - $250'),
+			['Psych Eval/IMO*', '$100', '$1,395'],
+			['Telemedicine Evaluation*', '$100', '$895'],
+			['Medical Nexus Letter*', '$199', '$1,345'],
+			['Medical Nexus Letter Enhanced*', '$199', '$1,595'],
+			['DBQ Document*', '$199', '$1,145'],
+			['DBQ Document Enhanced*', '$199', '$1,400'],
+			['P&T Request Letter*', '$199', '$1,345'],
+			['Psych Rebuttal Letter', '$0', '$175'],
+			['Med Team Rebuttal Letter**', '$50', '$250'],
+			['Recurring Therapy', '$0', '$155 - $250'],
 		],
 	};
 

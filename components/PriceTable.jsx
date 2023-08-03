@@ -25,14 +25,19 @@ export default function PriceTable({ rows, columns }) {
         <TableBody>
           {rows.map( (row, index) => (
             <TableRow
-              key={`${row.name}-${index}`}
+              key={`${row[0]}-${index}`}
               sx= {{ '&:last-child td, &:last-child th': {borderBottom: 0} }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.bookingFee}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
+              {row.map((cell, index) => (
+                <TableCell
+                  key={`${cell}-${index}`}
+                  component={index === 0 ? 'th' : ''}
+                  scope={index === 0 ? 'row' : ''}
+                  align={index > 0 ? 'right' : ''}
+                >
+                  {cell}
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>
