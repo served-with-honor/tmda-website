@@ -57,7 +57,18 @@ export default function ServicesPage({ prices }) {
 			<Box sx={{ pt: 8, pb: 4 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>At-A-Glance Pricing</Typography>
-					{prices ? <PriceTable columns={prices.columns} rows={prices.rows} /> : null}
+					{prices ? (
+						<Box sx={{
+							border: 1,
+							borderColor: 'primary.main',
+							borderRadius: 2,
+							maxWidth: 'md',
+							mx: 'auto',
+							p: 2,
+						}}>
+							<PriceTable columns={prices.columns} rows={prices.rows} />
+						</Box>
+					) : null}
 					<Box sx={{ py: 6, px: 10}}>
 						{/* Discount Section */}
 						<Typography display='inline' variant='h6'>Discounts: </Typography>
@@ -94,7 +105,7 @@ export async function getStaticProps() {
 			createData('P&T Request Letter*', '$199', '$1,345'),
 			createData('Psych Rebuttal Letter', '$0', '$175'),
 			createData('Med Team Rebuttal Letter**', '$50', '$250'),
-			createData('Recurring Therapy', '$0', '$155-$250'),
+			createData('Recurring Therapy', '$0', '$155 - $250'),
 		],
 	};
 

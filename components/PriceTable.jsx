@@ -7,12 +7,18 @@ import TableRow from '@mui/material/TableRow';
 
 export default function PriceTable({ rows, columns }) {
   return (
-    <TableContainer sx={{ p: 2, border: 1, borderRadius: 2 }}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer>
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             {columns.map((label, index) => (
-              <TableCell key={`${label}-${index}`} align={index === 0 ? 'left' : 'right'}>{label}</TableCell>
+              <TableCell
+                key={`${label}-${index}`}
+                align={index === 0 ? 'left' : 'right'}
+                sx={{ color: 'secondary.main', fontWeight: '700' }}
+              >
+                {label}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -22,11 +28,11 @@ export default function PriceTable({ rows, columns }) {
               key={`${row.name}-${index}`}
               sx= {{ '&:last-child td, &:last-child th': {borderBottom: 0} }}
             >
-              <TableCell component="th" scope="row" sx= {{ borderBottom: 0 }}>
+              <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell sx= {{ borderBottom: 0 }} align="right">{row.bookingFee}</TableCell>
-              <TableCell sx= {{ borderBottom: 0 }} align="center">{row.price}</TableCell>
+              <TableCell align="right">{row.bookingFee}</TableCell>
+              <TableCell align="right">{row.price}</TableCell>
             </TableRow>
           ))}
         </TableBody>
