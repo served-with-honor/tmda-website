@@ -9,8 +9,33 @@ import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import siteSettings from '../src/siteSettings';
 import { CardActions, CardContent } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+function createData( name, bookingFee, price) {
+	return { name, bookingFee, price }
+}
+
+const rows = [
+	createData('Psych Eval/IMO*', '$100', '$1,395'),
+	createData('Telemedicine Evaluation*', '$100', '$895'),
+	createData('Medical Nexus Letter*', '$199', '$1,345'),
+	createData('Medical Nexus Letter Enhanced*', '$199', '$1,595'),
+	createData('DBQ Document*', '$199', '$1,145'),
+	createData('DBQ Document Enhanced*', '$199', '$1,400'),
+	createData('P&T Request Letter*', '$199', '$1,345'),
+	createData('Psych Rebuttal Letter', '$0', '$175'),
+	createData('Med Team Rebuttal Letter**', '$50', '$250'),
+	createData('Recurring Therapy', '$0', '$155-$250'),
+]
 
 export default function ServicesPage() {
+
 	return (
 		<Page title={'Services'}>
 			
@@ -24,7 +49,7 @@ export default function ServicesPage() {
 					</Grid>
 				</Container>
 			</Box>
-
+			{/* SECTION */}
 			<Box sx={{ backgroundColor: 'secondary.100', padding: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
@@ -50,6 +75,37 @@ export default function ServicesPage() {
 						<Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button>
 						<Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button>
 					</Stack>
+				</Container>
+			</Box>
+			{/* SECTION */}
+			<Box sx={{ padding: 10 }}>
+				<Container>
+					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>At-A-Glance Pricing</Typography>
+					<TableContainer sx={{ p: 2, border: 1, borderRadius: 2 }}>
+						<Table sx={{ minWidth: 650 }} aria-label="simple table">
+							<TableHead>
+								<TableRow>
+									<TableCell>Service</TableCell>
+									<TableCell align="right">Booking/Review Fee</TableCell>
+									<TableCell align="center">Price</TableCell>
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{rows.map( (row, index) => (
+									<TableRow
+										key={`${row.name}-${index}`}
+										sx= {{ '&:last-child td, &:last-child th': {borderBottom: 0} }}
+									>
+										<TableCell component="th" scope="row" sx= {{ borderBottom: 0 }}>
+											{row.name}
+										</TableCell>
+										<TableCell sx= {{ borderBottom: 0 }} align="right">{row.bookingFee}</TableCell>
+										<TableCell sx= {{ borderBottom: 0 }} align="center">{row.price}</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</TableContainer>
 				</Container>
 			</Box>
   	</Page>
