@@ -7,15 +7,9 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
+import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
 import { CardActions, CardContent } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 export default function ServicesPage({ prices }) {
 	return (
@@ -63,31 +57,7 @@ export default function ServicesPage({ prices }) {
 			<Box sx={{ pt: 8, pb: 4 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>At-A-Glance Pricing</Typography>
-					<TableContainer sx={{ p: 2, border: 1, borderRadius: 2 }}>
-						<Table sx={{ minWidth: 650 }} aria-label="simple table">
-							<TableHead>
-								<TableRow>
-									{prices.columns.map((label, index) => (
-										<TableCell key={`${label}-${index}`} align={index === 0 ? 'left' : 'right'}>{label}</TableCell>
-									))}
-								</TableRow>
-							</TableHead>
-							<TableBody>
-								{prices.rows.map( (row, index) => (
-									<TableRow
-										key={`${row.name}-${index}`}
-										sx= {{ '&:last-child td, &:last-child th': {borderBottom: 0} }}
-									>
-										<TableCell component="th" scope="row" sx= {{ borderBottom: 0 }}>
-											{row.name}
-										</TableCell>
-										<TableCell sx= {{ borderBottom: 0 }} align="right">{row.bookingFee}</TableCell>
-										<TableCell sx= {{ borderBottom: 0 }} align="center">{row.price}</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
+					{prices ? <PriceTable columns={prices.columns} rows={prices.rows} /> : null}
 					<Box sx={{ py: 6, px: 10}}>
 						{/* Discount Section */}
 						<Typography display='inline' variant='h6'>Discounts: </Typography>
