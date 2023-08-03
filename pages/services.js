@@ -67,13 +67,13 @@ export default function ServicesPage({ prices }) {
 						<Table sx={{ minWidth: 650 }} aria-label="simple table">
 							<TableHead>
 								<TableRow>
-									<TableCell>Service</TableCell>
-									<TableCell align="right">Booking/Review Fee</TableCell>
-									<TableCell align="center">Price</TableCell>
+									{prices.columns.map((label, index) => (
+										<TableCell key={`${label}-${index}`} align={index === 0 ? 'left' : 'right'}>{label}</TableCell>
+									))}
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{prices.map( (row, index) => (
+								{prices.rows.map( (row, index) => (
 									<TableRow
 										key={`${row.name}-${index}`}
 										sx= {{ '&:last-child td, &:last-child th': {borderBottom: 0} }}
@@ -108,18 +108,25 @@ export async function getStaticProps() {
 	function createData(name, bookingFee, price) {
 		return { name, bookingFee, price }
 	}
-	const prices = [
-		createData('Psych Eval/IMO*', '$100', '$1,395'),
-		createData('Telemedicine Evaluation*', '$100', '$895'),
-		createData('Medical Nexus Letter*', '$199', '$1,345'),
-		createData('Medical Nexus Letter Enhanced*', '$199', '$1,595'),
-		createData('DBQ Document*', '$199', '$1,145'),
-		createData('DBQ Document Enhanced*', '$199', '$1,400'),
-		createData('P&T Request Letter*', '$199', '$1,345'),
-		createData('Psych Rebuttal Letter', '$0', '$175'),
-		createData('Med Team Rebuttal Letter**', '$50', '$250'),
-		createData('Recurring Therapy', '$0', '$155-$250'),
-	];
+	const prices = {
+		columns: [
+			'Service',
+			'Booking/Review Fee',
+			'Price',
+		],
+		rows: [
+			createData('Psych Eval/IMO*', '$100', '$1,395'),
+			createData('Telemedicine Evaluation*', '$100', '$895'),
+			createData('Medical Nexus Letter*', '$199', '$1,345'),
+			createData('Medical Nexus Letter Enhanced*', '$199', '$1,595'),
+			createData('DBQ Document*', '$199', '$1,145'),
+			createData('DBQ Document Enhanced*', '$199', '$1,400'),
+			createData('P&T Request Letter*', '$199', '$1,345'),
+			createData('Psych Rebuttal Letter', '$0', '$175'),
+			createData('Med Team Rebuttal Letter**', '$50', '$250'),
+			createData('Recurring Therapy', '$0', '$155-$250'),
+		],
+	};
 
 	return {
 		props: {
