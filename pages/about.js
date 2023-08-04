@@ -26,13 +26,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import texture01 from '../public/texture-01.jpg'
 import Stack from '@mui/material/Stack';
+import Hidden from '@mui/material/Hidden';
+
 
 function CustomTabPanel(props) {
 	const { children, children2, value, index, ...other } = props;
 	return (
 	  <Grid
 		container
-		spacing={2}
 		role="tabpanel"
 		hidden={value !== index}
 		id={`simple-tabpanel-${index}`}
@@ -43,18 +44,20 @@ function CustomTabPanel(props) {
 		  <Box sx={{ p: 3 }}>
 			<Stack direction={'row'}>
 				<Grid item md={8}>
-					<Typography variant='h6' sx={{px: 4, pt: 3, }}>{children}</Typography>
-					<Typography variant='body1' sx={{py:3, px: 4}}>{children2}</Typography>
+					<Typography variant='h6' sx={{px: 4, mt: 3,  }}>{children}</Typography>
+					<Typography variant='body1' sx={{ mt: 3, mb: 1, px: 4,  }}>{children2}</Typography>
 				</Grid>
+				<Hidden smDown>
 				<Grid item md>
 					<Image 
 						width={300} 
 						height={400} 
 						src="/images/serve-tabs-image.png" 
 						alt="doctor" 
-						style={{position: 'absolute', marginTop: '-150px'}}
+						style={{position: 'absolute', marginTop: '-200px'}}
 					/>
 				</Grid>
+				</Hidden>
 			</Stack>
 		  </Box>
 		)}
@@ -173,12 +176,12 @@ export default function AboutPage({ teamMembers, providers }) {
 			{/* SECTION */}
 			<Container sx={{ mt: -4, }}>
 				<Box sx={{ border: 3, borderColor: 'lightGray', borderRadius: 1, backgroundColor: '#fff', pt: 4 }}>
-					<Tabs sx={{ px: 5, pb: 2 }} value={value} onChange={handleChange} aria-label="basic tabs example">
+					<Tabs sx={{ px: 5, pb: 2 }} value={value} onChange={handleChange} variant="scrollable" scrollButtons={false} allowScrollButtonsMobile aria-label="basic tabs example">
 						<Tab sx={{fontWeight: 'bold'}} label="Who We Serve" {...a11yProps(0)} />
 						<Tab sx={{fontWeight: 'bold'}} label="How We Serve" {...a11yProps(1)} />
 						<Tab sx={{fontWeight: 'bold'}} label="Why We Serve" {...a11yProps(2)} />
 					</Tabs>
-					<Box sx={{ backgroundColor: '#ebeef7', borderRadius: 1, pb: 15, pt: 3 }}>
+					<Box sx={{ backgroundColor: '#ebeef7', borderRadius: 1, pb: 15, mt: 5 }}>
 						<CustomTabPanel 
 							value={value} 
 							index={0}
