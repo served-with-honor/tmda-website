@@ -205,8 +205,8 @@ export default function AboutPage({ teamMembers, providers }) {
 				</Container>
 			</Box>
 			
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} maxWidth='md' fullWidth={true}>
-				<BookingWidget />
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
 			</Dialog>			
 		</Page>
 	)
