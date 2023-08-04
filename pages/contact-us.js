@@ -57,9 +57,9 @@ export default function ContactUsPage() {
 			</Box>
 			<NewsletterDialog delay={0} />
 
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} maxWidth='md' fullWidth={true}>
-				<BookingWidget />
-			</Dialog>
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>	
   	</Page>
   )
 }

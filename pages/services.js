@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
@@ -9,8 +11,11 @@ import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import siteSettings from '../src/siteSettings';
 import { CardActions, CardContent } from '@mui/material';
+import BookingWidget from '../components/BookingWidget'
 
 export default function ServicesPage() {
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+
 	return (
 		<Page title={'Services'}>
 			
@@ -48,10 +53,13 @@ export default function ServicesPage() {
 					</Grid>
 					<Stack justifyContent={'center'} direction={{ xs: 'column', sm: 'row' }} spacing={2} divider={<Divider orientation="vertical" flexItem />}>
 						<Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button>
-						<Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button>
+						<Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button>
 					</Stack>
 				</Container>
 			</Box>
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>	
   	</Page>
   )
 }
