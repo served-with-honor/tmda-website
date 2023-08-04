@@ -29,7 +29,6 @@ import Stack from '@mui/material/Stack';
 
 function CustomTabPanel(props) {
 	const { children, children2, value, index, ...other } = props;
-  
 	return (
 	  <Grid
 		container
@@ -179,7 +178,7 @@ export default function AboutPage({ teamMembers, providers }) {
 						<Tab sx={{fontWeight: 'bold'}} label="How We Serve" {...a11yProps(1)} />
 						<Tab sx={{fontWeight: 'bold'}} label="Why We Serve" {...a11yProps(2)} />
 					</Tabs>
-					<Box sx={{ backgroundColor: '#ebeef7', borderRadius: 1, pb: 15 }}>
+					<Box sx={{ backgroundColor: '#ebeef7', borderRadius: 1, pb: 15, pt: 3 }}>
 						<CustomTabPanel 
 							value={value} 
 							index={0}
