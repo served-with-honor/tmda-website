@@ -47,7 +47,7 @@ function CustomTabPanel(props) {
 					<Typography variant='h6' sx={{px: 4, mt: 3,  }}>{children}</Typography>
 					<Typography variant='body1' sx={{ mt: 3, mb: 1, px: 4,  }}>{children2}</Typography>
 				</Grid>
-				<Hidden smDown>
+				<Hidden mdDown>
 				<Grid item md>
 					<Image 
 						width={300} 
