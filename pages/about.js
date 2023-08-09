@@ -29,7 +29,6 @@ import texture01 from '../public/texture-01.jpg'
 import Stack from '@mui/material/Stack';
 import Hidden from '@mui/material/Hidden';
 
-
 function CustomTabPanel(props) {
 	const { children, children2, value, index, ...other } = props;
 	return (
@@ -80,7 +79,7 @@ function CustomTabPanel(props) {
 	};
   }
 
-export default function AboutPage({ teamMembers, providers }) {
+export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const heroRef = useRef(null);
 	const sliderSettings = {
 		dots: true,
@@ -174,39 +173,34 @@ export default function AboutPage({ teamMembers, providers }) {
 				</Container>
 			</Box>
 			
-			{/* SECTION */}
-			<Container sx={{ mt: -4, }}>
-				<Paper>
-					<Tabs sx={{ px: 4, py: 2 }} value={value} onChange={handleChange} variant="scrollable" scrollButtons={false} allowScrollButtonsMobile aria-label="basic tabs example">
-						<Tab sx={{fontWeight: 'bold'}} label="Who We Serve" {...a11yProps(0)} />
-						<Tab sx={{fontWeight: 'bold'}} label="How We Serve" {...a11yProps(1)} />
-						<Tab sx={{fontWeight: 'bold'}} label="Why We Serve" {...a11yProps(2)} />
-					</Tabs>
-					<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1 }}>
-						<CustomTabPanel 
-							value={value} 
-							index={0}
-							children='Who'
-							children2='We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.'
-						>
-						</CustomTabPanel>
-						<CustomTabPanel 
-							value={value} 
-							index={1} 
-							children='How'
-							children2='High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere. '
-						>
-						</CustomTabPanel>
-						<CustomTabPanel 
-							value={value} 
-							index={2} 
-							children='Why'
-							children2='No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing. '
-						>
-						</CustomTabPanel>
-					</Box>
-				</Paper>
-			</Container>
+			{/* SECTION - SERVE TABS */}
+			{serveTabs ? (
+				<Container sx={{ mt: -4, }}>
+					<Paper>
+						<Tabs sx={{ px: 4, py: 2 }} value={value} onChange={handleChange} variant="scrollable" scrollButtons={false} allowScrollButtonsMobile aria-label="basic tabs example">
+							{serveTabs.map(({ title }, index) => (
+								<Tab
+									key={`serve-tabs-tab-${index}`}
+									sx={{ fontWeight: 'bold' }}
+									label={title}
+									{...a11yProps(index)}
+									/>
+									))}
+						</Tabs>
+						<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1 }}>
+							{serveTabs.map(({ heading, body }, index) => (
+								<CustomTabPanel
+									key={`serve-tabs-panel-${index}`}
+									value={value}
+									index={index}
+									children={heading}
+									children2={body}
+								/>
+							))}
+						</Box>
+					</Paper>
+				</Container>
+			) : null}
 
 			{/* SECTION */}
 			<Box sx={{ paddingY: 20 }}>
@@ -309,6 +303,23 @@ export const getServerSideProps = async () => {
 		{ name: 'Gracelynn Barnes', position: 'Proin Consectetur Neque', },
 		{ name: 'James Edwards', position: 'Ut Malesuada Dolor', },
 		{ name: 'Finn Butler', position: 'Etiam Hendrerit Turpis', },
+	];
+	const serveTabs = [
+		{
+			title: 'Who We Serve',
+			heading: 'Who',
+			body: 'We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.',
+		},
+		{
+			title: 'How We Serve',
+			heading: 'How',
+			body: 'High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere.',
+		},
+		{
+			title: 'Why We Serve',
+			heading: 'Why',
+			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
+		},
 	]
-	return { props: { teamMembers, providers } };
+	return { props: { teamMembers, providers, serveTabs } };
 }
