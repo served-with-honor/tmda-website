@@ -71,7 +71,7 @@ export default function ContactForm() {
               control={control}
               rules={{ required: 'Type is required' }}
               render={({ field }) =>
-                <Select labelId="stuff" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
+                <Select defaultValue="" labelId="stuff" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
                   <MenuItem value="Customer Service">Customer Service</MenuItem>
                   <MenuItem value="Billing">Billing</MenuItem>
                   <MenuItem value="Pricing">Pricing</MenuItem>
