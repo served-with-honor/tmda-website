@@ -1,12 +1,19 @@
 import Image from 'next/image';
 import { Box, Container } from '@mui/material'
-import dividerImage from '../../public/images/section-divider.png';
+import dividerImage from '../../public/crosses-divider.svg';
 
 export default function SectionDivider() {
   return (
-    <Box>
-      <Container sx={{ position: 'relative' }}>
-        <Image src={dividerImage} alt="" fill />
+    <Box sx={{ py: 3 }}>
+      <Container sx={{ position: 'relative', textAlign: 'center' }}>
+        <Image
+          src={dividerImage}
+          alt=""
+          style={{
+            height: 'auto',
+            maxWidth: 416,
+          }}
+        />
       </Container>
     </Box>
   );
