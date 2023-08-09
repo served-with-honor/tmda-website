@@ -1,6 +1,4 @@
-import { useRef, useState } from 'react';
-import Image from 'next/image';
-import PropTypes from 'prop-types';
+import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -11,73 +9,19 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Paper from '@mui/material/Paper';
 import AddIcon from '@mui/icons-material/Add';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Page from '../components/Page'
 import MapAnim from '../components/MapAnim'
 import { getTeamMembers } from '../lib'
 import siteSettings from '../src/siteSettings';
 import Counter from '../components/Counter'
+import CustomTabs from '../components/CustomTabs'
 import Directory from '../components/Directory'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import texture01 from '../public/texture-01.jpg'
-import Stack from '@mui/material/Stack';
-import Hidden from '@mui/material/Hidden';
-
-function CustomTabPanel(props) {
-	const { children, children2, value, index, ...other } = props;
-	return (
-	  <Grid
-		container
-		role="tabpanel"
-		hidden={value !== index}
-		id={`simple-tabpanel-${index}`}
-		aria-labelledby={`simple-tab-${index}`}
-		{...other}
-	  >
-		{value === index && (
-		  <Box sx={{ p: 3 }}>
-			<Stack direction={'row'}>
-				<Grid item md={8}>
-					<Typography variant='h6' sx={{px: 4, mt: 3,  }}>{children}</Typography>
-					<Typography variant='body1' sx={{ mt: 3, mb: 1, px: 4,  }}>{children2}</Typography>
-				</Grid>
-				<Hidden mdDown>
-				<Grid item md>
-					<Image 
-						width={300} 
-						height={400} 
-						src="/images/serve-tabs-image.png" 
-						alt="doctor" 
-						style={{position: 'absolute', marginTop: '-200px'}}
-					/>
-				</Grid>
-				</Hidden>
-			</Stack>
-		  </Box>
-		)}
-	  </Grid>
-	);
-  }
-  
-  CustomTabPanel.propTypes = {
-	children: PropTypes.node,
-	children2: PropTypes.node,
-	index: PropTypes.number.isRequired,
-	value: PropTypes.number.isRequired,
-  };
-  
-  function a11yProps(index) {
-	return {
-	  id: `simple-tab-${index}`,
-	  'aria-controls': `simple-tabpanel-${index}`,
-	};
-  }
 
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const heroRef = useRef(null);
@@ -92,12 +36,6 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 		centerPadding: '100px',
 		initialSlide: 1,
 	};
-
-	const [value, setValue] = useState(0);
-
-  	const handleChange = (event, newValue) => {
-    	setValue(newValue);
-  	};
 
 	return (
 		<Page title={'About'}>
@@ -176,29 +114,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			{/* SECTION - SERVE TABS */}
 			{serveTabs ? (
 				<Container sx={{ mt: -4, }}>
-					<Paper>
-						<Tabs sx={{ px: 4, py: 2 }} value={value} onChange={handleChange} variant="scrollable" scrollButtons={false} allowScrollButtonsMobile aria-label="basic tabs example">
-							{serveTabs.map(({ title }, index) => (
-								<Tab
-									key={`serve-tabs-tab-${index}`}
-									sx={{ fontWeight: 'bold' }}
-									label={title}
-									{...a11yProps(index)}
-									/>
-									))}
-						</Tabs>
-						<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1 }}>
-							{serveTabs.map(({ heading, body }, index) => (
-								<CustomTabPanel
-									key={`serve-tabs-panel-${index}`}
-									value={value}
-									index={index}
-									children={heading}
-									children2={body}
-								/>
-							))}
-						</Box>
-					</Paper>
+					<CustomTabs items={serveTabs} />
 				</Container>
 			) : null}
 
