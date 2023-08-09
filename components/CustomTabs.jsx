@@ -43,7 +43,7 @@ export default function CustomTabs({ items }) {
           />
         ))}
 			</Tabs>
-			<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1, p: 2 }}>
 				{items.map(({ heading, body }, index) => (
 					<CustomTabPanel
 						key={`serve-tabs-panel-${index}`}
@@ -52,8 +52,8 @@ export default function CustomTabs({ items }) {
 						children={heading}
 						children2={body}
           >
-            <Typography variant='h6' sx={{px: 4, mt: 3,  }}>{heading}</Typography>
-					  <Typography variant='body1' sx={{ mt: 3, mb: 1, px: 4,  }}>{body}</Typography>
+            <Typography variant='h6'>{heading}</Typography>
+					  <Typography variant='body1'>{body}</Typography>
           </CustomTabPanel>
 				))}
 			</Box>
