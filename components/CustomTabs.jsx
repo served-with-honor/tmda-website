@@ -49,8 +49,6 @@ export default function CustomTabs({ items }) {
 						key={`serve-tabs-panel-${index}`}
 						value={value}
 						index={index}
-						children={heading}
-						children2={body}
           >
             <Typography variant='h6'>{heading}</Typography>
 					  <Typography variant='body1'>{body}</Typography>
@@ -68,7 +66,7 @@ CustomTabPanel.propTypes = {
 };
 
 function CustomTabPanel(props) {
-	const { children, value, index, ...other } = props;
+	const { children, value, index } = props;
 	return (
 	  <Grid
       container
@@ -76,7 +74,6 @@ function CustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
 	  >
 		{value === index && (
 		  <Box sx={{ p: 3 }}>
