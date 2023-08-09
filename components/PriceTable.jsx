@@ -33,7 +33,7 @@ export default function PriceTable({ rows, columns }) {
                   key={`${cell}-${index}`}
                   component={index === 0 ? 'th' : ''}
                   scope={index === 0 ? 'row' : ''}
-                  align={index > 0 ? 'right' : ''}
+                  align={index === 0 ? 'left' : 'right'}
                 >
                   {cell}
                 </TableCell>
