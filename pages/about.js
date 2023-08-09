@@ -11,6 +11,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
 import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -175,13 +176,13 @@ export default function AboutPage({ teamMembers, providers }) {
 			
 			{/* SECTION */}
 			<Container sx={{ mt: -4, }}>
-				<Box sx={{ border: 3, borderColor: 'lightGray', borderRadius: 1, backgroundColor: '#fff', pt: 4 }}>
-					<Tabs sx={{ px: 5, pb: 2 }} value={value} onChange={handleChange} variant="scrollable" scrollButtons={false} allowScrollButtonsMobile aria-label="basic tabs example">
+				<Paper>
+					<Tabs sx={{ px: 4, py: 2 }} value={value} onChange={handleChange} variant="scrollable" scrollButtons={false} allowScrollButtonsMobile aria-label="basic tabs example">
 						<Tab sx={{fontWeight: 'bold'}} label="Who We Serve" {...a11yProps(0)} />
 						<Tab sx={{fontWeight: 'bold'}} label="How We Serve" {...a11yProps(1)} />
 						<Tab sx={{fontWeight: 'bold'}} label="Why We Serve" {...a11yProps(2)} />
 					</Tabs>
-					<Box sx={{ backgroundColor: '#ebeef7', borderRadius: 1, pb: 15, mt: 5 }}>
+					<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1 }}>
 						<CustomTabPanel 
 							value={value} 
 							index={0}
@@ -204,7 +205,7 @@ export default function AboutPage({ teamMembers, providers }) {
 						>
 						</CustomTabPanel>
 					</Box>
-				</Box>
+				</Paper>
 			</Container>
 
 			{/* SECTION */}
