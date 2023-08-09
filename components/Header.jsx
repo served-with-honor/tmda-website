@@ -21,13 +21,11 @@ export default forwardRef(function Header(props, ref) {
     'initial': {
       position: 'absolute',
       backgroundColor: 'rgba(255,255,255,0)',
-      boxShadow: theme.shadows[0],
       y: 0,
     },
     'sticky': {
       position: 'fixed',
       backgroundColor: 'rgba(255,255,255,1)',
-      boxShadow: theme.shadows[5],
       y: 0,
     },
   };
@@ -48,6 +46,7 @@ export default forwardRef(function Header(props, ref) {
   useEffect(() => {
     if (headerState === 'sticky') {
       animate(ref.current, headerAnimations['sticky']);
+      ref.current.style = `box-shadow: ${theme.shadows[5]}`;
       return;
     }
     
@@ -56,6 +55,7 @@ export default forwardRef(function Header(props, ref) {
       return
     }
     animate(ref.current, headerAnimations['initial']);
+    ref.current.style = 'box-shadow: none';
   }, [headerState])
   
   return (
