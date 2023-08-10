@@ -16,14 +16,14 @@ CustomTabs.propTypes = {
 };
 
 export default function CustomTabs({ items }) {
-	const [value, setValue] = useState(0);
-	const handleChange = (event, newValue) => setValue(newValue);
+	const [activeTab, setActiveTab] = useState(0);
+	const handleChange = (event, newValue) => setActiveTab(newValue);
 
 	return (
 		<Paper sx={{ position: 'relative' }}>
       <Tabs
         sx={{ px: 4, py: 2 }}
-        value={value}
+        value={activeTab}
         onChange={handleChange}
         variant="scrollable"
         scrollButtons={false}
@@ -45,22 +45,25 @@ export default function CustomTabs({ items }) {
         p: 2,
         minHeight: 275,
       }}>
-				{items.map(({ heading, body }, index) => (
-					<Box
-            key={`serve-tabs-panel-${index}`}
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-          >
-            {value === index && (
-              <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
-                {heading && <Typography variant='h6'>{heading}</Typography>}
-                <Typography variant='body1'>{body}</Typography>
-              </Box>
-            )}
-          </Box>
-				))}
+        {items.map(({ heading, body }, index) => {
+          const isActive = activeTab === index;
+          return (
+            <Box
+              key={`serve-tabs-panel-${index}`}
+              role="tabpanel"
+              hidden={!isActive}
+              id={`simple-tabpanel-${index}`}
+              aria-labelledby={`simple-tab-${index}`}
+            >
+              {isActive && (
+                <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
+                  {heading && <Typography variant='h6'>{heading}</Typography>}
+                  <Typography variant='body1'>{body}</Typography>
+                </Box>
+              )}
+            </Box>
+          );
+        })}
       </Box>
       <Box
         sx={theme => ({
