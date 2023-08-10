@@ -9,10 +9,10 @@ import Tab from '@mui/material/Tab';
 
 CustomTabs.propTypes = {
   items: PropTypes.arrayOf({
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     heading: PropTypes.string,
-    body: PropTypes.string,
-  }),
+    body: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default function CustomTabs({ items }) {
@@ -55,7 +55,7 @@ export default function CustomTabs({ items }) {
           >
             {value === index && (
               <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
-                <Typography variant='h6'>{heading}</Typography>
+                {heading && <Typography variant='h6'>{heading}</Typography>}
                 <Typography variant='body1'>{body}</Typography>
               </Box>
             )}
