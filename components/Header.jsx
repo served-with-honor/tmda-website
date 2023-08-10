@@ -1,11 +1,11 @@
 import { useState, useEffect, forwardRef } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme, Box, Container, Grid } from '@mui/material'
-import { motion, useAnimate, usePresence, useScroll, useMotionValueEvent } from "framer-motion"
+import { motion, useAnimate, useScroll, useMotionValueEvent } from "framer-motion"
 import MainMenu from './MainMenu'
-// import logo from '../public/images/logo.png'
 import Logo from '../public/logo.svg'
+import siteSettings from '../src/siteSettings';
 
 export default forwardRef(function Header(props, ref) {
   const [scope, animate] = useAnimate();
@@ -21,13 +21,11 @@ export default forwardRef(function Header(props, ref) {
     'initial': {
       position: 'absolute',
       backgroundColor: 'rgba(255,255,255,0)',
-      boxShadow: theme.shadows[0],
       y: 0,
     },
     'sticky': {
       position: 'fixed',
       backgroundColor: 'rgba(255,255,255,1)',
-      boxShadow: theme.shadows[5],
       y: 0,
     },
   };
@@ -48,6 +46,7 @@ export default forwardRef(function Header(props, ref) {
   useEffect(() => {
     if (headerState === 'sticky') {
       animate(ref.current, headerAnimations['sticky']);
+      ref.current.style = `box-shadow: ${theme.shadows[5]}`;
       return;
     }
     
@@ -56,6 +55,7 @@ export default forwardRef(function Header(props, ref) {
       return
     }
     animate(ref.current, headerAnimations['initial']);
+    ref.current.style = 'box-shadow: none';
   }, [headerState])
   
   return (
@@ -76,8 +76,12 @@ export default forwardRef(function Header(props, ref) {
         <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <Grid item>
             <Link href="/">
-              <Logo width='225' />
-              {/* <Image src={logo} alt="Telemedica Logo" /> */}
+              <Image
+                src={Logo}
+                alt={`${siteSettings.name} logo`}
+                width={225}
+                height={49}
+              />
             </Link>
           </Grid>
           <Grid item>
