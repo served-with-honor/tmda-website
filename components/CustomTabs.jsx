@@ -50,14 +50,20 @@ export default function CustomTabs({ items }) {
         minHeight: 275,
       }}>
 				{items.map(({ heading, body }, index) => (
-					<CustomTabPanel
-						key={`serve-tabs-panel-${index}`}
-						value={value}
-						index={index}
+					<Box
+            key={`serve-tabs-panel-${index}`}
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
           >
-            <Typography variant='h6'>{heading}</Typography>
-					  <Typography variant='body1'>{body}</Typography>
-          </CustomTabPanel>
+            {value === index && (
+              <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
+                <Typography variant='h6'>{heading}</Typography>
+                <Typography variant='body1'>{body}</Typography>
+              </Box>
+            )}
+          </Box>
 				))}
       </Box>
       <Box
@@ -73,28 +79,4 @@ export default function CustomTabs({ items }) {
       </Box>
 		</Paper>
 	)
-}
-
-CustomTabPanel.propTypes = {
-	children: PropTypes.node,
-	index: PropTypes.number.isRequired,
-	value: PropTypes.number.isRequired,
-};
-
-function CustomTabPanel(props) {
-	const { children, value, index } = props;
-	return (
-	  <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-	  >
-		{value === index && (
-      <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
-        {children}
-		  </Box>
-		)}
-	  </Box>
-	);
 }
