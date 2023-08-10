@@ -10,11 +10,11 @@ import { slugify } from '../src/utils';
 
 CustomTabs.propTypes = {
   name: PropTypes.string,
-  items: PropTypes.arrayOf({
+  items: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     heading: PropTypes.string,
     body: PropTypes.string.isRequired,
-  }).isRequired,
+  })).isRequired,
 };
 
 export default function CustomTabs({ items, name = 'Custom Tabs' }) {
