@@ -24,7 +24,7 @@ export default function CustomTabs({ items }) {
 	const handleChange = (event, newValue) => setValue(newValue);
 
 	return (
-		<Paper>
+		<Paper sx={{ position: 'relative' }}>
       <Tabs
         sx={{ px: 4, py: 2 }}
         value={value}
@@ -43,7 +43,12 @@ export default function CustomTabs({ items }) {
           />
         ))}
 			</Tabs>
-			<Box sx={{ backgroundColor: 'secondary.100', borderRadius: 1, p: 2 }}>
+      <Box sx={{
+        backgroundColor: 'secondary.100',
+        borderRadius: 1,
+        p: 2,
+        minHeight: 275,
+      }}>
 				{items.map(({ heading, body }, index) => (
 					<CustomTabPanel
 						key={`serve-tabs-panel-${index}`}
@@ -54,7 +59,18 @@ export default function CustomTabs({ items }) {
 					  <Typography variant='body1'>{body}</Typography>
           </CustomTabPanel>
 				))}
-			</Box>
+      </Box>
+      <Box
+        sx={theme => ({
+          position: 'absolute',
+          bottom: 0,
+          right: 1,
+          lineHeight: 0,
+          [theme.breakpoints.down('md')]: { display: 'none' },
+        })}
+      >
+        <Image width={300} height={400} src="/images/serve-tabs-image.png" alt="doctor"/>
+      </Box>
 		</Paper>
 	)
 }
@@ -68,31 +84,17 @@ CustomTabPanel.propTypes = {
 function CustomTabPanel(props) {
 	const { children, value, index } = props;
 	return (
-	  <Grid
-      container
+	  <Box
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
 	  >
 		{value === index && (
-		  <Box sx={{ p: 3 }}>
-        <Stack direction={'row'}>
-          <Grid item md={8}>{children}</Grid>
-          <Hidden mdDown>
-            <Grid item md>
-              <Image 
-                width={300} 
-                height={400} 
-                src="/images/serve-tabs-image.png" 
-                alt="doctor" 
-                style={{position: 'absolute', marginTop: '-200px'}}
-              />
-            </Grid>
-          </Hidden>
-        </Stack>
+      <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
+        {children}
 		  </Box>
 		)}
-	  </Grid>
+	  </Box>
 	);
 }
