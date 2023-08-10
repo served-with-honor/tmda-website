@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,9 +10,19 @@ import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
-import { CardActions, CardContent } from '@mui/material';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import { Link } from '@mui/material';
 
 export default function ServicesPage({ prices }) {
+	const [expanded, setExpanded] = useState(false);
+
+	const handlePanelChange = (panel) => (event, isExpanded) => {
+		setExpanded(isExpanded ? panel : false);
+		};
+
 	return (
 		<Page title={'Services'}>
 			
@@ -26,31 +37,50 @@ export default function ServicesPage({ prices }) {
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', padding: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 10, px:{xs: 3, md: 6} }}>
 				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
-					<Grid container spacing={5} mb={10}>
+					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
+					<Grid mb={10}>
 						{[
 							{ title: 'Mental Health Evaluation', text: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.' },
 							{ title: 'Nexus Letters & DBQs', text: 'Id et aliqua commodo cillum minim nostrud.' },
 							{ title: 'Telemedicine Evaluations', text: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.' },
 							{ title: 'Recurring Therapy', text: 'Cupidatat sunt sunt irure id nostrud consectetur consequat nostrud pariatur fugiat consequat id.' },
 						].map(({ title, text }, index) => (
-							<Grid key={`services-features-${index}`} item md={6}>
-								<Card sx={{ height: '100%' }}>
-									<CardContent sx={{ textAlign: 'center', paddingY: 5, paddingX: 3 }}>
-										<Typography variant={'h5'} component={'h3'} sx={{ mb: 5 }}>{title}</Typography>
-										<Typography variant={'body1'} sx={{ mb: 5 }}>{text}</Typography>
-										<Button variant="outlined">Book Now</Button>
-									</CardContent>
-								</Card>
-							</Grid>
+							<Accordion
+									key={`faq-panel-${index}`}
+									expanded={expanded === `panel${index}`}
+									onChange={handlePanelChange(`panel${index}`)}
+									sx={{ my: 4, py: 2}}
+									square
+								>
+									<AccordionSummary
+										aria-controls={`panel${index}-content`}
+										id={`panel${index}-header`}
+										sx={{
+											display: 'flex',
+											alignItems: 'center',
+											'& .MuiSvgIcon-root': {
+												fontSize: 72,
+												mr: 2,
+											}
+										}}
+									>
+										<CircleOutlinedIcon />
+										<Stack direction='column'>
+											<Typography variant='h6'>{title}</Typography>
+											<Typography variant='text'>text</Typography>
+										</Stack>
+									</AccordionSummary>
+									<AccordionDetails>
+										<Typography variant='body1'>{text}</Typography>
+									</AccordionDetails>
+								</Accordion>
 						))}
 					</Grid>
-					<Stack justifyContent={'center'} direction={{ xs: 'column', sm: 'row' }} spacing={2} divider={<Divider orientation="vertical" flexItem />}>
-						<Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button>
-						<Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button>
-					</Stack>
+					<Container sx={{textAlign: 'center'}}> 
+						<Link variant='string' color='secondary' href='#' sx={{px: 1}}>How it Works</Link>
+					</Container>
 				</Container>
 			</Box>
 			{/* SECTION */}
