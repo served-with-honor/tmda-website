@@ -114,7 +114,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			{/* SECTION - SERVE TABS */}
 			{serveTabs ? (
 				<Container sx={{ mt: -4, }}>
-					<CustomTabs items={serveTabs} />
+					<CustomTabs items={serveTabs} name="Serve Tabs" />
 				</Container>
 			) : null}
 

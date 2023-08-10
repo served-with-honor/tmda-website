@@ -6,8 +6,10 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { slugify } from '../src/utils';
 
 CustomTabs.propTypes = {
+  name: PropTypes.string,
   items: PropTypes.arrayOf({
     title: PropTypes.string.isRequired,
     heading: PropTypes.string,
@@ -15,9 +17,10 @@ CustomTabs.propTypes = {
   }).isRequired,
 };
 
-export default function CustomTabs({ items }) {
+export default function CustomTabs({ items, name = 'Custom Tabs' }) {
 	const [activeTab, setActiveTab] = useState(0);
-	const handleChange = (event, newValue) => setActiveTab(newValue);
+  const handleChange = (event, newValue) => setActiveTab(newValue);
+  const parentSlug = slugify(name);
 
 	return (
 		<Paper sx={{ position: 'relative' }}>
@@ -27,17 +30,21 @@ export default function CustomTabs({ items }) {
         onChange={handleChange}
         variant="scrollable"
         scrollButtons={false}
-        allowScrollButtonsMobile aria-label="basic tabs example"
+        allowScrollButtonsMobile
+        aria-label={name}
       >
-        {items.map(({ title }, index) => (
-          <Tab
-            key={`serve-tabs-tab-${index}`}
-            sx={{ fontWeight: 'bold' }}
-            label={title}
-            id={`simple-tab-${index}`}
-            ariaControls={`simple-tabpanel-${index}`}
-          />
-        ))}
+        {items.map(({ title }, index) => {
+          const id = `${parentSlug}-tab-${index}`;
+          return (
+            <Tab
+              key={id}
+              sx={{ fontWeight: 'bold' }}
+              label={title}
+              id={id}
+              {...{ 'aria-controls': `${parentSlug}-panel-${index}` }}
+            />
+          );
+        })}
 			</Tabs>
       <Box sx={{
         backgroundColor: 'secondary.100',
@@ -47,13 +54,14 @@ export default function CustomTabs({ items }) {
       }}>
         {items.map(({ heading, body }, index) => {
           const isActive = activeTab === index;
+          const id = `${parentSlug}-panel-${index}`;
           return (
             <Box
-              key={`serve-tabs-panel-${index}`}
+              key={id}
+              id={id}
               role="tabpanel"
               hidden={!isActive}
-              id={`simple-tabpanel-${index}`}
-              aria-labelledby={`simple-tab-${index}`}
+              aria-labelledby={`${parentSlug}-tab-${index}`}
             >
               {isActive && (
                 <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
