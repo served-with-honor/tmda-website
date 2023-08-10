@@ -50,7 +50,7 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
         backgroundColor: 'secondary.100',
         borderRadius: 1,
         p: 2,
-        minHeight: 275,
+        minHeight: { md: 275 },
       }}>
         {items.map(({ heading, body }, index) => {
           const isActive = activeTab === index;
