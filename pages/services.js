@@ -1,28 +1,21 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { Link } from '@mui/material';
+import Link from '@mui/material/Link';
+import BookingWidget from '../components/BookingWidget'
+import CustomAccordion from '../components/CustomAccordion'
 
-export default function ServicesPage({ prices }) {
-	const [expanded, setExpanded] = useState(false);
+export default function ServicesPage({ prices, services }) {
+	
 
-	const handlePanelChange = (panel) => (event, isExpanded) => {
-		setExpanded(isExpanded ? panel : false);
-		};
-
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	return (
 		<Page title={'Services'}>
 			
@@ -40,44 +33,11 @@ export default function ServicesPage({ prices }) {
 			<Box sx={{ backgroundColor: 'secondary.100', py: 10, px:{xs: 3, md: 6} }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
+					{services ? (
 					<Grid mb={10}>
-						{[
-							{ title: 'Mental Health Evaluation', text: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.' },
-							{ title: 'Nexus Letters & DBQs', text: 'Id et aliqua commodo cillum minim nostrud.' },
-							{ title: 'Telemedicine Evaluations', text: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.' },
-							{ title: 'Recurring Therapy', text: 'Cupidatat sunt sunt irure id nostrud consectetur consequat nostrud pariatur fugiat consequat id.' },
-						].map(({ title, text }, index) => (
-							<Accordion
-									key={`faq-panel-${index}`}
-									expanded={expanded === `panel${index}`}
-									onChange={handlePanelChange(`panel${index}`)}
-									sx={{ my: 4, py: 2}}
-									square
-								>
-									<AccordionSummary
-										aria-controls={`panel${index}-content`}
-										id={`panel${index}-header`}
-										sx={{
-											display: 'flex',
-											alignItems: 'center',
-											'& .MuiSvgIcon-root': {
-												fontSize: 72,
-												mr: 2,
-											}
-										}}
-									>
-										<CircleOutlinedIcon />
-										<Stack direction='column'>
-											<Typography variant='h6'>{title}</Typography>
-											<Typography variant='text'>text</Typography>
-										</Stack>
-									</AccordionSummary>
-									<AccordionDetails>
-										<Typography variant='body1'>{text}</Typography>
-									</AccordionDetails>
-								</Accordion>
-						))}
+						<CustomAccordion items={services} name=''/>
 					</Grid>
+					) : null}
 					<Container sx={{textAlign: 'center'}}> 
 						<Link variant='string' color='secondary' href='#' sx={{px: 1}}>How it Works</Link>
 					</Container>
@@ -111,6 +71,9 @@ export default function ServicesPage({ prices }) {
 					</Box>
 				</Container>
 			</Box>
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>	
   	</Page>
   )
 }
@@ -136,9 +99,29 @@ export async function getStaticProps() {
 		],
 	};
 
+	const services = [
+		{
+			title: 'Mental Health Evaluation',
+			text: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+		}, 
+		{
+			title: 'Nexus Letters & DBQs',
+			text: 'Id et aliqua commodo cillum minim nostrud.',
+		}, 
+		{
+			title: 'Telemedicine Evaluations',
+			text: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.',
+		}, 
+		{
+			title: 'Recurring Therapy',
+			text: 'Cupidatat sunt sunt irure id nostrud consectetur consequat nostrud pariatur fugiat consequat id.',
+		}, 
+	]
+
 	return {
 		props: {
 			prices,
+			services
 		}
 	}
 }
