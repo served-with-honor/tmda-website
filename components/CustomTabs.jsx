@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Stack from '@mui/material/Stack';
-import Hidden from '@mui/material/Hidden';
-
 
 CustomTabs.propTypes = {
   items: PropTypes.arrayOf({
