@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -15,14 +15,18 @@ import MapAnim from '../components/MapAnim'
 import { getTeamMembers } from '../lib'
 import siteSettings from '../src/siteSettings';
 import Counter from '../components/Counter'
+import CustomTabs from '../components/CustomTabs'
 import Directory from '../components/Directory'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import BookingWidget from '../components/BookingWidget'
 import texture01 from '../public/texture-01.jpg'
 
-export default function AboutPage({ teamMembers, providers }) {
+export default function AboutPage({ teamMembers, providers, serveTabs }) {
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	const heroRef = useRef(null);
 	const sliderSettings = {
 		dots: true,
@@ -64,7 +68,7 @@ export default function AboutPage({ teamMembers, providers }) {
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }} gutterBottom>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
-								<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button></Grid>
+								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 							</Grid>
 							<Grid container spacing={5}>
 								{[
@@ -88,7 +92,7 @@ export default function AboutPage({ teamMembers, providers }) {
 			</Box>
 
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 20 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 30  }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
 					<Grid container spacing={3}>
@@ -110,12 +114,12 @@ export default function AboutPage({ teamMembers, providers }) {
 				</Container>
 			</Box>
 			
-			{/* SECTION */}
-			<Box sx={{ paddingY: 20 }}>
-				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>STUFF HERE</Typography>
+			{/* SECTION - SERVE TABS */}
+			{serveTabs ? (
+				<Container sx={{ mt: -4, }}>
+					<CustomTabs items={serveTabs} name="Serve Tabs" />
 				</Container>
-			</Box>
+			) : null}
 
 			{/* SECTION */}
 			<Box sx={{ paddingY: 20 }}>
@@ -147,7 +151,7 @@ export default function AboutPage({ teamMembers, providers }) {
 			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 10 }}>
 				<Container>
 					<Grid container spacing={2} justifyContent='center'>
-						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.booking} target='_blank'>Book Now</Button></Grid>
+						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 					</Grid>
 				</Container>
@@ -202,6 +206,9 @@ export default function AboutPage({ teamMembers, providers }) {
 				</Container>
 			</Box>
 			
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>			
 		</Page>
 	)
 }
@@ -218,6 +225,23 @@ export const getServerSideProps = async () => {
 		{ name: 'Gracelynn Barnes', position: 'Proin Consectetur Neque', },
 		{ name: 'James Edwards', position: 'Ut Malesuada Dolor', },
 		{ name: 'Finn Butler', position: 'Etiam Hendrerit Turpis', },
+	];
+	const serveTabs = [
+		{
+			title: 'Who We Serve',
+			heading: 'Who',
+			body: 'We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.',
+		},
+		{
+			title: 'How We Serve',
+			heading: 'How',
+			body: 'High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere.',
+		},
+		{
+			title: 'Why We Serve',
+			heading: 'Why',
+			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
+		},
 	]
-	return { props: { teamMembers, providers } };
+	return { props: { teamMembers, providers, serveTabs } };
 }

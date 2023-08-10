@@ -97,9 +97,8 @@ const baseTheme = responsiveFontSizes(createTheme({
       styleOverrides: {
         root: {
           fontSize: 18,
-          color: ({ theme }) => theme.palette.primary.contrastText,
           boxShadow: 0,
-        }
+        },
       }
     }
   }
