@@ -13,6 +13,7 @@ import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
 import { CardActions, CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
+import Image from 'next/image';
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -84,6 +85,28 @@ export default function ServicesPage({ prices }) {
 						<Typography sx={{ fontStyle: 'italic', py: 1.5}} >**$50 fee not applicable in all cases. Fee charged on a case-by-case basis.</Typography>
 					</Box>
 				</Container>
+			</Box>
+			<Box sx={{ pb: 4}}>
+				<Stack sx={{pb: 2}}>
+					<Typography variant='sectionHeading' component='h2' sx={{ mb: 2, maxWidth: 'sm', marginX: 'auto'}}>Book Now!</Typography>
+					<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
+						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
+					</Typography>
+				</Stack>
+				<Stack direction={{xs: 'column', md:'row'}}>
+					<Box sx={{maxWidth: 'sm', marginX: 'auto'}}>
+						<Image 
+							src='/../public/images/AdobeStock_315180932-1024x1024.jpeg'
+							width={250}
+							height={250}
+							alt='comming soon image'
+							layout='responsive'
+						/>
+					</Box>
+					<Box sx={{pt:4, px:2, margin: 'auto', width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
+						<BookingWidget />
+					</Box>
+				</Stack>
 			</Box>
 			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
 				<Box sx={{ p: 3 }}><BookingWidget /></Box>
