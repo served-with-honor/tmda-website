@@ -12,7 +12,7 @@ import NewsletterDialog from '../components/NewsletterDialog'
 import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
 
-export default function ContactUsPage() {
+export default function ContactUsPage({actionItems}) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
 	return (
@@ -44,7 +44,7 @@ export default function ContactUsPage() {
 			
 			<Box sx={{ paddingY: 10 }}>
 				<Container>
-					<Grid container gap={5}>
+					<Grid container spacing={2}>
 						<Grid item xs={12} sm align="center">
 							<Grid container gap={3} sx={{ justifyContent: 'center' }}>
 								<Grid item><Button color='secondary' variant={'outlined'} onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
@@ -62,4 +62,28 @@ export default function ContactUsPage() {
 			</Dialog>	
   	</Page>
   )
+}
+
+export async function getStaticProps() {
+	const actionItems = [
+		{
+			icon: '/..',
+			header: 'Book Now', 
+			description: 'For new and returning clients. Book your medical evidence service now!',
+			urlLink: '#',
+		},
+		{
+			icon: '/..',
+			header: 'Patient Portal', 
+			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
+			urlLink: '',
+		},
+		{
+			icon: '/..',
+			header: 'Provider Portal', 
+			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
+			urlLink: '',
+		},
+		
+	]
 }
