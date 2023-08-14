@@ -11,6 +11,7 @@ import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
 import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
+import Custom3ActionSection from '../components/Custom3ActionSection';
 
 export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -46,11 +47,12 @@ export default function ContactUsPage({ actionItems }) {
 				<Container>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm align="center">
-							<Grid container gap={3} sx={{ justifyContent: 'center' }}>
+							<Custom3ActionSection items={actionItems} name='CTA Section'/>
+							{/* <Grid container gap={3} sx={{ justifyContent: 'center' }}>
 								<Grid item><Button color='secondary' variant={'outlined'} onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.patientPortal} target="_blank">Patient Portal</Button></Grid>
 								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.providerPortal} target="_blank">Provider Portal</Button></Grid>
-							</Grid>
+							</Grid> */}
 						</Grid>
 					</Grid>
 				</Container>
@@ -67,26 +69,30 @@ export default function ContactUsPage({ actionItems }) {
 export async function getStaticProps() {
 	const actionItems = [
 		{
-			icon: '/..',
-			header: 'Booking', 
+			icon: '/../public/images/event.png',
+			heading: 'Booking', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
 			urlLink: '#',
 			buttonLabel: 'Book Now',
 		},
 		{
-			icon: '/..',
-			header: 'Patient Portal', 
+			icon: '/../public/images/monitor.png',
+			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
-			urlLink: '',
+			urlLink: '#',
 			buttonLabel: 'Log In',
 		},
 		{
-			icon: '/..',
-			header: 'Provider Portal', 
+			icon: '/../public/images/stethoscope.png',
+			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
-			urlLink: '',
+			urlLink: '#',
 			buttonLabel: 'Log In',
 		},
 		
 	]
+
+	return { props: {
+		actionItems,
+	}}
 }
