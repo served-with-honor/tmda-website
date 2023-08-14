@@ -12,7 +12,7 @@ import NewsletterDialog from '../components/NewsletterDialog'
 import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
 
-export default function ContactUsPage({actionItems}) {
+export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
 	return (
@@ -68,21 +68,24 @@ export async function getStaticProps() {
 	const actionItems = [
 		{
 			icon: '/..',
-			header: 'Book Now', 
+			header: 'Booking', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
 			urlLink: '#',
+			buttonLabel: 'Book Now',
 		},
 		{
 			icon: '/..',
 			header: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
 			urlLink: '',
+			buttonLabel: 'Log In',
 		},
 		{
 			icon: '/..',
 			header: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
 			urlLink: '',
+			buttonLabel: 'Log In',
 		},
 		
 	]

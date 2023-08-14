@@ -8,12 +8,14 @@ Custom3ActionSection.propTypes = {
         icon: PropTypes.string.isRequired,
         heading: PropTypes.string,
         description: PropTypes.string,
+        urlLink: PropTypes.string,
+        buttonLabel: PropTypes.string
     })).isRequired,
 };
 
 export default function Custom3ActionSection({ items, name = 'Custom 3 Action Section'}) {
     return (
-        <Grid>
+        <Grid >
             
         </Grid>
     )
