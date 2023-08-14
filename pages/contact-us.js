@@ -47,12 +47,7 @@ export default function ContactUsPage({ actionItems }) {
 				<Container>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm align="center">
-							<Custom3ActionSection items={actionItems} name='CTA Section'/>
-							{/* <Grid container gap={3} sx={{ justifyContent: 'center' }}>
-								<Grid item><Button color='secondary' variant={'outlined'} onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
-								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.patientPortal} target="_blank">Patient Portal</Button></Grid>
-								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.providerPortal} target="_blank">Provider Portal</Button></Grid>
-							</Grid> */}
+							<Custom3ActionSection items={actionItems} name='CTA Section' isBookingDialogOpen={isBookingDialogOpen} setIsBookingDialogOpen={setIsBookingDialogOpen}/>
 						</Grid>
 					</Grid>
 				</Container>
