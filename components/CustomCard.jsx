@@ -59,7 +59,7 @@ export default function CustomCard({ image, heading, description, button, entire
                 <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
             ) : null}
             {description ? (
-                <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
+                <Typography variant='body1' sx={{ my: 3 }}>{description}</Typography>
             ) : null}
             {button ? (
                 <Button
