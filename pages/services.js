@@ -102,19 +102,69 @@ export async function getStaticProps() {
 	const services = [
 		{
 			title: 'Mental Health Evaluation',
-			text: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+			previewText: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+			body: `Telemedica offers Independent Medical Opinions (Nexus Letters) based on previously diagnosed disability conditions related to:
+
+			+ Direct Service Connections 
+			+ Secondary Service Connections 
+			+ Presumptive Service Connections 
+			
+			You will need to submit documents and/or medical records to your patient portal. Below is a list of the documents you will need to gather for this service.
+			
+			Required Documentation:
+			DD214
+			Benefits Summary
+			Current treatment records (including your current diagnosis of your medical conditions).
+			Recommended:
+			Blue Button Report
+			Personal Statements
+			Buddy Letters
+			Medical Records
+			Lab tests/imaging studies
+			`,
 		}, 
 		{
 			title: 'Nexus Letters & DBQs',
-			text: 'Id et aliqua commodo cillum minim nostrud.',
+			previewText: 'Id et aliqua commodo cillum minim nostrud.',
+			body: `Our team of licensed and professional providers will perform a comprehensive chart review and one of the following:
+
+			+ One time mental health assessment that can include a diagnosis (if applicable).
+			+ Comprehensive, evidence-based mental health examination.
+			
+			Before your appointment, you will need to submit documents and/or medical records to your patient portal. Below is a list of the documents you will need to gather for this service.
+			
+			Required:
+			DD214
+			Benefits Summary
+			Recommended:
+			Personal Statements
+			Buddy Letters
+			Medical Records
+			`,
 		}, 
 		{
 			title: 'Telemedicine Evaluations',
-			text: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.',
+			previewText: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.',
+			body: `Our medical team provides telemedicine examinations to determine first-time medical diagnosis or confirmation/updated evaluations of 20 applicable conditions.*
+
+			*See below for the full list of conditions we evaluate for.
+			
+			No documentation is required for this service, but it is highly recommended that you upload documentation to your patient portal. Below is a list of the recommended documents for this service.
+			
+			Required:
+			DD214
+			Benefits Summary
+			Recommended:
+			Blue Button Report
+			Personal Statements
+			Buddy Letters
+			Medical Records
+			`,
 		}, 
 		{
-			title: 'Recurring Therapy',
-			text: 'Cupidatat sunt sunt irure id nostrud consectetur consequat nostrud pariatur fugiat consequat id.',
+			title: 'Rebuttal Letters',
+			previewText: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.',
+			body: `Rebuttal letters are response documents that we write for veterans who have received medical evidence documents from Telemedica to submit with VA disability claims.  These letters are only for clients who receive a denial letter for a claim that we wrote a letter for.  The purpose of the letters are to respond to or refute incorrect or inaccurate statements in a denial letter.  Both our mental health and medical nexus services write these letters.  `,
 		}, 
 	]
 

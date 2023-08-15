@@ -14,7 +14,8 @@ CustomAccordion.propTypes = {
     name: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
-        text: PropTypes.string,
+        previewText: PropTypes.string,
+        body: PropTypes.string,
     })).isRequired
 }
 
@@ -27,7 +28,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
 
   return(
     <Box>
-        {items.map(({ title, text }, index) => (
+        {items.map(({ title, previewText, body }, index) => (
             <Accordion
                     key={`faq-panel-${index}`}
                     expanded={expanded === `panel${index}`}
@@ -50,11 +51,11 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                         <CircleOutlinedIcon />
                         <Stack direction='column'>
                             <Typography variant='h6'>{title}</Typography>
-                            <Typography variant='text'>text</Typography>
+                            <Typography variant='text'>{previewText}</Typography>
                         </Stack>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Typography variant='body1'>{text}</Typography>
+                        <Typography variant='body1'>{body}</Typography>
                     </AccordionDetails>
                 </Accordion>
         ))}
