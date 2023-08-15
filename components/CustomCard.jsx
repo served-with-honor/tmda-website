@@ -43,6 +43,9 @@ export default function CustomCard({ image, heading, description, button, entire
         p: 5,
         cursor: entireClickable ? 'pointer' : 'initial',
         transition,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         "&:hover": {
             boxShadow: 5,
             transform: 'scale(1.0125)',
@@ -61,6 +64,7 @@ export default function CustomCard({ image, heading, description, button, entire
                 target={target}
                 onClick={action}
                 rel="noopener noreferrer"
+                sx={{ mt: 'auto' }}
             >
                 {label}
             </Button>
