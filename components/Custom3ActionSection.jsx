@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import Image from "next/image";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -22,7 +20,7 @@ Custom3ActionSection.propTypes = {
     })).isRequired,
 };
 
-export default function Custom3ActionSection({ items, name = 'Custom 3 Action Section' }) {
+export default function Custom3ActionSection({ items }) {
     const router = useRouter();
 
     function handleCTAClick({ url, action }){

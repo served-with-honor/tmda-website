@@ -47,7 +47,7 @@ export default function ContactUsPage({ actionItems }) {
 			
 			<Box sx={{ paddingY: 10 }}>
 				<Container>
-					<Custom3ActionSection items={actionItems} name='CTA Section' />
+					<Custom3ActionSection items={actionItems} />
 				</Container>
 			</Box>
 			
