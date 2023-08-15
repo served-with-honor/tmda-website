@@ -11,7 +11,7 @@ import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
 import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
-import Custom3ActionSection from '../components/Custom3ActionSection';
+import CustomCard from '../components/CustomCard';
 
 export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -47,7 +47,13 @@ export default function ContactUsPage({ actionItems }) {
 			
 			<Box sx={{ paddingY: 10 }}>
 				<Container>
-					<Custom3ActionSection items={actionItems} />
+					<Grid container spacing={5}>
+						{actionItems.map((item, index) => (
+							<Grid key={`actions-card-${index}`} item md>
+								<CustomCard {...item} />
+							</Grid>
+						))}
+					</Grid>
 				</Container>
 			</Box>
 			
