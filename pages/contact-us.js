@@ -47,13 +47,10 @@ export default function ContactUsPage({ actionItems }) {
 			
 			<Box sx={{ paddingY: 10 }}>
 				<Container>
-					<Grid container spacing={2}>
-						<Grid item xs={12} sm align="center">
-							<Custom3ActionSection items={actionItems} name='CTA Section' />
-						</Grid>
-					</Grid>
+					<Custom3ActionSection items={actionItems} name='CTA Section' />
 				</Container>
 			</Box>
+			
 			<NewsletterDialog delay={0} />
 
 			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>

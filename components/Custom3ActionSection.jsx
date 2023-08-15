@@ -31,23 +31,25 @@ export default function Custom3ActionSection({ items, name = 'Custom 3 Action Se
     }
 
     return (
-        <Grid container sx={{minWidth: '100%'}}>
+        <Grid container spacing={5}>
             {items.map(({ icon, heading, description, button }) => {
                 const { label, url, action } = button;
                 const href = !action && url ? url : null;
-                return(
-                    <Paper onClick={() => handleCTAClick({ url: url, action: action })} sx={{m: 5, width: '25%', minHeight: '300px', borderRadius: 0, backgroundColor: 'secondary.100'}}>
-                        <Stack sx={{alignItems: 'center', pt: 5}} direction='column'>
-                            <Image 
-                                src={icon}
-                                width={60}
-                                height={60}
-                            />
-                            <Typography color='secondary' variant='h6' sx={{pt:2}}>{heading}</Typography>
-                            <Typography color='secondary' variant='text' sx={{p:2}}>{description}</Typography>
-                            <Button variant={'outlined'} sx={{ mb: 5 }} href={href} onClick={action}>{label}</Button>
-                        </Stack>
-                    </Paper>
+                return (
+                    <Grid item md>
+                        <Paper onClick={() => handleCTAClick({ url: url, action: action })} sx={{ minHeight: '100%', minWidth: '100%', borderRadius: 0, backgroundColor: 'secondary.100'}}>
+                            <Stack sx={{alignItems: 'center', pt: 5}} direction='column'>
+                                <Image 
+                                    src={icon}
+                                    width={60}
+                                    height={60}
+                                />
+                                <Typography color='secondary' variant='h6' sx={{pt:2}}>{heading}</Typography>
+                                <Typography color='secondary' variant='text' sx={{p:2}}>{description}</Typography>
+                                <Button variant={'outlined'} sx={{ mb: 5 }} href={href} onClick={action}>{label}</Button>
+                            </Stack>
+                        </Paper>
+                    </Grid>
                 )
             })}
         </Grid>
