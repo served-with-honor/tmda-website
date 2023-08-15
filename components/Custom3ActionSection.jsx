@@ -37,17 +37,11 @@ export default function Custom3ActionSection({ items, name = 'Custom 3 Action Se
                 const href = !action && url ? url : null;
                 return (
                     <Grid item md>
-                        <Paper onClick={() => handleCTAClick({ url: url, action: action })} sx={{ minHeight: '100%', minWidth: '100%', borderRadius: 0, backgroundColor: 'secondary.100'}}>
-                            <Stack sx={{alignItems: 'center', pt: 5}} direction='column'>
-                                <Image 
-                                    src={icon}
-                                    width={60}
-                                    height={60}
-                                />
-                                <Typography color='secondary' variant='h6' sx={{pt:2}}>{heading}</Typography>
-                                <Typography color='secondary' variant='text' sx={{p:2}}>{description}</Typography>
-                                <Button variant={'outlined'} sx={{ mb: 5 }} href={href} onClick={action}>{label}</Button>
-                            </Stack>
+                        <Paper onClick={() => handleCTAClick({ url: url, action: action })} sx={{ minHeight: '100%', textAlign: 'center', p: 5 }}>
+                            <Image src={icon} width={60} height={60} />
+                            <Typography color='secondary' variant='h6' sx={{ mt:2 }}>{heading}</Typography>
+                            <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
+                            <Button variant={'contained'} fullWidth={true} href={href} onClick={action}>{label}</Button>
                         </Paper>
                     </Grid>
                 )
