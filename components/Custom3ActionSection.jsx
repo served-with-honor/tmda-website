@@ -7,8 +7,6 @@ import Image from "next/image";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
-import settings from '../src/siteSettings';
-
 
 Custom3ActionSection.propTypes = {
     name: PropTypes.string,
@@ -17,28 +15,23 @@ Custom3ActionSection.propTypes = {
         heading: PropTypes.string,
         description: PropTypes.string,
         urlLink: PropTypes.string,
-        buttonLabel: PropTypes.string
+        buttonLabel: PropTypes.string,
     })).isRequired,
 };
 
-export default function Custom3ActionSection({ items, name = 'Custom 3 Action Section', isBookingDialogOpen, setIsBookingDialogOpen}) {
+export default function Custom3ActionSection({ items, name = 'Custom 3 Action Section' }) {
     const router = useRouter();
 
-    function handleCTAClick(heading, buttonLabel){
-         if( heading === 'Patient Portal'){
-            router.push(settings.externalLinks.patientPortal)
-        } else if( heading === 'Patient Portal'){
-            router.push(settings.externalLinks.providerPortal)
-        } else {
-            setIsBookingDialogOpen(!isBookingDialogOpen)
-        }
+    function handleCTAClick({ url, action }){
+        if (url) return router.push(url);
+        if (action) return action();
     }
 
     return (
         <Grid container sx={{minWidth: '100%'}}>
-            {items.map(({icon, heading, description, urlLink, buttonLabel}, index) => {
+            {items.map(({ icon, heading, description, urlLink, buttonLabel, action = null }, index) => {
                 return(
-                    <Paper onClick={() => handleCTAClick(heading, buttonLabel)} sx={{m: 5, width: '25%', minHeight: '300px', borderRadius: 0, backgroundColor: 'secondary.100'}}>
+                    <Paper onClick={() => handleCTAClick({ url: urlLink, action })} sx={{m: 5, width: '25%', minHeight: '300px', borderRadius: 0, backgroundColor: 'secondary.100'}}>
                         <Stack sx={{alignItems: 'center', pt: 5}} direction='column'>
                             <Image 
                                 src={icon}
@@ -47,7 +40,14 @@ export default function Custom3ActionSection({ items, name = 'Custom 3 Action Se
                             />
                             <Typography color='secondary' variant='h6' sx={{pt:2}}>{heading}</Typography>
                             <Typography color='secondary' variant='text' sx={{p:2}}>{description}</Typography>
-                            <Button variant={'outlined'} sx={{mb: 5}} onClick={() => handleCTAClick(heading, buttonLabel)}>{buttonLabel}</Button>
+                            <Button
+                                variant={'outlined'}
+                                sx={{ mb: 5 }}
+                                href={!action && urlLink ? urlLink : null}
+                                onClick={action}
+                            >
+                                {buttonLabel}
+                            </Button>
                         </Stack>
                     </Paper>
                 )

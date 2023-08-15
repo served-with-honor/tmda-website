@@ -16,6 +16,8 @@ import Custom3ActionSection from '../components/Custom3ActionSection';
 export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
+	actionItems[0].action = () => setIsBookingDialogOpen(true);
+
 	return (
 		<Page title={'Contact Us'}>
 			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
@@ -47,7 +49,7 @@ export default function ContactUsPage({ actionItems }) {
 				<Container>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm align="center">
-							<Custom3ActionSection items={actionItems} name='CTA Section' isBookingDialogOpen={isBookingDialogOpen} setIsBookingDialogOpen={setIsBookingDialogOpen}/>
+							<Custom3ActionSection items={actionItems} name='CTA Section' />
 						</Grid>
 					</Grid>
 				</Container>
@@ -67,21 +69,20 @@ export async function getStaticProps() {
 			icon: '/../public/images/event.png',
 			heading: 'Booking', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
-			urlLink: '#',
 			buttonLabel: 'Book Now',
 		},
 		{
 			icon: '/../public/images/monitor.png',
 			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
-			urlLink: '#',
+			urlLink: settings.externalLinks.patientPortal,
 			buttonLabel: 'Log In',
 		},
 		{
 			icon: '/../public/images/stethoscope.png',
 			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
-			urlLink: '#',
+			urlLink: settings.externalLinks.providerPortal,
 			buttonLabel: 'Log In',
 		},
 		
