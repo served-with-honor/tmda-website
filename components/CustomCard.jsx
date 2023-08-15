@@ -7,7 +7,12 @@ import Button from '@mui/material/Button';
 import { baseTheme } from '../theme'
 
 CustomCard.propTypes = {
-    icon: PropTypes.string.isRequired,
+    image: PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string,
+        height: PropTypes.number,
+        width: PropTypes.number,
+    }),
     heading: PropTypes.string,
     description: PropTypes.string,
     button: PropTypes.shape({
@@ -18,7 +23,7 @@ CustomCard.propTypes = {
     entireClickable: PropTypes.bool,
 };
 
-export default function CustomCard({ icon, heading, description, button, entireClickable }) {
+export default function CustomCard({ image, heading, description, button, entireClickable }) {
     const { label, url, action } = button;
     const href = !action && url ? url : null;
     const transition = baseTheme.transitions.create(['transform', 'box-shadow']);
@@ -44,7 +49,7 @@ export default function CustomCard({ icon, heading, description, button, entireC
                 },
             }}
         >
-            <Image src={icon} width={60} height={60} />
+            {image ? <Image alt="" {...image} /> : null}
             <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
             <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
             <Button variant={'contained'} fullWidth={true} href={href} onClick={action}>{label}</Button>
