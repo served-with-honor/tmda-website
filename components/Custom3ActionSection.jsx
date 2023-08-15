@@ -37,7 +37,7 @@ export default function Custom3ActionSection({ items }) {
                     <Grid item md>
                         <Paper onClick={() => handleCTAClick({ url: url, action: action })} sx={{ minHeight: '100%', textAlign: 'center', p: 5 }}>
                             <Image src={icon} width={60} height={60} />
-                            <Typography color='secondary' variant='h6' sx={{ mt:2 }}>{heading}</Typography>
+                            <Typography color='secondary' variant='h6' component='h2' sx={{ mt:2 }}>{heading}</Typography>
                             <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
                             <Button variant={'contained'} fullWidth={true} href={href} onClick={action}>{label}</Button>
                         </Paper>
