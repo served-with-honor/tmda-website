@@ -52,22 +52,28 @@ export default function CustomCard({ image, heading, description, button, entire
         },
     };
 
-    return (
+    return (image || heading || description || button) ? (
         <Paper sx={cardStyles} onClick={entireClickable ? () => handleCTAClick(button) : null}>
             {image ? <Image alt="" {...image} /> : null}
-            <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
-            <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
-            <Button
-                variant={'contained'}
-                fullWidth={true}
-                href={href}
-                target={target}
-                onClick={action}
-                rel="noopener noreferrer"
-                sx={{ mt: 'auto' }}
-            >
-                {label}
-            </Button>
+            {heading ? (
+                <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
+            ) : null}
+            {description ? (
+                <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
+            ) : null}
+            {button ? (
+                <Button
+                    variant={'contained'}
+                    fullWidth={true}
+                    href={href}
+                    target={target}
+                    onClick={action}
+                    rel="noopener noreferrer"
+                    sx={{ mt: 'auto' }}
+                >
+                    {label}
+                </Button>
+            ) : null}
         </Paper>
-    );
+    ) : null;
 }
