@@ -19,19 +19,21 @@ CustomCard.propTypes = {
         url: PropTypes.string,
         label: PropTypes.string.isRequired,
         acton: PropTypes.func,
+        target: PropTypes.string,
     }),
     entireClickable: PropTypes.bool,
 };
 
 export default function CustomCard({ image, heading, description, button, entireClickable }) {
-    const { label, url, action } = button;
+    const { label, url, target, action } = button;
     const href = !action && url ? url : null;
     const transition = baseTheme.transitions.create(['transform', 'box-shadow']);
 
     const router = useRouter();
 
-    function handleCTAClick({ url, action }){
+    function handleCTAClick({ url, action, target }){
         if (action) return action();
+        if (url && target) return window.open(url, target, 'noopener,noreferrer');
         if (url) return router.push(url);
     }
 
@@ -48,11 +50,20 @@ export default function CustomCard({ image, heading, description, button, entire
     };
 
     return (
-        <Paper sx={cardStyles} onClick={entireClickable ? () => handleCTAClick({ url, action }) : null}>
+        <Paper sx={cardStyles} onClick={entireClickable ? () => handleCTAClick(button) : null}>
             {image ? <Image alt="" {...image} /> : null}
             <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
             <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
-            <Button variant={'contained'} fullWidth={true} href={href} onClick={action}>{label}</Button>
+            <Button
+                variant={'contained'}
+                fullWidth={true}
+                href={href}
+                target={target}
+                onClick={action}
+                rel="noopener noreferrer"
+            >
+                {label}
+            </Button>
         </Paper>
     );
 }

@@ -78,13 +78,13 @@ export async function getStaticProps() {
 			image: { src: '/../public/images/monitor.png', height: 60, width: 60 },
 			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
-			button: { label: 'Log In', url: settings.externalLinks.patientPortal },
+			button: { label: 'Log In', url: settings.externalLinks.patientPortal, target: '_blank' },
 		},
 		{
 			image: { src: '/../public/images/stethoscope.png', height: 60, width: 60 },
 			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
-			button: { label: 'Log In', url: settings.externalLinks.providerPortal },
+			button: { label: 'Log In', url: settings.externalLinks.providerPortal, target: '_blank' },
 		},
 	]
 
