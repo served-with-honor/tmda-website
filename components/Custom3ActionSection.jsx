@@ -14,8 +14,11 @@ Custom3ActionSection.propTypes = {
         icon: PropTypes.string.isRequired,
         heading: PropTypes.string,
         description: PropTypes.string,
-        urlLink: PropTypes.string,
-        buttonLabel: PropTypes.string,
+        button: PropTypes.shape({
+            url: PropTypes.string,
+            label: PropTypes.string.isRequired,
+            acton: PropTypes.func,
+        })
     })).isRequired,
 };
 
@@ -23,15 +26,17 @@ export default function Custom3ActionSection({ items, name = 'Custom 3 Action Se
     const router = useRouter();
 
     function handleCTAClick({ url, action }){
-        if (url) return router.push(url);
         if (action) return action();
+        if (url) return router.push(url);
     }
 
     return (
         <Grid container sx={{minWidth: '100%'}}>
-            {items.map(({ icon, heading, description, urlLink, buttonLabel, action = null }, index) => {
+            {items.map(({ icon, heading, description, button }) => {
+                const { label, url, action } = button;
+                const href = !action && url ? url : null;
                 return(
-                    <Paper onClick={() => handleCTAClick({ url: urlLink, action })} sx={{m: 5, width: '25%', minHeight: '300px', borderRadius: 0, backgroundColor: 'secondary.100'}}>
+                    <Paper onClick={() => handleCTAClick({ url: url, action: action })} sx={{m: 5, width: '25%', minHeight: '300px', borderRadius: 0, backgroundColor: 'secondary.100'}}>
                         <Stack sx={{alignItems: 'center', pt: 5}} direction='column'>
                             <Image 
                                 src={icon}
@@ -40,14 +45,7 @@ export default function Custom3ActionSection({ items, name = 'Custom 3 Action Se
                             />
                             <Typography color='secondary' variant='h6' sx={{pt:2}}>{heading}</Typography>
                             <Typography color='secondary' variant='text' sx={{p:2}}>{description}</Typography>
-                            <Button
-                                variant={'outlined'}
-                                sx={{ mb: 5 }}
-                                href={!action && urlLink ? urlLink : null}
-                                onClick={action}
-                            >
-                                {buttonLabel}
-                            </Button>
+                            <Button variant={'outlined'} sx={{ mb: 5 }} href={href} onClick={action}>{label}</Button>
                         </Stack>
                     </Paper>
                 )

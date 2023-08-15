@@ -16,7 +16,7 @@ import Custom3ActionSection from '../components/Custom3ActionSection';
 export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
-	actionItems[0].action = () => setIsBookingDialogOpen(true);
+	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 
 	return (
 		<Page title={'Contact Us'}>
@@ -69,26 +69,21 @@ export async function getStaticProps() {
 			icon: '/../public/images/event.png',
 			heading: 'Booking', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
-			buttonLabel: 'Book Now',
+			button: { label: 'Book Now' },
 		},
 		{
 			icon: '/../public/images/monitor.png',
 			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
-			urlLink: settings.externalLinks.patientPortal,
-			buttonLabel: 'Log In',
+			button: { label: 'Log In', url: settings.externalLinks.patientPortal },
 		},
 		{
 			icon: '/../public/images/stethoscope.png',
 			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
-			urlLink: settings.externalLinks.providerPortal,
-			buttonLabel: 'Log In',
+			button: { label: 'Log In', url: settings.externalLinks.providerPortal },
 		},
-		
 	]
 
-	return { props: {
-		actionItems,
-	}}
+	return { props: { actionItems } };
 }
