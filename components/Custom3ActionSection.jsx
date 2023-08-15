@@ -5,6 +5,7 @@ import Image from "next/image";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
+import { baseTheme } from '../theme'
 
 Custom3ActionSection.propTypes = {
     name: PropTypes.string,
@@ -33,9 +34,23 @@ export default function Custom3ActionSection({ items }) {
             {items.map(({ icon, heading, description, button }) => {
                 const { label, url, action } = button;
                 const href = !action && url ? url : null;
+                const transition = baseTheme.transitions.create(['transform', 'box-shadow']);
+
                 return (
                     <Grid item md>
-                        <Paper onClick={() => handleCTAClick({ url, action })} sx={{ minHeight: '100%', textAlign: 'center', p: 5 }}>
+                        <Paper onClick={() => handleCTAClick({ url, action })}
+                            sx={{
+                                minHeight: '100%',
+                                textAlign: 'center',
+                                p: 5,
+                                cursor: 'pointer',
+                                transition,
+                                "&:hover": {
+                                    boxShadow: 5,
+                                    transform: 'scale(1.0125)',
+                                },
+                            }}
+                        >
                             <Image src={icon} width={60} height={60} />
                             <Typography color='secondary' variant='h6' component='h2' sx={{ mt:2 }}>{heading}</Typography>
                             <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
