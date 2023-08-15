@@ -35,20 +35,20 @@ export default function CustomCard({ image, heading, description, button, entire
         if (url) return router.push(url);
     }
 
+    const cardStyles = {
+        minHeight: '100%',
+        textAlign: 'center',
+        p: 5,
+        cursor: entireClickable ? 'pointer' : 'initial',
+        transition,
+        "&:hover": {
+            boxShadow: 5,
+            transform: 'scale(1.0125)',
+        },
+    };
+
     return (
-        <Paper onClick={entireClickable ? () => handleCTAClick({ url, action }) : null}
-            sx={{
-                minHeight: '100%',
-                textAlign: 'center',
-                p: 5,
-                cursor: entireClickable ? 'pointer' : 'initial',
-                transition,
-                "&:hover": {
-                    boxShadow: 5,
-                    transform: 'scale(1.0125)',
-                },
-            }}
-        >
+        <Paper sx={cardStyles} onClick={entireClickable ? () => handleCTAClick({ url, action }) : null}>
             {image ? <Image alt="" {...image} /> : null}
             <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
             <Typography color='secondary' variant='body1' sx={{ my: 3 }}>{description}</Typography>
