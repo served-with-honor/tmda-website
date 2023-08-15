@@ -15,9 +15,10 @@ CustomCard.propTypes = {
         label: PropTypes.string.isRequired,
         acton: PropTypes.func,
     }),
+    entireClickable: PropTypes.bool,
 };
 
-export default function CustomCard({ icon, heading, description, button }) {
+export default function CustomCard({ icon, heading, description, button, entireClickable }) {
     const { label, url, action } = button;
     const href = !action && url ? url : null;
     const transition = baseTheme.transitions.create(['transform', 'box-shadow']);
@@ -30,12 +31,12 @@ export default function CustomCard({ icon, heading, description, button }) {
     }
 
     return (
-        <Paper onClick={() => handleCTAClick({ url, action })}
+        <Paper onClick={entireClickable ? () => handleCTAClick({ url, action }) : null}
             sx={{
                 minHeight: '100%',
                 textAlign: 'center',
                 p: 5,
-                cursor: 'pointer',
+                cursor: entireClickable ? 'pointer' : 'initial',
                 transition,
                 "&:hover": {
                     boxShadow: 5,

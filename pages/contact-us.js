@@ -50,7 +50,7 @@ export default function ContactUsPage({ actionItems }) {
 					<Grid container spacing={5}>
 						{actionItems.map((item, index) => (
 							<Grid key={`actions-card-${index}`} item md>
-								<CustomCard {...item} />
+								<CustomCard {...item} entireClickable />
 							</Grid>
 						))}
 					</Grid>
