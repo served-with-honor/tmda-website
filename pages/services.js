@@ -13,21 +13,25 @@ import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
 import { CardActions, CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
+import Hero from '../components/Hero';
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+
+	const children = <Typography>div</Typography>
 	return (
 		<Page title={'Services'}>
 			
 			{/* HERO */}
-			<Box sx={{ paddingTop: 20, paddingBottom: 20 , position: 'relative', }}>
-				<Container>
+			<Box sx={{ pt: 15, position: 'relative', }}>
+				<Hero gradient={true} gradientColors={['#2e3f73', '#19233f']} children={children} bgvideo={'https://www.youtube.com/watch?v=KJFWkgrwxJQ'} />
+				{/* <Container>
 					<Grid container spacing={3}>
 						<Grid item md={6}>
 							<Typography variant='h1' color='primary'>Services</Typography>
 						</Grid>
 					</Grid>
-				</Container>
+				</Container> */}
 			</Box>
 			{/* SECTION */}
 			<Box sx={{ backgroundColor: 'secondary.100', padding: 10 }}>
