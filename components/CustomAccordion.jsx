@@ -7,6 +7,10 @@ import Box from '@mui/system/Box';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
 
 
 
@@ -15,15 +19,15 @@ CustomAccordion.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         previewText: PropTypes.string,
-        body: PropTypes.string,
+        // body: PropTypes.string,
     })).isRequired
 }
 
 export default function CustomAccordion({items, name = 'Custom Accordion'}){
-    const [expanded, setExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
 
 	const handlePanelChange = (panel) => (event, isExpanded) => {
-		setExpanded(isExpanded ? panel : false);
+		setIsExpanded(isExpanded ? panel : false);
 	};
 
   return(
@@ -31,7 +35,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
         {items.map(({ title, previewText, body }, index) => (
             <Accordion
                     key={`faq-panel-${index}`}
-                    expanded={expanded === `panel${index}`}
+                    expanded={isExpanded === `panel${index}`}
                     onChange={handlePanelChange(`panel${index}`)}
                     sx={{ my: 4, py: 2}}
                     square
@@ -43,19 +47,27 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                             display: 'flex',
                             alignItems: 'center',
                             '& .MuiSvgIcon-root': {
-                                fontSize: 72,
-                                mr: 2,
+                                // fontSize: 72,
+                                // mr: 2,
                             }
                         }}
                     >
-                        <CircleOutlinedIcon />
-                        <Stack direction='column'>
-                            <Typography variant='h6'>{title}</Typography>
-                            <Typography variant='text'>{previewText}</Typography>
-                        </Stack>
+                        <Grid container>
+                            <Grid item xs={2}>
+                                <CircleOutlinedIcon />
+                            </Grid>
+                            <Grid item xs={9}>
+                                <Typography variant='h6'>{title}</Typography>
+                            </Grid>
+                         
+                                <Grid item xs={1} sx={{fontSize: '8px'}}>
+                                    {!isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+                                </Grid>
+                            
+                        </Grid>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Typography variant='body1'>{body}</Typography>
+                        {body}
                     </AccordionDetails>
                 </Accordion>
         ))}
