@@ -54,7 +54,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                         }}
                     >
                         <Grid container>
-                            <Grid item xs={2}>
+                            <Grid item xs={2} md={1}>
                                 <Image 
                                     src={icon}
                                     width={40}
@@ -62,7 +62,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                                     alt={title}
                                 />
                             </Grid>
-                            <Grid item xs={9} sx={{textAlign: {xs: 'center', sm: 'left'}}}>
+                            <Grid item xs={9} md={10} sx={{textAlign: {xs: 'center', sm: 'left'}}}>
                                 <Typography variant='h6'>{title}</Typography>
                             </Grid>
                          
