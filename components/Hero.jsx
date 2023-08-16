@@ -1,10 +1,14 @@
 import { Box, Container } from '@mui/material'
 
-export default function Hero({ bgvideo, children }) {
+export default function Hero({ bgvideo, children, gradient, gradientColors }) {
+  const gradientStyle = gradient ? {
+    background: `linear-gradient(to right, ${gradientColors[0]} 30%, ${gradientColors[1]} 90%)`
+  } : {}
   return (
     <Box sx={{
-      backgroundColor: '#eee',
+      backgroundColor: gradient ? 'transparent' : '#eee',
       // clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)',
+      ...gradientStyle,
       minHeight: '80vh',
       position: 'relative',
       display: 'flex',
