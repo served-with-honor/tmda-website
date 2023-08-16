@@ -18,23 +18,69 @@ import Hero from '../components/Hero';
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
-	const children = <Typography>div</Typography>
+	const children = 
+	<>
+	<Grid container alignItems="flex-start" justifyContent="flex-start">
+      <Grid item>
+        <Typography variant='h3' component='h1' sx={{ color: '#fff', marginRight: '8px' }}>
+          Empowering Veterans with Strong
+        </Typography>
+		<Typography variant='h3' component='h1' sx={{ display: 'inline', color: 'primary.main', marginRight: '8px' }}>
+          Medical Evidence
+        </Typography>
+        <Typography variant='h3' component='h1' sx={{ display: 'inline', color: '#fff' }}>
+          for VA Disability Claims
+        </Typography>
+      </Grid>
+    </Grid>
+	</>
 	return (
 		<Page title={'Services'}>
 			
 			{/* HERO */}
-			<Box sx={{ pt: 15, position: 'relative', }}>
-				<Hero gradient={true} gradientColors={['#2e3f73', '#19233f']} children={children} bgvideo={'https://www.youtube.com/watch?v=KJFWkgrwxJQ'} />
-				{/* <Container>
-					<Grid container spacing={3}>
-						<Grid item md={6}>
-							<Typography variant='h1' color='primary'>Services</Typography>
+			<Box sx={{ pt: 15, position: 'relative' }}>
+				<Container sx={{ background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', minHeight: '60vh'}}>
+					<Grid container alignItems="flex-start" justifyContent="flex-start" sx={{pt: 8}}>
+						<Grid item sx={{mx: 12}}>
+							<Typography variant='h3' component='h1' sx={{ color: '#fff', py: 1}}>
+								Empowering Veterans with Strong
+							</Typography>
+							<Typography variant='h3' component='h1' sx={{ display: 'inline', color: 'primary.main', py:1, }}>
+								Medical Evidence
+							</Typography>
+							<Typography variant='h3' component='h1' sx={{ display: 'inline', color: '#fff', p: 1 }}>
+								for VA Disability Claims
+							</Typography>
+							<Typography variant='h6' component='p' sx={{ color: '#fff', py: 3 }}>
+								Your partner in securing the benefits you deserve on your path to well-being!
+							</Typography>
 						</Grid>
+						<Box sx={{backgroundColor: 'white', minWidth: '80%', minHeight:'40vh', position: 'absolute', mt: 25, mx: 12}}>
+							<Grid container spacing={3} sx={{ my: 5, justifyContent: 'center', alignItems: 'center'}}>
+								<Grid item xs={12} sx={{width: '100%', maxWidth: '560px', mx: 15}}>
+								<iframe 
+									width="100%" 
+									height="315" 
+									src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
+									title="YouTube video player" 
+									frameborder="0" 
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+								</iframe>
+								</Grid>
+								<Grid item>
+									<Button variant='contained' color='secondary' size='large'>Book Now</Button>
+								</Grid>
+								<Grid item>
+									<Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} >Patient Portal</Button>
+								</Grid>
+							</Grid>
+						</Box>
 					</Grid>
-				</Container> */}
+				</Container>
+				
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', padding: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 30, px: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					<Grid container spacing={5} mb={10}>
