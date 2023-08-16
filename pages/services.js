@@ -20,7 +20,7 @@ export default function ServicesPage({ prices }) {
 	const services = [
 		{
 			title: 'Nexus Letters',
-			previewText: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+			icon: '/../public/images/nexus-dbqs.png',
 			body: 
 				<>
 					<Typography variant='body1'>
@@ -53,7 +53,7 @@ export default function ServicesPage({ prices }) {
 		},
 		{
 			title: 'Mental Health Evaluation',
-			previewText: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+			icon: '/../public/images/mental-health-evaluation.png',
 			body: 
 				<>
 					<Typography variant='body1'>
@@ -82,7 +82,7 @@ export default function ServicesPage({ prices }) {
 		},
 		{
 			title: 'Telemedicine Evaluations',
-			previewText: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+			icon: '/../public/images/telemedicine-evaluations.png',
 			body: 
 				<>
 					<Typography variant='body1'>
@@ -110,7 +110,7 @@ export default function ServicesPage({ prices }) {
 		},
 		{
 			title: 'Rebuttal Letters',
-			previewText: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.',
+			icon: '/../public/images/logo-badge.png',
 			body: 
 				<>
 					<Typography variant='body1'>

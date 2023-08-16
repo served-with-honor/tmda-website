@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Image from 'next/image';
 
 
 
@@ -18,7 +19,7 @@ CustomAccordion.propTypes = {
     name: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
-        previewText: PropTypes.string,
+        icon: PropTypes.string,
         // body: PropTypes.string,
     })).isRequired
 }
@@ -32,7 +33,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
 
   return(
     <Box>
-        {items.map(({ title, previewText, body }, index) => (
+        {items.map(({ title, icon, body }, index) => (
             <Accordion
                     key={`faq-panel-${index}`}
                     expanded={isExpanded === `panel${index}`}
@@ -54,9 +55,14 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                     >
                         <Grid container>
                             <Grid item xs={2}>
-                                <CircleOutlinedIcon />
+                                <Image 
+                                    src={icon}
+                                    width={40}
+                                    height={40}
+                                    alt={title}
+                                />
                             </Grid>
-                            <Grid item xs={9}>
+                            <Grid item xs={9} sx={{textAlign: {xs: 'center', sm: 'left'}}}>
                                 <Typography variant='h6'>{title}</Typography>
                             </Grid>
                          
