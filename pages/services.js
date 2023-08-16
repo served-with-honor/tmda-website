@@ -41,7 +41,7 @@ export default function ServicesPage({ prices }) {
 			<Box sx={{ pt: 15, position: 'relative' }}>
 				<Container sx={{ background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', minHeight: '60vh'}}>
 					<Grid container alignItems="flex-start" justifyContent="flex-start" sx={{pt: 8}}>
-						<Grid item sx={{mx: 12}}>
+						<Grid item sx={{mx: {md: 12}}}>
 							<Typography variant='h3' component='h1' sx={{ color: '#fff', py: 1}}>
 								Empowering Veterans with Strong
 							</Typography>
@@ -56,15 +56,16 @@ export default function ServicesPage({ prices }) {
 							</Typography>
 						</Grid>
 						<Box sx={{backgroundColor: 'white', minWidth: '80%', minHeight:'40vh', position: 'absolute', mt: 25, mx: 12}}>
-							<Grid container spacing={3} sx={{ my: 5, justifyContent: 'center', alignItems: 'center'}}>
-								<Grid item xs={12} sx={{width: '100%', maxWidth: '560px', mx: 15}}>
+							<Grid container spacing={3} sx={{ my: 5}}>
+								<Grid item xs={12} sx={{width: '100%', maxWidth: '560px', mx: 15, mb: 2}}>
 								<iframe 
 									width="100%" 
 									height="315" 
 									src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
 									title="YouTube video player" 
 									frameborder="0" 
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									allowFullScreen>
 								</iframe>
 								</Grid>
 								<Grid item>
