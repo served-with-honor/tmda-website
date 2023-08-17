@@ -55,9 +55,9 @@ export default function ServicesPage({ prices }) {
 								Your partner in securing the benefits you deserve on your path to well-being!
 							</Typography>
 						</Grid>
-						<Box sx={{backgroundColor: 'white', minWidth: '80%', minHeight:'40vh', position: 'absolute', mt: 25, mx: 12}}>
-							<Grid container spacing={3} sx={{ my: 5}}>
-								<Grid item xs={12} sx={{width: '100%', maxWidth: '560px', mx: 15, mb: 2}}>
+						<Box sx={{backgroundColor: 'white', width: {xs: '90%', md: '80%'}, minHeight:'40vh', position: 'absolute', mt: {xs: 45, md: 25}, mx: {xs: 0, md: 12}}}>
+							<Grid container spacing={3} sx={{ my: 5, maxWidth: '100%', justifyContent: 'center'}}>
+								<Grid item xs={12} sx={ {mb: 2, }}>
 								<iframe 
 									width="100%" 
 									height="315" 
