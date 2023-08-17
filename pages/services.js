@@ -64,7 +64,7 @@ export default function ServicesPage({ prices }) {
 				
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', pt: {xs: 60, md:30}, pb: 20, px: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: {xs: 60, md:20}, pb: 20, px: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					<Grid container spacing={5} mb={10}>
