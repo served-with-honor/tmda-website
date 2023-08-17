@@ -13,32 +13,15 @@ import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
 import { CardActions, CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
-import Hero from '../components/Hero';
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 
-	const children = 
-	<>
-	<Grid container alignItems="flex-start" justifyContent="flex-start">
-      <Grid item>
-        <Typography variant='h3' component='h1' sx={{ color: '#fff', marginRight: '8px' }}>
-          Empowering Veterans with Strong
-        </Typography>
-		<Typography variant='h3' component='h1' sx={{ display: 'inline', color: 'primary.main', marginRight: '8px' }}>
-          Medical Evidence
-        </Typography>
-        <Typography variant='h3' component='h1' sx={{ display: 'inline', color: '#fff' }}>
-          for VA Disability Claims
-        </Typography>
-      </Grid>
-    </Grid>
-	</>
 	return (
 		<Page title={'Services'}>
 			
 			{/* HERO */}
-			<Box sx={{ pt: 15, position: 'relative' }}>
+			<Box sx={{ pt: 15 }}>
 				<Container sx={{ background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', minHeight: '60vh'}}>
 					<Grid container alignItems="flex-start" justifyContent="flex-start" sx={{pt: 8}}>
 						<Grid item sx={{mx: {md: 12}}}>
@@ -55,9 +38,9 @@ export default function ServicesPage({ prices }) {
 								Your partner in securing the benefits you deserve on your path to well-being!
 							</Typography>
 						</Grid>
-						<Box sx={{backgroundColor: 'white', width: {xs: '90%', md: '80%'}, minHeight:'40vh', position: 'absolute', mt: {xs: 45, md: 25}, mx: {xs: 0, md: 12}}}>
-							<Grid container spacing={3} sx={{ my: 5, maxWidth: '100%', justifyContent: 'center'}}>
-								<Grid item xs={12} sx={ {mb: 2, }}>
+						<Box sx={{backgroundColor: 'white', width: {xs: '90%', md: '80%'}, minHeight:'40vh', position: 'absolute', mt: {xs: 35, md: 28}, mx: {xs: 0, md: 12}}}>
+							<Grid container sx={{ my: 5, justifyContent: 'center', p: {xs: 0, md: 5}}}>
+								<Grid item xs={11} sx={ {mb: 2}}>
 								<iframe 
 									width="100%" 
 									height="315" 
@@ -68,10 +51,10 @@ export default function ServicesPage({ prices }) {
 									allowFullScreen>
 								</iframe>
 								</Grid>
-								<Grid item>
+								<Grid item sx={ {mx: {xs:2, md: 4}, my: 2}}>
 									<Button variant='contained' color='secondary' size='large'>Book Now</Button>
 								</Grid>
-								<Grid item>
+								<Grid item sx={ {mx: {xs:2, md: 0}, my:2}}>
 									<Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} >Patient Portal</Button>
 								</Grid>
 							</Grid>
@@ -81,7 +64,7 @@ export default function ServicesPage({ prices }) {
 				
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', py: 30, px: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: {xs: 60, md:30}, pb: 20, px: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					<Grid container spacing={5} mb={10}>
