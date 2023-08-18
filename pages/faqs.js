@@ -24,14 +24,14 @@ export default function FAQsPage({ items, topics }) {
 		const newItems = topic ? items.filter(item => item.topic === topic) : items;
 		setFilteredItems(newItems);
 	}
-
+debugger
 	return (
 		<Page title={'FAQs'}>
 			<Box sx={{ backgroundColor: 'secondary.100', py: 20, }}>
 				<Container>
 					<Typography variant='h1' color='primary' gutterBottom>FAQs</Typography>
 					<Stack direction={'row'} spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
-						{topics.map( (topic, index) => 
+						{items.map( ({topic}, index) => 
 							<Button key={`new-${topic}-item-${index}`} onClick={() => handleTopicChange(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
 								{topic}
 							</Button>	
@@ -44,8 +44,9 @@ export default function FAQsPage({ items, topics }) {
 					</Stack>
 					
 					<Box>
-						{filteredItems.length > 0 ? (
+						{filteredItems.length > 0 && (
 							filteredItems.map((item, index) => (
+								item.faqs.map( ({question, answer}, index) => (
 								<Accordion
 									key={`faq-panel-${index}`}
 									expanded={expanded === `panel${index}`}
@@ -56,15 +57,14 @@ export default function FAQsPage({ items, topics }) {
 										aria-controls={`panel${index}-content`}
 										id={`panel${index}-header`}
 									>
-										<Typography variant='subtitle1'>{item.question}</Typography>
+										<Typography variant='subtitle1'>{question}</Typography>
 									</AccordionSummary>
 									<AccordionDetails>
-										<Typography variant='body1'>{item.answer}</Typography>
+										<Typography variant='body1'>{answer}</Typography>
 									</AccordionDetails>
 								</Accordion>
+								))
 							))
-						) : (
-							<Typography variant='subtitle1' align='center'>Sorry, there are no items for this topic</Typography>	
 						)}
 					</Box>
 					
@@ -310,6 +310,5 @@ export const getServerSideProps = async () => {
 		
 	]
 
-	const topics = ['General', 'Mental Health Eval', 'Nexus Service', 'Telemedicine Evaluation Team']
-	return { props: { items, topics } }
+	return { props: { items } }
 }
