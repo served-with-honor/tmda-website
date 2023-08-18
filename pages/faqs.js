@@ -253,8 +253,24 @@ export const getServerSideProps = async () => {
 			topic: 'Nexus',
 			faqs: [
 				{
-					question: 'Will the provider call me on the day of my appointment?',
-					answer: 'The link to your evaluation will be sent via text and email shortly before your scheduled appointment time.',
+					question: 'What is the benefit of getting a nexus letter and DBQ if I qualify for one?',
+					answer: "The benefit is twofold. It highlights the severity of your condition according to the VA rating system. For example, specific conditions such as GERD and headache conditions have a question on the DBQ that is very pertinent to receiving at least a 30% rating. Secondly, if you submit sufficient evidence that fulfills the VA’s fully developed claim criteria, you may be able to bypass a C&P exam and get rated based on the information you submit.",
+				},
+				{
+					question: 'Can you do all DBQs or only specific conditions?',
+					answer: "We can only complete DBQs for conditions in which we do not need to perform an in-person physical examination. Some conditions require this for rating purposes. Examples include orthopedic conditions and most neurological conditions (except headache conditions).",
+				},
+				{
+					question: 'Can I get a document for my social security claim?',
+					answer: 'No, we only provide documents for VA disability claims.',
+				},
+				{
+					question: 'Can I get a rebuttal document if I did not get the award percentage I wanted?',
+					answer: 'No, we do not guarantee a specific award percentage. There are many factors that go into which award percentage is assigned by the VA, and even though our document may be written to support a higher level than you received, it may have been due to other factors in your claim filing or during the C&P exam. If you think that you qualify for a higher rating, we can evaluate a DBQ as a stand-alone document to ask for an increase in your service-connected condition. To do this, you would sign up for the nexus service for the provider to evaluate your evidence and claim.',
+				},
+				{
+					question: 'My friend got a document from your company for the same connection I am looking for… can I qualify for a nexus? I saw a VA board of appeals case with this connection, can I sign up to get a letter?',
+					answer: 'Each case is evaluated for supporting a service connection. Just because a connection can be made for one Veteran, it does not mean that everyone will qualify for the connection. This is why our trained providers complete a thorough review of the uploaded records before discussing what document(s) you may qualify for.',
 				},
 			]
 		},
@@ -262,8 +278,32 @@ export const getServerSideProps = async () => {
 			topic: 'Telemedicine Evaluation Team FAQ',
 			faqs: [
 				{
-					question: 'Will the provider call me on the day of my appointment?',
-					answer: 'The link to your evaluation will be sent via text and email shortly before your scheduled appointment time.',
+					question: 'How many conditions can I be diagnosed with in 1 visit?',
+					answer: 'Each visit can render up to 2 diagnoses without the need to add additional time or schedule a second appointment.',
+				},
+				{
+					question: 'Is the fee per visit or per diagnosis?',
+					answer: 'The fee is per evaluation document. If you were seen for multiple conditions, our fees are per condition.',
+				},
+				{
+					question: 'Can I be seen for a condition that is not listed on your approved condition list?',
+					answer: 'Possibly. If you would like to be seen for a condition that is not listed on our approved list, please reach out to our customer service team for assistance, and they can confirm with the medical team.',
+				},
+				{
+					question: 'Do you offer treatment or prescription services?',
+					answer: 'No, not at this time.',
+				},
+				{
+					question: 'Do you take my insurance?',
+					answer: 'No, we do not accept any forms of insurance at this time.',
+				},
+				{
+					question: 'Do you have a physical location that I can be seen in person?',
+					answer: 'No, not at this time.',
+				},
+				{
+					question: 'Do you write medical opinion letters?',
+					answer: 'No, opinion letters are written by medical nexus or mental health teams.',
 				},
 			]
 		},
