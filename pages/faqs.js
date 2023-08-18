@@ -51,6 +51,11 @@ debugger
 									key={`faq-panel-${index}`}
 									expanded={expanded === `panel${index}`}
 									onChange={handlePanelChange(`panel${index}`)}
+									square
+									sx={{
+										p: 2,
+										my: 2,
+									}}
 								>
 									<AccordionSummary
 										expandIcon={<ExpandMoreIcon />}
