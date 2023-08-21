@@ -170,7 +170,7 @@ export const getServerSideProps = async () => {
 				},
 				{
 					question: "Will there be other charges after I pay for the document?",
-					answer: "There won't be other charges after you pay for the document/s..",
+					answer: "There won't be other charges after you pay for the document/s.",
 				},
 				{
 					question: "Is TMDA the same as VACI?",
@@ -182,7 +182,7 @@ export const getServerSideProps = async () => {
 				},
 				{
 					question: "When do I have to pay for the Mental Health Evaluation?",
-					answer: "A $100 non-refundable initial fee is required to book the appointment. The remaining balance needs to be paid 48 hours prior to the scheduled appointment",
+					answer: "A $100 non-refundable initial fee is required to book the appointment. The remaining balance needs to be paid 48 hours prior to the scheduled appointment.",
 				},
 				{
 					question: "Will my Mental Health Evaluation be in-person or online?",
@@ -234,7 +234,7 @@ export const getServerSideProps = async () => {
 				},
 				{
 					question: 'I noticed a mistake on my IMO or I do not agree with my IMO. What should I do?',
-					answer: "If you notice a mistake on your IMO, you should create a ticket in the Telemedica Help Desk. This way your psychologist can respond to you and ensure that any factual corrections are made in a timely manner and that your concerns are reviewed. It is up to the discretion of the independent provider to use their clinical judgement and provide a determination. The Help Desk can be found at: https://help.telemedicallc.com/",
+					answer: "If you notice a mistake on your IMO, you should create a ticket in the Telemedica Help Desk. This way your psychologist can respond to you and ensure that any factual corrections are made in a timely manner and that your concerns are reviewed. It is up to the discretion of the independent provider to use their clinical judgement and provide a determination. The Help Desk can be found at: https://help.telemedicallc.com/.",
 				},
 				{
 					question: 'Can I request corrections to an IMO from a year ago?',
