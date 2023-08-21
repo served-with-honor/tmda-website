@@ -27,6 +27,7 @@ import texture01 from '../public/texture-01.jpg'
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 
+
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	const heroRef = useRef(null);
@@ -173,17 +174,19 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 								<Container sx={{display: { xs: 'flex', md:'absolute'}, mt: {xs: 0, md: -20}}}>
 								<Image 
 									src='/../public/images/iPhone 14 SDS1-04 copy.png'
-									width={200}
-									height={500}
-									layout='responsive'
+									width={412}
+									height={614}
+									sizes="(min-width: 1280px) 508px, (min-width: 900px) 41.67vw, (min-width: 600px) calc(100vw - 96px), calc(100vw - 64px)"
+									style={{width: '100%', height: 'auto'}}
 								/>
 								</Container>
-								<Container sx={{display: { xs: 'flex', md: 'absolute'}, mt: {xs: -40, md: -60} }}>
+								<Container sx={{display: { xs: 'flex', md: 'absolute'}, mt: {xs: -40, sm:-70, md: -50,} }}>
 								<Image 
 									src='/../public/images/iPhone Blur Shadow.png'
-									width={200}
-									height={200}
-									layout='responsive'
+									width={412}
+									height={618}
+									sizes="(min-width: 1280px) 508px, (min-width: 900px) 41.67vw, (min-width: 600px) calc(100vw - 96px), calc(100vw - 64px)"
+									style={{width: '100%', height: 'auto'}}
 								/>
 								</Container>
 							</Stack>
