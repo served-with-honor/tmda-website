@@ -87,14 +87,14 @@ export default function ServicesPage({ prices }) {
 				</Container>
 			</Box>
 			<Box sx={{ pb: 4}}>
-				<Stack sx={{pb: 2}}>
+				<Grid container sx={{pb: 2}}>
 					<Typography variant='sectionHeading' component='h2' sx={{ mb: 2, maxWidth: 'sm', marginX: 'auto'}}>Book Now!</Typography>
 					<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
 						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 					</Typography>
-				</Stack>
-				<Stack direction={{xs: 'column', md:'row'}}>
-					<Box sx={{maxWidth: 'sm', marginX: 'auto'}}>
+				</Grid>
+				<Grid container>
+					<Grid item xs={12} md={6} sx={{maxWidth: 'sm', marginX: 'auto'}}>
 						<Image 
 							src='/../public/images/AdobeStock_315180932-1024x1024.jpeg'
 							width={250}
@@ -102,11 +102,11 @@ export default function ServicesPage({ prices }) {
 							alt='comming soon image'
 							layout='responsive'
 						/>
-					</Box>
-					<Box sx={{pt:4, px:2, margin: 'auto', width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
+					</Grid>
+					<Grid item sx={{pt:4, px:2, margin: 'auto', width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
 						<BookingWidget />
-					</Box>
-				</Stack>
+					</Grid>
+				</Grid>
 			</Box>
 			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
 				<Box sx={{ p: 3 }}><BookingWidget /></Box>
