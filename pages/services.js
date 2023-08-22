@@ -77,8 +77,8 @@ export default function ServicesPage({ prices }) {
 								backgroundColor: 'white', 
 								maxWidth: {xs: '90%', md: '100%'}, 
 								minHeight:'40vh', 
-								position: 'absolute', 
-								mt: {xs: 35, md: 28}, 
+								position: 'fixed', 
+								mt: {xs: 35, md: 35}, 
 								mx: {xs: 0, md: 12},
 							}}
 						>
@@ -87,7 +87,8 @@ export default function ServicesPage({ prices }) {
 								sx={{ 
 									my: 5, 
 									justifyContent: 'center', 
-									p: {xs: 0, md: 5}
+									pt: {xs: 0, md: 2},
+									px: {xs: 0, md: 5, lg: 20}
 								}
 							}>
 								<Grid item xs={11} sx={ {mb: 2}}>
