@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Image from 'next/image';
+import { slugify } from '../src/utils';
 
 CustomAccordion.propTypes = {
     name: PropTypes.string,
@@ -18,26 +19,30 @@ CustomAccordion.propTypes = {
     })).isRequired
 }
 
-export default function CustomAccordion({items}){
+export default function CustomAccordion({items, name = 'Custom Accordion'}){
     const [isExpanded, setIsExpanded] = useState(false);
 
 	const handlePanelChange = (panel) => (event, isExpanded) => {
 		setIsExpanded(isExpanded ? panel : false);
-	};
+    };
+    
+  const parentSlug = slugify(name);
 
   return(
     <Box>
-        {items.map(({ title, icon, body }, index) => (
-            <Accordion
-                    key={`faq-panel-${index}`}
+        {items.map(({ title, icon, body }, index) => {
+            const panelSlug = `${parentSlug}-${index}`;
+            return (
+                <Accordion
+                    key={panelSlug}
                     expanded={isExpanded === `panel${index}`}
                     onChange={handlePanelChange(`panel${index}`)}
                     sx={{ my: 2, py: 1}}
                     square
                 >
                     <AccordionSummary
-                        aria-controls={`panel${index}-content`}
-                        id={`panel${index}-header`}
+                        aria-controls={`${panelSlug}-content`}
+                        id={`${panelSlug}-header`}
                     >
                     <Grid container spacing={2} alignItems={'center'}>
                             <Grid item>
@@ -60,7 +65,8 @@ export default function CustomAccordion({items}){
                         {body}
                     </AccordionDetails>
                 </Accordion>
-        ))}
+            );
+        })}
     </Box>
   )
 
