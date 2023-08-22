@@ -20,11 +20,7 @@ export default function ServicesPage({ prices }) {
 			{/* HERO */}
 			<Box sx={{ paddingTop: 20, paddingBottom: 20 , position: 'relative', }}>
 				<Container>
-					<Grid container spacing={3}>
-						<Grid item md={6}>
-							<Typography variant='h1' color='primary'>Services</Typography>
-						</Grid>
-					</Grid>
+					<Typography variant='h1' color='primary'>Services</Typography>
 				</Container>
 			</Box>
 			{/* SECTION */}
@@ -32,9 +28,9 @@ export default function ServicesPage({ prices }) {
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					{services ? (
-					<Grid mb={10}>
+					<Box mb={10}>
 						<CustomAccordion items={services} />
-					</Grid>
+					</Box>
 					) : null}
 					<Container sx={{textAlign: 'center'}}> 
 						<Link variant='string' color='secondary' href='#' sx={{px: 1}}>How it Works</Link>
