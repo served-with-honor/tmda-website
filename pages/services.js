@@ -74,7 +74,7 @@ export default function ServicesPage({ prices }) {
 						<Box 
 							sx={{
 								backgroundColor: 'white', 
-								width: {xs: '90%', md: '80%'}, 
+								maxWidth: {xs: '90%', md: '100%'}, 
 								minHeight:'40vh', 
 								position: 'absolute', 
 								mt: {xs: 35, md: 28}, 
