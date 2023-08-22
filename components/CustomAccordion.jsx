@@ -38,7 +38,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                     key={`faq-panel-${index}`}
                     expanded={isExpanded === `panel${index}`}
                     onChange={handlePanelChange(`panel${index}`)}
-                    sx={{ my: 4, py: 2}}
+                    sx={{ my: 2, py: 1}}
                     square
                 >
                     <AccordionSummary
