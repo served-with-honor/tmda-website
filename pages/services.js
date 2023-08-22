@@ -24,7 +24,8 @@ export default function ServicesPage({ prices }) {
 				<Container 
 					sx={{ 
 						background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
-						minHeight: '60vh'
+						minHeight: '60vh',
+						minWidth: '100%'
 					}}
 				>
 					<Grid container 
@@ -78,7 +79,7 @@ export default function ServicesPage({ prices }) {
 								minHeight:'40vh', 
 								position: 'absolute', 
 								mt: {xs: 35, md: 28}, 
-								mx: {xs: 0, md: 12}
+								mx: {xs: 0, md: 12},
 							}}
 						>
 							<Grid 
