@@ -88,10 +88,14 @@ export default function ServicesPage({ prices }) {
 			</Box>
 			<Box sx={{ pb: 4}}>
 				<Grid container sx={{pb: 2}}>
-					<Typography variant='sectionHeading' component='h2' sx={{ mb: 2, maxWidth: 'sm', marginX: 'auto'}}>Book Now!</Typography>
-					<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
-						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
-					</Typography>
+					<Grid item xs={12}>
+						<Typography variant='sectionHeading' component='h2' sx={{ mb: 2, maxWidth: 'sm', marginX: 'auto'}}>Book Now!</Typography>
+					</Grid>
+					<Grid item xs={12} sx={{textAlign: 'center'}}>
+						<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
+							Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
+						</Typography>
+					</Grid>
 				</Grid>
 				<Grid container>
 					<Grid item xs={12} md={6} sx={{maxWidth: 'sm', marginX: 'auto'}}>
