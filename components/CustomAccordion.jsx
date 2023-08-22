@@ -53,8 +53,8 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                             }
                         }}
                     >
-                        <Grid container alignItems={'center'}>
-                            <Grid item xs={2} md={1}>
+                    <Grid container spacing={2} alignItems={'center'}>
+                            <Grid item>
                                 <Image 
                                     src={icon}
                                     width={40}
@@ -62,11 +62,11 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                                     alt={title}
                                 />
                             </Grid>
-                            <Grid item xs={9} md={10} sx={{textAlign: {xs: 'center', sm: 'left'}}}>
+                            <Grid item xs sx={{textAlign: {xs: 'center', sm: 'left'}}}>
                                 <Typography variant='h6'>{title}</Typography>
                             </Grid>
                          
-                                <Grid item xs={1} sx={{fontSize: '8px'}}>
+                                <Grid item sx={{fontSize: '8px'}}>
                                     {!isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
                                 </Grid>
                             
