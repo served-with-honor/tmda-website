@@ -4,27 +4,21 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Box from '@mui/system/Box';
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Image from 'next/image';
 
-
-
-
 CustomAccordion.propTypes = {
     name: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         icon: PropTypes.string,
-        // body: PropTypes.string,
     })).isRequired
 }
 
-export default function CustomAccordion({items, name = 'Custom Accordion'}){
+export default function CustomAccordion({items}){
     const [isExpanded, setIsExpanded] = useState(false);
 
 	const handlePanelChange = (panel) => (event, isExpanded) => {
@@ -44,14 +38,6 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                     <AccordionSummary
                         aria-controls={`panel${index}-content`}
                         id={`panel${index}-header`}
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            '& .MuiSvgIcon-root': {
-                                // fontSize: 72,
-                                // mr: 2,
-                            }
-                        }}
                     >
                     <Grid container spacing={2} alignItems={'center'}>
                             <Grid item>
@@ -65,11 +51,9 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                             <Grid item xs sx={{textAlign: {xs: 'center', sm: 'left'}}}>
                                 <Typography variant='h6'>{title}</Typography>
                             </Grid>
-                         
-                                <Grid item sx={{fontSize: '8px'}}>
-                                    {!isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
-                                </Grid>
-                            
+                            <Grid item>
+                                {!isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+                            </Grid>
                         </Grid>
                     </AccordionSummary>
                     <AccordionDetails>

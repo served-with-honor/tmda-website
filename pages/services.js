@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
-import siteSettings from '../src/siteSettings';
 import Link from '@mui/material/Link';
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
@@ -139,7 +137,7 @@ export default function ServicesPage({ prices }) {
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					{services ? (
 					<Grid mb={10}>
-						<CustomAccordion items={services} name=''/>
+						<CustomAccordion items={services} />
 					</Grid>
 					) : null}
 					<Container sx={{textAlign: 'center'}}> 
