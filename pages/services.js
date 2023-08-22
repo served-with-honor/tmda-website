@@ -77,7 +77,7 @@ export default function ServicesPage({ prices }) {
 								backgroundColor: 'white', 
 								maxWidth: {xs: '90%', md: '100%'}, 
 								minHeight:'40vh', 
-								position: 'fixed', 
+								position: 'absolute', 
 								mt: {xs: 35, md: 35}, 
 								mx: {xs: 0, md: 12},
 							}}
