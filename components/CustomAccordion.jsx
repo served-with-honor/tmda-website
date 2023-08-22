@@ -22,8 +22,8 @@ CustomAccordion.propTypes = {
 export default function CustomAccordion({items, name = 'Custom Accordion'}){
     const [isExpanded, setIsExpanded] = useState(false);
 
-	const handlePanelChange = (panel) => (event, isExpanded) => {
-		setIsExpanded(isExpanded ? panel : false);
+	const handlePanelChange = (index) => (event, isExpanded) => {
+		setIsExpanded(isExpanded ? index : false);
     };
     
   const parentSlug = slugify(name);
@@ -35,8 +35,8 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
             return (
                 <Accordion
                     key={panelSlug}
-                    expanded={isExpanded === `panel${index}`}
-                    onChange={handlePanelChange(`panel${index}`)}
+                    expanded={isExpanded === index}
+                    onChange={handlePanelChange(index)}
                     sx={{ my: 2, py: 1}}
                     square
                 >
