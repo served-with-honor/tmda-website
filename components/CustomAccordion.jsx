@@ -53,7 +53,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                             }
                         }}
                     >
-                        <Grid container>
+                        <Grid container alignItems={'center'}>
                             <Grid item xs={2} md={1}>
                                 <Image 
                                     src={icon}
