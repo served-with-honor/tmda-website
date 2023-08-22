@@ -54,7 +54,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                                 />
                             </Grid>
                             <Grid item xs sx={{textAlign: {xs: 'center', sm: 'left'}}}>
-                                <Typography variant='h6'>{title}</Typography>
+                                <Typography variant='h6' component={'p'}>{title}</Typography>
                             </Grid>
                             <Grid item>
                                 {!isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
