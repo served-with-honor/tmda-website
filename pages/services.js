@@ -11,8 +11,8 @@ import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
-import { CardActions, CardContent } from '@mui/material';
-import BookingWidget from '../components/BookingWidget'
+import { CardContent } from '@mui/material';
+import BookingWidget from '../components/BookingWidget';
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -20,12 +20,17 @@ export default function ServicesPage({ prices }) {
 	return (
 		<Page title={'Services'}>	
 			{/* HERO */}
-			<Box sx={{ pt: 15, background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)',  }}>
-				<Container>
+			<Box sx={{ 
+				pt: 15, 
+				background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
+				color: 'primary.contrastText',
+				'br': { display: { xs: 'none', md: 'initial' } }
+			}}>
+				<Container sx={{pb: 3}}>
 					<Typography 
 						variant='h3' 
 						component='h1' 
-						sx={{ color: 'primary.contrastText'}}
+						sx={{ mb: 1}}
 					>
 						Empowering Veterans with Strong {" "}
 					<br />
@@ -42,63 +47,62 @@ export default function ServicesPage({ prices }) {
 					<Typography 
 						variant='h6' 
 						component='p' 
-						sx={{ color: '#fff', py: 3 }}
 					>
 						Your partner in securing the benefits you deserve on your path to well-being!
 					</Typography>
-					</Container>
-					<Container maxWidth='md'>
-						<Box 
-							sx={{
-								backgroundColor: 'background.paper', 
-								position: 'relative',
-							}}
-						>
-							<Container>
-								<iframe 
-									width="100%" 
-									height="315" 
-									src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
-									title="YouTube video player" 
-									frameBorder="0" 
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-									allowFullScreen>
-								</iframe>
-								<Grid
-									container 
-									spacing={2}
-									sx={{ 
-										justifyContent: 'center', 
-										mb: '-75px'
-									}}
-								>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large'
-										>
-											Book Now
-										</Button>
-									</Grid>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large' 
-											href={siteSettings.externalLinks.patientPortal} 
-										>
-											Patient Portal
-										</Button>
-									</Grid>
+				</Container>
+				<Container maxWidth='lg'>
+					<Box 
+						sx={{
+							backgroundColor: 'background.paper', 
+							position: 'relative',
+							mb: '-75px',
+							p: [3, 5]
+						}}
+					>
+							<iframe 
+								width="100%" 
+								height="315" 
+								src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
+								title="YouTube video player" 
+								frameBorder="0" 
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowFullScreen>
+							</iframe>
+							<Grid
+								container 
+								spacing={2}
+								sx={{ 
+									justifyContent: 'center',
+									mt: 1 
+								}}
+							>
+								<Grid item>
+									<Button 
+										variant='contained' 
+										color='secondary' 
+										size='large'
+									>
+										Book Now
+									</Button>
 								</Grid>
-							</Container>
-						</Box>
-					</Container>
+								<Grid item>
+									<Button 
+										variant='contained' 
+										color='secondary' 
+										size='large' 
+										href={siteSettings.externalLinks.patientPortal} 
+									>
+										Patient Portal
+									</Button>
+								</Grid>
+							</Grid>
+					</Box>
+				</Container>
 				
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', pt: {xs: 60, md:20}, pb: 20, px: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 20, px: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					<Grid container spacing={5} mb={10}>
