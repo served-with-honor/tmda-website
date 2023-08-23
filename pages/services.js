@@ -46,14 +46,15 @@ export default function ServicesPage({ prices }) {
 					>
 						Your partner in securing the benefits you deserve on your path to well-being!
 					</Typography>
+					</Container>
+					<Container>
 					<Box 
 						sx={{
-							backgroundColor: 'white', 
-							maxWidth: {xs: '90%', md: '100%'}, 
-							mt: {xs: 35, md: 35}, 
-							mx: {xs: 0, md: 12},
+							backgroundColor: 'background.paper', 
+							position: 'relative'
 						}}
 					>
+						<Container>
 						<iframe 
 								width="100%" 
 								height="315" 
@@ -66,10 +67,8 @@ export default function ServicesPage({ prices }) {
 						<Grid 
 							container 
 							sx={{ 
-								my: 5, 
 								justifyContent: 'center', 
-								pt: {xs: 0, md: 2},
-								px: {xs: 0, md: 5, lg: 20}
+								mb: '-75px'
 							}
 						}>
 							<Grid item sx={ {mx: {xs:2, md: 4}, my: 2}}>
@@ -92,8 +91,9 @@ export default function ServicesPage({ prices }) {
 								</Button>
 							</Grid>
 						</Grid>
+						</Container>
 					</Box>
-				</Container>
+					</Container>
 				
 			</Box>
 			{/* SECTION */}
