@@ -47,52 +47,53 @@ export default function ServicesPage({ prices }) {
 						Your partner in securing the benefits you deserve on your path to well-being!
 					</Typography>
 					</Container>
-					<Container>
-					<Box 
-						sx={{
-							backgroundColor: 'background.paper', 
-							position: 'relative'
-						}}
-					>
-						<Container>
-						<iframe 
-								width="100%" 
-								height="315" 
-								src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
-								title="YouTube video player" 
-								frameborder="0" 
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								allowFullScreen>
-							</iframe>
-						<Grid 
-							container 
-							sx={{ 
-								justifyContent: 'center', 
-								mb: '-75px'
-							}
-						}>
-							<Grid item sx={ {mx: {xs:2, md: 4}, my: 2}}>
-								<Button 
-									variant='contained' 
-									color='secondary' 
-									size='large'
+					<Container maxWidth='md'>
+						<Box 
+							sx={{
+								backgroundColor: 'background.paper', 
+								position: 'relative',
+							}}
+						>
+							<Container>
+								<iframe 
+									width="100%" 
+									height="315" 
+									src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
+									title="YouTube video player" 
+									frameBorder="0" 
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									allowFullScreen>
+								</iframe>
+								<Grid
+									container 
+									spacing={2}
+									sx={{ 
+										justifyContent: 'center', 
+										mb: '-75px'
+									}}
 								>
-									Book Now
-								</Button>
-							</Grid>
-							<Grid item sx={ {mx: {xs:2, md: 0}, my:2}}>
-								<Button 
-									variant='contained' 
-									color='secondary' 
-									size='large' 
-									href={siteSettings.externalLinks.patientPortal} 
-								>
-									Patient Portal
-								</Button>
-							</Grid>
-						</Grid>
-						</Container>
-					</Box>
+									<Grid item>
+										<Button 
+											variant='contained' 
+											color='secondary' 
+											size='large'
+										>
+											Book Now
+										</Button>
+									</Grid>
+									<Grid item>
+										<Button 
+											variant='contained' 
+											color='secondary' 
+											size='large' 
+											href={siteSettings.externalLinks.patientPortal} 
+										>
+											Patient Portal
+										</Button>
+									</Grid>
+								</Grid>
+							</Container>
+						</Box>
 					</Container>
 				
 			</Box>
