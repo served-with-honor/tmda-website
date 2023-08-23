@@ -22,78 +22,77 @@ export default function ServicesPage({ prices }) {
 			{/* HERO */}
 			<Box sx={{ pt: 15, background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)',  }}>
 				<Container>
-							<Typography 
-								variant='h3' 
-								component='h1' 
-								sx={{ color: 'primary.contrastText'}}
-							>
-								Empowering Veterans with Strong {" "}
-							<Box 
-								component='span' 
-								sx={{ 
-									color: 'primary.main', 
-								}}
-							>
-								Medical Evidence {" "}
-							</Box>
-								for VA Disability Claims
-							</Typography>
-							<Typography 
-								variant='h6' 
-								component='p' 
-								sx={{ color: '#fff', py: 3 }}
-							>
-								Your partner in securing the benefits you deserve on your path to well-being!
-							</Typography>
-						<Box 
-							sx={{
-								backgroundColor: 'white', 
-								maxWidth: {xs: '90%', md: '100%'}, 
-								mt: {xs: 35, md: 35}, 
-								mx: {xs: 0, md: 12},
-							}}
-						>
-							<Grid 
-								container 
-								sx={{ 
-									my: 5, 
-									justifyContent: 'center', 
-									pt: {xs: 0, md: 2},
-									px: {xs: 0, md: 5, lg: 20}
-								}
-							}>
-								<Grid item xs={11} sx={ {mb: 2}}>
-								<iframe 
-									width="100%" 
-									height="315" 
-									src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
-									title="YouTube video player" 
-									frameborder="0" 
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-									allowFullScreen>
-								</iframe>
-								</Grid>
-								<Grid item sx={ {mx: {xs:2, md: 4}, my: 2}}>
-									<Button 
-										variant='contained' 
-										color='secondary' 
-										size='large'
-									>
-										Book Now
-									</Button>
-								</Grid>
-								<Grid item sx={ {mx: {xs:2, md: 0}, my:2}}>
-									<Button 
-										variant='contained' 
-										color='secondary' 
-										size='large' 
-										href={siteSettings.externalLinks.patientPortal} 
-									>
-										Patient Portal
-									</Button>
-								</Grid>
+					<Typography 
+						variant='h3' 
+						component='h1' 
+						sx={{ color: 'primary.contrastText'}}
+					>
+						Empowering Veterans with Strong {" "}
+					<br />
+					<Box 
+						component='span' 
+						sx={{ 
+							color: 'primary.main',
+						}}
+					>
+						Medical Evidence {" "}
+					</Box>
+						for VA Disability Claims
+					</Typography>
+					<Typography 
+						variant='h6' 
+						component='p' 
+						sx={{ color: '#fff', py: 3 }}
+					>
+						Your partner in securing the benefits you deserve on your path to well-being!
+					</Typography>
+					<Box 
+						sx={{
+							backgroundColor: 'white', 
+							maxWidth: {xs: '90%', md: '100%'}, 
+							mt: {xs: 35, md: 35}, 
+							mx: {xs: 0, md: 12},
+						}}
+					>
+						<iframe 
+								width="100%" 
+								height="315" 
+								src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
+								title="YouTube video player" 
+								frameborder="0" 
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowFullScreen>
+							</iframe>
+						<Grid 
+							container 
+							sx={{ 
+								my: 5, 
+								justifyContent: 'center', 
+								pt: {xs: 0, md: 2},
+								px: {xs: 0, md: 5, lg: 20}
+							}
+						}>
+							<Grid item sx={ {mx: {xs:2, md: 4}, my: 2}}>
+								<Button 
+									variant='contained' 
+									color='secondary' 
+									size='large'
+								>
+									Book Now
+								</Button>
 							</Grid>
-						</Box>
+							<Grid item sx={ {mx: {xs:2, md: 0}, my:2}}>
+								<Button 
+									variant='contained' 
+									color='secondary' 
+									size='large' 
+									href={siteSettings.externalLinks.patientPortal} 
+								>
+									Patient Portal
+								</Button>
+							</Grid>
+						</Grid>
+					</Box>
 				</Container>
 				
 			</Box>
