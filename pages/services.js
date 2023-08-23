@@ -20,48 +20,22 @@ export default function ServicesPage({ prices }) {
 	return (
 		<Page title={'Services'}>	
 			{/* HERO */}
-			<Box sx={{ pt: 15 }}>
-				<Container 
-					sx={{ 
-						background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
-						minHeight: '60vh',
-						minWidth: '100%'
-					}}
-				>
-					<Grid container 
-						alignItems="flex-start" 
-						justifyContent="flex-start" 
-						sx={{pt: 8}}
-					>
-						<Grid item sx={{mx: {md: 12}}}>
+			<Box sx={{ pt: 15, background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)',  }}>
+				<Container>
 							<Typography 
 								variant='h3' 
 								component='h1' 
-								sx={{ color: '#fff', py: 1}}
+								sx={{ color: 'primary.contrastText'}}
 							>
-								Empowering Veterans with Strong
-							</Typography>
-							{/* separate color */}
-							<Typography 
-								variant='h3' 
-								component='h1' 
+								Empowering Veterans with Strong {" "}
+							<Box 
+								component='span' 
 								sx={{ 
-									display: 'inline', 
 									color: 'primary.main', 
-									py:1, 
 								}}
 							>
-								Medical Evidence
-							</Typography>
-							<Typography 
-								variant='h3' 
-								component='h1' 
-								sx={{ 
-									display: 'inline', 
-									color: '#fff', 
-									p: 1 
-								}}
-							>
+								Medical Evidence {" "}
+							</Box>
 								for VA Disability Claims
 							</Typography>
 							<Typography 
@@ -71,13 +45,10 @@ export default function ServicesPage({ prices }) {
 							>
 								Your partner in securing the benefits you deserve on your path to well-being!
 							</Typography>
-						</Grid>
 						<Box 
 							sx={{
 								backgroundColor: 'white', 
 								maxWidth: {xs: '90%', md: '100%'}, 
-								minHeight:'40vh', 
-								position: 'absolute', 
 								mt: {xs: 35, md: 35}, 
 								mx: {xs: 0, md: 12},
 							}}
@@ -123,7 +94,6 @@ export default function ServicesPage({ prices }) {
 								</Grid>
 							</Grid>
 						</Box>
-					</Grid>
 				</Container>
 				
 			</Box>
