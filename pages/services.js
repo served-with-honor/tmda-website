@@ -8,6 +8,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import LiteYouTubeEmbed from "react-lite-youtube-embed"
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
@@ -60,15 +62,12 @@ export default function ServicesPage({ prices }) {
 							p: [3, 5]
 						}}
 					>
-							<iframe 
-								width="100%" 
-								height="315" 
-								src="https://www.youtube.com/embed/KJFWkgrwxJQ" 
-								title="YouTube video player" 
-								frameBorder="0" 
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								allowFullScreen>
-							</iframe>
+						<LiteYouTubeEmbed
+							id="KJFWkgrwxJQ"
+							title="video_title"
+							aspectWidth={16}
+							aspectHeight={9}
+						/>
 							<Grid
 								container 
 								spacing={2}
