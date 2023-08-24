@@ -94,7 +94,7 @@ export default function ServicesPage({ prices }) {
 						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 					</Typography>
 					<Grid container>
-						<Grid item xs={12} md={6} sx={{maxWidth: 'sm', marginX: 'auto'}}>
+						<Grid item xs={12} md={6}>
 							<Image 
 								src='/../public/images/AdobeStock_315180932-1024x1024.jpeg'
 								width={250}
@@ -103,7 +103,7 @@ export default function ServicesPage({ prices }) {
 								layout='responsive'
 							/>
 						</Grid>
-						<Grid item sx={{pt:4, px:2, margin: 'auto', width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
+						<Grid item sx={{ px:2, width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
 							<BookingWidget />
 						</Grid>
 					</Grid>
