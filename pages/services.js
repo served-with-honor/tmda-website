@@ -83,6 +83,7 @@ export default function ServicesPage({ prices }) {
 										variant='contained' 
 										color='secondary' 
 										size='large'
+										onClick={() => setIsBookingDialogOpen(true)}
 									>
 										Book Now
 									</Button>
