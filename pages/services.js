@@ -87,10 +87,10 @@ export default function ServicesPage({ prices }) {
 				</Container>
 			</Box>
 			{/* Booking Section */}
-			<Box sx={{ pb: 4}}>
+			<Box sx={{ backgroundColor: 'grey.50', py: 10, alignItems: 'center', textAlign: 'center' }}>
 				<Container>
-					<Typography variant='sectionHeading' component='h2'>Book Now!</Typography>
-					<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
+					<Typography component='sectionHeading' variant='h2'>Book Now!</Typography>
+					<Typography variant='body1' sx={{px:{xs: 3}, py: 3 }}>
 						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 					</Typography>
 					<Grid container>
@@ -107,7 +107,7 @@ export default function ServicesPage({ prices }) {
 							<BookingWidget />
 						</Grid>
 					</Grid>
-				</Container>
+				</Container>			
 			</Box>
 			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
 				<Box sx={{ p: 3 }}><BookingWidget /></Box>
