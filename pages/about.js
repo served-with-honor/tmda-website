@@ -23,10 +23,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import BookingWidget from '../components/BookingWidget'
+import Section1 from '../components/about/Section1'
 import texture01 from '../public/texture-01.jpg'
-import Image from 'next/image';
-import Stack from '@mui/material/Stack';
-
 
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -161,39 +159,11 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			</Box>
 			
 			{/* SECTION */}
-			<Box sx={{ paddingY: 5 }}>
-				<Container>
-					<Grid container spacing={5}>
-						<Grid item md>
-							<Typography variant='sectionHeading' component='h2' marginTop={5} marginBottom={5} sx={{ textAlign: 'left', '&:after': { marginLeft: 0 } }}>Medical Evidence By Veterans, For Veterans</Typography>
-							<Typography variant='body1' marginBottom={5}>Our vast network of Telehealth providers work together to provide high-quality medical evidence to veterans seeking to increase their disability benefits. Delivering peace of mind and expertise from our high quality licensed providers in all 50 states.</Typography>
-							<Button variant='contained' color='secondary' href=''>Get Connected Now</Button>
-						</Grid>
-						<Grid item md>
-							<Stack>
-								<Container sx={{display: { xs: 'flex', md:'absolute'}, mt: {xs: 0, md: -20}}}>
-								<Image 
-									src='/../public/images/iPhone 14 SDS1-04 copy.png'
-									width={412}
-									height={614}
-									sizes="(min-width: 1280px) 508px, (min-width: 900px) 41.67vw, (min-width: 600px) calc(100vw - 96px), calc(100vw - 64px)"
-									style={{width: '100%', height: 'auto'}}
-								/>
-								</Container>
-								<Container sx={{display: { xs: 'flex', md: 'absolute'}, mt: {xs: -40, sm:-70, md: -50,} }}>
-								<Image 
-									src='/../public/images/iPhone Blur Shadow.png'
-									width={412}
-									height={618}
-									sizes="(min-width: 1280px) 508px, (min-width: 900px) 41.67vw, (min-width: 600px) calc(100vw - 96px), calc(100vw - 64px)"
-									style={{width: '100%', height: 'auto'}}
-								/>
-								</Container>
-							</Stack>
-						</Grid>
-					</Grid>
-				</Container>
-			</Box>
+			<Section1
+				heading='Medical Evidence By Veterans, For Veterans'
+				text='Our vast network of Telehealth providers work together to provide high-quality medical evidence to veterans seeking to increase their disability benefits. Delivering peace of mind and expertise from our high quality licensed providers in all 50 states.'
+				button={{ url: '#', label: 'Get Connected Now' }}
+			/>
 			
 			{/* SECTION */}
 			<Box sx={{ paddingY: 15, backgroundColor: 'secondary.100' }}>
