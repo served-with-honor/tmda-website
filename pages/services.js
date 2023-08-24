@@ -28,7 +28,8 @@ export default function ServicesPage({ prices }) {
 				color: 'primary.contrastText',
 				'br': { display: { xs: 'none', md: 'initial' } }
 			}}>
-				<Container sx={{pb: 3}}>
+				<Container sx={{ pb: 3 }}>
+					<Box sx={{ my: { xs: 5, md: 10 } }}>
 					<Typography 
 						variant='h3' 
 						component='h1' 
@@ -51,7 +52,8 @@ export default function ServicesPage({ prices }) {
 						component='p' 
 					>
 						Your partner in securing the benefits you deserve on your path to well-being!
-					</Typography>
+						</Typography>
+						</Box>
 				</Container>
 				<Container maxWidth='lg'>
 					<Box 
