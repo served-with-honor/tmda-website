@@ -55,7 +55,7 @@ export default function ServicesPage({ prices }) {
 						</Typography>
 						</Box>
 				</Container>
-				<Container maxWidth='lg'>
+				<Container maxWidth='md'>
 					<Box 
 						sx={{
 							backgroundColor: 'background.paper', 
