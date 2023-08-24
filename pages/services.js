@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
-import { CardActions, CardContent } from '@mui/material';
+import { CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
 import Image from 'next/image';
 
@@ -86,31 +86,28 @@ export default function ServicesPage({ prices }) {
 					</Box>
 				</Container>
 			</Box>
+			{/* Booking Section */}
 			<Box sx={{ pb: 4}}>
-				<Grid container sx={{pb: 2}}>
-					<Grid item xs={12}>
-						<Typography variant='sectionHeading' component='h2' sx={{ mb: 2, maxWidth: 'sm', marginX: 'auto'}}>Book Now!</Typography>
+				<Container>
+					<Typography variant='sectionHeading' component='h2'>Book Now!</Typography>
+					<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
+						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
+					</Typography>
+					<Grid container>
+						<Grid item xs={12} md={6} sx={{maxWidth: 'sm', marginX: 'auto'}}>
+							<Image 
+								src='/../public/images/AdobeStock_315180932-1024x1024.jpeg'
+								width={250}
+								height={250}
+								alt='comming soon image'
+								layout='responsive'
+							/>
+						</Grid>
+						<Grid item sx={{pt:4, px:2, margin: 'auto', width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
+							<BookingWidget />
+						</Grid>
 					</Grid>
-					<Grid item xs={12} sx={{textAlign: 'center'}}>
-						<Typography component='text' sx={{ px:{xs: 3}, textAlign: 'center' }}>
-							Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
-						</Typography>
-					</Grid>
-				</Grid>
-				<Grid container>
-					<Grid item xs={12} md={6} sx={{maxWidth: 'sm', marginX: 'auto'}}>
-						<Image 
-							src='/../public/images/AdobeStock_315180932-1024x1024.jpeg'
-							width={250}
-							height={250}
-							alt='comming soon image'
-							layout='responsive'
-						/>
-					</Grid>
-					<Grid item sx={{pt:4, px:2, margin: 'auto', width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
-						<BookingWidget />
-					</Grid>
-				</Grid>
+				</Container>
 			</Box>
 			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
 				<Box sx={{ p: 3 }}><BookingWidget /></Box>
