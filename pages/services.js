@@ -14,6 +14,7 @@ import siteSettings from '../src/siteSettings';
 import { CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
 import Image from 'next/image';
+import placeholderImage from '../public/images/AdobeStock_315180932-1024x1024.jpeg'
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -93,17 +94,24 @@ export default function ServicesPage({ prices }) {
 					<Typography variant='body1' sx={{ py: 3 }}>
 						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 					</Typography>
-					<Grid container>
+					<Grid container spacing={5}>
 						<Grid item xs={12} md={6}>
-							<Image 
-								src='/../public/images/AdobeStock_315180932-1024x1024.jpeg'
-								width={250}
-								height={250}
-								alt='comming soon image'
-								layout='responsive'
-							/>
+							<Box sx={{
+								maxWidth: {xs: '350px', sm: 'none'}, 
+								display: 'flex', 
+								alignItems: 'center',
+								height: '100%',
+								margin: '0 auto'
+								}}
+							>
+								<Image 
+									src={placeholderImage}
+									alt='comming soon image'
+									layout='responsive'
+								/>
+							</Box>
 						</Grid>
-						<Grid item sx={{ px:2, width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
+						<Grid item sx={{ width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
 							<BookingWidget />
 						</Grid>
 					</Grid>
