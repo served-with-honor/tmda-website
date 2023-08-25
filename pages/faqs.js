@@ -9,6 +9,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
+import Hero from '../components/Hero';
+import { textAlign } from '@mui/system';
 
 export default function FAQsPage({ items, topics }) {
 	const [expanded, setExpanded] = useState(false);
@@ -24,12 +26,34 @@ export default function FAQsPage({ items, topics }) {
 		const newItems = topic ? items.filter(item => item.topic === topic) : items;
 		setFilteredItems(newItems);
 	}
-debugger
+
 	return (
 		<Page title={'FAQs'}>
-			<Box sx={{ backgroundColor: 'secondary.100', py: 20, }}>
+			{/* Hero */}
+			<Box
+				sx={{
+					backgroundColor: 'primary.default',
+					py: 25,
+					px: 5
+				}}
+			>
+				<Typography variant={'h3'} component={'h1'} color={'primary.contrast'} fontSize={30} sx={{pb: 3}}>
+				We’re Here to Support You Every Step of the Way
+				</Typography>
+				<Typography variant={'body1'}>
+				Everything You Need to Know About Obtaining Medical Evidence for Your VA Disability Claim
+				</Typography>
+			</Box>
+			{/* FAQ Section */}
+			<Box sx={{ backgroundColor: 'secondary.100', py: 10, }}>
 				<Container>
-					<Typography variant='h1' color='primary' gutterBottom>FAQs</Typography>
+					<Typography 
+						variant='sectionHeading' 
+						component='h2' 
+						gutterBottom
+					>
+						FAQs
+					</Typography>
 					<Stack direction={'row'} spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 						{items.map( ({topic}, index) => 
 							<Button key={`new-${topic}-item-${index}`} onClick={() => handleTopicChange(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
