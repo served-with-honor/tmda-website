@@ -96,8 +96,41 @@ export default function FAQsPage({ items, topics }) {
 							))
 						)}
 					</Box>
-					
 				</Container> 
+			</Box>
+			{/* Contact Section */}
+			<Box
+				sx={{
+					backgroundColor: 'primary.default',
+					py: 20,
+					px: 5,
+					textAlign: 'center'
+				}}
+			>
+				<Typography 
+					variant={'sectionHeading'} 
+					component={'h2'} 
+					fontSize={30} 
+					sx={{
+						pb: 3
+					}}
+				>
+					Talk To A Telemedica Team Member
+				</Typography>
+				<Typography variant={'body1'} s>
+				Didn’t find your question in our list of FAQs? Click below to choose your preferred method of contact and speak with a member of our Customer Service Team today!
+				</Typography>
+				<Button
+					variant='contained'
+					size='small'
+					href="/contact-us"
+					sx={{
+						mt: 5,
+						px: 5,
+					}}
+				>
+					Contact Us
+				</Button>
 			</Box>
   		</Page>
   )
