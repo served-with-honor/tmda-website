@@ -115,15 +115,21 @@ export default function ServicesPage({ prices }) {
 								/>
 							</Box>
 						</Grid>
-						<Grid item sx={{ width: {xs: '100%', md: '50%'}, height:{xs: '100%', md:'600px'}, overflow: 'auto'}}>
-							<BookingWidget />
+						<Grid item xs={12} md={6}>
+							<Box
+								backgroundColor='background.default' 
+								sx={{ 
+									height:{xs: '100%', md:'625px'}, 
+									overflow: {xs:'none', md:'auto'},
+									p: 3
+								}}
+							>
+								<BookingWidget />
+							</Box>
 						</Grid>
 					</Grid>
 				</Container>			
 			</Box>
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>	
   	</Page>
   )
 }
