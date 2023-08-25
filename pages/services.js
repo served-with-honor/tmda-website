@@ -204,6 +204,9 @@ export default function ServicesPage({ prices }) {
 					</Grid>
 				</Container>			
 			</Box>
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>	
   	</Page>
   )
 }
