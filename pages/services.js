@@ -17,7 +17,6 @@ import { CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
 import Image from 'next/image';
 import placeholderImage from '../public/images/AdobeStock_315180932-1024x1024.jpeg'
-import BookingWidget from '../components/BookingWidget';
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
