@@ -5,12 +5,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Page from '../components/Page'
-import Hero from '../components/Hero';
-import { textAlign } from '@mui/system';
+
 
 export default function FAQsPage({ items, topics }) {
 	const [expanded, setExpanded] = useState(false);
@@ -54,18 +53,38 @@ export default function FAQsPage({ items, topics }) {
 					>
 						FAQs
 					</Typography>
-					<Stack direction={'row'} spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
+					
+					<Grid container spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 						{items.map( ({topic}, index) => 
-							<Button key={`new-${topic}-item-${index}`} onClick={() => handleTopicChange(topic)} variant='text' size='small' color={ selectedCategory === topic ? "primary" : "inherit"} sx={{margin: 1, textTransform: "none",}}>
-								{topic}
-							</Button>	
+							<Grid item> 
+								<Button 
+									key={`new-${topic}-item-${index}`} 
+									onClick={() => handleTopicChange(topic)} 
+									variant='text' 
+									size='small' 
+									color={ selectedCategory === topic ? "primary" : "inherit"} 
+									sx={{margin: 1, textTransform: "none",}}
+								>
+									{topic}
+								</Button>
+							</Grid>
 						)}
-							{selectedCategory === '' ? <div></div> :
-							<Button onClick={() => handleTopicChange('')} variant='text' size='small' color="inherit" sx={{margin: 1, textTransform: "none",}}>
-								All
-							</Button>	
+							<Grid item>
+							{selectedCategory === '' ? 
+								<div></div> 
+								:
+								<Button 
+									onClick={() => handleTopicChange('')} 
+									variant='text' 
+									size='small' 
+									color="inherit" 
+									sx={{margin: 1, textTransform: "none",}}
+								>
+									All
+								</Button>	
 							}
-					</Stack>
+							</Grid>
+					</Grid>
 					
 					<Box>
 						{filteredItems.length > 0 && (
