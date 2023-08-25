@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import Page from '../components/Page'
 
 
@@ -101,11 +101,24 @@ export default function FAQsPage({ items, topics }) {
 									}}
 								>
 									<AccordionSummary
-										expandIcon={<ExpandMoreIcon />}
+										expandIcon={<ArrowForwardIosSharpIcon 
+											sx={{
+												fontSize: '1.5rem',
+												color: 'primary.main'
+											}}
+										/>}
 										aria-controls={`panel${index}-content`}
 										id={`panel${index}-header`}
+										sx={{
+											flexDirection: 'row-reverse',
+											'& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+												transform: 'rotate(90deg)',
+											  },
+											
+											
+										}}
 									>
-										<Typography variant='subtitle1'>{question}</Typography>
+										<Typography variant='subtitle1' sx={{pl:1}}>{question}</Typography>
 									</AccordionSummary>
 									<AccordionDetails>
 										<Typography variant='body1'>{answer}</Typography>
