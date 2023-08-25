@@ -8,6 +8,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import LiteYouTubeEmbed from "react-lite-youtube-embed"
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
@@ -15,24 +17,97 @@ import { CardContent } from '@mui/material';
 import BookingWidget from '../components/BookingWidget'
 import Image from 'next/image';
 import placeholderImage from '../public/images/AdobeStock_315180932-1024x1024.jpeg'
+import BookingWidget from '../components/BookingWidget';
 
 export default function ServicesPage({ prices }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+
 	return (
-		<Page title={'Services'}>
-			
+		<Page title={'Services'}>	
 			{/* HERO */}
-			<Box sx={{ paddingTop: 20, paddingBottom: 20 , position: 'relative', }}>
-				<Container>
-					<Grid container spacing={3}>
-						<Grid item md={6}>
-							<Typography variant='h1' color='primary'>Services</Typography>
-						</Grid>
-					</Grid>
+			<Box sx={{ 
+				pt: 15, 
+				background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
+				color: 'primary.contrastText',
+				'br': { display: { xs: 'none', md: 'initial' } }
+			}}>
+				<Container sx={{ pb: 3 }}>
+					<Box sx={{ my: { xs: 5, md: 10 } }}>
+					<Typography 
+						variant='h3' 
+						component='h1' 
+						sx={{ mb: 1}}
+					>
+						Empowering Veterans with Strong {" "}
+					<br />
+					<Box 
+						component='span' 
+						sx={{ 
+							color: 'primary.main',
+						}}
+					>
+						Medical Evidence {" "}
+					</Box>
+						for VA Disability Claims
+					</Typography>
+					<Typography 
+						variant='h6' 
+						component='p' 
+					>
+						Your partner in securing the benefits you deserve on your path to well-being!
+						</Typography>
+						</Box>
 				</Container>
+				<Container maxWidth='md'>
+					<Box 
+						sx={{
+							backgroundColor: 'background.paper', 
+							position: 'relative',
+							mb: '-75px',
+							p: [3, 5]
+						}}
+					>
+						<LiteYouTubeEmbed
+							id="KJFWkgrwxJQ"
+							title="video_title"
+							aspectWidth={16}
+							aspectHeight={9}
+						/>
+							<Grid
+								container 
+								spacing={2}
+								sx={{ 
+									justifyContent: 'center',
+									mt: 1 
+								}}
+							>
+								<Grid item>
+									<Button 
+										variant='contained' 
+										color='secondary' 
+										size='large'
+										onClick={() => setIsBookingDialogOpen(true)}
+									>
+										Book Now
+									</Button>
+								</Grid>
+								<Grid item>
+									<Button 
+										variant='contained' 
+										color='secondary' 
+										size='large' 
+										href={siteSettings.externalLinks.patientPortal} 
+									>
+										Patient Portal
+									</Button>
+								</Grid>
+							</Grid>
+					</Box>
+				</Container>
+				
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', padding: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 20, px: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					<Grid container spacing={5} mb={10}>
