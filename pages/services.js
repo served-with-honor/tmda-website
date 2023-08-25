@@ -107,7 +107,11 @@ export default function ServicesPage({ prices }) {
 								<Image 
 									src={placeholderImage}
 									alt='comming soon image'
-									layout='responsive'
+									sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
+									style={{
+										maxWidth: '100%',
+										height: 'auto', 
+									}}
 								/>
 							</Box>
 						</Grid>
