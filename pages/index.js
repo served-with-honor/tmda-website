@@ -172,15 +172,15 @@ export default function Home({ faqs, testimonials }) {
 				</Container>
 			</Box>
 
-			<Box paddingY={12}>
+			<Box paddingY={12} backgroundColor={'#fafafa'}>
 				<Container size={'sm'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>Five-Star Ratings from Our Veteran Clients &amp; Providers Working with Telemedica.</Typography>
 					{testimonials ? (
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
-					<Box align={'center'} sx={{ mt: 5 }}>
-							<Button variant={'contained'} href={'#'}>Write a Review</Button>
+					<Box align={'center'} sx={{ mt: 10 }}>
+							<Button variant={'contained'} href={'#'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
