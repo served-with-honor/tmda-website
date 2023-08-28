@@ -1,4 +1,4 @@
-import { slugify } from './utils'
+import { slugify, truncateString } from './utils'
 
 describe('slugify', () => {
   test('converts a simple string to a slug', () => {
@@ -16,4 +16,12 @@ describe('slugify', () => {
   test('converts an empty string to an empty slug', () => {
     expect(slugify('')).toBe('');
   });
+});
+
+describe('truncateString', () => {
+  test('', () => { expect(truncateString('Hello World', 5)).toBe('Hello'); });
+  test('', () => { expect(truncateString('Hello World', 6, true)).toBe('Hello...'); });
+  test('', () => { expect(truncateString('Hello World', 50, true)).toBe('Hello World'); });
+  test('', () => { expect(truncateString('Hello World')).toBe('Hello World'); });
+  test('', () => { expect(truncateString()).toBe(null); });
 });

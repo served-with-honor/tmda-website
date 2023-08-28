@@ -26,8 +26,16 @@ function formatPhoneNumber(phone: string, sep: string) {
   return `${intlCode} (${idk[0]}) ${idk[1]}-${idk[2]}`.trim();
 }
 
+function truncateString(string, limit, displayEllipses) {
+  if (!string) return null;
+  if (!limit || string.length <= limit) return string;
+
+  return `${string.substring(0, limit).trim()}${displayEllipses ? '...' : null}`;
+}
+
 export {
   slugify,
   getSocialIcon,
   formatPhoneNumber,
+  truncateString,
 }
