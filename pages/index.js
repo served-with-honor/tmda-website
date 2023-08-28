@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
-import { getAllPostsForHome } from '../lib/api'
 import {
 	useTheme,
 	Avatar,
@@ -16,15 +15,20 @@ import Page from '../components/Page'
 import Hero from '../components/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
-import ArticleCard from '../components/ArticleCard'
 import { SectionDivider } from '../components/layout'
-import { SectionFeatures1, FAQs, Testimonials, Words } from '../components/home'
+import {
+	SectionFeatures1,
+	FAQs,
+	Testimonials,
+	Words,
+	LatestPosts,
+} from '../components/home'
 import { slugify } from '../src/utils';
 
-export default function Home({ posts, faqs, testimonials }) {
+export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
-
+	
 	return (
 		<Page>
     
@@ -183,24 +187,17 @@ export default function Home({ posts, faqs, testimonials }) {
 			<Box paddingY={12}>
 				<Container>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Check Out These Free Resources!<br />Find out more about _____.</Typography>
-					<Grid container spacing={{ xs: 3, lg: 10 }}>
-						{posts && posts.length > 0 ? posts.map(post =>
-							<Grid item sm={6} md={4} key={`post-listing-${post.slug}`}>
-								<ArticleCard {...post} />
-							</Grid>
-						) : null}
-					</Grid>
-						<Box align={'center'} sx={{ mt: 5 }}>
-							<Button variant={'contained'} href={'/blog'}>Read More...</Button>
-						</Box>
+					<LatestPosts />
+					<Box align={'center'} sx={{ mt: 5 }}>
+						<Button variant={'contained'} href={'/blog'}>Read More...</Button>
+					</Box>
 				</Container>
 			</Box>
 		</Page>
   )
 }
 
-export async function getServerSideProps(context) {
-	const posts = await getAllPostsForHome(false);
+export async function getStaticProps() {
 	const faqs = [
 		{
 			title: 'Does Telemedica do in-person appointments?',
@@ -225,5 +222,5 @@ export async function getServerSideProps(context) {
     'Testimonial 3',
     'Testimonial 4',
 	];
-	return { props: { posts, testimonials, faqs } }
+	return { props: { testimonials, faqs } }
 }
