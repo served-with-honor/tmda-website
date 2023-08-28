@@ -59,7 +59,7 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
             <Typography variant={'body1'}>
               {excerpt ? excerpt : settings.dummyText.generateWords(32)}
               {'... '}
-              <Link href={url} aria-hidden={true}>continue reading</Link>
+              <Link href={url} aria-hidden={true} whiteSpace={'nowrap'}>continue reading</Link>
             </Typography>
             
           </Box>
