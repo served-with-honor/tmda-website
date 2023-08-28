@@ -188,9 +188,11 @@ export default function Home({ faqs, testimonials }) {
 			<Box paddingY={12}>
 				<Container>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Check Out These Free Resources!<br />Find out more about _____.</Typography>
-					<LatestPosts />
-					<Box align={'center'} sx={{ mt: 5 }}>
-						<Button variant={'contained'} href={'/blog'}>Read More...</Button>
+					<Box sx={{ mb: 8 }}>
+						<LatestPosts />
+					</Box>
+					<Box align={'center'}>
+						<Button variant={'contained'} href={'/blog'}>Find more free resources</Button>
 					</Box>
 				</Container>
 			</Box>
