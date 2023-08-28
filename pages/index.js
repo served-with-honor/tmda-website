@@ -25,6 +25,7 @@ import {
 	LatestPosts,
 } from '../components/home'
 import { slugify } from '../src/utils';
+import imageWhoIsTMDA from '../public/who_is_tmda.jpg'
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
@@ -102,7 +103,7 @@ export default function Home({ faqs, testimonials }) {
 					<Grid container spacing={5}>
 						<Grid item sm={6} sx={{ width: '100%' }}>
 							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
-								<Image fill src="/images/Dr_Smiling_Resized (1).jpeg" alt="" style={{ objectFit: 'cover' }} />
+								<Image fill src={imageWhoIsTMDA} alt="" style={{ objectFit: 'cover' }} />
 							</Box>
 						</Grid>
 						<Grid item sm={6}>
