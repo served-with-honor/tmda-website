@@ -120,7 +120,7 @@ export default function Home({ faqs, testimonials }) {
 
 			<SectionDivider />
 
-			<Box paddingY={12}>
+			<Box paddingY={12} align={'center'}>
 				<Container>
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -150,17 +150,15 @@ export default function Home({ faqs, testimonials }) {
 									whileInView={{ y: 0, opacity: 1 }}
 									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
 								>
-									<Box align={'center'} sx={{ mb: 3 }}><Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50 }}>{index + 1}</Avatar></Box>
-									<Typography align={'center'} variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
-									<Typography align={'center'} variant={'body1'}>{text}</Typography>
+									<Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50, mb: 3 }}>{index + 1}</Avatar>
+									<Typography variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
+									<Typography variant={'body1'}>{text}</Typography>
 								</motion.div>
 							</Grid>
 
 						))}
 					</Grid>
-					<Box align={'center'}>
-						<Button variant={'contained'} href={'/services'}>Learn More...</Button>
-					</Box>
+					<Button variant={'contained'} href={'/services'} sx={{ mt: 8, px: { sm: 8 } }}>More about our services</Button>
 				</Container>
 			</Box>
 			
