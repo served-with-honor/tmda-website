@@ -21,7 +21,7 @@ import { SectionDivider } from '../components/layout'
 import { SectionFeatures1, FAQs, Testimonials, Words } from '../components/home'
 import { slugify } from '../src/utils';
 
-export default function Home({ posts }) {
+export default function Home({ posts, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
 
@@ -171,7 +171,9 @@ export default function Home({ posts }) {
 				<Container size={'sm'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>Five-Star Ratings from Our Veteran Clients &amp; Providers Working with Telemedica.</Typography>
-					<Box sx={{ marginY: 5 }}><Testimonials /></Box>
+					{testimonials ? (
+						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
+					) : null}
 					<Box align={'center'} sx={{ mt: 5 }}>
 							<Button variant={'contained'} href={'#'}>Write a Review</Button>
 					</Box>
@@ -199,5 +201,11 @@ export default function Home({ posts }) {
 
 export async function getServerSideProps(context) {
 	const posts = await getAllPostsForHome(false);
-	return { props: { posts } }
+	const testimonials = [
+    'The only way you could improve is have Dr. Decruise do every single evaluation for VA claims insider PTSD. This is my 2nd eval with Telemedica so I was apprehensive about how the second exam would go. Dr. Decruuse is absolutely the most genuine and sincere mental health care provider possible. I know she sees thousands of patients but I honestly felt as though I was her one and only patient. She was kind, caring, compassionate and sincere. Her patience and concern for myself as a human (not just a number) are top notch. She is a world class human and physician. Dr. Decruise made me feel safe, secure, welcomed and as if she actually listened. I could not be more satisfied with how my exam went. And another short kudos for customer service team: Your customer service follow up and care is to be commended and appreciated',
+    'I feel that the whole process from beginning (scheduling) to end (the actual appointment) was very easy and stress free! Ms. Mia was so helpful that she went above and beyond to help me reschedule and answer a few questions I had with ease. The doctor was very personable and professional but at the same time made me feel extremely comfortable with the evaluation process.',
+    'Testimonial 3',
+    'Testimonial 4',
+  ];
+	return { props: { posts, testimonials } }
 }
