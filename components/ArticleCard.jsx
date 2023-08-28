@@ -57,7 +57,8 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
             ) : null}
             
             <Typography variant={'body1'}>
-              {excerpt ? `${excerpt}...` : settings.dummyText.generateWords(32)}
+              {excerpt ? excerpt : settings.dummyText.generateWords(32)}
+              {'... '}
               <Link href={url} aria-hidden={true}>continue reading</Link>
             </Typography>
             
