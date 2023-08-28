@@ -16,6 +16,7 @@ import Hero from '../components/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
 import { SectionDivider } from '../components/layout'
+import TextFlipper from '../components/TextFlipper'
 import {
 	SectionFeatures1,
 	FAQs,
@@ -40,7 +41,9 @@ export default function Home({ faqs, testimonials }) {
 				</Typography>
 				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600 }}>
 					The #1 Health Resource For Veterans On Their Path To
-					<Words items={[ 'Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.', ]} />
+					<Box component='span' sx={{ ml: 1 }}>
+						<TextFlipper items={['Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.',]} lineColor={theme.palette.primary.main} />
+					</Box>
 				</Typography>
 			</Hero>
 		
