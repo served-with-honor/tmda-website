@@ -11,7 +11,7 @@ import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 
-export default function ArticleCard({ slug: articleSlug, image, tags, title, excerpt = settings.dummyText.generateWords(32) }) {
+export default function ArticleCard({ slug: articleSlug, image, tags, title, excerpt }) {
   const router = useRouter();
   const handleClick = (a) => router.push(`/blog${a}`);
   const url = `/blog/${articleSlug}`;
@@ -57,7 +57,7 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
             ) : null}
             
             <Typography variant={'body1'}>
-              {excerpt ? `${excerpt}...` : null}
+              {excerpt ? `${excerpt}...` : settings.dummyText.generateWords(32)}
               <Link href={url} aria-hidden={true}>continue reading</Link>
             </Typography>
             
