@@ -23,7 +23,7 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
   const parentSlug = slugify(name);
 
 	return (
-		<Paper sx={{ position: 'relative' }}>
+		<Paper sx={{ borderRadius: 6, position: 'relative' }}>
       <Tabs
         sx={{ px: 4, py: 2 }}
         value={activeTab}
@@ -48,7 +48,7 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
 			</Tabs>
       <Box sx={{
         backgroundColor: 'secondary.100',
-        borderRadius: 1,
+        borderRadius: 6,
         p: 2,
         minHeight: { md: 275 },
       }}>

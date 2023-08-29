@@ -81,26 +81,45 @@ const baseTheme = responsiveFontSizes(createTheme({
       800: '#18213d',
       900: '#080b14',
     },
-  },
-  shape: {
-    borderRadius: 24,
   }, 
   components: {
-    // MuiCard: {
-    //   styleOverrides: {
-    //     root: {
-    //       borderRadius: 30,
-    //     }
-    //   }
-    // },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 24,
+        }
+      }
+    },
     MuiButton: {
       styleOverrides: {
         root: {
           fontSize: 18,
           boxShadow: 0,
+          borderRadius: 24,
         },
       }
-    }
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        rounded: {
+          '&:first-of-type': {
+            borderTopLeftRadius: 24,
+            borderTopRightRadius: 24,
+          },
+          '&:last-of-type': {
+            borderBottomLeftRadius: 24,
+            borderBottomRightRadius: 24,
+          },
+        }
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 24,
+        },
+      },
+    },
   }
 }));
 

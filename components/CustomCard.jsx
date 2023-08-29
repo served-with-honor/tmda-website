@@ -38,6 +38,7 @@ export default function CustomCard({ image, heading, description, button, entire
     }
 
     const cardStyles = {
+        borderRadius: 24,
         minHeight: '100%',
         textAlign: 'center',
         p: 5,
