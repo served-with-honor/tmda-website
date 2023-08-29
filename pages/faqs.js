@@ -34,12 +34,14 @@ export default function FAQsPage({ items, topics }) {
 					py: 25,
 				}}
 			>
-				<Typography variant={'h3'} component={'h1'} color={'primary.contrast'} fontSize={30} sx={{pb: 3}}>
-				We’re Here to Support You Every Step of the Way
-				</Typography>
-				<Typography variant={'body1'}>
-				Everything You Need to Know About Obtaining Medical Evidence for Your VA Disability Claim
-				</Typography>
+				<Container>
+					<Typography variant={'h3'} component={'h1'} color={'primary.contrast'} fontSize={30} sx={{pb: 3}}>
+						We’re Here to Support You Every Step of the Way
+					</Typography>
+					<Typography variant={'body1'}>
+						Everything You Need to Know About Obtaining Medical Evidence for Your VA Disability Claim
+					</Typography>
+				</Container>
 			</Box>
 			{/* FAQ Section */}
 			<Box sx={{ backgroundColor: 'secondary.100', py: 10, }}>
