@@ -31,9 +31,7 @@ export default function FAQsPage({ items, topics }) {
 			{/* Hero */}
 			<Box
 				sx={{
-					backgroundColor: 'primary.default',
 					py: 25,
-					px: 5
 				}}
 			>
 				<Typography variant={'h3'} component={'h1'} color={'primary.contrast'} fontSize={30} sx={{pb: 3}}>
