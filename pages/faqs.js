@@ -171,7 +171,7 @@ export default function FAQsPage({ items, topics }) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const items = [
 		{
 			topic: 'General',
