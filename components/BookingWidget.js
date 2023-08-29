@@ -109,7 +109,7 @@ export default function BookingWidget() {
     script.src = "https://intakeq.com/js/widget.min.js?1";
     document.head.appendChild(script);
     
-  }, region);
+  }, [region]);
   
   return (
     <Box>
