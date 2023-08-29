@@ -35,7 +35,7 @@ export default function FAQsPage({ items, topics }) {
 				}}
 			>
 				<Container>
-					<Typography variant={'h3'} component={'h1'} color={'primary.contrast'} fontSize={30} sx={{pb: 3}}>
+					<Typography variant={'h2'} component={'h1'} sx={{pb: 3}}>
 						We’re Here to Support You Every Step of the Way
 					</Typography>
 					<Typography variant={'body1'}>
