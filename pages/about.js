@@ -50,6 +50,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				paddingBottom: 10,
 				position: 'relative',
 				background: `url(${texture01.src}) center / cover no-repeat`,
+				overflowX: 'hidden',
 			}} ref={heroRef}>
 				<Box sx={{
 					position: 'absolute',
