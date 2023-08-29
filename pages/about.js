@@ -54,18 +54,18 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			}} ref={heroRef}>
 				<Box sx={{
 					position: 'absolute',
-					width: '50%',
+					width: '50vw',
 					height: '100%',
 					right: '-5%',
 					top: '0',
-					display: 'flex',
+					display: { xs: 'none', md: 'flex' },
 					alignItems: 'center',
 				}}>
 					<MapAnim ref={heroRef} />
 				</Box>
-				<Container>
+				<Container sx={{ position: 'relative' }}>
 					<Grid container spacing={3}>
-						<Grid item md={6}>
+						<Grid item md={7} lg={6}>
 							<Typography variant='h1' color='primary'>Stop Fighting. <br />Start Winning.</Typography>
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }} gutterBottom>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
