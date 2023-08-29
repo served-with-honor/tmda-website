@@ -155,7 +155,7 @@ export default function FAQsPage({ items }) {
 				>
 					Talk To A Telemedica Team Member
 				</Typography>
-				<Typography variant={'body1'} s>
+				<Typography variant={'body1'}>
 				Didn’t find your question in our list of FAQs? Click below to choose your preferred method of contact and speak with a member of our Customer Service Team today!
 				</Typography>
 				<Button
