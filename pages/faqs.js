@@ -36,7 +36,10 @@ export default function FAQsPage({ items, topics }) {
 			>
 				<Container>
 					<Typography variant={'h2'} component={'h1'} sx={{pb: 3}}>
-						We’re Here to Support You Every Step of the Way
+						We’re Here to Support You 
+					<Box sx={{color:'primary.main'}}>
+						Every Step of the Way
+					</Box>	
 					</Typography>
 					<Typography variant={'body1'}>
 						Everything You Need to Know About Obtaining Medical Evidence for Your VA Disability Claim
