@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import Page from '../components/Page'
+import { slugify } from '../src/utils';
 
 
 export default function FAQsPage({ items }) {
@@ -64,9 +65,8 @@ export default function FAQsPage({ items }) {
 					
 					<Grid container spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 						{topics.map( (topic, index) => 
-							<Grid item> 
-								<Button 
-									key={`new-${topic}-item-${index}`} 
+							<Grid item key={`faq-topic-${slugify(topic)}`}> 
+								<Button
 									onClick={() => handleTopicChange(topic)} 
 									variant='text' 
 									size='small' 
@@ -98,7 +98,7 @@ export default function FAQsPage({ items }) {
 						{filteredItems.length > 0 && (
 							filteredItems.map(({ question, answer }, index) => (
 								<Accordion
-									key={`faq-panel-${index}`}
+									key={`faq-panel-${slugify(question)}`}
 									expanded={expanded === `panel${index}`}
 									onChange={handlePanelChange(`panel${index}`)}
 									square
