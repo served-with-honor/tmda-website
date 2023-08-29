@@ -119,6 +119,7 @@ const MenuGroup = ({ label, items,  selected }) => {
       slotProps={{
         paper: { sx: { borderRadius: 3, p: 1 } }
       }}
+      disableAutoFocusItem
     >
       {items.map(({ href, text, target }) => (
         <MyMenuItem key={`main-menu-item-${slugify(text)}`} selected={href === selected} disabled={href === selected}>
