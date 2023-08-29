@@ -121,17 +121,22 @@ const MenuGroup = ({ label, items,  selected }) => {
       }}
       disableAutoFocusItem
     >
-      {items.map(({ href, text, target }) => (
-        <MyMenuItem key={`main-menu-item-${slugify(text)}`} selected={href === selected} disabled={href === selected}>
-          <Typography variant={'subtitle1'} component={'span'}>
-            {href === selected ? (
-              <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
-            ) : (
-              <Link href={href} target={target || ''}>{text}</Link>
-            )}
-          </Typography>
-        </MyMenuItem>
-      ))}
+      {items.map(({ href, text, target }) => {
+        const isSelected = href === selected;
+        const key = `main-menu-item-${slugify(text)}`;
+
+        return (
+          <MyMenuItem key={key} selected={isSelected} disabled={isSelected}>
+            <Typography variant={'subtitle1'} component={'span'}>
+              {isSelected ? (
+                <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
+              ) : (
+                <Link href={href} target={target || ''}>{text}</Link>
+              )}
+            </Typography>
+          </MyMenuItem>
+        );
+      })}
     </Menu>
   </>
 }
