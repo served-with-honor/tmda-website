@@ -30,7 +30,7 @@ export default forwardRef(function MapAnim(props, ref) {
   return (
     <Box sx={{
         width: '100%',
-        color: 'secondary.100',
+        color: 'grey.300',
         '#states path': { fill: 'currentcolor' },
         '#borders path': { fill: 'none', stroke: '#fff' },
     }} >

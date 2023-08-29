@@ -50,6 +50,7 @@ export default function Section1({ heading, text, button }) {
 							>
 								<Box sx={{ ml: 10, mt: -10 }}>
 									<Image 
+										alt=''
 										src={phoneImage}
 										placeholder='blur'
 										style={{ width: 'auto', height: 'auto' }}
@@ -62,6 +63,7 @@ export default function Section1({ heading, text, button }) {
 								>
 								<Box sx={{ my: 5 }}>
 									<Image 
+										alt=''
 										src={phoneShadowImage}
 										sizes="(min-width: 1024px) 300px, (min-width: 768px) 30vw, 200px"
 										style={{ width: 'auto', height: 'auto' }}
