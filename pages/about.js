@@ -72,22 +72,22 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
 								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 							</Grid>
-							<Grid container spacing={5}>
-								{[
-									{ num: 15, suffix: 'k+', text: 'Veterans Served' },
-									{ num: 90, suffix: '%', text: 'Success Rate' },
-									{ num: 20, suffix: '+', text: 'Licensed Providers' },
-								].map(({ num, suffix, text }, index) => (
-									<Grid item key={`stuff-${index}`}>
-										<Box sx={{ marginTop: 10 }}>
+							<Box sx={{ marginTop: 10 }}>
+								<Grid container spacing={[3,5]}>
+									{[
+										{ num: 15, suffix: 'k+', text: 'Veterans Served' },
+										{ num: 90, suffix: '%', text: 'Success Rate' },
+										{ num: 20, suffix: '+', text: 'Licensed Providers' },
+									].map(({ num, suffix, text }, index) => (
+										<Grid item key={`stuff-${index}`}>
 											<Typography color='secondary' sx={{ fontSize: 40, fontWeight: 700, lineHeight: 1 }}>
 												<Counter to={num} duration={1.5} digits={2} />{suffix}
 											</Typography>
 											<Typography variant='body1'>{text}</Typography>
-										</Box>
-									</Grid>
-								))}
-							</Grid>
+										</Grid>
+									))}
+								</Grid>
+							</Box>
 						</Grid>
 					</Grid>
 				</Container>
