@@ -25,7 +25,7 @@ CustomCard.propTypes = {
 };
 
 export default function CustomCard({ image, heading, description, button, entireClickable }) {
-    const { label, url, target, action } = button;
+    const { label, url, target, action } = button || {};
     const href = !action && url ? url : null;
     const transition = baseTheme.transitions.create(['transform', 'box-shadow']);
 
