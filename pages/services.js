@@ -207,8 +207,8 @@ export default function ServicesPage({ prices }) {
 								ref={mobileBookingSectionRef}
 								backgroundColor='background.default' 
 								sx={{ 
-									height:{xs: '100%', md:'625px'}, 
-									overflow: {xs:'none', md:'auto'},
+									height:{ md:'625px' }, 
+									overflow: { md:'auto' },
 									p: 3
 								}}
 							>
