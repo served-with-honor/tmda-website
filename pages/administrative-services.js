@@ -3,15 +3,19 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import CheckIcon from '@mui/icons-material/Check';
 import Page from '../components/Page'
 import Image from 'next/image';
 import doctorImage from '../public/images/admin-services-image.png'
 import CustomCard from '../components/CustomCard';
 
 
-export default function AdministrativeServicesPage({ adminServicesItems}) {
+
+export default function AdministrativeServicesPage({ adminServicesItems, adminBenefits }) {
 	return (
 		<Page title={'Administrative Services'}>
 			{/* HERO */}
@@ -34,7 +38,7 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{py: 10}}>
+			<Box sx={{py: 15}}>
 				<Container>
 					<Grid container spacing={2}>
 						<Grid item sm={7}>
@@ -75,7 +79,7 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 			{/* SECTION */}
 			<Box
 				sx={{
-					py: 10,
+					py: 15,
 					backgroundColor: 'secondary.100'
 				}}
 			>
@@ -99,12 +103,32 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box>
-				<Container>
-					<Typography>
-						
+			<Box sx={{py: 15}}>
+				<Container maxWidth="md">
+					<Typography 
+						variant={'sectionHeading'}
+						component={'h2'}
+					>
+						Admin Benefits
 					</Typography>
-					{}
+					<List sx={{ 
+						'.MuiListItemIcon-root': { 	
+							alignSelf: 'flex-start' },
+						}}
+					>
+						{adminBenefits.map( (benefit, index) => {
+							return(
+								<ListItem key={`benefit-${index}`}>
+									<ListItemIcon>
+										<CheckIcon style={{color: '#42bd9f'}}/>
+									</ListItemIcon>
+									<ListItemText>
+										{benefit}
+									</ListItemText>
+								</ListItem>
+							)
+						})}
+					</List>
 				</Container>
 			</Box>
   	</Page>
@@ -169,5 +193,5 @@ export async function getStaticProps() {
 		"Access to best in class customer care specialists.",
 	]
 
-	return { props: { adminServicesItems }}
+	return { props: { adminServicesItems, adminBenefits }}
 }
