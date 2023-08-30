@@ -12,6 +12,7 @@ import Page from '../components/Page'
 import Image from 'next/image';
 import doctorImage from '../public/images/admin-services-image.png'
 import CustomCard from '../components/CustomCard';
+import siteSettings from '../src/siteSettings';
 
 
 
@@ -32,7 +33,12 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 					<Typography variant={'h6'} component={'p'} sx={{ pt: 2, pb: 5}}>
 						We Let You Do What You Do Best & We Handle The Rest!
 					</Typography>
-					<Button variant="contained" size='large'>
+					<Button 
+						variant="contained" 
+						size='large'
+						href={siteSettings.externalLinks.providerPortal}
+						target='_blank'
+					>
 						Provider Portal
 					</Button>
 				</Container>
@@ -129,6 +135,30 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 							)
 						})}
 					</List>
+				</Container>
+			</Box>
+			{/* SECTION */}
+			<Box sx={{
+				backgroundColor: 'secondary.main',
+				color: 'secondary.contrastText',
+				p: 5,
+				textAlign: 'center'
+			}}>
+				<Container>
+					<Typography 
+						variant={'h6'}
+						component={'h3'}
+						sx={{pb: 3}}
+					>
+						Ready to Start a Career with Us?
+					</Typography>
+					<Button 
+						variant='contained' size='small'
+						href='/careers' 
+						sx={{px: 4}}
+					>
+						Careers
+					</Button>
 				</Container>
 			</Box>
   	</Page>
