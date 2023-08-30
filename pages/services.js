@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
@@ -14,10 +13,22 @@ import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
 import { CardContent } from '@mui/material';
-import BookingWidget from '../components/BookingWidget';
+import BookingWidget from '../components/BookingWidget'
+import Image from 'next/image';
+import placeholderImage from '../public/images/AdobeStock_315180932-1024x1024.jpeg'
 
 export default function ServicesPage({ prices }) {
-	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+	const mobileBookingSectionRef = useRef(null);
+	const desktopBookingSectionRef = useRef(null);
+	const handleBookNowClick = () => {
+		const isMobileDevice = window.innerWidth < 900;
+		const behavior = 'smooth'
+		if(isMobileDevice) {
+			mobileBookingSectionRef.current.scrollIntoView({ behavior})
+		} else {
+			desktopBookingSectionRef.current.scrollIntoView({behavior})
+		}
+	}
 
 	return (
 		<Page title={'Services'}>	
@@ -83,7 +94,7 @@ export default function ServicesPage({ prices }) {
 										variant='contained' 
 										color='secondary' 
 										size='large'
-										onClick={() => setIsBookingDialogOpen(true)}
+										onClick={handleBookNowClick}
 									>
 										Book Now
 									</Button>
@@ -127,7 +138,7 @@ export default function ServicesPage({ prices }) {
 					</Grid>
 					<Stack justifyContent={'center'} direction={{ xs: 'column', sm: 'row' }} spacing={2} divider={<Divider orientation="vertical" flexItem />}>
 						<Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button>
-						<Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button>
+						<Button variant='contained' color='secondary' size='large' onClick={handleBookNowClick}>Book Now</Button>
 					</Stack>
 				</Container>
 			</Box>
@@ -159,9 +170,54 @@ export default function ServicesPage({ prices }) {
 					</Box>
 				</Container>
 			</Box>
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>	
+			{/* Booking Section */}
+			<Box
+				ref={desktopBookingSectionRef} 
+				sx={{ 
+					backgroundColor: 'grey.50', 
+					py: 10, 
+					alignItems: 'center', 
+					textAlign: 'center' 
+				}}
+			>
+				<Container>
+					<Typography component='sectionHeading' variant='h2'>Book Now!</Typography>
+					<Typography variant='body1' sx={{ py: 3 }}>
+						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
+					</Typography>
+					<Grid container spacing={5}>
+						<Grid item xs={12} md={6}>
+							<Box sx={{
+								maxWidth: {xs: '350px', sm: 'none'}, 
+								}}
+							>
+								<Image 
+									src={placeholderImage}
+									alt='comming soon image'
+									sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
+									style={{
+										maxWidth: '100%',
+										height: 'auto', 
+									}}
+								/>
+							</Box>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<Box
+								ref={mobileBookingSectionRef}
+								backgroundColor='background.default' 
+								sx={{ 
+									height:{ md:'625px' }, 
+									overflow: { md:'auto' },
+									p: 3
+								}}
+							>
+								<BookingWidget />
+							</Box>
+						</Grid>
+					</Grid>
+				</Container>			
+			</Box>
   	</Page>
   )
 }
