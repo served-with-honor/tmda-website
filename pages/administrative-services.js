@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
 import Page from '../components/Page'
 import Image from 'next/image';
 import doctorImage from '../public/images/admin-services-image.png'
@@ -36,13 +38,10 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 				<Container>
 					<Grid container spacing={2}>
 						<Grid item sm={7}>
-							<Container>
+							<Container >
 								<Typography 
 									variant={'sectionHeading'}
 									component={'h2'}
-									sx={{
-										textAlign: 'left'
-									}}
 								>
 									Designed with You In Mind
 								</Typography>
@@ -57,7 +56,7 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 								</Typography>
 							</Container>
 						</Grid>
-						<Grid item sm={5}>
+						<Grid item>
 							<Box>
 								<Image
 									src={doctorImage}
@@ -87,10 +86,26 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 					>
 						Administrative Services
 					</Typography>
-					
-
+					<Container sx={{pt: 3}}>
+					<Grid container spacing={2}>
+						{adminServicesItems.map( (item, index) => {
+							return(
+							<Grid key={`admin-cards-${index}`} item md={4}>
+								<CustomCard {...item} />
+							</Grid>)
+						})}
+					</Grid>
+					</Container>
 				</Container>
+			</Box>
+			{/* SECTION */}
+			<Box>
+				<Container>
+					<Typography>
 
+					</Typography>
+					
+				</Container>
 			</Box>
   	</Page>
   )
