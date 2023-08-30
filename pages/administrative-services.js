@@ -102,9 +102,9 @@ export default function AdministrativeServicesPage({ adminServicesItems}) {
 			<Box>
 				<Container>
 					<Typography>
-
+						
 					</Typography>
-					
+					{}
 				</Container>
 			</Box>
   	</Page>
@@ -153,6 +153,20 @@ export async function getStaticProps() {
 			"heading": "Practice Expansion & New Service Development",
 			"description": "Providing non-clinical support & guidance on business development opportunities. Access to new service/partnership opportunities."
 		}
+	]
+
+	const adminBenefits = [
+		"Streamlined workflow & productivity.",
+		"Standardized patient management & quality control.",
+		"Improved cost control with increased efficiency.",
+		"Improved organization by optimizing administrative processes.",
+		"Increased practice performance & profitability.",
+		"Reporting, analysis, & business development support to drive future revenue.",
+		"Quality patient care with sound financial management.",
+		"Enhanced patient care and satisfaction.",
+		"Connection to an extensive network of veterans through our established Veteran Community.",
+		"Our services are a great fit for a wide variety of practices and providers.",
+		"Access to best in class customer care specialists.",
 	]
 
 	return { props: { adminServicesItems }}
