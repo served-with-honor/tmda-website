@@ -189,10 +189,6 @@ export default function ServicesPage({ prices }) {
 						<Grid item xs={12} md={6}>
 							<Box sx={{
 								maxWidth: {xs: '350px', sm: 'none'}, 
-								display: 'flex', 
-								alignItems: 'center',
-								height: '100%',
-								margin: '0 auto'
 								}}
 							>
 								<Image 
