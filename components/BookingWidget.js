@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import { useCookies } from 'react-cookie';
 import siteSettings from '../src/siteSettings';
+import { slugify } from '../src/utils'
 
 export default function BookingWidget() {
   const regionsList = [
@@ -108,7 +109,7 @@ export default function BookingWidget() {
     script.src = "https://intakeq.com/js/widget.min.js?1";
     document.head.appendChild(script);
     
-  }, region);
+  }, [region]);
   
   return (
     <Box>
@@ -136,7 +137,9 @@ export default function BookingWidget() {
                   label="Location"
                   onChange={(event) => setNewLocation(event.target.value)}
                 >
-                  {regionsList.map(location => <MenuItem value={location}>{location}</MenuItem>)}
+                  {regionsList.map(location => (
+                    <MenuItem key={`booking-location-${slugify(location)}`} value={location}>{location}</MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>

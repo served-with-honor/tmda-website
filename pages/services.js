@@ -150,7 +150,7 @@ export default function ServicesPage({ prices }) {
 						<Box sx={{
 							border: 1,
 							borderColor: 'primary.main',
-							borderRadius: 2,
+							borderRadius: 12,
 							maxWidth: 'md',
 							mx: 'auto',
 							p: 2,

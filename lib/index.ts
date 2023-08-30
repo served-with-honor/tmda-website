@@ -65,7 +65,11 @@ const emailContactForm = async (data: Object) => {
 
 const getTeamMembers = async (): Promise<{ name: string, position: string, image?: any }[]> => {
   const query = `
-    *[_type == "teamMember" && 'Telemedica' in entity[]] | order(orderRank asc){
+    *[
+      _type == "teamMember"
+      && 'Telemedica' in entity[]
+      && !(_id in path("drafts.**")) 
+    ] | order(orderRank asc){
       'name': coalesce(preferred_name, first_name) + " " + last_name,
       position,
       image,

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
+import { styled } from '@mui/system';
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box'
@@ -54,6 +55,36 @@ export default function MainMenu() {
     )}
   </>
 }
+const MyMenuItem = styled(MenuItem)(({ theme }) => ({
+  position: 'relative',
+  color: theme.palette.primary.main,
+  transition: 'all 0.125s ease-in-out',
+  lineHeight: 1,
+  
+  'span': { lineHeight: 'inherit' },
+  'a': {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  
+  '&:before': {
+    content: '""',
+    height: '1em',
+    display: 'block',
+    position: 'absolute',
+    left: 10,
+    borderLeft: 'solid 2px',
+    opacity: 0,
+    transition: 'all 0.125s ease-in-out',
+  },
+  
+  '&:hover, &:focus': {
+    backgroundColor: 'transparent',
+    color: theme.palette.secondary.main,
+
+    '&:before': { opacity: 1 },
+  }
+}));
 
 const MenuGroup = ({ label, items,  selected }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -85,18 +116,27 @@ const MenuGroup = ({ label, items,  selected }) => {
         'aria-labelledby': buttonId,
         onMouseLeave: handleClose,
       }}
+      slotProps={{
+        paper: { sx: { borderRadius: 3, p: 1 } }
+      }}
+      disableAutoFocusItem
     >
-      {items.map(({ href, text, target }) => (
-        <MenuItem key={`main-menu-item-${slugify(text)}`} selected={href === selected} disabled={href === selected}>
-          <Typography variant={'subtitle1'} component={'span'} color={'primary.main'} sx={{ lineHeight: 1 }}>
-            {href === selected ? (
-              <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
-            ) : (
-              <Link href={href} color='inherit' sx={{ textDecoration: 'none' }} target={target || ''}>{text}</Link>
-            )}
-          </Typography>
-        </MenuItem>
-      ))}
+      {items.map(({ href, text, target }) => {
+        const isSelected = href === selected;
+        const key = `main-menu-item-${slugify(text)}`;
+
+        return (
+          <MyMenuItem key={key} selected={isSelected} disabled={isSelected}>
+            <Typography variant={'subtitle1'} component={'span'}>
+              {isSelected ? (
+                <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
+              ) : (
+                <Link href={href} target={target || ''}>{text}</Link>
+              )}
+            </Typography>
+          </MyMenuItem>
+        );
+      })}
     </Menu>
   </>
 }
