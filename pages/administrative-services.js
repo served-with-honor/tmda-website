@@ -45,10 +45,10 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box py={12}>
+			<Box sx={{ position: 'relative', pt: 12, pb: { md: 12 } }}>
 				<Container>
 					<Grid container spacing={2}>
-						<Grid item sm={7}>
+						<Grid item md={7}>
 							<Container >
 								<Typography 
 									variant={'sectionHeading'}
@@ -65,14 +65,15 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 								</Typography>
 							</Container>
 						</Grid>
-						<Grid item>
-							<Box>
+						<Grid item md>
+							<Box sx={{ textAlign: 'center', position: { md: 'absolute' }, bottom: 0, fontSize: 0 }}>
 								<Image
 									src={doctorImage}
 									alt='image of a doctor'
 									style={{
 										width: 'auto',
 										height: 'auto',
+										maxWidth: '100%',
 									}}
 									sizes="(min-width: 1024px) 350px, (min-width: 768px) 30vw, 300px"
 								/>
