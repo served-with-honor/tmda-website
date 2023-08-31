@@ -130,7 +130,7 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 							return(
 								<ListItem key={`benefit-${index}`}>
 									<ListItemIcon>
-										<CheckIcon style={{color: '#42bd9f'}}/>
+										<CheckIcon sx={{ color: 'primary.main' }} />
 									</ListItemIcon>
 									<ListItemText>
 										{benefit}
