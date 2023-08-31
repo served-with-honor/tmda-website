@@ -17,7 +17,7 @@ import siteSettings from '../src/siteSettings';
 
 
 
-export default function AdministrativeServicesPage({ adminServicesItems, adminBenefits }) {
+export default function AdministrativeServicesPage({ services, benefits }) {
 	return (
 		<Page title={'Administrative Services'}>
 			{/* HERO */}
@@ -101,9 +101,9 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 					</Typography>
 					<Container sx={{pt: 3}}>
 					<Grid container spacing={2} justifyContent={'center'}>
-							{adminServicesItems.map(({heading, description}, index) => {
+							{services.map(({heading, description}, index) => {
 							return(
-							<Grid key={`admin-cards-${index}`} item md={4}>
+							<Grid key={`services-item-${index}`} item md={4}>
 								<Paper sx={{ p: 5, borderRadius: 3, height: '100%' }} align='center'>
 										<Typography variant='h5' component='h3' color='secondary.main' mb={3}>{heading}</Typography>	
 										<Typography variant='body1'>{description}</Typography>	
@@ -129,7 +129,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 							alignSelf: 'flex-start' },
 						}}
 					>
-						{adminBenefits.map( (benefit, index) => {
+						{benefits.map( (benefit, index) => {
 							return(
 								<ListItem key={`benefit-${index}`}>
 									<ListItemIcon>
@@ -173,7 +173,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 }
 
 export async function getStaticProps() {
-	const adminServicesItems = [
+	const services = [
 		{
 			"heading": "Operations Management",
 			"description": "Day-to-day tasks such as customer service support (email, phone, web), form gathering, retention, & records review, scheduling."
@@ -216,7 +216,7 @@ export async function getStaticProps() {
 		}
 	]
 
-	const adminBenefits = [
+	const benefits = [
 		"Streamlined workflow & productivity.",
 		"Standardized patient management & quality control.",
 		"Improved cost control with increased efficiency.",
@@ -230,5 +230,5 @@ export async function getStaticProps() {
 		"Access to best in class customer care specialists.",
 	]
 
-	return { props: { adminServicesItems, adminBenefits }}
+	return { props: { services, benefits }}
 }
