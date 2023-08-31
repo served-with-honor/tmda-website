@@ -11,9 +11,12 @@ import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
 import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
+import CustomCard from '../components/CustomCard';
 
-export default function ContactUsPage() {
+export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+
+	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 
 	return (
 		<Page title={'Contact Us'}>
@@ -44,17 +47,16 @@ export default function ContactUsPage() {
 			
 			<Box sx={{ paddingY: 10 }}>
 				<Container>
-					<Grid container gap={5}>
-						<Grid item xs={12} sm align="center">
-							<Grid container gap={3} sx={{ justifyContent: 'center' }}>
-								<Grid item><Button color='secondary' variant={'outlined'} onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
-								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.patientPortal} target="_blank">Patient Portal</Button></Grid>
-								<Grid item><Button color='secondary' variant={'outlined'} href={settings.externalLinks.providerPortal} target="_blank">Provider Portal</Button></Grid>
+					<Grid container spacing={5}>
+						{actionItems.map((item, index) => (
+							<Grid key={`actions-card-${index}`} item md>
+								<CustomCard {...item} entireClickable />
 							</Grid>
-						</Grid>
+						))}
 					</Grid>
 				</Container>
 			</Box>
+			
 			<NewsletterDialog delay={0} />
 
 			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
@@ -62,4 +64,29 @@ export default function ContactUsPage() {
 			</Dialog>	
   	</Page>
   )
+}
+
+export async function getStaticProps() {
+	const actionItems = [
+		{
+			image: { src: '/../public/images/event.png', height: 60, width: 60 },
+			heading: 'Booking', 
+			description: 'For new and returning clients. Book your medical evidence service now!',
+			button: { label: 'Book Now' },
+		},
+		{
+			image: { src: '/../public/images/monitor.png', height: 60, width: 60 },
+			heading: 'Patient Portal', 
+			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
+			button: { label: 'Log In', url: settings.externalLinks.patientPortal, target: '_blank' },
+		},
+		{
+			image: { src: '/../public/images/stethoscope.png', height: 60, width: 60 },
+			heading: 'Provider Portal', 
+			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
+			button: { label: 'Log In', url: settings.externalLinks.providerPortal, target: '_blank' },
+		},
+	]
+
+	return { props: { actionItems } };
 }
