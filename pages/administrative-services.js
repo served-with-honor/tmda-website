@@ -98,7 +98,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 						Administrative Services
 					</Typography>
 					<Container sx={{pt: 3}}>
-					<Grid container spacing={2}>
+					<Grid container spacing={2} justifyContent={'center'}>
 						{adminServicesItems.map( (item, index) => {
 							return(
 							<Grid key={`admin-cards-${index}`} item md={4}>
