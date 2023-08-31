@@ -52,6 +52,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 								<Typography 
 									variant={'sectionHeading'}
 									component={'h2'}
+									sx={{ textAlign: 'left', '&:after': { marginLeft: 0 } }}
 								>
 									Designed with You In Mind
 								</Typography>
