@@ -45,7 +45,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{py: 15}}>
+			<Box py={12}>
 				<Container>
 					<Grid container spacing={2}>
 						<Grid item sm={7}>
@@ -87,7 +87,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 			{/* SECTION */}
 			<Box
 				sx={{
-					py: 15,
+					py: 12,
 					backgroundColor: 'secondary.100'
 				}}
 			>
@@ -95,6 +95,7 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 					<Typography
 						variant={'sectionHeading'}
 						component={'h2'}
+						mb={6}
 					>
 						Administrative Services
 					</Typography>
@@ -114,11 +115,12 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{py: 15}}>
+			<Box sx={{py: 12}}>
 				<Container maxWidth="md">
 					<Typography 
 						variant={'sectionHeading'}
 						component={'h2'}
+						mb={5}
 					>
 						Admin Benefits
 					</Typography>
@@ -146,14 +148,14 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 			<Box sx={{
 				backgroundColor: 'secondary.main',
 				color: 'secondary.contrastText',
-				p: 5,
+				p: 6,
 				textAlign: 'center'
 			}}>
 				<Container>
 					<Typography 
 						variant={'h6'}
 						component={'h3'}
-						sx={{pb: 3}}
+						mb={3}
 					>
 						Ready to Start a Career with Us?
 					</Typography>
