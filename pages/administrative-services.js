@@ -53,17 +53,14 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 								<Typography 
 									variant={'sectionHeading'}
 									component={'h2'}
-									sx={{ textAlign: 'left', '&:after': { marginLeft: 0 } }}
+									sx={{ textAlign: 'left', mb: 4, '&:after': { marginLeft: 0 } }}
 								>
 									Designed with You In Mind
 								</Typography>
-								<Typography
-									variant={'body1'}
-									sx={{pt: 2}}
-								>
+								<Typography variant={'body1'} gutterBottom>
 									Telemedica LLC is an administrative company that connects the Veteran Community to an expansive network of medical care providers. We support veterans and providers alike through our easy and convenient HIPAA-compliant telehealth platform.
-									<br />
-									<br />
+								</Typography>
+								<Typography variant={'body1'}>
 									Our administrative services enable the provider/practice to focus on providing quality clinical care without the burden of administrative and management functions.
 								</Typography>
 							</Container>
