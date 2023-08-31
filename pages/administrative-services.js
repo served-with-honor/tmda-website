@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import Paper from '@mui/material/Paper';
 import CheckIcon from '@mui/icons-material/Check';
 import Page from '../components/Page'
 import Image from 'next/image';
@@ -99,10 +100,13 @@ export default function AdministrativeServicesPage({ adminServicesItems, adminBe
 					</Typography>
 					<Container sx={{pt: 3}}>
 					<Grid container spacing={2} justifyContent={'center'}>
-						{adminServicesItems.map( (item, index) => {
+							{adminServicesItems.map(({heading, description}, index) => {
 							return(
 							<Grid key={`admin-cards-${index}`} item md={4}>
-								<CustomCard {...item} />
+								<Paper sx={{ p: 5, borderRadius: 3, height: '100%' }} align='center'>
+										<Typography variant='h5' component='h3' color='secondary.main' mb={3}>{heading}</Typography>	
+										<Typography variant='body1'>{description}</Typography>	
+								</Paper>
 							</Grid>)
 						})}
 					</Grid>
