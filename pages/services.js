@@ -115,7 +115,7 @@ export default function ServicesPage({ prices }) {
 					</Container>
 					</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', py: 20, px: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 					{services ? (
@@ -129,22 +129,20 @@ export default function ServicesPage({ prices }) {
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ pt: 8, pb: 4 }}>
-				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>At-A-Glance Pricing</Typography>
+			<Box sx={{ p: 10 }}>
+				<Container maxWidth='md'>
+					<Typography variant='sectionHeading' component='h2' sx={{ mb: 10 }}>At-A-Glance Pricing</Typography>
 					{prices ? (
 						<Box sx={{
 							border: 1,
 							borderColor: 'primary.main',
 							borderRadius: 12,
-							maxWidth: 'md',
-							mx: 'auto',
 							p: 2,
 						}}>
 							<PriceTable columns={prices.columns} rows={prices.rows} />
 						</Box>
 					) : null}
-					<Box sx={{ py: 6, px: 10}}>
+					<Box sx={{ mt: 6 }}>
 						{/* Discount Section */}
 						<Typography display='inline' variant='h6'>Discounts: </Typography>
 						<Typography sx={{ fontStyle: 'italic'}} display='inline'>A volume discount of 15% applies when you purchase three (3) or more documents.</Typography>
