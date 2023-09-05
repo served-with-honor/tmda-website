@@ -17,6 +17,7 @@ import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
 import Link from '../../src/Link';
 import settings from '../../src/siteSettings';
+import { WPButtons } from '../../src/WPBlocks';
 
 export default function Post({ post }) {
 	const { author, tags, title, content, featuredImage, date, modifed } = post;
@@ -120,6 +121,8 @@ const replaceContent = element => {
 	if (element.name === 'h6') return <Typography variant='h6' component='h6' color='secondary.main' my={2}>{domToReact(element.children)}</Typography>
 	if (element.name === 'ul') return renderUnorderedList(element);
 	if (element.name === 'hr') return <Divider />;
+
+	if (element?.attribs?.class?.includes('wp-block-buttons')) return WPButtons(element);
 	
 	return element;
 }
