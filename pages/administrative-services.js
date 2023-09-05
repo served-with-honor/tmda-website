@@ -14,6 +14,8 @@ import Image from 'next/image';
 import doctorImage from '../public/images/admin-services-image.png'
 import CustomCard from '../components/CustomCard';
 import siteSettings from '../src/siteSettings';
+import heroImage from '../public/images/admin-services-hero.jpg'
+
 
 
 
@@ -24,8 +26,8 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 			<Box sx={{ 
 				pt: 20, 
 				pb: 10,
-				background: 'linear-gradient(to right, #c7cddb 30%, #d5eee9 90%)', 
-				}}
+				background: `url(${heroImage.src}) center / cover no-repeat`,
+			}}
 			>
 				<Container>
 					<Typography variant={'h2'} component={'h1'}>
