@@ -10,12 +10,32 @@ import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
+import { splitTitle } from '../src/utils';
 
 export default function ArticleCard({ slug: articleSlug, image, tags, title, excerpt = settings.dummyText.generateWords(32) }) {
   const router = useRouter();
   const handleClick = (a) => router.push(`/blog${a}`);
   const url = `/blog/${articleSlug}`;
-  
+
+  const FancyTitle = () => {
+		const { primaryText, preText, postText } = splitTitle(title);
+		const secondaryStyles = { display: 'block', lineHeight: '1em' };
+
+		return <>
+			{preText && (
+				<Typography variant='subtitle2' component='span' sx={secondaryStyles}>
+					{preText}
+				</Typography>
+			)}
+			{primaryText}
+			{postText && (
+				<Typography variant='subtitle2' component='span' sx={secondaryStyles}>
+					{postText}
+				</Typography>
+			)}
+		</>
+	}
+	
   return (
     <motion.div
       style={{ height: '100%' }}
@@ -52,7 +72,9 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
             {/* TITLE */}
             {title ? (
               <Link href={url} color={'inherit'} underline='none'>
-                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{title}</Typography>
+                <Typography variant={'h5'} component={'p'} color='secondary' sx={{ marginBottom: 2, lineHeight: 1.2 }}>
+                  <FancyTitle />
+                </Typography>
               </Link>
             ) : null}
             

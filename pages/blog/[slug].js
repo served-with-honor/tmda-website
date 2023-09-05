@@ -16,6 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
 import Link from '../../src/Link';
+import { splitTitle } from '../../src/utils';
 import settings from '../../src/siteSettings';
 import { WPButtons } from '../../src/WPBlocks';
 
@@ -27,6 +28,25 @@ export default function Post({ post }) {
 
 	const router = useRouter();
   const handleTagClick = (slug) => router.push(`/blog?tag=${slug}`);
+
+	const FancyTitle = () => {
+		const { primaryText, preText, postText } = splitTitle(title);
+		const secondaryStyles = { display: 'block', fontSize: '0.5em', fontWeight: 400, lineHeight: '1em' };
+
+		return <>
+			{preText && (
+				<Box component='span' color='primary.main' sx={secondaryStyles}>
+					{preText}
+				</Box>
+			)}
+			{primaryText}
+			{postText && (
+				<Box component='span' color='primary.main' sx={secondaryStyles}>
+					{postText}
+				</Box>
+			)}
+		</>
+	}
 
 	return (
 		<Page title={title}>
@@ -42,7 +62,9 @@ export default function Post({ post }) {
 			}}
 			>
 				<Container>
-					<Typography variant='h1' color='secondary' gutterBottom>{title}</Typography>
+					<Typography variant='h1' color='secondary' gutterBottom>
+						<FancyTitle />
+					</Typography>
 					<Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
 						<Avatar alt={author.name} src={author.image} sx={{ width: 48, height: 48 }}></Avatar>
 						<Box>

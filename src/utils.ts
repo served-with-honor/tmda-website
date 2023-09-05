@@ -26,8 +26,25 @@ function formatPhoneNumber(phone: string, sep: string) {
   return `${intlCode} (${idk[0]}) ${idk[1]}-${idk[2]}`.trim();
 }
 
+const splitTitle = (title) => {
+  let primaryText = title;
+  let preText;
+  let postText;
+
+  if (title.includes(':')) {
+    primaryText = title.split(':')[1];
+    preText = title.split(':')[0];
+  } else if (title.includes('(')) {
+    primaryText = title.split('(')[0];
+    postText = title.split('(')[1].replace(')', '');
+  }
+
+  return { preText, primaryText, postText }
+}
+
 export {
   slugify,
   getSocialIcon,
   formatPhoneNumber,
+  splitTitle,
 }
