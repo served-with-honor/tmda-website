@@ -89,6 +89,7 @@ const replaceContent = element => {
 	const renderElementContents = (element) => {
 		if (element.children) return element.children.map(item => {
 			const { children, name, attribs, type } = item;
+			if (attribs && 'style' in attribs) delete attribs.style;
 			if (type === 'text') return item.data;
 			if (name === 'a') return <Link {...attribs}>{domToReact(children)}</Link>
 			
