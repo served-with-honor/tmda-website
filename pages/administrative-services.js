@@ -26,7 +26,7 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 			<Box sx={{ 
 				pt: 20, 
 				pb: 10,
-				background: `url(${heroImage.src}) center / cover no-repeat`,
+				background: `url(${heroImage.src}) right / cover no-repeat`,
 			}}
 			>
 				<Container>
