@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
 import { getPost } from '../../lib/api'
@@ -42,19 +43,20 @@ export default function Post({ post }) {
 						</Box>
 					</Stack>
 					{tags ? (
-						<Stack direction="row" spacing={1} sx={{ mt: 5 }}>
+						<Grid container spacing={1} sx={{ mt: 5 }}>
 							{tags.map(({ slug, name }) => {
 								const color = settings.articleTagColors[slug];
 								return (
-									<Chip
-										key={`post-tag-${slug}`}
-										label={name}
-										onClick={() => handleTagClick(slug)}
-										sx={color ? { color: '#fff', backgroundColor: color } : {}}
-									/>
+									<Grid item key={`post-tag-${slug}`}>
+										<Chip
+											label={name}
+											onClick={() => handleTagClick(slug)}
+											sx={color ? { color: '#fff', backgroundColor: color } : {}}
+										/>
+									</Grid>
 								);
 							})}
-						</Stack>
+						</Grid>
 					) : null}
 				</Container>
 			</Box>
