@@ -90,12 +90,9 @@ const replaceContent = element => {
 		if (element.children) return element.children.map(item => {
 			const { children, name, attribs, type } = item;
 			if (type === 'text') return item.data;
-			if (children) {
-				if (name === 'a') return <Link {...attribs}>{domToReact(children)}</Link>
-				return domToReact(children);
-			}
+			if (name === 'a') return <Link {...attribs}>{domToReact(children)}</Link>
 			
-			return item;
+			return renderElementContents(item);
 		});
 
 		return domToReact(element);
