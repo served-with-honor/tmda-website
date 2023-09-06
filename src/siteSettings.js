@@ -1,5 +1,4 @@
 import { blue, green, purple, red } from '@mui/material/colors';
-import { LoremIpsum } from "lorem-ipsum";
 
 export default {
   name: 'Telemedica',
@@ -29,16 +28,6 @@ export default {
     providerPortal: 'https://intakeq.com/',
   },
   // googleAnalyticsId: 'G-73TKHSVTNZ',
-  dummyText: new LoremIpsum({
-    sentencesPerParagraph: {
-      max: 8,
-      min: 4
-    },
-    wordsPerSentence: {
-      max: 16,
-      min: 4
-    }
-  }),
   newsletter: {
     listId: '08b1d97e11',
     tags: ['website', 'newsletter'],
