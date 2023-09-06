@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
+import Link from '@mui/material/Link';
 import Page from '../../components/Page'
 import { getPosts, getTags } from '../../lib/api'
 import ArticleCard from '../../components/ArticleCard'
@@ -16,10 +17,10 @@ import NewsletterDialog from '../../components/NewsletterDialog'
 
 const LISTING_COUNT = 9;
 
-export default function Blog({ initialPosts, tags, selection, nextPage }) {
+export default function Blog({ initialPosts, tags, selection, initialNextPage }) {
 	const loadMoreRef = useRef(null);
 	const [a11yAlertText, setA11yAlertText] = useState(null);
-	const [hasMore, setHasMore] = useState(nextPage);
+	const [nextPage, setNextPage] = useState(initialNextPage);
 	const [posts, setPosts] = useState(initialPosts);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -44,11 +45,10 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 				setPosts(prev => [...prev, ...newPosts]);
 
 				const { hasNextPage, endCursor } = data.posts.pageInfo
-				const hasMore = hasNextPage ? endCursor : null;
+				setNextPage(hasNextPage ? endCursor : null);
 				
 				setA11yAlertText('');
-				setA11yAlertText(`Articles successfullly loaded. ${!hasMore ? ' There are no more articles to load.' : ''}`);
-				setHasMore(hasMore);
+				setA11yAlertText(`Articles successfullly loaded. ${!hasNextPage ? ' There are no more articles to load.' : ''}`);
 			})
 			.catch((error) => {
 				console.error('Problem loading next posts', error);
@@ -60,7 +60,7 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 	}
 
 	useEffect(() => {
-		if (loadMoreInView && !isLoading && hasMore) loadMore(hasMore || '');
+		if (loadMoreInView && !isLoading && nextPage) loadMore(nextPage);
 	}, [loadMoreInView]);
 	
 
@@ -128,7 +128,10 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 						}>{error}</Alert>
 					): null}
 
-					{hasMore ? ( <div ref={loadMoreRef} /> ) : (
+					{nextPage ? <>
+						<div ref={loadMoreRef} />
+						<Link href={`blog?after=${nextPage}`} sx={visuallyHidden}>Next Page</Link>
+					</> : (
 						<Typography variant='subtitle2' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
 					)}
 				</Container>
@@ -139,16 +142,17 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 
 export async function getServerSideProps({ query }) {
 	const queryTag = query.tag ? [query.tag] : null;
-	const selection = query.tag ? query.tag : null;
-	const response = await getPosts({ first: LISTING_COUNT, tags: queryTag });
+	const after = query.after || null;
+	const response = await getPosts({ first: LISTING_COUNT, after, tags: queryTag });
 	const initialPosts = response.posts.nodes.map(remapPost);
 	const { hasNextPage, endCursor } = response.posts.pageInfo;
-	const nextPage = hasNextPage ? endCursor : null;
-
+	const initialNextPage = hasNextPage ? endCursor : null;
+	
 	const tagsResponse = await getTags(999);
 	
 	const tags = tagsResponse.tags.nodes;
-  return { props: { initialPosts, tags, selection, nextPage }}
+	const selection = query.tag || null;
+  return { props: { initialPosts, tags, selection, initialNextPage }}
 }
 
 const remapPost = (post) => ({
