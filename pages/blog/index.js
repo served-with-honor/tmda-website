@@ -26,14 +26,13 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 	const loadMoreInView = useInView(loadMoreRef);
 	const [popupOpen, setPopupOpen] = useState(false);
 
-	const loadMore = () => {
+	const loadMore = (after) => {
 		setError(null);
 		setIsLoading(true);
 		setA11yAlertText('');
 		setA11yAlertText('Loading additional articles…');
 
 		const tags = selection ? [selection] : '';
-		const after = hasMore || ''
 		const params = new URLSearchParams({ first: LISTING_COUNT, tags, after });
 		const url = '/api/posts?' + params;
 		fetch(url, { method: 'GET' })
@@ -61,7 +60,7 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 	}
 
 	useEffect(() => {
-		if (loadMoreInView && hasMore) loadMore();
+		if (loadMoreInView && !isLoading && hasMore) loadMore(hasMore || '');
 	}, [loadMoreInView]);
 	
 
