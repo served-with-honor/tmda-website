@@ -14,7 +14,6 @@ import Skeleton from '@mui/material/Skeleton';
 import logo from '../public/images/logo.png';
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
-import { getFooterPosts } from '../lib/api'
 import { getSocialIcon, formatPhoneNumber } from '../src/utils';
 
 export default function Footer() {
@@ -23,10 +22,10 @@ export default function Footer() {
  
   useEffect(() => {
 		setIsLoading(true)
-		fetch('/api/posts', { method: 'GET' }).then(response => response.json()).then(response => {
-			const responsePosts = response.data.posts.edges.map(post => ({
-				title: post?.node?.title,
-				slug: post?.node?.slug,
+		fetch('/api/posts?first=4', { method: 'GET' }).then(response => response.json()).then(response => {
+			const responsePosts = response.data.posts.nodes.map(post => ({
+				title: post?.title,
+				slug: post?.slug,
 			}));
 			setPosts(responsePosts);
 			setIsLoading(false);

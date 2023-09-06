@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -14,40 +15,54 @@ import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
-export default function Blog({ posts, tags, selection, hasMorePosts }) {
+const LISTING_COUNT = 9;
+
+export default function Blog({ initialPosts, tags, selection, nextPage }) {
 	const loadMoreRef = useRef(null);
 	const [a11yAlertText, setA11yAlertText] = useState(null);
-	const [popupOpen, setPopupOpen] = useState(false);
-	const [hasMore, setHasMore] = useState(hasMorePosts);
+	const [hasMore, setHasMore] = useState(nextPage);
+	const [posts, setPosts] = useState(initialPosts);
 	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
 	const loadMoreInView = useInView(loadMoreRef);
+	const [popupOpen, setPopupOpen] = useState(false);
 
-	function loadMore({ cursor, tags }) {
-		return new Promise(async function (resolve, reject) {
-			try {
-				// #TODO - Fetch actual data
-				setTimeout(() => resolve({ cursor: null }), 3000);
-			} catch (error) {
-				reject(error);
-			}
-		});
+	const loadMore = () => {
+		setError(null);
+		setIsLoading(true);
+		setA11yAlertText('');
+		setA11yAlertText('Loading additional articles…');
+
+		const tags = selection ? [selection] : '';
+		const after = hasMore || ''
+		const params = new URLSearchParams({ first: LISTING_COUNT, tags, after });
+		const url = '/api/posts?' + params;
+		fetch(url, { method: 'GET' })
+			.then(response => response.json())
+			.then(({ data, error }) => {
+				if (error) throw error;
+				
+				const newPosts = data.posts.nodes.map(remapPost);
+				setPosts(prev => [...prev, ...newPosts]);
+
+				const { hasNextPage, endCursor } = data.posts.pageInfo
+				const hasMore = hasNextPage ? endCursor : null;
+				
+				setA11yAlertText('');
+				setA11yAlertText(`Articles successfullly loaded. ${!hasMore ? ' There are no more articles to load.' : ''}`);
+				setHasMore(hasMore);
+			})
+			.catch((error) => {
+				console.error('Problem loading next posts', error);
+				setError('There was a problem loading the next articles');
+				setA11yAlertText('Something went wrong loading the articles')
+			})
+			.finally(() => setIsLoading(false))
+		;
 	}
 
 	useEffect(() => {
-		const fetchData = async () => {
-			setA11yAlertText('');
-			setA11yAlertText('Loading additional articles…');
-			const { cursor } = await loadMore({ tags: selection ? [selection] : null });
-			setA11yAlertText('');
-			setA11yAlertText(`Articles successfullly loaded. ${!cursor ? ' There are no more articles to load.' : ''}`);
-			setIsLoading(false);
-			setHasMore(!!cursor);
-		}
-
-		if (loadMoreInView && hasMore) {
-			setIsLoading(true);
-			fetchData().catch(() => setA11yAlertText('Something went wrong loading the articles'));
-		}
+		if (loadMoreInView && hasMore) loadMore();
 	}, [loadMoreInView]);
 	
 
@@ -97,15 +112,25 @@ export default function Blog({ posts, tags, selection, hasMorePosts }) {
 							</Grid>
 						)) : null}
 					</Grid>
+
 					{a11yAlertText ? <Box sx={visuallyHidden} role="alert">{a11yAlertText}</Box> : null}
+					
 					{isLoading ? (
 						<Box align='center' sx={{ my: 10 }}>
 							<CircularProgress />
 						</Box>
-					) : hasMore ? (
-						<div ref={loadMoreRef}>Load more</div>
-					) : (
-						<Typography variant='subtitle1' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
+					) : null}
+
+					{error ? (
+						<Alert severity="error" sx={{ my: 5 }} action={
+							<Button color="inherit" size="small" onClick={() => loadMore()}>
+								Try Again
+							</Button>
+						}>{error}</Alert>
+					): null}
+
+					{hasMore ? ( <div ref={loadMoreRef} /> ) : (
+						<Typography variant='subtitle2' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
 					)}
 				</Container>
 			</Box>
@@ -116,19 +141,23 @@ export default function Blog({ posts, tags, selection, hasMorePosts }) {
 export async function getServerSideProps({ query }) {
 	const queryTag = query.tag ? [query.tag] : null;
 	const selection = query.tag ? query.tag : null;
-	const response = await getPosts({ count: 9, tags: queryTag });
-	const posts = response.posts.nodes.map(post => ({
-		title: post.title,
-		excerpt: post.excerpt,
-		slug: post.slug,
-		date: post.date,
-		image: post.featuredImage?.node?.mediaItemUrl,
-		categories: post.categories.edges?.map(a => a.node),
-		tags: post.tags.edges?.map(a => a.node),
-	}));
+	const response = await getPosts({ first: LISTING_COUNT, tags: queryTag });
+	const initialPosts = response.posts.nodes.map(remapPost);
+	const { hasNextPage, endCursor } = response.posts.pageInfo;
+	const nextPage = hasNextPage ? endCursor : null;
 
 	const tagsResponse = await getTags(999);
 	
 	const tags = tagsResponse.tags.nodes;
-  return { props: { posts, tags, selection, hasMorePosts: true }}
+  return { props: { initialPosts, tags, selection, nextPage }}
 }
+
+const remapPost = (post) => ({
+	title: post.title,
+	excerpt: post.excerpt,
+	slug: post.slug,
+	date: post.date,
+	image: post.featuredImage?.node?.mediaItemUrl,
+	categories: post.categories.edges?.map(a => a.node),
+	tags: post.tags.edges?.map(a => a.node),
+});
