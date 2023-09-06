@@ -42,9 +42,25 @@ const splitTitle = (title) => {
   return { preText, primaryText, postText }
 }
 
+
+const parserStripStyles = (attribs) => {
+	if (attribs && 'style' in attribs) {
+		delete attribs.style;
+	}
+}
+
+const parserFixClass = (attribs) => {
+	if (attribs && 'class' in attribs) {
+		attribs.className = attribs.class;
+		delete attribs.class;
+	}
+}
+
 export {
   slugify,
   getSocialIcon,
   formatPhoneNumber,
   splitTitle,
+  parserStripStyles,
+  parserFixClass,
 }
