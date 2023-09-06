@@ -6,15 +6,16 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 
-export default function ArticleCard({ slug: articleSlug, image, tags, title, excerpt = settings.dummyText.generateWords(32) }) {
+export default function ArticleCard({ isLoading = false, slug: articleSlug, image, tags, title, excerpt }) {
   const router = useRouter();
   const handleClick = (a) => router.push(`/blog${a}`);
-  const url = `/blog/${articleSlug}`;
+  const url = articleSlug ? `/blog/${articleSlug}` : null;
   
   return (
     <motion.div
@@ -27,6 +28,8 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
       <Card sx={{ cursor: 'pointer', height: '100%' }}>
         {image ? (
           <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(`/${articleSlug}`)} />
+          ) : isLoading ? (
+            <Skeleton variant="rectangular" height={150} />
         ) : null}
         <CardContent>
 
@@ -45,6 +48,11 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
                 />
               })}
             </Stack>
+          ) : isLoading ? (
+            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
+              <Skeleton variant='rounded' width={100} height={20} sx={{ borderRadius: 10 }} />
+              <Skeleton variant='rounded' width={100} height={20} sx={{ borderRadius: 10 }} />
+            </Stack>
           ) : null}
 
           <Box onClick={() => handleClick(`/${articleSlug}`)}>
@@ -52,13 +60,23 @@ export default function ArticleCard({ slug: articleSlug, image, tags, title, exc
             {/* TITLE */}
             {title ? (
               <Link href={url} color={'inherit'} underline='none'>
-                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{title}</Typography>
+                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{title || <Skeleton />}</Typography>
               </Link>
+            ) : isLoading ? (
+              <Typography variant={'h5'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>
+                <Skeleton variant='text' />
+                <Skeleton variant='text' width='50%' />
+              </Typography>
             ) : null}
             
             <Typography variant={'body1'}>
-              {excerpt ? `${excerpt}...` : null}
-              <Link href={url} aria-hidden={true}>continue reading</Link>
+              {excerpt ? `${excerpt}...` : isLoading ? <>
+                <Skeleton variant='text' />
+                <Skeleton variant='text' width={'80%'} />
+                <Skeleton variant='text' width={'90%'} />
+                <Skeleton variant='text' width={'50%'}  />
+              </> : null}
+              {url ? <Link href={url} aria-hidden={true}>continue reading</Link> : null}
             </Typography>
             
           </Box>

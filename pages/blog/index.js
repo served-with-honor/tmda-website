@@ -7,7 +7,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress'
 import { visuallyHidden } from '@mui/utils';
 import Page from '../../components/Page'
 import { getPosts, getTags } from '../../lib/api'
@@ -111,15 +110,16 @@ export default function Blog({ initialPosts, tags, selection, nextPage }) {
 								<ArticleCard {...post} />
 							</Grid>
 						)) : null}
+						
+						{isLoading ? <>
+							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+						</> : null}
 					</Grid>
 
 					{a11yAlertText ? <Box sx={visuallyHidden} role="alert">{a11yAlertText}</Box> : null}
 					
-					{isLoading ? (
-						<Box align='center' sx={{ my: 10 }}>
-							<CircularProgress />
-						</Box>
-					) : null}
 
 					{error ? (
 						<Alert severity="error" sx={{ my: 5 }} action={
