@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
-import { getAllPostsForHome } from '../lib/api'
+import { getPosts } from '../lib/api'
 import {
 	useTheme,
 	Avatar,
@@ -198,6 +198,16 @@ export default function Home({ posts }) {
 }
 
 export async function getServerSideProps(context) {
-	const posts = await getAllPostsForHome(false);
+	const data = await getPosts({ first: 3 });
+  const posts = data.posts.nodes.map((post) => ({
+		title: post.title,
+		excerpt: post.excerpt,
+		slug: post.slug,
+		date: post.date,
+		image: post.featuredImage?.node?.mediaItemUrl,
+		categories: post.categories.edges?.map(a => a.node),
+		tags: post.tags.edges?.map(a => a.node),
+	}));
+	
 	return { props: { posts } }
 }
