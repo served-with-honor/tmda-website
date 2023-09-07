@@ -10,14 +10,14 @@ import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
 import Link from '@mui/material/Link';
 import Page from '../../components/Page'
-import { getPosts, getTags } from '../../lib/api'
+import { getPosts, getCategories } from '../../lib/api'
 import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
 const LISTING_COUNT = 9;
 
-export default function Blog({ initialPosts, tags, selection, initialNextPage }) {
+export default function Blog({ initialPosts, categories, selection, initialNextPage }) {
 	const loadMoreRef = useRef(null);
 	const [a11yAlertText, setA11yAlertText] = useState(null);
 	const [nextPage, setNextPage] = useState(initialNextPage);
@@ -33,8 +33,8 @@ export default function Blog({ initialPosts, tags, selection, initialNextPage })
 		setA11yAlertText('');
 		setA11yAlertText('Loading additional articles…');
 
-		const tags = selection ? [selection] : '';
-		const params = new URLSearchParams({ first: LISTING_COUNT, tags, after });
+		const categories = selection ? [selection] : '';
+		const params = new URLSearchParams({ first: LISTING_COUNT, categories, after });
 		const url = '/api/posts?' + params;
 		fetch(url, { method: 'GET' })
 			.then(response => response.json())
@@ -85,15 +85,15 @@ export default function Blog({ initialPosts, tags, selection, initialNextPage })
 			
 			<Box sx={{ marginY: 10 }}>
 				<Container>
-					{tags ? (
+					{categories ? (
 						<Box>
 							<Typography variant='h3' component='h2' align='center' gutterBottom>Sort by Category</Typography>
 							<Stack direction='row' gap={2} justifyContent='center' sx={{ mb: 10 }} flexWrap="wrap">
-								{tags.map(({ name, slug }) => (
+								{categories.map(({ name, slug }) => (
 									<Button
-										key={`tag-${slug}`}
+										key={`category-${slug}`}
 										variant='contained'
-										href={`?tag=${slug}`}
+										href={`?category=${slug}`}
 										disabled={slug === selection}
 									>
 										{name}
@@ -141,18 +141,18 @@ export default function Blog({ initialPosts, tags, selection, initialNextPage })
 }
 
 export async function getServerSideProps({ query }) {
-	const queryTag = query.tag ? [query.tag] : null;
+	const queryCategory = query.category ? [query.category] : null;
 	const after = query.after || null;
-	const response = await getPosts({ first: LISTING_COUNT, after, tags: queryTag });
+	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
 	const initialPosts = response.posts.nodes.map(remapPost);
 	const { hasNextPage, endCursor } = response.posts.pageInfo;
 	const initialNextPage = hasNextPage ? endCursor : null;
 	
-	const tagsResponse = await getTags(999);
+	const categoriesResponse = await getCategories();
+	const categories = categoriesResponse.categories.nodes.filter(item => item.slug !== 'uncategorized');
 	
-	const tags = tagsResponse.tags.nodes;
-	const selection = query.tag || null;
-  return { props: { initialPosts, tags, selection, initialNextPage }}
+	const selection = query.category || null;
+  return { props: { initialPosts, categories, selection, initialNextPage }}
 }
 
 const remapPost = (post) => ({
@@ -162,5 +162,4 @@ const remapPost = (post) => ({
 	date: post.date,
 	image: post.featuredImage?.node?.mediaItemUrl,
 	categories: post.categories.edges?.map(a => a.node),
-	tags: post.tags.edges?.map(a => a.node),
 });

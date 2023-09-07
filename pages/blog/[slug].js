@@ -14,13 +14,13 @@ import settings from '../../src/siteSettings';
 import { replaceContent } from '../../src/WPBlocks';
 
 export default function Post({ post }) {
-	const { author, tags, title, content, featuredImage, date, modifed } = post;
+	const { author, categories, title, content, featuredImage, date, modifed } = post;
 	const contentComponents = parse(content, { replace: replaceContent });
 	const publishDate = new Date(date).toLocaleDateString();
 	const modifedDate = modifed ? new Date(modifed).toLocaleDateString() : null;
 
 	const router = useRouter();
-  const handleTagClick = (slug) => router.push(`/blog?tag=${slug}`);
+  const handleCategoryClick = (slug) => router.push(`/blog?category=${slug}`);
 
 	const FancyTitle = () => {
 		const { primaryText, preText, postText } = splitTitle(title);
@@ -67,15 +67,15 @@ export default function Post({ post }) {
 							) : null}
 						</Box>
 					</Stack>
-					{tags ? (
+					{categories ? (
 						<Grid container spacing={1} sx={{ mt: 5 }}>
-							{tags.map(({ slug, name }) => {
-								const color = settings.articleTagColors[slug];
+							{categories.map(({ slug, name }) => {
+								const color = settings.articleCategoryColors[slug];
 								return (
-									<Grid item key={`post-tag-${slug}`}>
+									<Grid item key={`post-category-${slug}`}>
 										<Chip
 											label={name}
-											onClick={() => handleTagClick(slug)}
+											onClick={() => handleCategoryClick(slug)}
 											sx={color ? { color: '#fff', backgroundColor: color } : {}}
 										/>
 									</Grid>

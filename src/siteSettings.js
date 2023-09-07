@@ -16,7 +16,7 @@ export default {
     phone: '+15128838446',
     email: 'mailto:email@email.com',
   },
-  articleTagColors: {
+  articleCategoryColors: {
     'nexus-letter': red[400],
     'mental-health': blue[300],
     'physical-conditions': green[400],

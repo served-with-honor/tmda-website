@@ -6,10 +6,10 @@ export default async function handler(
   response: NextApiResponse<{ data?: string, error?: unknown }>
 ) {
   try {
-    const { tags } = request.query;
+    const { tags, categories } = request.query;
     const first = (typeof request.query.first === 'string') ? parseInt(request.query.first) : null;
     const after = (typeof request.query.after === 'string') ? request.query.after : null
-    const data = await getPosts({ first, after, tags });
+    const data = await getPosts({ first, after, tags, categories });
     response.status(200).json({ data });
   } catch (error) {
     response.status(500).json({ error });

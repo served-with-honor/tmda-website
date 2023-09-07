@@ -13,7 +13,7 @@ import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 import { splitTitle } from '../src/utils';
 
-export default function ArticleCard({ isLoading = false, slug: articleSlug, image, tags, title, excerpt }) {
+export default function ArticleCard({ isLoading = false, slug: articleSlug, image, categories, title, excerpt }) {
   const router = useRouter();
   const handleClick = (a) => router.push(`/blog${a}`);
   const url = articleSlug ? `/blog/${articleSlug}` : null;
@@ -53,18 +53,18 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
         ) : null}
         <CardContent>
 
-          {/* Tags */}
-          {tags && tags.length > 0 ? (
+          {/* Categories */}
+          {categories && categories.length > 0 ? (
             <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
-              {tags.map(({ slug: tagSlug, name }) => {
-                const color = settings.articleTagColors[tagSlug];
+              {categories.map(({ slug: categorySlug, name }) => {
+                const color = settings.articleCategoryColors[categorySlug];
                 return <Chip
-                  key={`post-listing-${articleSlug}-tag-${tagSlug || slugify(name)}`}
+                  key={`post-listing-${categorySlug}-category-${categorySlug || slugify(name)}`}
                   variant={'contained'}
                   label={name}
                   sx={color ? { color: '#fff', backgroundColor: color } : {}}
                   size={'small'}
-                  onClick={() => handleClick(`?tag=${tagSlug}`)}
+                  onClick={() => handleClick(`?category=${categorySlug}`)}
                 />
               })}
             </Stack>
