@@ -6,7 +6,20 @@ export default async function handler(
   response: NextApiResponse<{ data?: string, error?: unknown }>
 ) {
   try {
-    const { tags, categories } = request.query;
+    const notEmptyString = a => a.trim().length > 0;
+
+    let { categories, tags } = request.query;
+
+    if (categories) {
+      if (typeof categories === 'string') categories = categories.split(',');
+      categories = categories.filter(notEmptyString);
+    }
+    
+    if (tags) {
+      if (typeof tags === 'string') tags = tags.split(',');
+      tags = tags.filter(notEmptyString);
+    }
+    
     const first = (typeof request.query.first === 'string') ? parseInt(request.query.first) : null;
     const after = (typeof request.query.after === 'string') ? request.query.after : null
     const data = await getPosts({ first, after, tags, categories });
