@@ -11,12 +11,32 @@ import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
+import { splitTitle } from '../src/utils';
 
-export default function ArticleCard({ isLoading = false, slug: articleSlug, image, tags, title, excerpt }) {
+export default function ArticleCard({ isLoading = false, slug: articleSlug, image, categories, title, excerpt }) {
   const router = useRouter();
-  const handleClick = (a) => router.push(`/blog${a}`);
+  const handleClick = (slug) => router.push(`/blog/${slug}`);
   const url = articleSlug ? `/blog/${articleSlug}` : null;
-  
+
+  const FancyTitle = () => {
+		const { primaryText, preText, postText } = splitTitle(title);
+		const secondaryStyles = { display: 'block', lineHeight: '1em' };
+
+		return <>
+			{preText && (
+				<Typography variant='subtitle2' component='span' sx={secondaryStyles}>
+					{preText}
+				</Typography>
+			)}
+			{primaryText}
+			{postText && (
+				<Typography variant='subtitle2' component='span' sx={secondaryStyles}>
+					{postText}
+				</Typography>
+			)}
+		</>
+	}
+	
   return (
     <motion.div
       style={{ height: '100%' }}
@@ -27,24 +47,26 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
     >
       <Card sx={{ cursor: 'pointer', height: '100%' }}>
         {image ? (
-          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(`/${articleSlug}`)} />
+          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(articleSlug)} />
           ) : isLoading ? (
             <Skeleton variant="rectangular" height={150} />
         ) : null}
         <CardContent>
 
-          {/* Tags */}
-          {tags && tags.length > 0 ? (
+          {/* Categories */}
+          {categories && categories.length > 0 ? (
             <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
-              {tags.map(({ slug: tagSlug, name }) => {
-                const color = settings.articleTagColors[tagSlug];
+              {categories.map(({ slug: categorySlug, name }) => {
+                const color = settings.articleCategoryColors[categorySlug];
                 return <Chip
-                  key={`post-listing-${articleSlug}-tag-${tagSlug || slugify(name)}`}
+                  key={`post-listing-${categorySlug}-category-${categorySlug || slugify(name)}`}
                   variant={'contained'}
+                  component="a"
                   label={name}
                   sx={color ? { color: '#fff', backgroundColor: color } : {}}
                   size={'small'}
-                  onClick={() => handleClick(`?tag=${tagSlug}`)}
+                  clickable
+                  href={`/blog?category=${categorySlug}`}
                 />
               })}
             </Stack>
@@ -55,12 +77,12 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
             </Stack>
           ) : null}
 
-          <Box onClick={() => handleClick(`/${articleSlug}`)}>
+          <Box onClick={() => handleClick(articleSlug)}>
             
             {/* TITLE */}
             {title ? (
               <Link href={url} color={'inherit'} underline='none'>
-                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{title || <Skeleton />}</Typography>
+                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{title ? <FancyTitle /> : <Skeleton />}</Typography>
               </Link>
             ) : isLoading ? (
               <Typography variant={'h5'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>
