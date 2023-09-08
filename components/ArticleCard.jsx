@@ -15,7 +15,7 @@ import { splitTitle } from '../src/utils';
 
 export default function ArticleCard({ isLoading = false, slug: articleSlug, image, categories, title, excerpt }) {
   const router = useRouter();
-  const handleClick = (a) => router.push(`/blog${a}`);
+  const handleClick = (slug) => router.push(`/blog/${slug}`);
   const url = articleSlug ? `/blog/${articleSlug}` : null;
 
   const FancyTitle = () => {
@@ -47,7 +47,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
     >
       <Card sx={{ cursor: 'pointer', height: '100%' }}>
         {image ? (
-          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(`/${articleSlug}`)} />
+          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(articleSlug)} />
           ) : isLoading ? (
             <Skeleton variant="rectangular" height={150} />
         ) : null}
@@ -61,10 +61,12 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
                 return <Chip
                   key={`post-listing-${categorySlug}-category-${categorySlug || slugify(name)}`}
                   variant={'contained'}
+                  component="a"
                   label={name}
                   sx={color ? { color: '#fff', backgroundColor: color } : {}}
                   size={'small'}
-                  onClick={() => handleClick(`?category=${categorySlug}`)}
+                  clickable
+                  href={`/blog?category=${categorySlug}`}
                 />
               })}
             </Stack>
@@ -75,7 +77,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
             </Stack>
           ) : null}
 
-          <Box onClick={() => handleClick(`/${articleSlug}`)}>
+          <Box onClick={() => handleClick(articleSlug)}>
             
             {/* TITLE */}
             {title ? (
