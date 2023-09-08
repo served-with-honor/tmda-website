@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
 import Link from '@mui/material/Link';
 import Page from '../../components/Page'
-import { getPosts, getCategories } from '../../lib/api'
+import { getPosts, getCategories, getCategory } from '../../lib/api'
 import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 import NewsletterDialog from '../../components/NewsletterDialog'
@@ -33,7 +33,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 		setA11yAlertText('');
 		setA11yAlertText('Loading additional articles…');
 
-		const categories = selection ? [selection] : '';
+		const categories = selection ? [selection.id] : '';
 		const params = new URLSearchParams({ first: LISTING_COUNT, categories, after });
 		const url = '/api/posts?' + params;
 		fetch(url, { method: 'GET' })
@@ -94,7 +94,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 										key={`category-${slug}`}
 										variant='contained'
 										href={`?category=${slug}`}
-										disabled={slug === selection}
+										disabled={selection && slug === selection.slug}
 									>
 										{name}
 									</Button>
@@ -141,8 +141,16 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 }
 
 export async function getServerSideProps({ query }) {
-	const queryCategory = query.category ? [query.category] : null;
 	const after = query.after || null;
+	let selection = null;
+	let queryCategory = null;
+
+	if (query.category) {
+		const { category } = await getCategory(query.category);
+		selection = category;
+		queryCategory = [category.id];
+	}
+
 	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
 	const initialPosts = response.posts.nodes.map(remapPost);
 	const { hasNextPage, endCursor } = response.posts.pageInfo;
@@ -151,7 +159,6 @@ export async function getServerSideProps({ query }) {
 	const categoriesResponse = await getCategories();
 	const categories = categoriesResponse.categories.nodes.filter(item => item.slug !== 'uncategorized');
 	
-	const selection = query.category || null;
   return { props: { initialPosts, categories, selection, initialNextPage }}
 }
 
