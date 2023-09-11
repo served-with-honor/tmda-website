@@ -19,9 +19,9 @@ export default function Testimonials({ items }) {
         const text = 'text' in item ? item.text : item;
         const author = 'author' in item ? item.author : null;
         return (
-          <Box sx={{ padding: 1 }} key={`testimonials-items-${index}`}>
-            <Paper sx={{ borderRadius: 12, padding: { xs: 3, md: 5 } }} elevation={5}>
-              <Typography variant={'body1'}>{text}</Typography>
+          <Box sx={{ padding: 1, mb: 3 }} key={`testimonials-items-${index}`}>
+            <Paper sx={{ borderRadius: 5, padding: { xs: 3, md: 5 } }} elevation={5}>
+              <Typography variant={'body1'} sx={{ fontStyle: 'italic' }} gutterBottom>{text}</Typography>
               {author && <Typography variant={'subtitle2'} align='right'>- {author}</Typography>}
             </Paper>
           </Box>
