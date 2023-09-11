@@ -15,12 +15,26 @@ import Skeleton from '@mui/material/Skeleton';
 import logo from '../public/images/logo.png';
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
-import { getSocialIcon, formatPhoneNumber, truncateString } from '../src/utils';
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+import { getSocialIcon, formatPhoneNumber } from '../src/utils';
 
 export default function Footer() {
-	const { data, error, isLoading } = useSWR('/api/posts?count=4', fetcher);
+	const [posts, setPosts] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+ 
+  useEffect(() => {
+		setIsLoading(true)
+		fetch('/api/posts?first=4', { method: 'GET' }).then(response => response.json()).then(response => {
+			const responsePosts = response.data.posts.nodes.map(post => ({
+				title: post?.title,
+				slug: post?.slug,
+			}));
+			setPosts(responsePosts);
+			setIsLoading(false);
+		}).catch((error) => {
+			setIsLoading(false);
+			console.error(error);
+		});
+	}, [])
 	
 	const firstYear = settings.copyrightYearInitial;
 	const thisYear = new Date().getFullYear();
@@ -70,27 +84,20 @@ export default function Footer() {
 
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Recent Updates</Typography>
-									{error ? (
-										<Alert severity="error">There was a problem loading the lastest posts</Alert>
-									) : (
+									{isLoading ? <Box>
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
+									</Box> : posts && posts.length > 0 ? (
 										<List>
-												{isLoading ? <>
-													<ListItemText sx={{ mb: 2 }}><Skeleton /></ListItemText>
-													<ListItemText sx={{ mb: 2 }}><Skeleton /></ListItemText>
-													<ListItemText sx={{ mb: 2 }}><Skeleton /></ListItemText>
-													<ListItemText sx={{ mb: 2 }}><Skeleton /></ListItemText>
-												</> : data.data.map(({ title, slug }) => {
-													const text = truncateString(title, 48, true);
-													const key = `footer-article-${slug}`;
-													const url = `/blog/${slug}`;
-													return (
-														<ListItemText key={key} sx={{ mb: 2 }}>
-															<Link href={url}>{text}</Link>
-														</ListItemText>
-													);
-												})}
+											{posts.map(({ title, slug }) => {
+												const limit = 48;
+												const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
+												return <ListItemText key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></ListItemText>
+											})}
 										</List>
-									)}
+										): null}
 								</Grid>
 
 								<Grid item xs={12} sm={6} md={3}>

@@ -50,43 +50,44 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				paddingBottom: 10,
 				position: 'relative',
 				background: `url(${texture01.src}) center / cover no-repeat`,
+				overflowX: 'hidden',
 			}} ref={heroRef}>
 				<Box sx={{
 					position: 'absolute',
-					width: '50%',
+					width: '50vw',
 					height: '100%',
 					right: '-5%',
 					top: '0',
-					display: 'flex',
+					display: { xs: 'none', md: 'flex' },
 					alignItems: 'center',
 				}}>
 					<MapAnim ref={heroRef} />
 				</Box>
-				<Container>
+				<Container sx={{ position: 'relative' }}>
 					<Grid container spacing={3}>
-						<Grid item md={6}>
+						<Grid item md={7} lg={6}>
 							<Typography variant='h1' color='primary'>Stop Fighting. <br />Start Winning.</Typography>
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }} gutterBottom>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
 								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
 							</Grid>
-							<Grid container spacing={5}>
-								{[
-									{ num: 15, suffix: 'k+', text: 'Veterans Served' },
-									{ num: 90, suffix: '%', text: 'Success Rate' },
-									{ num: 20, suffix: '+', text: 'Licensed Providers' },
-								].map(({ num, suffix, text }, index) => (
-									<Grid item key={`stuff-${index}`}>
-										<Box sx={{ marginTop: 10 }}>
+							<Box sx={{ marginTop: 10 }}>
+								<Grid container spacing={[3,5]}>
+									{[
+										{ num: 15, suffix: 'k+', text: 'Veterans Served' },
+										{ num: 90, suffix: '%', text: 'Success Rate' },
+										{ num: 20, suffix: '+', text: 'Licensed Providers' },
+									].map(({ num, suffix, text }, index) => (
+										<Grid item key={`stuff-${index}`}>
 											<Typography color='secondary' sx={{ fontSize: 40, fontWeight: 700, lineHeight: 1 }}>
 												<Counter to={num} duration={1.5} digits={2} />{suffix}
 											</Typography>
 											<Typography variant='body1'>{text}</Typography>
-										</Box>
-									</Grid>
-								))}
-							</Grid>
+										</Grid>
+									))}
+								</Grid>
+							</Box>
 						</Grid>
 					</Grid>
 				</Container>

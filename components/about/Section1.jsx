@@ -30,7 +30,7 @@ export default function Section1({ heading, text, button }) {
   const opacity = useTransform(scrollYProgress, [0, 1], ['100%', '10%']);
   
 	return (
-    <Box sx={{ pt: 10, pb: { xs: 10, md: 0 } }}>
+		<Box sx={{ py: 10 }}>
 			<Container>
         <Grid container spacing={{ xs: 1, md: 15 }}>
 					<Grid item md order={{ xs: 2, md: 1 }}>
@@ -50,8 +50,8 @@ export default function Section1({ heading, text, button }) {
 							>
 								<Box sx={{ ml: 10, mt: -10 }}>
 									<Image 
+										alt=''
 										src={phoneImage}
-										placeholder='blur'
 										style={{ width: 'auto', height: 'auto' }}
 										sizes="(min-width: 1024px) 300px, (min-width: 768px) 30vw, 200px"
 										/>
@@ -60,8 +60,9 @@ export default function Section1({ heading, text, button }) {
 							<motion.div
 								style={{ scaleX, opacity }}
 								>
-								<Box sx={{ my: 5 }}>
+								<Box sx={{ my: { xs: 5, md: 0 } }}>
 									<Image 
+										alt=''
 										src={phoneShadowImage}
 										sizes="(min-width: 1024px) 300px, (min-width: 768px) 30vw, 200px"
 										style={{ width: 'auto', height: 'auto' }}

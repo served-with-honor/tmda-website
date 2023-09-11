@@ -11,12 +11,32 @@ import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
+import { splitTitle } from '../src/utils';
 
-export default function ArticleCard({ isLoading = false, slug: articleSlug, image, tags, title, excerpt }) {
+export default function ArticleCard({ isLoading = false, slug: articleSlug, image, categories, title, excerpt }) {
   const router = useRouter();
-  const handleClick = (a) => router.push(`/blog${a}`);
-  const url = `/blog/${articleSlug}`;
+  const handleClick = (slug) => router.push(`/blog/${slug}`);
+  const url = articleSlug ? `/blog/${articleSlug}` : null;
 
+  const FancyTitle = () => {
+		const { primaryText, preText, postText } = splitTitle(title);
+		const secondaryStyles = { display: 'block', lineHeight: '1em' };
+
+		return <>
+			{preText && (
+				<Typography variant='subtitle2' component='span' sx={secondaryStyles}>
+					{preText}
+				</Typography>
+			)}
+			{primaryText}
+			{postText && (
+				<Typography variant='subtitle2' component='span' sx={secondaryStyles}>
+					{postText}
+				</Typography>
+			)}
+		</>
+	}
+	
   return (
     <motion.div
       style={{ height: '100%' }}
@@ -26,60 +46,61 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
       } : null}
     >
       <Card sx={{ cursor: 'pointer', height: '100%' }}>
-        {isLoading ? (
-          <Skeleton variant={'rectangle'} height={'15rem'} />
-        ) : image ? (
-          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(`/${articleSlug}`)} />
+        {image ? (
+          <CardMedia sx={{ height: '15rem' }} image={image} title="" onClick={() => handleClick(articleSlug)} />
+          ) : isLoading ? (
+            <Skeleton variant="rectangular" height={150} />
         ) : null}
         <CardContent>
 
-        {/* Tags */}
-        {tags || isLoading ? (
-          <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
-            {isLoading ? <>
-              <Skeleton variant={'rounded'} height={24} width={80} />
-              <Skeleton variant={'rounded'} height={24} width={120} />
-            </> : tags.map(({ slug: tagSlug, name }) => {
-              const color = settings.articleTagColors[tagSlug];
-              return <Chip
-                key={`post-listing-${articleSlug}-tag-${tagSlug || slugify(name)}`}
-                variant={'contained'}
-                label={name}
-                sx={color ? { color: '#fff', backgroundColor: color } : {}}
-                size={'small'}
-                onClick={() => handleClick(`?tag=${tagSlug}`)}
-              />
-            })}
-          </Stack>
+          {/* Categories */}
+          {categories && categories.length > 0 ? (
+            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
+              {categories.map(({ slug: categorySlug, name }) => {
+                const color = settings.articleCategoryColors[categorySlug];
+                return <Chip
+                  key={`post-listing-${categorySlug}-category-${categorySlug || slugify(name)}`}
+                  variant={'contained'}
+                  component="a"
+                  label={name}
+                  sx={color ? { color: '#fff', backgroundColor: color } : {}}
+                  size={'small'}
+                  clickable
+                  href={`/blog?category=${categorySlug}`}
+                />
+              })}
+            </Stack>
+          ) : isLoading ? (
+            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
+              <Skeleton variant='rounded' width={100} height={20} sx={{ borderRadius: 10 }} />
+              <Skeleton variant='rounded' width={100} height={20} sx={{ borderRadius: 10 }} />
+            </Stack>
           ) : null}
-          
-          <Box onClick={() => !isLoading ? handleClick(`/${articleSlug}`) : null}>
+
+          <Box onClick={() => handleClick(articleSlug)}>
             
             {/* TITLE */}
-            {title || isLoading ? (
+            {title ? (
               <Link href={url} color={'inherit'} underline='none'>
-                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>
-                  {isLoading ? <>
-                    <Skeleton />
-                    <Skeleton width={'90%'} />
-                  </> : title}
-                </Typography>
+                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{<FancyTitle />}</Typography>
               </Link>
+            ) : isLoading ? (
+              <Typography variant={'h5'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>
+                <Skeleton variant='text' />
+                <Skeleton variant='text' width='50%' />
+              </Typography>
             ) : null}
             
-            {excerpt || isLoading ? (
-              <Typography variant={'body1'}>
-                {isLoading ? <>
-                  <Skeleton />
-                  <Skeleton />
-                  <Skeleton />
-                  <Skeleton />
-                </> : <>
-                  {`${excerpt}... `}
-                  <Link href={url} aria-hidden={true} whiteSpace={'nowrap'}>continue reading</Link>
-                </>}
-              </Typography>
-            ): null}
+            <Typography variant={'body1'}>
+              {excerpt ? `${excerpt}...` : isLoading ? <>
+                <Skeleton variant='text' />
+                <Skeleton variant='text' width={'80%'} />
+                <Skeleton variant='text' width={'90%'} />
+                <Skeleton variant='text' width={'50%'}  />
+              </> : null}
+              {url ? <Link href={url} aria-hidden={true}>continue reading</Link> : null}
+            </Typography>
+            
           </Box>
         </CardContent>
       </Card>
