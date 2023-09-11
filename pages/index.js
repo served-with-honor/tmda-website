@@ -36,7 +36,7 @@ export default function Home({ faqs, testimonials }) {
 		<Page>
     
 			<Hero
-				// bgvideo="images/Website Headers/TMDA Hero Reel_01.mp4"
+				bgvideo="/videos/hero-reel-01.mp4"
 			>
 				<Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
 					Serving Those Who Served
