@@ -55,7 +55,7 @@ export default function CustomCard({ image, heading, description, button, entire
 
     return (image || heading || description || button) ? (
         <Paper sx={cardStyles} onClick={entireClickable ? () => handleCTAClick(button) : null}>
-            {image ? <Image alt="" {...image} /> : null}
+            {image ? <Image alt={image.alt || ''} src={`/../public${image.src}`} width={image.width} height={image.height} /> : null}
             {heading ? (
                 <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
             ) : null}

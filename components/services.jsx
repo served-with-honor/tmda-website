@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 export default [
   {
     title: 'Nexus Letters',
-    icon: '/../public/images/nexus-dbqs.png',
+    icon: '/images/nexus-dbqs.png',
     body:
       <>
         <Typography variant='body1'>
@@ -36,7 +36,7 @@ export default [
   },
   {
     title: 'Mental Health Evaluation',
-    icon: '/../public/images/mental-health-evaluation.png',
+    icon: '/images/mental-health-evaluation.png',
     body:
       <>
         <Typography variant='body1'>
@@ -65,7 +65,7 @@ export default [
   },
   {
     title: 'Telemedicine Evaluations',
-    icon: '/../public/images/telemedicine-evaluations.png',
+    icon: '/images/telemedicine-evaluations.png',
     body:
       <>
         <Typography variant='body1'>
@@ -93,7 +93,7 @@ export default [
   },
   {
     title: 'Rebuttal Letters',
-    icon: '/../public/images/logo-badge.png',
+    icon: '/images/logo-badge.png',
     body:
       <>
         <Typography variant='body1'>

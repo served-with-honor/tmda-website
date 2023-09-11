@@ -20,6 +20,7 @@ import ArticleCard from '../components/ArticleCard'
 import { SectionDivider } from '../components/layout'
 import { SectionFeatures1, FAQs, Testimonials, Words } from '../components/home'
 import { slugify } from '../src/utils';
+import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
 
 export default function Home({ posts }) {
 	const theme = useTheme();
@@ -95,7 +96,7 @@ export default function Home({ posts }) {
 					<Grid container spacing={5}>
 						<Grid item sm={6} sx={{ width: '100%' }}>
 							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
-								<Image fill src="/images/Dr_Smiling_Resized (1).jpeg" alt="" style={{ objectFit: 'cover' }} />
+								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} />
 							</Box>
 						</Grid>
 						<Grid item sm={6}>
