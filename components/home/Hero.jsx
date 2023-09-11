@@ -10,17 +10,20 @@ export default function Hero() {
   return (
     <Box sx={{
       backgroundColor: '#eee',
-      minHeight: '80vh',
+      minHeight: { lg: '80vh' },
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      py: 15,
     }}>
       <Box sx={{
         position: 'absolute',
         width: '100%',
         height: '100%',
         opacity: '0.75',
+        top: 0,
+        left: 0,
       }}>
         <video autoPlay loop muted playsInline style={{ height: '100%', width: '100%', objectFit: 'cover' }}>
           <source src='/videos/hero-reel-01.mp4' type="video/mp4" />
