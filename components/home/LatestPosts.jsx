@@ -31,7 +31,7 @@ export default function LatestPosts() {
         <Grid item sm={6} md={4}><ArticleCard isLoading /></Grid>
       </> :
         data?.data?.posts?.nodes?.length > 0 ? data?.data?.posts?.nodes?.map(post =>
-          <Grid item sm={6} md={4} key={`post-listing-${post.slug}`}>
+          <Grid item xs={12} sm={6} md={4} key={`post-listing-${post.slug}`}>
             <ArticleCard {...remapPost(post)} />
           </Grid>
         ) : null
