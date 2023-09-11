@@ -1,15 +1,13 @@
 import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
-import {
-	useTheme,
-	Avatar,
-	Button,
-	Box,
-	Container,
-	Grid,
-	Typography
-} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import Page from '../components/Page'
 import Hero from '../components/home/Hero'
