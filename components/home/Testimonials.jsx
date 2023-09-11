@@ -15,13 +15,18 @@ export default function Testimonials({ items }) {
 
   return items && items.length > 0 ? (
     <Slider {...settings}>
-      {items.map((text, index) => (
-        <Box sx={{ padding: 1 }} key={`testimonials-items-${index}`}>
-          <Paper sx={{ borderRadius: 12, padding: { xs: 3, md: 5 } }} elevation={5}>
-            <Typography variant={'body1'}>{text}</Typography>
-          </Paper>
-        </Box>
-      ))}
+      {items.map((item, index) => {
+        const text = 'text' in item ? item.text : item;
+        const author = 'author' in item ? item.author : null;
+        return (
+          <Box sx={{ padding: 1 }} key={`testimonials-items-${index}`}>
+            <Paper sx={{ borderRadius: 12, padding: { xs: 3, md: 5 } }} elevation={5}>
+              <Typography variant={'body1'}>{text}</Typography>
+              {author && <Typography variant={'subtitle2'} align='right'>- {author}</Typography>}
+            </Paper>
+          </Box>
+        )
+      })}
     </Slider>
   ) : null;
 }

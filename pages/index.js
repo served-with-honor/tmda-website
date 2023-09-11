@@ -222,10 +222,26 @@ export async function getStaticProps() {
 		},
 	];
 	const testimonials = [
-    'The only way you could improve is have Dr. Decruise do every single evaluation for VA claims insider PTSD. This is my 2nd eval with Telemedica so I was apprehensive about how the second exam would go. Dr. Decruuse is absolutely the most genuine and sincere mental health care provider possible. I know she sees thousands of patients but I honestly felt as though I was her one and only patient. She was kind, caring, compassionate and sincere. Her patience and concern for myself as a human (not just a number) are top notch. She is a world class human and physician. Dr. Decruise made me feel safe, secure, welcomed and as if she actually listened. I could not be more satisfied with how my exam went. And another short kudos for customer service team: Your customer service follow up and care is to be commended and appreciated',
-    'I feel that the whole process from beginning (scheduling) to end (the actual appointment) was very easy and stress free! Ms. Mia was so helpful that she went above and beyond to help me reschedule and answer a few questions I had with ease. The doctor was very personable and professional but at the same time made me feel extremely comfortable with the evaluation process.',
-    'Testimonial 3',
-    'Testimonial 4',
+		{
+			text: 'This is a great resource to use to help get your mental health issues out and be evaluated to put in for a VA disability claim.The doctor made me feel at ease.And I was able to dig into my emotions and not be afraid to hide things.I was more open then i thought and she listened and was helpful.',
+			author: 'Anonymous ',
+		},
+		{
+			text: 'This was the first time I used Telemedica LLC and my experience was amazing. My provider was patient, caring, respectfully and courteous. I recommend this company for all your medical needs. THANK YOU TELEMEDICA! I am grateful.',
+			author: 'Mark N.',
+		},
+		{
+			text: 'My husband used Telemedica for his IMO. They were extremely easy to work with throughout the process. The doctor was amazing. She was very professional, understanding, courteous and sensitive to his feelings and comments. I don\'t think you could go through this process without them.',
+			author: 'Kathy E.',
+		},
+		{
+			text: 'To all my brothers and sisters veterans, If you truly need so help in live from our ups and downs in the military stress, PLEASE contact Telemedical LLC, they are the real deal. Very knowledgeable and so professional. After 38 years I finally was able to vent to someone and get professional help. Please reach out to this team, get the help we as veterans deserve.',
+			author: 'Cpl.Spears',
+		},
+		{
+			text: 'I\'m only making this post in the hopes that someone can make a great decision. This for me was an amazing choice in the right direction. I have never done anything like this before and never thought I had to either. The truth is I don\'t like to be vulnerable but this is the place to be honest and open.I believe this was the right decision for myself and my family.This was my first time talking to a psychologist and I felt truly heard without prejudice. 10/10 recommend for anyone looking to make change for themselves.',
+			author: 'Devon H.',
+		},
 	];
 	return { props: { testimonials, faqs } }
 }
