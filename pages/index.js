@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
-import { getPosts } from '../lib/api'
 import {
 	useTheme,
 	Avatar,
@@ -13,16 +12,14 @@ import {
 } from '@mui/material';
 import Link from '../src/Link';
 import Page from '../components/Page'
-import Hero from '../components/Hero'
+import Hero from '../components/home/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
 import { SectionDivider } from '../components/layout'
-import TextFlipper from '../components/TextFlipper'
 import {
 	SectionFeatures1,
 	FAQs,
 	Testimonials,
-	Words,
 	LatestPosts,
 } from '../components/home'
 import { slugify } from '../src/utils';
@@ -35,19 +32,7 @@ export default function Home({ faqs, testimonials }) {
 	return (
 		<Page>
     
-			<Hero
-				bgvideo="/videos/hero-reel-01.mp4"
-			>
-				<Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
-					Serving Those Who Served
-				</Typography>
-				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600 }}>
-					The #1 Health Resource For Veterans On Their Path To
-					<Box component='span' sx={{ ml: 1 }}>
-						<TextFlipper items={['Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.',]} lineColor={theme.palette.primary.main} />
-					</Box>
-				</Typography>
-			</Hero>
+			<Hero />
 		
 			<SectionFeatures1 />
 			

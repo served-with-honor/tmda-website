@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function Testimonials({ items }) {
   const settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,
