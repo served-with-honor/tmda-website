@@ -47,7 +47,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                     <Grid container spacing={2} alignItems={'center'}>
                             <Grid item>
                                 <Image 
-                                    src={icon}
+                                    src={`/../public${icon}`}
                                     width={40}
                                     height={40}
                                     alt={title}
