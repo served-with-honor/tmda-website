@@ -26,12 +26,11 @@ export default function MainMenu() {
     { href: '/about', text: 'About' },
     { href: '/services', text: 'Services' },
     { href: '/blog', text: 'Blog' },
-    { href: '/resources', text: 'Resources' },
     { href: settings.externalLinks.patientPortal, text: 'Patient Portal', target: '_blank' },
   ];
   const items2 = [
-    { href: settings.externalLinks.providerPortal, text: 'Provider Portal', target: '_blank' },
     { href: '/administrative-services', text: 'Administrative Services' },
+    { href: settings.externalLinks.providerPortal, text: 'Provider Portal', target: '_blank' },
     { href: '/careers', text: 'Careers' },
   ];
 

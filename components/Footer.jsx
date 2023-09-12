@@ -60,7 +60,6 @@ export default function Footer() {
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Quick Links</Typography>
 									<List>
 										<ListItemText><Link href={'/about'}>About</Link></ListItemText>
-										<ListItemText><Link href={'/resources'}>Veteran Resources</Link></ListItemText>
 										<ListItemText><Link href={'/blog'}>News & Updates</Link></ListItemText>
 										<ListItemText><Link href={'/services'}>Services</Link></ListItemText>
 										<ListItemText><Link href={'/careers'}>Careers</Link></ListItemText>
