@@ -81,7 +81,7 @@ const Person = ({ name, position, image }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   return <>
-    <Avatar srcset={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
+    <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
     <Typography variant='h6' component='p'>{name}</Typography>
     <Typography variant='body2'>{position}</Typography>
   </>
