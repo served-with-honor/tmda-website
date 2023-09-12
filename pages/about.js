@@ -25,6 +25,10 @@ import Dialog from '@mui/material/Dialog';
 import BookingWidget from '../components/BookingWidget'
 import Section1 from '../components/about/Section1'
 import texture01 from '../public/texture-01.jpg'
+import missionIcon from '../public/images/mission.png'
+import purposeIcon from '../public/images/Purpose.png'
+import visionIcon from '../public/images/shared-vision.png'
+import Image from 'next/image';
 
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -99,13 +103,14 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
 					<Grid container spacing={3}>
 						{[
-							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.' },
-							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.' },
-							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.' },
-						].map(({ heading, text }, index) => (
+							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon:`${missionIcon.src}` },
+							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon:`${visionIcon.src}` },
+							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: `${purposeIcon.src}` },
+						].map(({ heading, text, icon }, index) => (
 							<Grid item sm key={`things-${index}`}>
 								<Card sx={{ height: '100%' }}>
 									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
+										<Image src={icon} alt={`${heading} icon`} width={50} height={50}/>
 										<Typography variant='h5' component='h3' sx={{ mb: 3 }}>{heading}</Typography>
 										<Box><Typography variant='body1'>{text}</Typography></Box>
 									</CardContent>
