@@ -3,11 +3,13 @@ import useSWR from 'swr'
 import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from '../theme';
+import { visuallyHidden } from '@mui/utils';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -58,27 +60,27 @@ export default function Footer() {
 							<Grid container item sm={12} md={9} spacing={5}>
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Quick Links</Typography>
-									<List>
-										<ListItemText><Link href={'/about'}>About</Link></ListItemText>
-										<ListItemText><Link href={'/blog'}>News & Updates</Link></ListItemText>
-										<ListItemText><Link href={'/services'}>Services</Link></ListItemText>
-										<ListItemText><Link href={'/careers'}>Careers</Link></ListItemText>
-										<ListItemText><Link href={'/faqs'}>FAQs</Link></ListItemText>
-									</List>
+									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+										<li><Link href={'/about'}>About</Link></li>
+										<li><Link href={'/blog'}>News & Updates</Link></li>
+										<li><Link href={'/services'}>Services</Link></li>
+										<li><Link href={'/careers'}>Careers</Link></li>
+										<li><Link href={'/faqs'}>FAQs</Link></li>
+									</ul>
 								</Grid>
 
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get Help</Typography>
-									<List>
-										<ListItemText><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></ListItemText>
-										<ListItemText><Link href={'/contact-us'}>Contact Us</Link></ListItemText>
-									</List>
+									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+										<li><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></li>
+										<li><Link href={'/contact-us'}>Contact Us</Link></li>
+									</ul>
 									
 									<Typography variant={'h6'} component={'h3'} marginTop={3} color={'secondary.700'}>Legal Pages</Typography>
-									<List>
-										<ListItemText><Link href={'/privacy-policy'}>Privacy Policy</Link></ListItemText>
-										<ListItemText><Link href={'/terms-and-conditions'}>Terms & Conditions</Link></ListItemText>
-									</List>
+									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+										<li><Link href={'/privacy-policy'}>Privacy Policy</Link></li>
+										<li><Link href={'/terms-and-conditions'}>Terms & Conditions</Link></li>
+									</ul>
 								</Grid>
 
 								<Grid item xs={12} sm={6} md={3}>
@@ -89,22 +91,22 @@ export default function Footer() {
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
 									</Box> : posts && posts.length > 0 ? (
-										<List>
+										<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
 											{posts.map(({ title, slug }) => {
 												const limit = 48;
 												const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
-												return <ListItemText key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></ListItemText>
+												return <Box component='li' key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></Box>
 											})}
-										</List>
+										</ul>
 										): null}
 								</Grid>
 
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get In Touch</Typography>
-									<List>
-										<ListItemText><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></ListItemText>
-										<ListItemText><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></ListItemText>
-									</List>
+									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+										<li><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></li>
+										<li><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></li>
+									</ul>
 								</Grid>
 
 							</Grid>
@@ -124,6 +126,7 @@ export default function Footer() {
 													<Link key={key} href={item} target="_blank" rel="noopener">
 														<Avatar sx={{ backgroundColor: 'secondary.200' }} size={'small'}>
 															<Icon sx={{ color: 'secondary.100' }} />
+															<Typography component='span' sx={visuallyHidden}>{text}</Typography>
 														</Avatar>
 													</Link>
 												);

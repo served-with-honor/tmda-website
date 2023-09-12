@@ -26,7 +26,7 @@ export default function FAQs({ items = [] }) {
           aria-controls={`panel${index}-content`}
           id={`panel${index}-header`}
         >
-          <Typography variant={'subtitle1'}>{title}</Typography>
+          <Typography variant={'subtitle1'} component='p'>{title}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant={'body1'}>{text}</Typography>
