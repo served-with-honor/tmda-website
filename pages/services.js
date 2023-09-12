@@ -4,12 +4,9 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
-import { CardContent } from '@mui/material';
 import Link from '@mui/material/Link';
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
