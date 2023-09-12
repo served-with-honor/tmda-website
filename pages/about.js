@@ -38,6 +38,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	const heroRef = useRef(null);
 	const sliderSettings = {
+    arrows: false,
 		dots: true,
 		infinite: false,
 		speed: 500,
@@ -163,7 +164,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					}
 				}
 			}}>
-				<Container disableGutters>
+				<Container maxWidth='md' disableGutters>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>How It Works</Typography>
 					
 					<Slider {...sliderSettings}>
