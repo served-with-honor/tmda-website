@@ -46,7 +46,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 		adaptiveHeight: false,
 		centerMode: true,
 		centerPadding: '100px',
-		initialSlide: 1,
+		initialSlide: 0,
 	};
 
 	return (
