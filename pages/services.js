@@ -165,7 +165,7 @@ export default function ServicesPage({ prices }) {
 				}}
 			>
 				<Container>
-					<Typography component='sectionHeading' variant='h2'>Book Now!</Typography>
+					<Typography variant='sectionHeading' component='h2'>Book Now!</Typography>
 					<Typography variant='body1' sx={{ py: 3 }}>
 						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 					</Typography>
