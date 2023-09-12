@@ -1,10 +1,13 @@
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles';
 import TextFlipper from '../TextFlipper'
+import siteSettings from '../../src/siteSettings';
 
-export default function Hero() {
+export default function Hero({ doStuff }) {
 	const theme = useTheme();
 
   return (
@@ -34,12 +37,16 @@ export default function Hero() {
         <Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
 					Serving Those Who Served
 				</Typography>
-				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600 }}>
+				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
 					The #1 Health Resource For Veterans On Their Path To
 					<Box component='span' sx={{ ml: 1, display: { xs: 'block', sm: 'inline' } }}>
 						<TextFlipper items={['Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.',]} lineColor={theme.palette.primary.main} />
 					</Box>
-				</Typography>
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
+          <Grid item><Button variant='contained' color='secondary' size='large' onClick={() => doStuff(true)}>Book Now</Button></Grid>
+        </Grid>
       </Container>
     </Box>
   )

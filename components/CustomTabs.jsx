@@ -65,8 +65,8 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
             >
               {isActive && (
                 <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
-                  {heading && <Typography variant='h6'>{heading}</Typography>}
-                  <Typography variant='body1'>{body}</Typography>
+                  {heading && <Typography variant='h4' gutterBottom>{heading}</Typography>}
+                  <Typography variant='body1' sx={{ fontSize: 18 }}>{body}</Typography>
                 </Box>
               )}
             </Box>

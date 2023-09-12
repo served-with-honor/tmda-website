@@ -7,17 +7,12 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { motion } from 'framer-motion'
 import { slugify } from '../src/utils';
-import imageUrlBuilder from "@sanity/image-url"
 import defaultProfile from '../public/default-profile.png'
-import sanityClient from '../lib/sanityConfig'
-const builder = imageUrlBuilder(sanityClient);
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
   
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const handleChange = (event, newValue) => setValue(newValue);
 
   return <>
     <DirectoryNav items={items.map(({ label }) => label)} value={value} handleChange={handleChange} />
@@ -28,15 +23,15 @@ export default function Directory({ items }) {
           <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
             {people.map(({ name, position, image }, index) => {
               return (
-                <Grid key={`directory-team-member-${slugify(name)}`} item sm={4} md={3} lg={2}>
-                  <motion.Box
+                <Grid key={`directory-team-member-${slugify(name)}`} item xs={12} sm={6} md={3} lg={2}>
+                  <motion.div
                     align="center"
                     initial={{ opacity: 0, y: -10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 * index }}
                   >
                     <Person name={name} image={image} position={position} />
-                  </motion.Box>
+                  </motion.div>
                 </Grid>
               );
             })}
@@ -83,9 +78,10 @@ const TabPanel = ({ children, value, index, ...other }) => (
 );
 
 const Person = ({ name, position, image }) => {
-  const imageUrl = image ? builder.image(image).size(300, 300).url() : defaultProfile.src;
+  const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
+  const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   return <>
-    <Avatar src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
+    <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
     <Typography variant='h6' component='p'>{name}</Typography>
     <Typography variant='body2'>{position}</Typography>
   </>

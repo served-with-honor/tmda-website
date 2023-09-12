@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import MapAnim from '../components/MapAnim'
-import { getTeamMembers } from '../lib'
+import { getTeamMembers, getProviders } from '../lib'
 import siteSettings from '../src/siteSettings';
 import Counter from '../components/Counter'
 import CustomTabs from '../components/CustomTabs'
@@ -29,11 +29,16 @@ import missionIcon from '../public/images/mission.png'
 import purposeIcon from '../public/images/Purpose.png'
 import visionIcon from '../public/images/shared-vision.png'
 import Image from 'next/image';
+import imageUrlBuilder from "@sanity/image-url"
+import sanityClient from '../lib/sanityConfig'
+
+const builder = imageUrlBuilder(sanityClient);
 
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	const heroRef = useRef(null);
 	const sliderSettings = {
+    arrows: false,
 		dots: true,
 		infinite: false,
 		speed: 500,
@@ -42,7 +47,15 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 		adaptiveHeight: false,
 		centerMode: true,
 		centerPadding: '100px',
-		initialSlide: 1,
+		initialSlide: 0,
+		responsive: [
+			{
+				breakpoint: 640,
+				settings: {
+					centerPadding: '20px',
+				},
+			},
+		],
 	};
 
 	return (
@@ -70,8 +83,8 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				<Container sx={{ position: 'relative' }}>
 					<Grid container spacing={3}>
 						<Grid item md={7} lg={6}>
-							<Typography variant='h1' color='primary'>Stop Fighting. <br />Start Winning.</Typography>
-							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }} gutterBottom>High-quality medical evidence for veterans nationwide</Typography>
+							<Typography variant='h1' color='primary' gutterBottom>Stop Fighting. <br />Start Winning.</Typography>
+							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }}>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
 								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
@@ -79,7 +92,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							<Box sx={{ marginTop: 10 }}>
 								<Grid container spacing={[3,5]}>
 									{[
-										{ num: 15, suffix: 'k+', text: 'Veterans Served' },
+										{ num: 20, suffix: 'k+', text: 'Veterans Served' },
 										{ num: 90, suffix: '%', text: 'Success Rate' },
 										{ num: 20, suffix: '+', text: 'Licensed Providers' },
 									].map(({ num, suffix, text }, index) => (
@@ -103,14 +116,14 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
 					<Grid container spacing={3}>
 						{[
-							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon:`${missionIcon.src}` },
-							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon:`${visionIcon.src}` },
-							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: `${purposeIcon.src}` },
+							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon: missionIcon },
+							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon: visionIcon },
+							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: purposeIcon },
 						].map(({ heading, text, icon }, index) => (
 							<Grid item sm key={`things-${index}`}>
 								<Card sx={{ height: '100%' }}>
 									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
-										<Image src={icon} alt={`${heading} icon`} width={50} height={50}/>
+										<Image src={icon} alt='' width={50} height={50} />
 										<Typography variant='h5' component='h3' sx={{ mb: 3 }}>{heading}</Typography>
 										<Box><Typography variant='body1'>{text}</Typography></Box>
 									</CardContent>
@@ -129,8 +142,29 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			) : null}
 
 			{/* SECTION */}
-			<Box sx={{ paddingY: 20 }}>
-				<Container>
+			<Box sx={{
+				paddingY: 20,
+				'.slick-slider': {
+					'&:before, &:after': {
+						position: 'absolute',
+						height: '100%',
+						backgroundColor: 'red',
+						top: 0,
+						width: '10px',
+						content: '""',
+						zIndex: 99,
+					},
+					'&:before': {
+						background: 'linear-gradient(to right, rgba(240,240,240,1) 0%, rgba(255,255,255,0) 100%)',
+						left: 0,
+					},
+					'&:after': {
+						background: 'linear-gradient(to left, rgba(240,240,240,1) 0%, rgba(255,255,255,0) 100%)',
+						right: 0,
+					}
+				}
+			}}>
+				<Container maxWidth='md' disableGutters>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>How It Works</Typography>
 					
 					<Slider {...sliderSettings}>
@@ -141,7 +175,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							{ title: 'Obtain', body: 'Receive your medical evidence (or therapists notes) directly to your patient portal. ' },
 							{ title: 'Submit & Receive', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim, or back your resubmission.' },
 						].map(({ title, body, subtext }, index) => (
-							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: 8 }}>
+							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: { xs: 4, md: 8 } }}>
 								<Typography sx={{ color: 'secondary.light', position: 'absolute', fontSize: 300, fontWeight: 600, lineHeight: 1, opacity: 0.125, left: 0, top: 0, }}>{index + 1}</Typography>
 								<Box sx={{ position: 'relative' }}>
 									<Typography variant='h3' color='secondary'>{title}:</Typography>
@@ -190,15 +224,15 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					<Typography variant='sectionHeading' component='h2' gutterBottom>Our Promise to You</Typography>
 					<List sx={{ '.MuiListItemIcon-root': { alignSelf: 'flex-start' }}}>
 						<ListItem>
-							<ListItemIcon><AddIcon /></ListItemIcon>
+							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
 							<ListItemText>As an administrative company, Telemedica works to connect you with licensed professionals wherever you are.</ListItemText>
 						</ListItem>
 						<ListItem>
-							<ListItemIcon><AddIcon /></ListItemIcon>
+							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
 							<ListItemText>All Telemedica providers hold doctoral degrees in psychology from graduate programs accredited by the American Psychological Association (APA) or the Psychological Clinical Science Accredited System (PCSAS).</ListItemText>
 						</ListItem>
 						<ListItem>
-							<ListItemIcon><AddIcon /></ListItemIcon>
+							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
 							<ListItemText>Many of Telemedica&apos;s providers have experience working directly with the veterans community, have veteran family members, or are veterans themselves. Our providers understand what the VA is looking for and will work alongside you to make strong connections for your VA disability claim.</ListItemText>
 						</ListItem>
 					</List>
@@ -213,18 +247,16 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 }
 
 export const getServerSideProps = async () => {
-	const teamMembers = await getTeamMembers();
-	const providers = [
-		{ name: 'Titus Jones', position: 'Lorem Ipsum Dolor', },
-		{ name: 'Amaya Bailey', position: 'Donec Dictum Justo', },
-		{ name: 'Chase Harrison', position: 'Phasellus At Tellus', },
-		{ name: 'Caleb Holmes', position: 'Sed In Mi', },
-		{ name: 'Alicia Cooper', position: 'Vestibulum Ut Ex', },
-		{ name: 'London Howard', position: 'Nulla Viverra Ipsum', },
-		{ name: 'Gracelynn Barnes', position: 'Proin Consectetur Neque', },
-		{ name: 'James Edwards', position: 'Ut Malesuada Dolor', },
-		{ name: 'Finn Butler', position: 'Etiam Hendrerit Turpis', },
-	];
+	const teamMembersResponse = await getTeamMembers();
+	const teamMembers = teamMembersResponse.map(person => {
+		if (person.image) person.image = builder.image(person.image).size(300, 300).url();
+		return person;
+	})
+	const providers = getProviders().map(person => {
+		person.position = person.degree;
+		delete person.degree;
+		return person;
+	});
 	const serveTabs = [
 		{
 			title: 'Who We Serve',

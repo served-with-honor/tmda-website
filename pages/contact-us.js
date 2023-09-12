@@ -12,6 +12,9 @@ import NewsletterDialog from '../components/NewsletterDialog'
 import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
+import eventImage from '../public/images/event.png'
+import monitorImage from '../public/images/monitor.png'
+import stethoscopeImage from '../public/images/stethoscope.png'
 
 export default function ContactUsPage({ actionItems }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -49,8 +52,8 @@ export default function ContactUsPage({ actionItems }) {
 				<Container>
 					<Grid container spacing={5}>
 						{actionItems.map((item, index) => (
-							<Grid key={`actions-card-${index}`} item md>
-								<CustomCard {...item} entireClickable />
+							<Grid key={`actions-card-${index}`} item md={4}>
+								<CustomCard {...item} />
 							</Grid>
 						))}
 					</Grid>
@@ -69,19 +72,19 @@ export default function ContactUsPage({ actionItems }) {
 export async function getStaticProps() {
 	const actionItems = [
 		{
-			image: { src: '/images/event.png', height: 60, width: 60 },
+			image: { ...eventImage, width: 85, height: 85 },
 			heading: 'Booking', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
 			button: { label: 'Book Now' },
 		},
 		{
-			image: { src: '/images/monitor.png', height: 60, width: 60 },
+			image: { ...monitorImage, width: 85, height: 85 }, 
 			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
 			button: { label: 'Log In', url: settings.externalLinks.patientPortal, target: '_blank' },
 		},
 		{
-			image: { src: '/images/stethoscope.png', height: 60, width: 60 },
+			image: { ...stethoscopeImage, width: 85, height: 85 },
 			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
 			button: { label: 'Log In', url: settings.externalLinks.providerPortal, target: '_blank' },

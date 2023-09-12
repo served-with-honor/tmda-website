@@ -15,7 +15,7 @@ CustomAccordion.propTypes = {
     name: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
-        icon: PropTypes.string,
+        icon: PropTypes.object,
     })).isRequired
 }
 
@@ -45,14 +45,7 @@ export default function CustomAccordion({items, name = 'Custom Accordion'}){
                         id={`${panelSlug}-header`}
                     >
                     <Grid container spacing={2} alignItems={'center'}>
-                            <Grid item>
-                                <Image 
-                                    src={`/../public${icon}`}
-                                    width={40}
-                                    height={40}
-                                    alt={title}
-                                />
-                            </Grid>
+                            {icon ? <Grid item><Image src={icon} alt={icon.alt || ''} /></Grid> : null}
                             <Grid item xs sx={{textAlign: {xs: 'center', sm: 'left'}}}>
                                 <Typography variant='h6' component={'p'}>{title}</Typography>
                             </Grid>

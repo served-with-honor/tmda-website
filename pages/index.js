@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles';
@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Dialog from '@mui/material/Dialog';
+import BookingWidget from '../components/BookingWidget'
 import Link from '../src/Link';
 import Page from '../components/Page'
 import Hero from '../components/home/Hero'
@@ -26,11 +28,12 @@ import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	
 	return (
 		<Page>
     
-			<Hero />
+			<Hero doStuff ={setIsBookingDialogOpen} />
 		
 			<SectionFeatures1 />
 			
@@ -48,7 +51,7 @@ export default function Home({ faqs, testimonials }) {
 									One Veteran At A Time
 								</Box>
 							</Typography>
-							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 15,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
+							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item md={4}>
 							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -70,7 +73,7 @@ export default function Home({ faqs, testimonials }) {
 								}}>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>More Than</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 40, lineHeight: 1.2 }}>
-										<Counter to={15000} parentRef={counterRef} />
+										<Counter to={20000} parentRef={counterRef} />
 									</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>Veterans</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 30, lineHeight: 1.2 }}>Served</Typography>
@@ -87,7 +90,7 @@ export default function Home({ faqs, testimonials }) {
 					<Grid container spacing={5}>
 						<Grid item sm={6} sx={{ width: '100%' }}>
 							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
-								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} />
+								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} sizes="(min-width: 1200px) 560px, (min-width: 600px) 50%, 600px" />
 							</Box>
 						</Grid>
 						<Grid item sm={6}>
@@ -181,6 +184,10 @@ export default function Home({ faqs, testimonials }) {
 					</Box>
 				</Container>
 			</Box>
+			
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>
 		</Page>
   )
 }

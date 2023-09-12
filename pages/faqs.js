@@ -11,7 +11,6 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import Page from '../components/Page'
 import { slugify } from '../src/utils';
 
-
 export default function FAQsPage({ items }) {
 	const topics = items.reduce((prev, cur, index) => (
 		!prev.includes(cur.topic) ? [...prev, cur.topic] : prev
