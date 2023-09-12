@@ -90,7 +90,7 @@ export default function Home({ faqs, testimonials }) {
 					<Grid container spacing={5}>
 						<Grid item sm={6} sx={{ width: '100%' }}>
 							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
-								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} />
+								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} sizes="(min-width: 1200px) 560px, (min-width: 600px) 50%, 600px" />
 							</Box>
 						</Grid>
 						<Grid item sm={6}>
