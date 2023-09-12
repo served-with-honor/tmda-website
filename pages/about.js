@@ -29,6 +29,10 @@ import missionIcon from '../public/images/mission.png'
 import purposeIcon from '../public/images/Purpose.png'
 import visionIcon from '../public/images/shared-vision.png'
 import Image from 'next/image';
+import imageUrlBuilder from "@sanity/image-url"
+import sanityClient from '../lib/sanityConfig'
+
+const builder = imageUrlBuilder(sanityClient);
 
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
@@ -213,7 +217,11 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 }
 
 export const getServerSideProps = async () => {
-	const teamMembers = await getTeamMembers();
+	const teamMembersResponse = await getTeamMembers();
+	const teamMembers = teamMembersResponse.map(person => {
+		if (person.image) person.image = builder.image(person.image).size(300, 300).url();
+		return person;
+	})
 	const providers = [
 		{ name: 'Titus Jones', position: 'Lorem Ipsum Dolor', },
 		{ name: 'Amaya Bailey', position: 'Donec Dictum Justo', },

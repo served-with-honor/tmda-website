@@ -7,17 +7,12 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { motion } from 'framer-motion'
 import { slugify } from '../src/utils';
-import imageUrlBuilder from "@sanity/image-url"
 import defaultProfile from '../public/default-profile.png'
-import sanityClient from '../lib/sanityConfig'
-const builder = imageUrlBuilder(sanityClient);
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
   
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const handleChange = (event, newValue) => setValue(newValue);
 
   return <>
     <DirectoryNav items={items.map(({ label }) => label)} value={value} handleChange={handleChange} />
