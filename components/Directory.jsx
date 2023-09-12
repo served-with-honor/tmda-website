@@ -78,9 +78,10 @@ const TabPanel = ({ children, value, index, ...other }) => (
 );
 
 const Person = ({ name, position, image }) => {
-  const imageUrl = image ? builder.image(image).size(300, 300).url() : defaultProfile.src;
+  const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
+  const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   return <>
-    <Avatar src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
+    <Avatar srcset={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
     <Typography variant='h6' component='p'>{name}</Typography>
     <Typography variant='body2'>{position}</Typography>
   </>
