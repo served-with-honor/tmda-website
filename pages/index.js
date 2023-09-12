@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles';
@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Dialog from '@mui/material/Dialog';
+import BookingWidget from '../components/BookingWidget'
 import Link from '../src/Link';
 import Page from '../components/Page'
 import Hero from '../components/home/Hero'
@@ -26,11 +28,12 @@ import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
+	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	
 	return (
 		<Page>
     
-			<Hero />
+			<Hero doStuff ={setIsBookingDialogOpen} />
 		
 			<SectionFeatures1 />
 			
@@ -181,6 +184,10 @@ export default function Home({ faqs, testimonials }) {
 					</Box>
 				</Container>
 			</Box>
+			
+			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
+				<Box sx={{ p: 3 }}><BookingWidget /></Box>
+			</Dialog>
 		</Page>
   )
 }
