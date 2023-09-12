@@ -24,14 +24,14 @@ export default function Directory({ items }) {
             {people.map(({ name, position, image }, index) => {
               return (
                 <Grid key={`directory-team-member-${slugify(name)}`} item xs={12} sm={6} md={3} lg={2}>
-                  <motion.Box
+                  <motion.div
                     align="center"
                     initial={{ opacity: 0, y: -10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 * index }}
                   >
                     <Person name={name} image={image} position={position} />
-                  </motion.Box>
+                  </motion.div>
                 </Grid>
               );
             })}
