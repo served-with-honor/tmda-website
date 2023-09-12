@@ -79,7 +79,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							<Box sx={{ marginTop: 10 }}>
 								<Grid container spacing={[3,5]}>
 									{[
-										{ num: 15, suffix: 'k+', text: 'Veterans Served' },
+										{ num: 20, suffix: 'k+', text: 'Veterans Served' },
 										{ num: 90, suffix: '%', text: 'Success Rate' },
 										{ num: 20, suffix: '+', text: 'Licensed Providers' },
 									].map(({ num, suffix, text }, index) => (
