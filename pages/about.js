@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import MapAnim from '../components/MapAnim'
-import { getTeamMembers } from '../lib'
+import { getTeamMembers, getProviders } from '../lib'
 import siteSettings from '../src/siteSettings';
 import Counter from '../components/Counter'
 import CustomTabs from '../components/CustomTabs'
@@ -222,17 +222,11 @@ export const getServerSideProps = async () => {
 		if (person.image) person.image = builder.image(person.image).size(300, 300).url();
 		return person;
 	})
-	const providers = [
-		{ name: 'Titus Jones', position: 'Lorem Ipsum Dolor', },
-		{ name: 'Amaya Bailey', position: 'Donec Dictum Justo', },
-		{ name: 'Chase Harrison', position: 'Phasellus At Tellus', },
-		{ name: 'Caleb Holmes', position: 'Sed In Mi', },
-		{ name: 'Alicia Cooper', position: 'Vestibulum Ut Ex', },
-		{ name: 'London Howard', position: 'Nulla Viverra Ipsum', },
-		{ name: 'Gracelynn Barnes', position: 'Proin Consectetur Neque', },
-		{ name: 'James Edwards', position: 'Ut Malesuada Dolor', },
-		{ name: 'Finn Butler', position: 'Etiam Hendrerit Turpis', },
-	];
+	const providers = getProviders().map(person => {
+		person.position = person.degree;
+		delete person.degree;
+		return person;
+	});
 	const serveTabs = [
 		{
 			title: 'Who We Serve',
