@@ -73,7 +73,7 @@ export default function Home({ faqs, testimonials }) {
 								}}>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>More Than</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 40, lineHeight: 1.2 }}>
-										<Counter to={15000} parentRef={counterRef} />
+										<Counter to={20000} parentRef={counterRef} />
 									</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 22, lineHeight: 1.2 }}>Veterans</Typography>
 									<Typography component={'span'} sx={{ display: 'block', fontSize: 30, lineHeight: 1.2 }}>Served</Typography>
