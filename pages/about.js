@@ -47,6 +47,14 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 		centerMode: true,
 		centerPadding: '100px',
 		initialSlide: 0,
+		responsive: [
+			{
+				breakpoint: 640,
+				settings: {
+					centerPadding: '20px',
+				},
+			},
+		],
 	};
 
 	return (
@@ -155,7 +163,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					}
 				}
 			}}>
-				<Container>
+				<Container disableGutters>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>How It Works</Typography>
 					
 					<Slider {...sliderSettings}>
@@ -166,7 +174,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							{ title: 'Obtain', body: 'Receive your medical evidence (or therapists notes) directly to your patient portal. ' },
 							{ title: 'Submit & Receive', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim, or back your resubmission.' },
 						].map(({ title, body, subtext }, index) => (
-							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: 8 }}>
+							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: { xs: 4, md: 8 } }}>
 								<Typography sx={{ color: 'secondary.light', position: 'absolute', fontSize: 300, fontWeight: 600, lineHeight: 1, opacity: 0.125, left: 0, top: 0, }}>{index + 1}</Typography>
 								<Box sx={{ position: 'relative' }}>
 									<Typography variant='h3' color='secondary'>{title}:</Typography>
