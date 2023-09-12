@@ -194,15 +194,15 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					<Typography variant='sectionHeading' component='h2' gutterBottom>Our Promise to You</Typography>
 					<List sx={{ '.MuiListItemIcon-root': { alignSelf: 'flex-start' }}}>
 						<ListItem>
-							<ListItemIcon><AddIcon /></ListItemIcon>
+							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
 							<ListItemText>As an administrative company, Telemedica works to connect you with licensed professionals wherever you are.</ListItemText>
 						</ListItem>
 						<ListItem>
-							<ListItemIcon><AddIcon /></ListItemIcon>
+							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
 							<ListItemText>All Telemedica providers hold doctoral degrees in psychology from graduate programs accredited by the American Psychological Association (APA) or the Psychological Clinical Science Accredited System (PCSAS).</ListItemText>
 						</ListItem>
 						<ListItem>
-							<ListItemIcon><AddIcon /></ListItemIcon>
+							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
 							<ListItemText>Many of Telemedica&apos;s providers have experience working directly with the veterans community, have veteran family members, or are veterans themselves. Our providers understand what the VA is looking for and will work alongside you to make strong connections for your VA disability claim.</ListItemText>
 						</ListItem>
 					</List>
