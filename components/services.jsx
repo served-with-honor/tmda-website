@@ -1,9 +1,13 @@
 import Typography from '@mui/material/Typography';
+import nexusImage from '../public/images/nexus-dbqs.png';
+import mentalHealthImage from '../public/images/mental-health-evaluation.png';
+import telemedicineImage from '../public/images/telemedicine-evaluations.png';
+import logoBadgeImage from '../public/images/logo-badge.png';
 
 export default [
   {
     title: 'Nexus Letters',
-    icon: '/images/nexus-dbqs.png',
+    icon: { ...nexusImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
@@ -36,7 +40,7 @@ export default [
   },
   {
     title: 'Mental Health Evaluation',
-    icon: '/images/mental-health-evaluation.png',
+    icon: { ...mentalHealthImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
@@ -65,7 +69,7 @@ export default [
   },
   {
     title: 'Telemedicine Evaluations',
-    icon: '/images/telemedicine-evaluations.png',
+    icon: { ...telemedicineImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
@@ -93,7 +97,7 @@ export default [
   },
   {
     title: 'Rebuttal Letters',
-    icon: '/images/logo-badge.png',
+    icon: { ...logoBadgeImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
