@@ -133,7 +133,28 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			) : null}
 
 			{/* SECTION */}
-			<Box sx={{ paddingY: 20 }}>
+			<Box sx={{
+				paddingY: 20,
+				'.slick-slider': {
+					'&:before, &:after': {
+						position: 'absolute',
+						height: '100%',
+						backgroundColor: 'red',
+						top: 0,
+						width: '10px',
+						content: '""',
+						zIndex: 99,
+					},
+					'&:before': {
+						background: 'linear-gradient(to right, rgba(240,240,240,1) 0%, rgba(255,255,255,0) 100%)',
+						left: 0,
+					},
+					'&:after': {
+						background: 'linear-gradient(to left, rgba(240,240,240,1) 0%, rgba(255,255,255,0) 100%)',
+						right: 0,
+					}
+				}
+			}}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>How It Works</Typography>
 					
