@@ -23,7 +23,7 @@ export default function Directory({ items }) {
           <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
             {people.map(({ name, position, image }, index) => {
               return (
-                <Grid key={`directory-team-member-${slugify(name)}`} item sm={4} md={3} lg={2}>
+                <Grid key={`directory-team-member-${slugify(name)}`} item xs={12} sm={6} md={3} lg={2}>
                   <motion.Box
                     align="center"
                     initial={{ opacity: 0, y: -10 }}
@@ -81,7 +81,7 @@ const Person = ({ name, position, image }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   return <>
-    <Avatar srcset={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3 }} />
+    <Avatar srcset={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
     <Typography variant='h6' component='p'>{name}</Typography>
     <Typography variant='body2'>{position}</Typography>
   </>
