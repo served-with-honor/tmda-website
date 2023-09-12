@@ -3,6 +3,7 @@ import useSWR from 'swr'
 import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from '../theme';
+import { visuallyHidden } from '@mui/utils';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -125,6 +126,7 @@ export default function Footer() {
 													<Link key={key} href={item} target="_blank" rel="noopener">
 														<Avatar sx={{ backgroundColor: 'secondary.200' }} size={'small'}>
 															<Icon sx={{ color: 'secondary.100' }} />
+															<Typography component='span' sx={visuallyHidden}>{text}</Typography>
 														</Avatar>
 													</Link>
 												);
