@@ -29,11 +29,12 @@ export default function SectionFeatures1() {
             </Typography>
           </motion.div>
         ) : null}
-        <Grid container={true} spacing={2}>
+        <Grid container={true} spacing={{ xs: 10, md: 5 }}>
           {items && items.length > 0 ? items.map((item, index) => (
             <Grid
               item
-              xs={4}
+              xs={12}
+              md={4}
               key={`section-${slugify(title)}-item-${slugify(item.body)}`}
             >
               <motion.div

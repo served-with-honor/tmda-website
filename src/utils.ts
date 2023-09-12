@@ -26,8 +26,48 @@ function formatPhoneNumber(phone: string, sep: string) {
   return `${intlCode} (${idk[0]}) ${idk[1]}-${idk[2]}`.trim();
 }
 
+function truncateString(string, limit, displayEllipses) {
+  if (!string) return null;
+  if (!limit || string.length <= limit) return string;
+
+  return `${string.substring(0, limit).trim()}${displayEllipses ? '...' : null}`;
+}
+
+const splitTitle = (title) => {
+  let primaryText = title;
+  let preText;
+  let postText;
+
+  if (title.includes(':')) {
+    primaryText = title.split(':')[1];
+    preText = title.split(':')[0];
+  } else if (title.includes('(')) {
+    primaryText = title.split('(')[0];
+    postText = title.split('(')[1].replace(')', '');
+  }
+
+  return { preText, primaryText, postText }
+}
+
+const parserStripStyles = (attribs) => {
+	if (attribs && 'style' in attribs) {
+		delete attribs.style;
+	}
+}
+
+const parserFixClass = (attribs) => {
+	if (attribs && 'class' in attribs) {
+		attribs.className = attribs.class;
+		delete attribs.class;
+	}
+}
+
 export {
   slugify,
   getSocialIcon,
   formatPhoneNumber,
+  truncateString,
+  splitTitle,
+  parserStripStyles,
+  parserFixClass,
 }

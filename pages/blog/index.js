@@ -1,53 +1,66 @@
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress'
 import { visuallyHidden } from '@mui/utils';
+import Link from '@mui/material/Link';
 import Page from '../../components/Page'
-import { getPosts, getTags } from '../../lib/api'
+import { getPosts, getCategories, getCategory } from '../../lib/api'
 import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
-export default function Blog({ posts, tags, selection, hasMorePosts }) {
+const LISTING_COUNT = 9;
+
+export default function Blog({ initialPosts, categories, selection, initialNextPage }) {
 	const loadMoreRef = useRef(null);
 	const [a11yAlertText, setA11yAlertText] = useState(null);
-	const [popupOpen, setPopupOpen] = useState(false);
-	const [hasMore, setHasMore] = useState(hasMorePosts);
+	const [nextPage, setNextPage] = useState(initialNextPage);
+	const [posts, setPosts] = useState(initialPosts);
 	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
 	const loadMoreInView = useInView(loadMoreRef);
+	const [popupOpen, setPopupOpen] = useState(false);
 
-	function loadMore({ cursor, tags }) {
-		return new Promise(async function (resolve, reject) {
-			try {
-				// #TODO - Fetch actual data
-				setTimeout(() => resolve({ cursor: null }), 3000);
-			} catch (error) {
-				reject(error);
-			}
-		});
+	const loadMore = (after) => {
+		setError(null);
+		setIsLoading(true);
+		setA11yAlertText('');
+		setA11yAlertText('Loading additional articles…');
+
+		const categories = selection ? [selection.id] : '';
+		const params = new URLSearchParams({ first: LISTING_COUNT, categories, after });
+		const url = '/api/posts?' + params;
+		fetch(url, { method: 'GET' })
+			.then(response => response.json())
+			.then(({ data, error }) => {
+				if (error) throw error;
+				
+				const newPosts = data.posts.nodes.map(remapPost);
+				setPosts(prev => [...prev, ...newPosts]);
+
+				const { hasNextPage, endCursor } = data.posts.pageInfo
+				setNextPage(hasNextPage ? endCursor : null);
+				
+				setA11yAlertText('');
+				setA11yAlertText(`Articles successfullly loaded. ${!hasNextPage ? ' There are no more articles to load.' : ''}`);
+			})
+			.catch((error) => {
+				console.error('Problem loading next posts', error);
+				setError('There was a problem loading the next articles');
+				setA11yAlertText('Something went wrong loading the articles')
+			})
+			.finally(() => setIsLoading(false))
+		;
 	}
 
 	useEffect(() => {
-		const fetchData = async () => {
-			setA11yAlertText('');
-			setA11yAlertText('Loading additional articles…');
-			const { cursor } = await loadMore({ tags: selection ? [selection] : null });
-			setA11yAlertText('');
-			setA11yAlertText(`Articles successfullly loaded. ${!cursor ? ' There are no more articles to load.' : ''}`);
-			setIsLoading(false);
-			setHasMore(!!cursor);
-		}
-
-		if (loadMoreInView && hasMore) {
-			setIsLoading(true);
-			fetchData().catch(() => setA11yAlertText('Something went wrong loading the articles'));
-		}
+		if (loadMoreInView && !isLoading && nextPage) loadMore(nextPage);
 	}, [loadMoreInView]);
 	
 
@@ -72,16 +85,16 @@ export default function Blog({ posts, tags, selection, hasMorePosts }) {
 			
 			<Box sx={{ marginY: 10 }}>
 				<Container>
-					{tags ? (
+					{categories ? (
 						<Box>
 							<Typography variant='h3' component='h2' align='center' gutterBottom>Sort by Category</Typography>
 							<Stack direction='row' gap={2} justifyContent='center' sx={{ mb: 10 }} flexWrap="wrap">
-								{tags.map(({ name, slug }) => (
+								{categories.map(({ name, slug }) => (
 									<Button
-										key={`tag-${slug}`}
+										key={`category-${slug}`}
 										variant='contained'
-										href={`?tag=${slug}`}
-										disabled={slug === selection}
+										href={`?category=${slug}`}
+										disabled={selection && slug === selection.slug}
 									>
 										{name}
 									</Button>
@@ -96,16 +109,30 @@ export default function Blog({ posts, tags, selection, hasMorePosts }) {
 								<ArticleCard {...post} />
 							</Grid>
 						)) : null}
+						
+						{isLoading ? <>
+							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+						</> : null}
 					</Grid>
+
 					{a11yAlertText ? <Box sx={visuallyHidden} role="alert">{a11yAlertText}</Box> : null}
-					{isLoading ? (
-						<Box align='center' sx={{ my: 10 }}>
-							<CircularProgress />
-						</Box>
-					) : hasMore ? (
-						<div ref={loadMoreRef}>Load more</div>
-					) : (
-						<Typography variant='subtitle1' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
+					
+
+					{error ? (
+						<Alert severity="error" sx={{ my: 5 }} action={
+							<Button color="inherit" size="small" onClick={() => loadMore()}>
+								Try Again
+							</Button>
+						}>{error}</Alert>
+					): null}
+
+					{nextPage ? <>
+						<div ref={loadMoreRef} />
+						<Link href={`blog?after=${nextPage}`} sx={visuallyHidden}>Next Page</Link>
+					</> : (
+						<Typography variant='subtitle2' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
 					)}
 				</Container>
 			</Box>
@@ -114,21 +141,32 @@ export default function Blog({ posts, tags, selection, hasMorePosts }) {
 }
 
 export async function getServerSideProps({ query }) {
-	const queryTag = query.tag ? [query.tag] : null;
-	const selection = query.tag ? query.tag : null;
-	const response = await getPosts({ count: 9, tags: queryTag });
-	const posts = response.posts.nodes.map(post => ({
-		title: post.title,
-		excerpt: post.excerpt,
-		slug: post.slug,
-		date: post.date,
-		image: post.featuredImage?.node?.mediaItemUrl,
-		categories: post.categories.edges?.map(a => a.node),
-		tags: post.tags.edges?.map(a => a.node),
-	}));
+	const after = query.after || null;
+	let selection = null;
+	let queryCategory = null;
 
-	const tagsResponse = await getTags(999);
+	if (query.category) {
+		const { category } = await getCategory(query.category);
+		selection = category;
+		queryCategory = [category.id];
+	}
+
+	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
+	const initialPosts = response.posts.nodes.map(remapPost);
+	const { hasNextPage, endCursor } = response.posts.pageInfo;
+	const initialNextPage = hasNextPage ? endCursor : null;
 	
-	const tags = tagsResponse.tags.nodes;
-  return { props: { posts, tags, selection, hasMorePosts: true }}
+	const categoriesResponse = await getCategories();
+	const categories = categoriesResponse.categories.nodes.filter(item => item.slug !== 'uncategorized');
+	
+  return { props: { initialPosts, categories, selection, initialNextPage }}
 }
+
+const remapPost = (post) => ({
+	title: post.title,
+	excerpt: post.excerpt,
+	slug: post.slug,
+	date: post.date,
+	image: post.featuredImage?.node?.mediaItemUrl,
+	categories: post.categories.edges?.map(a => a.node),
+});

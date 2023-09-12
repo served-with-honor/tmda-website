@@ -1,24 +1,36 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import LiteYouTubeEmbed from "react-lite-youtube-embed"
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
 import { CardContent } from '@mui/material';
-import BookingWidget from '../components/BookingWidget';
+import Link from '@mui/material/Link';
+import BookingWidget from '../components/BookingWidget'
+import CustomAccordion from '../components/CustomAccordion'
+import services from '../components/services'
+import Image from 'next/image';
+import placeholderImage from '../public/images/AdobeStock_315180932-1024x1024.jpeg'
+import LiteYouTubeEmbed from "react-lite-youtube-embed"
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 export default function ServicesPage({ prices }) {
-	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
-
+	const mobileBookingSectionRef = useRef(null);
+	const desktopBookingSectionRef = useRef(null);
+	const handleBookNowClick = () => {
+		const isMobileDevice = window.innerWidth < 900;
+		const behavior = 'smooth'
+		if(isMobileDevice) {
+			mobileBookingSectionRef.current.scrollIntoView({ behavior})
+		} else {
+			desktopBookingSectionRef.current.scrollIntoView({behavior})
+		}
+	}
 	return (
 		<Page title={'Services'}>	
 			{/* HERO */}
@@ -83,7 +95,7 @@ export default function ServicesPage({ prices }) {
 										variant='contained' 
 										color='secondary' 
 										size='large'
-										onClick={() => setIsBookingDialogOpen(true)}
+										onClick={handleBookNowClick}
 									>
 										Book Now
 									</Button>
@@ -100,54 +112,37 @@ export default function ServicesPage({ prices }) {
 								</Grid>
 							</Grid>
 					</Box>
-				</Container>
-				
-			</Box>
+					</Container>
+					</Box>
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', py: 20, px: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
 				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
-					<Grid container spacing={5} mb={10}>
-						{[
-							{ title: 'Mental Health Evaluation', text: 'Quis laborum incididunt duis labore non cillum consectetur velit occaecat laboris.' },
-							{ title: 'Nexus Letters & DBQs', text: 'Id et aliqua commodo cillum minim nostrud.' },
-							{ title: 'Telemedicine Evaluations', text: 'Excepteur in laborum est cillum sunt cupidatat labore qui aliquip voluptate laboris.' },
-							{ title: 'Recurring Therapy', text: 'Cupidatat sunt sunt irure id nostrud consectetur consequat nostrud pariatur fugiat consequat id.' },
-						].map(({ title, text }, index) => (
-							<Grid key={`services-features-${index}`} item md={6}>
-								<Card sx={{ height: '100%' }}>
-									<CardContent sx={{ textAlign: 'center', paddingY: 5, paddingX: 3 }}>
-										<Typography variant={'h5'} component={'h3'} sx={{ mb: 5 }}>{title}</Typography>
-										<Typography variant={'body1'} sx={{ mb: 5 }}>{text}</Typography>
-										<Button variant="outlined">Book Now</Button>
-									</CardContent>
-								</Card>
-							</Grid>
-						))}
-					</Grid>
-					<Stack justifyContent={'center'} direction={{ xs: 'column', sm: 'row' }} spacing={2} divider={<Divider orientation="vertical" flexItem />}>
-						<Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button>
-						<Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button>
-					</Stack>
+					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
+					{services ? (
+					<Box mb={10}>
+						<CustomAccordion items={services} />
+					</Box>
+					) : null}
+					<Container sx={{textAlign: 'center'}}> 
+						<Link variant='string' color='secondary' href='#' sx={{px: 1}}>How it Works</Link>
+					</Container>
 				</Container>
 			</Box>
 			{/* SECTION */}
-			<Box sx={{ pt: 8, pb: 4 }}>
-				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>At-A-Glance Pricing</Typography>
+			<Box sx={{ p: 10 }}>
+				<Container maxWidth='md'>
+					<Typography variant='sectionHeading' component='h2' sx={{ mb: 10 }}>At-A-Glance Pricing</Typography>
 					{prices ? (
 						<Box sx={{
 							border: 1,
 							borderColor: 'primary.main',
 							borderRadius: 12,
-							maxWidth: 'md',
-							mx: 'auto',
 							p: 2,
 						}}>
 							<PriceTable columns={prices.columns} rows={prices.rows} />
 						</Box>
 					) : null}
-					<Box sx={{ py: 6, px: 10}}>
+					<Box sx={{ mt: 6 }}>
 						{/* Discount Section */}
 						<Typography display='inline' variant='h6'>Discounts: </Typography>
 						<Typography sx={{ fontStyle: 'italic'}} display='inline'>A volume discount of 15% applies when you purchase three (3) or more documents.</Typography>
@@ -159,9 +154,54 @@ export default function ServicesPage({ prices }) {
 					</Box>
 				</Container>
 			</Box>
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>	
+			{/* Booking Section */}
+			<Box
+				ref={desktopBookingSectionRef} 
+				sx={{ 
+					backgroundColor: 'grey.50', 
+					py: 10, 
+					alignItems: 'center', 
+					textAlign: 'center' 
+				}}
+			>
+				<Container>
+					<Typography component='sectionHeading' variant='h2'>Book Now!</Typography>
+					<Typography variant='body1' sx={{ py: 3 }}>
+						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
+					</Typography>
+					<Grid container spacing={5}>
+						<Grid item xs={12} md={6}>
+							<Box sx={{
+								maxWidth: {xs: '350px', sm: 'none'}, 
+								}}
+							>
+								<Image 
+									src={placeholderImage}
+									alt='comming soon image'
+									sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
+									style={{
+										maxWidth: '100%',
+										height: 'auto', 
+									}}
+								/>
+							</Box>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<Box
+								ref={mobileBookingSectionRef}
+								backgroundColor='background.default' 
+								sx={{ 
+									height:{ md:'625px' }, 
+									overflow: { md:'auto' },
+									p: 3
+								}}
+							>
+								<BookingWidget />
+							</Box>
+						</Grid>
+					</Grid>
+				</Container>			
+			</Box>
   	</Page>
   )
 }

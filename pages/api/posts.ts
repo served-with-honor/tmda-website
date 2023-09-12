@@ -1,15 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getFooterPosts } from '../../lib/api'
+import { getPosts } from '../../lib/api'
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<{ data: string | undefined, error?: unknown }>
+  request: NextApiRequest,
+  response: NextApiResponse<{ data?: string, error?: unknown }>
 ) {
   try {
-    const data = await getFooterPosts();
-    res.status(200).json({ data });
+    const notEmptyString = a => a.trim().length > 0;
+
+    let { categories, tags } = request.query;
+
+    if (categories) {
+      if (typeof categories === 'string') categories = categories.split(',');
+      categories = categories.filter(notEmptyString);
+    }
+    
+    if (tags) {
+      if (typeof tags === 'string') tags = tags.split(',');
+      tags = tags.filter(notEmptyString);
+    }
+    
+    const first = (typeof request.query.first === 'string') ? parseInt(request.query.first) : null;
+    const after = (typeof request.query.after === 'string') ? request.query.after : null
+    const data = await getPosts({ first, after, tags, categories });
+    response.status(200).json({ data });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ data: undefined, error });
+    response.status(500).json({ error });
   }
 }
