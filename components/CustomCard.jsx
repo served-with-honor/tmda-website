@@ -1,18 +1,14 @@
 import { useRouter } from "next/router";
 import PropTypes from 'prop-types';
 import Image from "next/image";
+import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
 import { baseTheme } from '../theme'
 
 CustomCard.propTypes = {
-    image: PropTypes.shape({
-        src: PropTypes.string.isRequired,
-        alt: PropTypes.string,
-        height: PropTypes.number,
-        width: PropTypes.number,
-    }),
+    image: PropTypes.object,
     heading: PropTypes.string,
     description: PropTypes.string,
     button: PropTypes.shape({
@@ -38,7 +34,7 @@ export default function CustomCard({ image, heading, description, button, entire
     }
 
     const cardStyles = {
-        borderRadius: 24,
+        borderRadius: 5,
         minHeight: '100%',
         textAlign: 'center',
         p: 5,
@@ -55,12 +51,12 @@ export default function CustomCard({ image, heading, description, button, entire
 
     return (image || heading || description || button) ? (
         <Paper sx={cardStyles} onClick={entireClickable ? () => handleCTAClick(button) : null}>
-            {image ? <Image alt={image.alt || ''} src={`/../public${image.src}`} width={image.width} height={image.height} /> : null}
+            {image ? <Box marginBottom={3}><Image src={image} alt={image.alt || ''} /></Box> : null}
             {heading ? (
-                <Typography color='secondary' variant='h6' component='h2' sx={{ mt: 2 }}>{heading}</Typography>
+                <Typography color='secondary' variant='h6' component='h2' marginBottom={3}>{heading}</Typography>
             ) : null}
             {description ? (
-                <Typography variant='body1' sx={{ my: 3 }}>{description}</Typography>
+                <Typography variant='body1' marginBottom={3}>{description}</Typography>
             ) : null}
             {button ? (
                 <Button

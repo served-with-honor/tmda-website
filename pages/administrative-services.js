@@ -7,7 +7,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Paper from '@mui/material/Paper';
 import CheckIcon from '@mui/icons-material/Check';
 import Page from '../components/Page'
 import Image from 'next/image';
@@ -15,9 +14,6 @@ import doctorImage from '../public/images/admin-services-image.png'
 import CustomCard from '../components/CustomCard';
 import siteSettings from '../src/siteSettings';
 import heroImage from '../public/images/admin-services-hero.jpg'
-
-
-
 
 export default function AdministrativeServicesPage({ services, benefits }) {
 	return (
@@ -104,10 +100,7 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 							{services.map(({heading, description}, index) => {
 							return(
 							<Grid key={`services-item-${index}`} item md={4}>
-								<Paper sx={{ p: 5, borderRadius: 3, height: '100%' }} align='center'>
-										<Typography variant='h5' component='h3' color='secondary.main' mb={3}>{heading}</Typography>	
-										<Typography variant='body1'>{description}</Typography>	
-								</Paper>
+									<CustomCard heading={heading} description={description} />
 							</Grid>)
 						})}
 					</Grid>
