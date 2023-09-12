@@ -1,45 +1,36 @@
 import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
-import { getPosts } from '../lib/api'
-import {
-	useTheme,
-	Avatar,
-	Button,
-	Box,
-	Container,
-	Grid,
-	Typography
-} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import Page from '../components/Page'
-import Hero from '../components/Hero'
+import Hero from '../components/home/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
-import ArticleCard from '../components/ArticleCard'
 import { SectionDivider } from '../components/layout'
-import { SectionFeatures1, FAQs, Testimonials, Words } from '../components/home'
+import {
+	SectionFeatures1,
+	FAQs,
+	Testimonials,
+	LatestPosts,
+} from '../components/home'
 import { slugify } from '../src/utils';
 import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
 
-export default function Home({ posts }) {
+export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
-
+	
 	return (
 		<Page>
     
-			<Hero
-				// bgvideo="images/Website Headers/TMDA Hero Reel_01.mp4"
-			>
-				<Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
-					Serving Those Who Served
-				</Typography>
-				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600 }}>
-					The #1 Health Resource For Veterans On Their Path To
-					<Words items={[ 'Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.', ]} />
-				</Typography>
-			</Hero>
+			<Hero />
 		
 			<SectionFeatures1 />
 			
@@ -114,7 +105,7 @@ export default function Home({ posts }) {
 
 			<SectionDivider />
 
-			<Box paddingY={12}>
+			<Box paddingY={12} align={'center'}>
 				<Container>
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -144,17 +135,15 @@ export default function Home({ posts }) {
 									whileInView={{ y: 0, opacity: 1 }}
 									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
 								>
-									<Box align={'center'} sx={{ mb: 3 }}><Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50 }}>{index + 1}</Avatar></Box>
-									<Typography align={'center'} variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
-									<Typography align={'center'} variant={'body1'}>{text}</Typography>
+									<Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50, mb: 3 }}>{index + 1}</Avatar>
+									<Typography variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
+									<Typography variant={'body1'}>{text}</Typography>
 								</motion.div>
 							</Grid>
 
 						))}
 					</Grid>
-					<Box align={'center'}>
-						<Button variant={'contained'} href={'/services'}>Learn More...</Button>
-					</Box>
+					<Button variant={'contained'} href={'/services'} sx={{ mt: 8, px: { sm: 8 } }}>More about our services</Button>
 				</Container>
 			</Box>
 			
@@ -164,17 +153,19 @@ export default function Home({ posts }) {
 			}}>
 				<Container maxWidth={'md'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ color: 'primary.contrastText', mb: 8 }}>Frequently Asked Questions</Typography>
-					<FAQs />
+					<FAQs items={faqs} />
 				</Container>
 			</Box>
 
-			<Box paddingY={12}>
+			<Box paddingY={12} backgroundColor={'#fafafa'}>
 				<Container size={'sm'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>Five-Star Ratings from Our Veteran Clients &amp; Providers Working with Telemedica.</Typography>
-					<Box sx={{ marginY: 5 }}><Testimonials /></Box>
-					<Box align={'center'} sx={{ mt: 5 }}>
-							<Button variant={'contained'} href={'#'}>Write a Review</Button>
+					{testimonials ? (
+						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
+					) : null}
+					<Box align={'center'} sx={{ mt: 10 }}>
+							<Button variant={'contained'} href={'#'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
@@ -182,33 +173,58 @@ export default function Home({ posts }) {
 			<Box paddingY={12}>
 				<Container>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Check Out These Free Resources!<br />Find out more about _____.</Typography>
-					<Grid container spacing={{ xs: 3, lg: 10 }}>
-						{posts && posts.length > 0 ? posts.map(post =>
-							<Grid item sm={6} md={4} key={`post-listing-${post.slug}`}>
-								<ArticleCard {...post} />
-							</Grid>
-						) : null}
-					</Grid>
-						<Box align={'center'} sx={{ mt: 5 }}>
-							<Button variant={'contained'} href={'/blog'}>Read More...</Button>
-						</Box>
+					<Box sx={{ mb: 8 }}>
+						<LatestPosts />
+					</Box>
+					<Box align={'center'}>
+						<Button variant={'contained'} href={'/blog'}>Find more free resources</Button>
+					</Box>
 				</Container>
 			</Box>
 		</Page>
   )
 }
 
-export async function getServerSideProps(context) {
-	const data = await getPosts({ first: 3 });
-  const posts = data.posts.nodes.map((post) => ({
-		title: post.title,
-		excerpt: post.excerpt,
-		slug: post.slug,
-		date: post.date,
-		image: post.featuredImage?.node?.mediaItemUrl,
-		categories: post.categories.edges?.map(a => a.node),
-		tags: post.tags.edges?.map(a => a.node),
-	}));
-	
-	return { props: { posts } }
+export async function getStaticProps() {
+	const faqs = [
+		{
+			title: 'Does Telemedica do in-person appointments?',
+			text: 'This is held for the dropdown as the answer to FAQ1.',
+		},
+		{
+			title: 'What do I need in order to get an evaluation with Telemedica?',
+			text: 'This is held for the dropdown as the answer to FAQ2.',
+		},
+		{
+			title: 'What forms of Payment do you accept?',
+			text: 'This is held for the dropdown as the answer to FAQ3.',
+		},
+		{
+			title: 'Do you accept insurance?',
+			text: 'This is held for the dropdown as the answer to FAQ4.',
+		},
+	];
+	const testimonials = [
+		{
+			text: 'This is a great resource to use to help get your mental health issues out and be evaluated to put in for a VA disability claim.The doctor made me feel at ease.And I was able to dig into my emotions and not be afraid to hide things.I was more open then i thought and she listened and was helpful.',
+			author: 'Anonymous ',
+		},
+		{
+			text: 'This was the first time I used Telemedica LLC and my experience was amazing. My provider was patient, caring, respectfully and courteous. I recommend this company for all your medical needs. THANK YOU TELEMEDICA! I am grateful.',
+			author: 'Mark N.',
+		},
+		{
+			text: 'My husband used Telemedica for his IMO. They were extremely easy to work with throughout the process. The doctor was amazing. She was very professional, understanding, courteous and sensitive to his feelings and comments. I don\'t think you could go through this process without them.',
+			author: 'Kathy E.',
+		},
+		{
+			text: 'To all my brothers and sisters veterans, If you truly need so help in live from our ups and downs in the military stress, PLEASE contact Telemedical LLC, they are the real deal. Very knowledgeable and so professional. After 38 years I finally was able to vent to someone and get professional help. Please reach out to this team, get the help we as veterans deserve.',
+			author: 'Cpl.Spears',
+		},
+		{
+			text: 'I\'m only making this post in the hopes that someone can make a great decision. This for me was an amazing choice in the right direction. I have never done anything like this before and never thought I had to either. The truth is I don\'t like to be vulnerable but this is the place to be honest and open.I believe this was the right decision for myself and my family.This was my first time talking to a psychologist and I felt truly heard without prejudice. 10/10 recommend for anyone looking to make change for themselves.',
+			author: 'Devon H.',
+		},
+	];
+	return { props: { testimonials, faqs } }
 }

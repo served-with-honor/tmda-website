@@ -26,6 +26,13 @@ function formatPhoneNumber(phone: string, sep: string) {
   return `${intlCode} (${idk[0]}) ${idk[1]}-${idk[2]}`.trim();
 }
 
+function truncateString(string, limit, displayEllipses) {
+  if (!string) return null;
+  if (!limit || string.length <= limit) return string;
+
+  return `${string.substring(0, limit).trim()}${displayEllipses ? '...' : null}`;
+}
+
 const splitTitle = (title) => {
   let primaryText = title;
   let preText;
@@ -41,7 +48,6 @@ const splitTitle = (title) => {
 
   return { preText, primaryText, postText }
 }
-
 
 const parserStripStyles = (attribs) => {
 	if (attribs && 'style' in attribs) {
@@ -60,6 +66,7 @@ export {
   slugify,
   getSocialIcon,
   formatPhoneNumber,
+  truncateString,
   splitTitle,
   parserStripStyles,
   parserFixClass,

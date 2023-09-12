@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import useSWR from 'swr'
 import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from '../theme';

@@ -40,10 +40,10 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
   return (
     <motion.div
       style={{ height: '100%' }}
-      whileHover={{
+      whileHover={!isLoading ? {
         scale: 1.05,
         transition: { duration: 0.25 },
-      }}
+      } : null}
     >
       <Card sx={{ cursor: 'pointer', height: '100%' }}>
         {image ? (
@@ -82,7 +82,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
             {/* TITLE */}
             {title ? (
               <Link href={url} color={'inherit'} underline='none'>
-                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{title ? <FancyTitle /> : <Skeleton />}</Typography>
+                <Typography variant={'h5'} component={'p'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>{<FancyTitle />}</Typography>
               </Link>
             ) : isLoading ? (
               <Typography variant={'h5'} sx={{ marginBottom: 2, lineHeight: 1.2 }}>
