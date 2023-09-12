@@ -70,8 +70,8 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				<Container sx={{ position: 'relative' }}>
 					<Grid container spacing={3}>
 						<Grid item md={7} lg={6}>
-							<Typography variant='h1' color='primary'>Stop Fighting. <br />Start Winning.</Typography>
-							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }} gutterBottom>High-quality medical evidence for veterans nationwide</Typography>
+							<Typography variant='h1' color='primary' gutterBottom>Stop Fighting. <br />Start Winning.</Typography>
+							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }}>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
 								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
