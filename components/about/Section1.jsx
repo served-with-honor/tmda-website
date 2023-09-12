@@ -1,11 +1,6 @@
 import { useRef } from 'react';
 import Image from 'next/image';
-import {
-	motion,
-  useScroll,
-  useSpring,
-	useTransform
-} from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -14,10 +9,6 @@ import Typography from '@mui/material/Typography';
 import phoneImage from '../../public/images/iPhone 14 SDS1-04 copy.png'
 import phoneShadowImage from '../../public/images/iPhone Blur Shadow.png'
 
-function useParallax(value, distance) {
-	return useTransform(value, [0, 1], [distance, -distance]);
-}
-
 export default function Section1({ heading, text, button }) {
 	const phoneImageRef = useRef(null);
 	const { scrollYProgress } = useScroll({
@@ -25,7 +16,7 @@ export default function Section1({ heading, text, button }) {
 		offset: ["start end", "end start"],
 	});
 	
-	const y = useSpring(useParallax(scrollYProgress, 100));
+	const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const scaleX = useTransform(scrollYProgress, [0, 1], ['50%', '150%']);
   const opacity = useTransform(scrollYProgress, [0, 1], ['100%', '10%']);
   
@@ -57,6 +48,7 @@ export default function Section1({ heading, text, button }) {
 										/>
 								</Box>
 							</motion.div>
+							<Box sx={{ maxWidth: '100%', overflow: 'hidden' }}>
 							<motion.div
 								style={{ scaleX, opacity }}
 								>
@@ -68,7 +60,7 @@ export default function Section1({ heading, text, button }) {
 										style={{ width: 'auto', height: 'auto' }}
 									/>
 								</Box>
-							</motion.div>
+							</motion.div></Box>
 						
 						</Box>
 					</Grid>
