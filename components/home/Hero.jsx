@@ -38,9 +38,9 @@ export default function Hero({ doStuff }) {
 					Serving Those Who Served
 				</Typography>
 				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
-					The #1 Health Resource For Veterans On Their Path To
-					<Box component='span' sx={{ ml: 1, display: { xs: 'block', sm: 'inline' } }}>
-						<TextFlipper items={['Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.',]} lineColor={theme.palette.primary.main} />
+					The #1 Health Resource For Veterans On Their Path To&nbsp;
+					<Box component='span' sx={{ display: { xs: 'block', sm: 'inline' } }}>
+              <TextFlipper items={['Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.',]} lineColor={theme.palette.primary.main} />&nbsp;
 					</Box>
         </Typography>
         <Grid container spacing={2}>
