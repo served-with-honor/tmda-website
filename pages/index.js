@@ -39,7 +39,7 @@ export default function Home({ faqs, testimonials }) {
 			
 			<Box ref={counterRef} sx={{
 				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
-				color: theme.palette.primary.contrastText,
+				color: theme.palette.common.white,
 				paddingY: 10,
 			}}>
 				<Container>
@@ -155,7 +155,7 @@ export default function Home({ faqs, testimonials }) {
 				paddingY: 12,
 			}}>
 				<Container maxWidth={'md'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ color: 'primary.contrastText', mb: 8 }}>Frequently Asked Questions</Typography>
+					<Typography variant={'sectionHeading'} component={'h2'} sx={{ color: 'common.white', mb: 8 }}>Frequently Asked Questions</Typography>
 					<FAQs items={faqs} />
 				</Container>
 			</Box>

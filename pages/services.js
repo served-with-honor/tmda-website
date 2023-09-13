@@ -34,7 +34,7 @@ export default function ServicesPage({ prices }) {
 			<Box sx={{ 
 				pt: 15, 
 				background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
-				color: 'primary.contrastText',
+				color: 'secondary.contrastText',
 				'br': { display: { xs: 'none', md: 'initial' } }
 			}}>
 				<Container sx={{ pb: 3 }}>
