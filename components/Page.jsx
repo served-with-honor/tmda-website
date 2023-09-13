@@ -6,6 +6,7 @@ import Footer from './Footer'
 import settings from '../src/siteSettings';
 
 export default function Page({ title, description, children, darkHeader }) {
+
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
   const router = useRouter();
