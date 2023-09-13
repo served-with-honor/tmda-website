@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTheme, Box, Container, Grid } from '@mui/material'
 import { motion, useAnimate, useScroll, useMotionValueEvent } from "framer-motion"
 import MainMenu from './MainMenu'
-import Logo from '../public/logo.svg'
+import Logo from '../public/images/logo.svg'
 import siteSettings from '../src/siteSettings';
 
 export default forwardRef(function Header(props, ref) {

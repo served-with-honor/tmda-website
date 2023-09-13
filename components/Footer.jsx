@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import logo from '../public/images/logo.png';
+import logo from '../public/images/logo.svg';
 import settings from '../src/siteSettings';
 import Link from '../src/Link';
 import { getSocialIcon, formatPhoneNumber } from '../src/utils';
@@ -54,7 +54,7 @@ export default function Footer() {
 					<Container>
 						<Grid container spacing={5}>
 							<Grid item md={3}>
-								<Link href="/"><Image src={logo} alt="Telemedica Logo" /></Link>
+								<Link href="/"><Image src={logo} alt="Telemedica Logo" width={225} height={49} /></Link>
 							</Grid>
 								
 							<Grid container item sm={12} md={9} spacing={5}>
