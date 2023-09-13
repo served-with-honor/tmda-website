@@ -4,10 +4,11 @@ import Link from 'next/link';
 import { useTheme, Box, Container, Grid } from '@mui/material'
 import { motion, useAnimate, useScroll, useMotionValueEvent } from "framer-motion"
 import MainMenu from './MainMenu'
-import Logo from '../public/logo.svg'
+import Logo from '../public/images/logo.svg'
+import LogoWhite from '../public/images/logo-white.svg'
 import siteSettings from '../src/siteSettings';
 
-export default forwardRef(function Header(props, ref) {
+export default forwardRef(function Header({ isDark }, ref) {
   const [scope, animate] = useAnimate();
   const [headerState, setHeaderState] = useState();
   const { scrollY } = useScroll();
@@ -77,7 +78,7 @@ export default forwardRef(function Header(props, ref) {
           <Grid item>
             <Link href="/">
               <Image
-                src={Logo}
+                src={isDark ? LogoWhite : Logo}
                 alt={`${siteSettings.name} logo`}
                 width={225}
                 height={49}

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import { styled } from '@mui/system';
-import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -18,7 +17,6 @@ import settings from '../src/siteSettings';
 
 export default function MainMenu() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const router = useRouter();
   const selected = router.pathname;
 
@@ -35,9 +33,11 @@ export default function MainMenu() {
   ];
 
   return <>
-    {isMobile ? (
-      <Button><MenuIcon /></Button>
-    ) : (
+    <Button sx={{ display: { md: 'none' }}}>
+      <MenuIcon />
+      <Typography component='span' sx={visuallyHidden}>Open Menu</Typography>
+    </Button>
+    <Box sx={{ display: { xs: 'none', md: 'initial' }}}>
       <nav>
         <Grid container spacing={2}>
           <Grid item>
@@ -51,7 +51,7 @@ export default function MainMenu() {
           </Grid>
         </Grid>
       </nav>
-    )}
+    </Box>
   </>
 }
 const MyMenuItem = styled(MenuItem)(({ theme }) => ({

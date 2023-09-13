@@ -57,7 +57,7 @@ const baseTheme = responsiveFontSizes(createTheme({
   palette: {
     primary: {
       main: 'hsl(165, 48%, 62%)',
-      contrastText: '#fff',
+      contrastText: '#000',
       100: '#eaf8f4',
       200: '#c0e9df',
       300: '#96daca',
@@ -83,6 +83,13 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
   }, 
   components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: '#256958',
+        },
+      },
+    },
     MuiCard: {
       styleOverrides: {
         root: {
