@@ -65,7 +65,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 	
 
 	return (
-		<Page title={'Telemedica Blog'}>
+		<Page title={'Telemedica Blog'} darkHeader>
 			
 			{/* HERO */}
 			<Box sx={{ backgroundColor: 'secondary.800', paddingTop: 20, paddingBottom: 10 , position: 'relative', }}>

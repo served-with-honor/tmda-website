@@ -5,7 +5,7 @@ import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
 
-export default function Page({ title, description, children }) {
+export default function Page({ title, description, children, darkHeader }) {
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
   const router = useRouter();
@@ -42,7 +42,7 @@ export default function Page({ title, description, children }) {
           </script>
         </>) : null}
       </Head>
-      <Header ref={ref} />
+      <Header ref={ref} isDark={darkHeader} />
 			<main style={{ marginTop: headerHeight }}>{children}</main>
       <Footer />
     </>

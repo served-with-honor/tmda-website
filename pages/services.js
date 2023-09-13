@@ -29,7 +29,7 @@ export default function ServicesPage({ prices }) {
 		}
 	}
 	return (
-		<Page title={'Services'}>	
+		<Page title={'Services'} darkHeader>	
 			{/* HERO */}
 			<Box sx={{ 
 				pt: 15, 
