@@ -23,7 +23,7 @@ export default function Testimonials({ items }) {
           <Box sx={{ padding: 1, mb: 3 }} key={`testimonials-items-${index}`}>
             <Paper sx={{ borderRadius: 5, padding: { xs: 3, md: 5 } }} elevation={5}>
               <Typography variant={'body1'} sx={{ fontStyle: 'italic' }} gutterBottom>{text}</Typography>
-              {author && <Typography variant={'subtitle2'} align='right'>- {author}</Typography>}
+              {author && <Typography variant={'subtitle2'} component='p' align='right'>- {author}</Typography>}
             </Paper>
           </Box>
         )
