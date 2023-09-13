@@ -36,7 +36,10 @@ export default function MainMenu() {
 
   return <>
     {isMobile ? (
-      <Button><MenuIcon /></Button>
+      <Button>
+        <MenuIcon />
+        <Typography component='span' sx={visuallyHidden}>Open Menu</Typography>
+      </Button>
     ) : (
       <nav>
         <Grid container spacing={2}>
