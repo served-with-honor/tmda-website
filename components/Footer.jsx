@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import useSWR from 'swr'
 import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from '../theme';
@@ -8,9 +7,6 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
