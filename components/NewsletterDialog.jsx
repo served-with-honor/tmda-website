@@ -59,21 +59,18 @@ export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay
   }
   
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open}
+      PaperProps={{ sx: { borderRadius: 5 } }}
+    >
       <IconButton
         aria-label="close"
         onClick={handleClose}
-        sx={{
-        	position: 'absolute',
-        	right: 8,
-        	top: 8,
-        	color: (theme) => theme.palette.grey[500],
-        }}
+        sx={{ position: 'absolute', right: 8, top: 8 }}
       >
         <CloseIcon />
       </IconButton>
-      <Box sx={{ p: 5, textAlign: 'center' }}>
-        <Typography variant='h2' gutterBottom>Stay Connected</Typography>
+      <Box sx={{ backgroundColor: 'primary.100', p: 5, textAlign: 'center' }}>
+        <Typography variant='h2' gutterBottom color='primary.700'>Stay Connected</Typography>
         <Typography variant='body1' sx={{ mb: 3 }}>Updates at your fingertips! Subscribe to our email list and stay connected to our growing veteran community</Typography>
         <Box sx={{ mb: 3 }}>
           { hasSubmited ? (
