@@ -2,7 +2,7 @@ import Typography from '@mui/material/Typography';
 import nexusImage from '../public/images/nexus-dbqs.png';
 import mentalHealthImage from '../public/images/mental-health-evaluation.png';
 import telemedicineImage from '../public/images/telemedicine-evaluations.png';
-import logoBadgeImage from '../public/images/logo-badge.png';
+import rebuttalLetterImage from '../public/images/logo-rebuttal-letter.png';
 
 export default [
   {
@@ -97,7 +97,7 @@ export default [
   },
   {
     title: 'Rebuttal Letters',
-    icon: { ...logoBadgeImage, height: 40, width: 40},
+    icon: { ...rebuttalLetterImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
