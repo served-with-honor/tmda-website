@@ -11,6 +11,8 @@ import CircularProgress from '@mui/material/CircularProgress'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import Link from '../src/Link';
 
 export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay = 3000, openCondition, }) {
@@ -58,6 +60,18 @@ export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay
   
   return (
     <Dialog onClose={handleClose} open={open}>
+      <IconButton
+        aria-label="close"
+        onClick={handleClose}
+        sx={{
+        	position: 'absolute',
+        	right: 8,
+        	top: 8,
+        	color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
       <Box sx={{ p: 5, textAlign: 'center' }}>
         <Typography variant='h2' gutterBottom>Stay Connected</Typography>
         <Typography variant='body1' sx={{ mb: 3 }}>Updates at your fingertips! Subscribe to our email list and stay connected to our growing veteran community</Typography>
