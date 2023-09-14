@@ -23,7 +23,7 @@ import {
 	LatestPosts,
 } from '../components/home'
 import { slugify } from '../src/utils';
-import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
+import drSmilingImage from '../public/images/Dr_Smiling_Resized.jpeg'
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
