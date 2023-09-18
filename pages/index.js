@@ -100,7 +100,7 @@ export default function Home({ faqs, testimonials }) {
 							<Typography variant={'body1'} gutterBottom>To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.</Typography>
 							<Typography variant={'h6'} component={'h3'}>Purpose:</Typography>
 							<Typography variant={'body1'}>To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.</Typography>
-							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More...</Button>
+							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More</Button>
 						</Grid>
 					</Grid>
 				</Container>
@@ -146,7 +146,7 @@ export default function Home({ faqs, testimonials }) {
 
 						))}
 					</Grid>
-					<Button variant={'contained'} href={'/services'} sx={{ mt: 8, px: { sm: 8 } }}>More about our services</Button>
+					<Button variant={'contained'} href={'/services'} sx={{ mt: 8 }}>Our Services</Button>
 				</Container>
 			</Box>
 			
@@ -168,7 +168,7 @@ export default function Home({ faqs, testimonials }) {
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
 					<Box align={'center'} sx={{ mt: 10 }}>
-							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
+							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'}>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
