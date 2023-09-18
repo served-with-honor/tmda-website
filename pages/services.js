@@ -4,19 +4,23 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
 import siteSettings from '../src/siteSettings';
-import Link from '@mui/material/Link';
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
 import services from '../components/services'
-import Image from 'next/image';
-import placeholderImage from '../public/images/AdobeStock_315180932-1024x1024.jpeg'
+import Counter from '../components/Counter'
 import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 export default function ServicesPage({ prices }) {
+	const counterRef = useRef(null);
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = () => {
@@ -155,43 +159,60 @@ export default function ServicesPage({ prices }) {
 			{/* Booking Section */}
 			<Box
 				ref={desktopBookingSectionRef} 
-				sx={{ 
-					backgroundColor: 'grey.50', 
+				sx={{
 					py: 10, 
 					alignItems: 'center', 
-					textAlign: 'center' 
+					background: 'linear-gradient(135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				}}
 			>
 				<Container>
 					<Typography variant='sectionHeading' component='h2'>Book Now!</Typography>
-					<Typography variant='body1' sx={{ py: 3 }}>
+					<Typography variant='lead' align='center' sx={{ mt: 5, mb: 10, maxWidth: '850px', mx: 'auto' }}>
 						Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 					</Typography>
-					<Grid container spacing={5}>
-						<Grid item xs={12} md={6}>
-							<Box sx={{
-								maxWidth: {xs: '350px', sm: 'none'}, 
-								}}
-							>
-								<Image 
-									src={placeholderImage}
-									alt='comming soon image'
-									sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
-									style={{
-										maxWidth: '100%',
-										height: 'auto', 
-									}}
-								/>
+					<Grid container spacing={5} alignItems='center'>
+						<Grid item xs={12} md={6} ref={counterRef}>
+							<Box sx={{ maxWidth: 450, mx: 'auto' }}>
+								<Typography sx={{
+									fontSize: { xs: '6vw', sm: 32, },
+									textAlign: 'center',
+									textTransform: 'capitalize',
+								}}>
+									We've Helped more than
+									<Typography component='span' color='primary.600' sx={{ display: 'block', fontSize: '1.25em', fontWeight: 700, }}>
+										<Counter to={20000} parentRef={counterRef} /> veterans
+									</Typography>
+									win their claim through:
+								</Typography>
+								<List sx={{
+									ml: { sm: 5, },
+									'.MuiListItemIcon-root': { 	
+										alignSelf: 'flex-start'
+									},
+								}} >
+									{[
+										'Licensed, trusted providers',
+										'Services available nation-wide',
+										'Fast turnaround times',
+									].map((item, index) => (
+										<ListItem key={`stuff-${index}`}>
+											<ListItemIcon><AddIcon color='primary'/></ListItemIcon>
+											<ListItemText>{item}</ListItemText>
+										</ListItem>
+									))}
+								</List>
 							</Box>
 						</Grid>
 						<Grid item xs={12} md={6}>
 							<Box
 								ref={mobileBookingSectionRef}
-								backgroundColor='background.default' 
-								sx={{ 
-									height:{ md:'625px' }, 
-									overflow: { md:'auto' },
-									p: 3
+								backgroundColor='background.default'
+								sx={{
+									boxShadow: 5,
+									borderRadius: 5,
+									height:{ md: '625px' }, 
+									overflow: { md: 'auto' },
+									p: 3,
 								}}
 							>
 								<BookingWidget />
