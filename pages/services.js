@@ -60,10 +60,7 @@ export default function ServicesPage({ prices }) {
 					</Box>
 						for VA Disability Claims
 					</Typography>
-					<Typography 
-						variant='h6' 
-						component='p' 
-					>
+					<Typography variant='lead' sx={{ fontSize: 32 }}>
 						Your partner in securing the benefits you deserve on your path to well-being!
 						</Typography>
 						</Box>
