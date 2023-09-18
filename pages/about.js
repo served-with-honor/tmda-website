@@ -249,7 +249,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 export const getServerSideProps = async () => {
 	const teamMembersResponse = await getTeamMembers();
 	const teamMembers = teamMembersResponse.map(person => {
-		if (person.image) person.image = builder.image(person.image).size(300, 300).url();
+		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
 		return person;
 	})
 	const providers = getProviders().map(person => {
