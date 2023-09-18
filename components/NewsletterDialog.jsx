@@ -91,7 +91,7 @@ export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay
                       <Controller
                         name="email"
                         control={control}
-                        rules={{ required: 'Email is required', pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'A valid email is required' } }}
+                        rules={{ required: 'Email is required', pattern: { value: /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'A valid email is required' } }}
                         render={({ field }) => <TextField fullWidth label='Email' autoFocus helperText={errors?.email?.message?.toString()} error={!!(errors?.email)} {...field} /> }
                       />
                     </Box>
