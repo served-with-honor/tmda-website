@@ -120,8 +120,9 @@ export default function ServicesPage({ prices }) {
 						<CustomAccordion items={services} />
 					</Box>
 					) : null}
-					<Container sx={{textAlign: 'center'}}> 
-						<Link variant='string' color='secondary' href='#' sx={{px: 1}}>How it Works</Link>
+					<Container sx={{ textAlign: 'center' }}>
+						<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
+						<Button href='/about#how-it-works'>How it Works</Button>
 					</Container>
 				</Container>
 			</Box>
