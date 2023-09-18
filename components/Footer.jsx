@@ -89,7 +89,7 @@ export default function Footer() {
 									</Box> : posts && posts.length > 0 ? (
 										<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
 											{posts.map(({ title, slug }) => {
-												const limit = 48;
+												const limit = 32;
 												const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
 												return <Box component='li' key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></Box>
 											})}
