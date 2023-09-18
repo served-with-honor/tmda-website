@@ -121,9 +121,13 @@ const newsletterSignup = async (email: string) => {
         if (response.isAxiosError) throw response;
         if (response.errors) throw response.errors[0].error;
 
-        resolve(response);
+        return resolve(response);
       } catch (error) {
-        reject(error);
+        if (typeof error === 'string' && error.includes('is already a list member, do you want to update? please provide update_existing:true in the request body')) {
+          return reject('You are already subscribed');
+        }
+        
+        return reject(error);
         // if (operation.retry(error)) return;
         // reject(operation.mainError(error));
       }
