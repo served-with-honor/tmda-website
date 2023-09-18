@@ -37,6 +37,12 @@ const baseTheme = responsiveFontSizes(createTheme({
     subtitle2: {
       fontWeight: 700,
     },
+    lead: {
+      component: 'p',
+      fontFamily: montserrat.style.fontFamily,
+      fontSize: 24,
+      lineHeight: 1.5,
+    },
     sectionHeading: {
       fontFamily: oswald.style.fontFamily,
       fontSize: 48,
@@ -83,6 +89,14 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
   }, 
   components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          sectionHeading: 'h2',
+          lead: 'p',
+        },
+      },
+    },
     MuiLink: {
       styleOverrides: {
         root: {
