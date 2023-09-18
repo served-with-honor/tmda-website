@@ -168,7 +168,7 @@ export default function Home({ faqs, testimonials }) {
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
 					<Box align={'center'} sx={{ mt: 10 }}>
-							<Button variant={'contained'} href={'#'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
+							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
