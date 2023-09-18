@@ -15,7 +15,6 @@ import Page from '../components/Page'
 import Hero from '../components/home/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
-import { SectionDivider } from '../components/layout'
 import {
 	SectionFeatures1,
 	FAQs,
@@ -105,8 +104,6 @@ export default function Home({ faqs, testimonials }) {
 					</Grid>
 				</Container>
 			</Box>
-
-			<SectionDivider />
 
 			<Box paddingY={12} align={'center'}>
 				<Container>
