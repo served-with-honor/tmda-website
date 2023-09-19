@@ -37,20 +37,19 @@ export default function Home({ faqs, testimonials }) {
 			<SectionFeatures1 />
 			
 			<Box ref={counterRef} sx={{
-				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
-				color: theme.palette.common.white,
+				background: 'linear-gradient(-135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				paddingY: 10,
 			}}>
 				<Container>
 					<Grid container={true} spacing={5} sx={{ alignItems: 'center' }}>
 						<Grid item md={8}>
-							<Typography variant={'h3'} component={'h2'} gutterBottom sx={{ marginBottom: 5 }}>
+							<Typography variant={'h3'} component={'h2'} color='secondary' gutterBottom sx={{ marginBottom: 5 }}>
 								Changing Lives&nbsp;
-								<Box component={'span'} sx={{  fontWeight: 300 }}>
+								<Box component={'span'} color='secondary.800' sx={{  fontWeight: 300 }}>
 									One Veteran At A Time
 								</Box>
 							</Typography>
-							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
+							<Typography variant={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item md={4}>
 							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -62,7 +61,7 @@ export default function Home({ faqs, testimonials }) {
 									justifyContent: 'center',
 									alignItems: 'center',
 								}}>
-									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.secondary.main} radius={120} stroke={35} percent={65} />
+									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.primary['100']} radius={120} stroke={35} percent={65} />
 								</Box>
 								<Box sx={{
 									fontSize: 30,
@@ -105,7 +104,7 @@ export default function Home({ faqs, testimonials }) {
 				</Container>
 			</Box>
 
-			<Box paddingY={12} align={'center'}>
+			<Box paddingY={12} align={'center'} backgroundColor='grey.50'>
 				<Container>
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -148,16 +147,16 @@ export default function Home({ faqs, testimonials }) {
 			</Box>
 			
 			<Box sx={{
-				background: 'linear-gradient(180deg, #68A09E, #4A6B82)',
+				background: 'linear-gradient(135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				paddingY: 12,
 			}}>
 				<Container maxWidth={'md'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ color: 'common.white', mb: 8 }}>Frequently Asked Questions</Typography>
+					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Frequently Asked Questions</Typography>
 					<FAQs items={faqs} />
 				</Container>
 			</Box>
 
-			<Box paddingY={12} backgroundColor={'#fafafa'}>
+			<Box paddingY={12} backgroundColor='grey.50'>
 				<Container size={'sm'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>Five-Star Ratings from Our Veteran Clients &amp; Providers Working with Telemedica.</Typography>
