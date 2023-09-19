@@ -111,16 +111,16 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			</Box>
 
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 30  }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 25  }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
-					<Grid container spacing={3}>
+					<Grid container spacing={3} justifyContent={'center'}>
 						{[
 							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon: missionIcon },
 							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon: visionIcon },
 							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: purposeIcon },
 						].map(({ heading, text, icon }, index) => (
-							<Grid item sm key={`things-${index}`}>
+							<Grid item sm={6} md={4} key={`things-${index}`}>
 								<Card sx={{ height: '100%' }}>
 									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
 										<Image src={icon} alt='' width={50} height={50} />
@@ -249,7 +249,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 export const getServerSideProps = async () => {
 	const teamMembersResponse = await getTeamMembers();
 	const teamMembers = teamMembersResponse.map(person => {
-		if (person.image) person.image = builder.image(person.image).size(300, 300).url();
+		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
 		return person;
 	})
 	const providers = getProviders().map(person => {
@@ -260,17 +260,14 @@ export const getServerSideProps = async () => {
 	const serveTabs = [
 		{
 			title: 'Who We Serve',
-			heading: 'Who',
 			body: 'We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.',
 		},
 		{
 			title: 'How We Serve',
-			heading: 'How',
 			body: 'High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere.',
 		},
 		{
 			title: 'Why We Serve',
-			heading: 'Why',
 			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
 		},
 	]

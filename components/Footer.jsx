@@ -71,15 +71,14 @@ export default function Footer() {
 										<li><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></li>
 										<li><Link href={'/contact-us'}>Contact Us</Link></li>
 									</ul>
-									
-									<Typography variant={'h6'} component={'h3'} marginTop={3} color={'secondary.700'}>Legal Pages</Typography>
+									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get In Touch</Typography>
 									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-										<li><Link href={'/privacy-policy'}>Privacy Policy</Link></li>
-										<li><Link href={'/terms-and-conditions'}>Terms & Conditions</Link></li>
+										<li><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></li>
+										<li><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></li>
 									</ul>
 								</Grid>
 
-								<Grid item xs={12} sm={6} md={3}>
+								<Grid item xs={12} sm={6} md={6}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Recent Updates</Typography>
 									{isLoading ? <Box>
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
@@ -89,7 +88,7 @@ export default function Footer() {
 									</Box> : posts && posts.length > 0 ? (
 										<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
 											{posts.map(({ title, slug }) => {
-												const limit = 48;
+												const limit = 64;
 												const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
 												return <Box component='li' key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></Box>
 											})}
@@ -97,20 +96,16 @@ export default function Footer() {
 										): null}
 								</Grid>
 
-								<Grid item xs={12} sm={6} md={3}>
-									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get In Touch</Typography>
-									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-										<li><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></li>
-										<li><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></li>
-									</ul>
-								</Grid>
-
 							</Grid>
 					</Grid>
 					<Box sx={{ mt: 5 }}>
 						<Grid container spacing={3} alignItems={'center'} justifyContent={'space-between'}>
 							<Grid item>
-								<Typography variant={'body2'}>Copyright @ {copyrightYear} | {settings.company}</Typography>
+								<Grid container spacing={2} alignItems={'center'}>
+									<Grid item><Typography variant={'body2'}>Copyright @ {copyrightYear} | {settings.company}</Typography></Grid>
+									<Grid item><Link  variant={'body2'} href={'/privacy-policy'}>Privacy Policy</Link></Grid>
+									<Grid item><Link  variant={'body2'} href={'/terms-and-conditions'}>Terms & Conditions</Link></Grid>
+								</Grid>
 								</Grid>
 								{settings.social ? (
 									<Grid item>
