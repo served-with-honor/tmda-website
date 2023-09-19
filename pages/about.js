@@ -111,7 +111,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			</Box>
 
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 30  }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 25  }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
 					<Grid container spacing={3}>
@@ -260,17 +260,14 @@ export const getServerSideProps = async () => {
 	const serveTabs = [
 		{
 			title: 'Who We Serve',
-			heading: 'Who',
 			body: 'We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.',
 		},
 		{
 			title: 'How We Serve',
-			heading: 'How',
 			body: 'High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere.',
 		},
 		{
 			title: 'Why We Serve',
-			heading: 'Why',
 			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
 		},
 	]
