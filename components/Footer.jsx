@@ -101,7 +101,7 @@ export default function Footer() {
 					<Box sx={{ mt: 5 }}>
 						<Grid container spacing={3} alignItems={'center'} justifyContent={'space-between'}>
 							<Grid item>
-								<Grid container spacing={2} alignItems={'center'} justifyContent={'space-between'}>
+								<Grid container spacing={2} alignItems={'center'}>
 									<Grid item><Typography variant={'body2'}>Copyright @ {copyrightYear} | {settings.company}</Typography></Grid>
 									<Grid item><Link  variant={'body2'} href={'/privacy-policy'}>Privacy Policy</Link></Grid>
 									<Grid item><Link  variant={'body2'} href={'/terms-and-conditions'}>Terms & Conditions</Link></Grid>

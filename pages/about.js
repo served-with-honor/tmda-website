@@ -114,13 +114,13 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 25  }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
-					<Grid container spacing={3}>
+					<Grid container spacing={3} justifyContent={'center'}>
 						{[
 							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon: missionIcon },
 							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon: visionIcon },
 							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: purposeIcon },
 						].map(({ heading, text, icon }, index) => (
-							<Grid item sm key={`things-${index}`}>
+							<Grid item sm={6} md={4} key={`things-${index}`}>
 								<Card sx={{ height: '100%' }}>
 									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
 										<Image src={icon} alt='' width={50} height={50} />
