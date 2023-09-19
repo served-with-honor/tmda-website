@@ -153,9 +153,10 @@ const darkTheme = createTheme({
   	MuiLink: {
   		styleOverrides: {
         root: {
-          color:  baseTheme.palette.primary['700'],
+          color:  baseTheme.palette.secondary['800'],
   				textDecoration: 'none',
           '&:hover': {
+            textDecorationColor: 'currentcolor',
             textDecoration: 'underline',
           },
         },
