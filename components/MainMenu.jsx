@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import { styled } from '@mui/system';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -11,15 +10,17 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu'
 import { visuallyHidden } from '@mui/utils';
-import { motion } from "framer-motion";
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
+import { BookingContext } from '../context/BookingContext'
 
 export default function MainMenu() {
-  const theme = useTheme();
   const router = useRouter();
   const selected = router.pathname;
 
+  const { setIsOpen, scrollTo } = useContext(BookingContext);
+  const handleBookingClick = scrollTo ? scrollTo : setIsOpen ? () => setIsOpen(true) : null;
+  
   const items1 = [
     { href: '/about', text: 'About' },
     { href: '/services', text: 'Services' },
@@ -48,6 +49,9 @@ export default function MainMenu() {
           </Grid>
           <Grid item>
             <Button variant={'contained'} size={'small'} href="/contact-us">Get In Touch</Button>
+          </Grid>
+          <Grid item>
+            <Button variant={'contained'} size={'small'} onClick={handleBookingClick}>Book Now</Button>
           </Grid>
         </Grid>
       </nav>
