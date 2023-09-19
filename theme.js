@@ -3,32 +3,35 @@ import { Oswald, Montserrat } from 'next/font/google'
 
 const oswald = Oswald({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
+const fontFamily = montserrat.style.fontFamily;
+const fontFamilySecondary = oswald.style.fontFamily;
 
 const baseTheme = responsiveFontSizes(createTheme({
   typography: {
-    fontFamily: montserrat.style.fontFamily,
+    fontFamily,
+    fontFamilySecondary,
     h1: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h2: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h3: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h5: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h6: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     subtitle1: {
@@ -39,12 +42,12 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
     lead: {
       component: 'p',
-      fontFamily: montserrat.style.fontFamily,
       fontSize: 24,
       lineHeight: 1.5,
     },
     sectionHeading: {
-      fontFamily: oswald.style.fontFamily,
+      component: 'h2',
+      fontFamily: fontFamilySecondary,
       fontSize: 48,
       lineHeight: 1,
       textAlign: 'center',
