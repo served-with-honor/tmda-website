@@ -95,13 +95,12 @@ const replaceButtons = ({ children, attribs }) => {
 	const size = getSize(classes);
 	
 	const button = children.find(({ name }) => name === 'a');
-	parserStripStyles(attribs);
-	parserFixClass(attribs);
-		
+	parserStripStyles(button.attribs);
+	parserFixClass(button.attribs);
 	return (
 		<Grid item>
 			<Button variant={variant} color='primary' size={size} {...button.attribs}>
-				{domToReact(children)}
+				{domToReact(button)}
 			</Button>
 		</Grid>
 	);
