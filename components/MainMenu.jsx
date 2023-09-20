@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import { styled } from '@mui/system';
+import MUILink from '@mui/material/Link'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -26,6 +27,7 @@ export default function MainMenu() {
     { href: '/services', text: 'Services' },
     { href: '/blog', text: 'Blog' },
     { href: settings.externalLinks.patientPortal, text: 'Patient Portal', target: '_blank' },
+    { action: handleBookingClick, text: 'Book Now' },
   ];
   const items2 = [
     { href: '/administrative-services', text: 'Administrative Services' },
@@ -49,9 +51,6 @@ export default function MainMenu() {
           </Grid>
           <Grid item>
             <Button variant={'contained'} size={'small'} href="/contact-us">Get In Touch</Button>
-          </Grid>
-          <Grid item>
-            <Button variant={'contained'} size={'small'} onClick={handleBookingClick}>Book Now</Button>
           </Grid>
         </Grid>
       </nav>
@@ -124,7 +123,7 @@ const MenuGroup = ({ label, items,  selected }) => {
       }}
       disableAutoFocusItem
     >
-      {items.map(({ href, text, target }) => {
+      {items.map(({ href, text, target, action }) => {
         const isSelected = href === selected;
         const key = `main-menu-item-${slugify(text)}`;
 
@@ -133,6 +132,8 @@ const MenuGroup = ({ label, items,  selected }) => {
             <Typography variant={'subtitle1'} component={'span'}>
               {isSelected ? (
                 <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
+              ) : action ? (
+                <MUILink onClick={action}>{ text }</MUILink>
               ) : (
                 <Link href={href} target={target || ''}>{text}</Link>
               )}
