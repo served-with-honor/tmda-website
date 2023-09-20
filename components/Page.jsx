@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
+import BookingPopup from '../components/BookingPopup'
+import { BookingContext } from '../context/BookingContext'
 
 export default function Page({ title, description, children, darkHeader }) {
-
+  const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
   const router = useRouter();
@@ -43,9 +45,12 @@ export default function Page({ title, description, children, darkHeader }) {
           </script>
         </>) : null}
       </Head>
+      
       <Header ref={ref} isDark={darkHeader} />
-			<main style={{ marginTop: headerHeight }}>{children}</main>
+      <main style={{ marginTop: headerHeight }}>{children}</main>
+      {hasBookingPopup ? <BookingPopup /> : null}
       <Footer />
+      
     </>
   )
 }

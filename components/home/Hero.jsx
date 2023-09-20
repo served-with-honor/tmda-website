@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -6,8 +7,10 @@ import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles';
 import TextFlipper from '../TextFlipper'
 import siteSettings from '../../src/siteSettings';
+import { BookingContext } from '../../context/BookingContext'
 
-export default function Hero({ doStuff }) {
+export default function Hero() {
+  const { setIsOpen } = useContext(BookingContext);
 	const theme = useTheme();
 
   return (
@@ -45,7 +48,7 @@ export default function Hero({ doStuff }) {
         </Typography>
         <Grid container spacing={2}>
           <Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
-          <Grid item><Button variant='contained' color='secondary' size='large' onClick={() => doStuff(true)}>Book Now</Button></Grid>
+          <Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsOpen(true)}>Book Now</Button></Grid>
         </Grid>
       </Container>
     </Box>
