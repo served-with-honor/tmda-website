@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles';
@@ -8,14 +8,11 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Dialog from '@mui/material/Dialog';
-import BookingWidget from '../components/BookingWidget'
 import Link from '../src/Link';
 import Page from '../components/Page'
 import Hero from '../components/home/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
-import { SectionDivider } from '../components/layout'
 import {
 	SectionFeatures1,
 	FAQs,
@@ -23,35 +20,33 @@ import {
 	LatestPosts,
 } from '../components/home'
 import { slugify } from '../src/utils';
-import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
+import drSmilingImage from '../public/images/Dr_Smiling_Resized.jpeg'
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
-	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	
 	return (
 		<Page>
     
-			<Hero doStuff ={setIsBookingDialogOpen} />
+			<Hero />
 		
 			<SectionFeatures1 />
 			
 			<Box ref={counterRef} sx={{
-				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
-				color: theme.palette.common.white,
+				background: 'linear-gradient(-135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				paddingY: 10,
 			}}>
 				<Container>
 					<Grid container={true} spacing={5} sx={{ alignItems: 'center' }}>
 						<Grid item md={8}>
-							<Typography variant={'h3'} component={'h2'} gutterBottom sx={{ marginBottom: 5 }}>
+							<Typography variant={'h3'} component={'h2'} color='secondary' gutterBottom sx={{ marginBottom: 5 }}>
 								Changing Lives&nbsp;
-								<Box component={'span'} sx={{  fontWeight: 300 }}>
+								<Box component={'span'} color='secondary.800' sx={{  fontWeight: 300 }}>
 									One Veteran At A Time
 								</Box>
 							</Typography>
-							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
+							<Typography variant={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item md={4}>
 							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -63,7 +58,7 @@ export default function Home({ faqs, testimonials }) {
 									justifyContent: 'center',
 									alignItems: 'center',
 								}}>
-									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.secondary.main} radius={120} stroke={35} percent={65} />
+									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.primary['100']} radius={120} stroke={35} percent={65} />
 								</Box>
 								<Box sx={{
 									fontSize: 30,
@@ -100,15 +95,13 @@ export default function Home({ faqs, testimonials }) {
 							<Typography variant={'body1'} gutterBottom>To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.</Typography>
 							<Typography variant={'h6'} component={'h3'}>Purpose:</Typography>
 							<Typography variant={'body1'}>To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.</Typography>
-							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More...</Button>
+							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More</Button>
 						</Grid>
 					</Grid>
 				</Container>
 			</Box>
 
-			<SectionDivider />
-
-			<Box paddingY={12} align={'center'}>
+			<Box paddingY={12} align={'center'} backgroundColor='grey.50'>
 				<Container>
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -146,21 +139,21 @@ export default function Home({ faqs, testimonials }) {
 
 						))}
 					</Grid>
-					<Button variant={'contained'} href={'/services'} sx={{ mt: 8, px: { sm: 8 } }}>More about our services</Button>
+					<Button variant={'contained'} href={'/services'} sx={{ mt: 8 }}>Our Services</Button>
 				</Container>
 			</Box>
 			
 			<Box sx={{
-				background: 'linear-gradient(180deg, #68A09E, #4A6B82)',
+				background: 'linear-gradient(135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				paddingY: 12,
 			}}>
 				<Container maxWidth={'md'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ color: 'common.white', mb: 8 }}>Frequently Asked Questions</Typography>
+					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Frequently Asked Questions</Typography>
 					<FAQs items={faqs} />
 				</Container>
 			</Box>
 
-			<Box paddingY={12} backgroundColor={'#fafafa'}>
+			<Box paddingY={12} backgroundColor='grey.50'>
 				<Container size={'sm'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>What our veteran clients are saying about Telemedica.</Typography>
@@ -168,7 +161,7 @@ export default function Home({ faqs, testimonials }) {
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
 					<Box align={'center'} sx={{ mt: 10 }}>
-							<Button variant={'contained'} href={'#'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
+							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'}>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
@@ -185,9 +178,6 @@ export default function Home({ faqs, testimonials }) {
 				</Container>
 			</Box>
 			
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>
 		</Page>
   )
 }

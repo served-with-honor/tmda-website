@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import { styled } from '@mui/system';
-import { useTheme } from '@mui/material/styles';
+import MUILink from '@mui/material/Link'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -11,25 +11,37 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu'
 import { visuallyHidden } from '@mui/utils';
-import { motion } from "framer-motion";
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
+import { BookingContext } from '../context/BookingContext'
 
 export default function MainMenu() {
-  const theme = useTheme();
   const router = useRouter();
   const selected = router.pathname;
 
-  const items1 = [
-    { href: '/about', text: 'About' },
-    { href: '/services', text: 'Services' },
-    { href: '/blog', text: 'Blog' },
-    { href: settings.externalLinks.patientPortal, text: 'Patient Portal', target: '_blank' },
-  ];
-  const items2 = [
-    { href: '/administrative-services', text: 'Administrative Services' },
-    { href: settings.externalLinks.providerPortal, text: 'Provider Portal', target: '_blank' },
-    { href: '/careers', text: 'Careers' },
+  const { setIsOpen, scrollTo } = useContext(BookingContext);
+  const handleBookingClick = scrollTo ? scrollTo : setIsOpen ? () => setIsOpen(true) : null;
+
+  const items = [
+    {
+      text: 'For Veterans',
+      children: [
+        { text: 'About', href: '/about' },
+        { text: 'Services', href: '/services' },
+        { text: 'Blog', href: '/blog' },
+        { text: 'Patient Portal', href: settings.externalLinks.patientPortal, target: '_blank' },
+        { text: 'Book Now', action: handleBookingClick },
+      ],
+    },
+    {
+      text: 'For Providers',
+      children: [
+        { text: 'Administrative Services', href: '/administrative-services' },
+        { text: 'Provider Portal', href: settings.externalLinks.providerPortal, target: '_blank' },
+        { text: 'Careers', href: '/careers' },
+      ],
+    },
+    { text: 'Get In Touch', href: '/contact-us' }
   ];
 
   return <>
@@ -37,23 +49,26 @@ export default function MainMenu() {
       <MenuIcon />
       <Typography component='span' sx={visuallyHidden}>Open Menu</Typography>
     </Button>
-    <Box sx={{ display: { xs: 'none', md: 'initial' }}}>
-      <nav>
-        <Grid container spacing={2}>
-          <Grid item>
-            <MenuGroup label={'For Veterans'} items={items1} selected={selected} />
+    {items ? (
+      <Box sx={{ display: { xs: 'none', md: 'initial' }}}>
+        <nav>
+          <Grid container spacing={2}>
+            {items.map(({ text, href, children }) => (
+              <Grid item key={`main-menu-root-item-${slugify(text)}`}>
+                {children ? (
+                  <MenuGroup label={text} items={children} selected={selected} />
+                ) : (
+                  <Button variant={'contained'} size={'small'} href={href}>{text}</Button>
+                )}
+              </Grid>
+            ))}
           </Grid>
-          <Grid item>
-            <MenuGroup label={'For Providers'} items={items2} selected={selected} />
-          </Grid>
-          <Grid item>
-            <Button variant={'contained'} size={'small'} href="/contact-us">Get In Touch</Button>
-          </Grid>
-        </Grid>
-      </nav>
-    </Box>
+        </nav>
+      </Box>
+    ) : null}
   </>
 }
+
 const MyMenuItem = styled(MenuItem)(({ theme }) => ({
   position: 'relative',
   color: theme.palette.primary.main,
@@ -120,15 +135,17 @@ const MenuGroup = ({ label, items,  selected }) => {
       }}
       disableAutoFocusItem
     >
-      {items.map(({ href, text, target }) => {
+      {items.map(({ href, text, target, action }) => {
         const isSelected = href === selected;
-        const key = `main-menu-item-${slugify(text)}`;
+        const key = `main-menu-sub-item-${slugify(text)}`;
 
         return (
           <MyMenuItem key={key} selected={isSelected} disabled={isSelected}>
             <Typography variant={'subtitle1'} component={'span'}>
               {isSelected ? (
                 <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
+              ) : action ? (
+                <MUILink onClick={action}>{ text }</MUILink>
               ) : (
                 <Link href={href} target={target || ''}>{text}</Link>
               )}

@@ -69,17 +69,11 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			
 			{/* HERO */}
 			<Box sx={{ backgroundColor: 'secondary.800', paddingTop: 20, paddingBottom: 10 , position: 'relative', }}>
-				<Container>
-					<Grid container spacing={3} alignItems='center' justifyContent={'space-between'} sx={{ color: 'secondary.contrastText' }}>
-						<Grid item md={6}>
-							<Typography variant='h2' component={'h1'} sx={{ mb: 2 }}>Telemedica Blog</Typography>
-							<Typography variant='body1' sx={{ fontSize: 24 }}>The most up-to-date and accurate information on Veteran Nexus Letters, Telemedicine, VA medical claims, benefits, and ratings, for veterans worldwide.</Typography>
-						</Grid>
-						<Grid item>
-							<Button variant='contained' size='large' onClick={() => { setPopupOpen(true); }}>Subscribe</Button>
-							<NewsletterDialog openCondition={popupOpen} />
-						</Grid>
-					</Grid>
+				<Container spacing={3} alignItems='center' justifyContent={'space-between'} sx={{ color: 'secondary.contrastText' }}>
+					<Typography variant='h2' component={'h1'} sx={{ mb: 2 }}>Telemedica Blog</Typography>
+					<Typography variant='body1' sx={{ fontSize: 24 }}>The most up-to-date and accurate information on Veteran Nexus Letters, Telemedicine, VA medical claims, benefits, and ratings, for veterans worldwide.</Typography>
+					<Button variant='contained' size='large' onClick={() => { setPopupOpen(true); }} sx={{my: 3}}>Subscribe</Button>
+					<NewsletterDialog openCondition={popupOpen} onPopupOpen={setPopupOpen}/>
 				</Container>
 			</Box>
 			

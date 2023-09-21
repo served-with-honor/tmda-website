@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import phoneImage from '../../public/images/iPhone 14 SDS1-04 copy.png'
-import phoneShadowImage from '../../public/images/iPhone Blur Shadow.png'
+import phoneImage from '../../public/images/iPhone-14-SDS1-04.png'
+import phoneShadowImage from '../../public/images/iPhone-Blur-Shadow.png'
 
 export default function Section1({ heading, text, button }) {
 	const phoneImageRef = useRef(null);

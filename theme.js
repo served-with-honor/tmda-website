@@ -3,32 +3,35 @@ import { Oswald, Montserrat } from 'next/font/google'
 
 const oswald = Oswald({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
+const fontFamily = montserrat.style.fontFamily;
+const fontFamilySecondary = oswald.style.fontFamily;
 
 const baseTheme = responsiveFontSizes(createTheme({
   typography: {
-    fontFamily: montserrat.style.fontFamily,
+    fontFamily,
+    fontFamilySecondary,
     h1: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h2: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h3: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h5: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h6: {
-      fontFamily: oswald.style.fontFamily,
+      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     subtitle1: {
@@ -37,8 +40,14 @@ const baseTheme = responsiveFontSizes(createTheme({
     subtitle2: {
       fontWeight: 700,
     },
+    lead: {
+      component: 'p',
+      fontSize: 24,
+      lineHeight: 1.5,
+    },
     sectionHeading: {
-      fontFamily: oswald.style.fontFamily,
+      component: 'h2',
+      fontFamily: fontFamilySecondary,
       fontSize: 48,
       lineHeight: 1,
       textAlign: 'center',
@@ -83,6 +92,14 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
   }, 
   components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          sectionHeading: 'h2',
+          lead: 'p',
+        },
+      },
+    },
     MuiLink: {
       styleOverrides: {
         root: {
@@ -136,9 +153,10 @@ const darkTheme = createTheme({
   	MuiLink: {
   		styleOverrides: {
         root: {
-          color:  baseTheme.palette.primary['700'],
+          color:  baseTheme.palette.secondary['800'],
   				textDecoration: 'none',
           '&:hover': {
+            textDecorationColor: 'currentcolor',
             textDecoration: 'underline',
           },
         },

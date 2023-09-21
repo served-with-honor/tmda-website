@@ -38,7 +38,16 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
           return (
             <Tab
               key={id}
-              sx={{ fontWeight: 'bold' }}
+              sx={{
+                fontWeight: 'bold',
+                textTransform: 'capitalize',
+                fontSize: 24,
+                lineHeight: 1,
+                px: 0,
+                fontFamily: (theme) => theme.typography.fontFamilySecondary,
+                '&:not(:first-child)': { ml: 3 },
+              }}
+              variant='h5'
               label={title}
               id={id}
               {...{ 'aria-controls': `${parentSlug}-panel-${index}` }}
@@ -50,9 +59,9 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
         backgroundColor: 'secondary.100',
         borderRadius: 6,
         p: 2,
-        minHeight: { md: 275 },
+        minHeight: { md: 200 },
       }}>
-        {items.map(({ heading, body }, index) => {
+        {items.map(({ body }, index) => {
           const isActive = activeTab === index;
           const id = `${parentSlug}-panel-${index}`;
           return (
@@ -64,8 +73,7 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
               aria-labelledby={`${parentSlug}-tab-${index}`}
             >
               {isActive && (
-                <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 350px)' } }}>
-                  {heading && <Typography variant='h4' gutterBottom>{heading}</Typography>}
+                <Box sx={{ p: 3, maxWidth: { md: 'calc(100% - 200px)' } }}>
                   <Typography variant='body1' sx={{ fontSize: 18 }}>{body}</Typography>
                 </Box>
               )}
@@ -82,7 +90,7 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
           [theme.breakpoints.down('md')]: { display: 'none' },
         })}
       >
-        <Image width={300} height={400} src="/images/serve-tabs-image.png" alt="doctor"/>
+        <Image width={225} height={300} src="/images/serve-tabs-image.png" alt="doctor"/>
       </Box>
 		</Paper>
 	)
