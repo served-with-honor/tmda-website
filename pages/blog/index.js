@@ -73,7 +73,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 					<Grid container spacing={3} alignItems='center' justifyContent={'space-between'} sx={{ color: 'secondary.contrastText' }}>
 						<Grid item md={6}>
 							<Typography variant='h2' component={'h1'} sx={{ mb: 2 }}>Telemedica Blog</Typography>
-							<Typography variant='body1' sx={{ fontSize: 24 }}>The most up-to-date and accurate resource for veterans and their families.</Typography>
+							<Typography variant='body1' sx={{ fontSize: 24 }}>The most up-to-date and accurate information on Veteran Nexus Letters, Telemedicine, VA medical claims, benefits, and ratings, for veterans worldwide.</Typography>
 						</Grid>
 						<Grid item>
 							<Button variant='contained' size='large' onClick={() => { setPopupOpen(true); }}>Subscribe</Button>
