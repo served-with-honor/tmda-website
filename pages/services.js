@@ -121,7 +121,7 @@ export default function ServicesPage({ prices }) {
 					</Box>
 					) : null}
 					<Container sx={{textAlign: 'center'}}> 
-						<Link variant='string' color='secondary' href='#' sx={{px: 1}}>How it Works</Link>
+						<Link variant='string' color='secondary' href='/about/#how-it-works' sx={{px: 1}}>How it Works</Link>
 					</Container>
 				</Container>
 			</Box>

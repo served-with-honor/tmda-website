@@ -142,7 +142,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			) : null}
 
 			{/* SECTION */}
-			<Box sx={{
+			<Box id='how-it-works' sx={{
 				paddingY: 20,
 				'.slick-slider': {
 					'&:before, &:after': {
