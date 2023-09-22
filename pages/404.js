@@ -1,34 +1,17 @@
 import { useRef, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
-import Counter from '../components/Counter'
-import { CardContent } from '@mui/material';
-import Section1 from '../components/about/Section1'
 import texture01 from '../public/texture-01.jpg'
-import missionIcon from '../public/images/mission.png'
-import purposeIcon from '../public/images/Purpose.png'
-import visionIcon from '../public/images/shared-vision.png'
-import Image from 'next/image';
-import imageUrlBuilder from "@sanity/image-url"
-import sanityClient from '../lib/sanityConfig'
 import { BookingContext } from '../context/BookingContext'
 import eventImage from '../public/images/event.png'
 import monitorImage from '../public/images/monitor.png'
 import stethoscopeImage from '../public/images/stethoscope.png'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
-
-const builder = imageUrlBuilder(sanityClient);
 
 export default function ErrorPage({ actionItems }) {
 	const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
