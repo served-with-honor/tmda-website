@@ -25,7 +25,7 @@ export default function Directory({ items }) {
           <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
             {people.map((person, index) => {
               return (
-                <Grid key={`directory-team-member-${slugify(person.name)}`} item xs={12} sm={6} md={3} lg={2}>
+                <Grid key={`directory-person-${slugify(person.name)}`} item xs={12} sm={6} md={3} lg={2}>
                   <motion.div
                     align="center"
                     initial={{ opacity: 0, y: -10 }}
