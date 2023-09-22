@@ -93,13 +93,13 @@ const Person = ({ name, position, image, category, isDepartmentLead }) => {
   }
   return <>
     <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
-    <Typography variant='h6' component='p'>{name}</Typography>
-    <Typography variant='body2'>{position}</Typography>
+    <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
     {category && category.map(c => {
       const label = `${c} Team${isDepartmentLead ? ' Lead' : ''}`;
       return(
-        <Chip key={`${name}-${c}`} label={label} sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
-      )
-    })}
+        <Chip key={`${name}-${c}`} label={label} size='small' sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
+        )
+      })}
+    <Typography variant='body2'>{position}</Typography>
   </>
 };
