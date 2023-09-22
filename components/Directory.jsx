@@ -96,8 +96,9 @@ const Person = ({ name, position, image, category, isDepartmentLead }) => {
     <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
     {category && category.map(c => {
       const label = `${c} Team${isDepartmentLead ? ' Lead' : ''}`;
+      const key = `directory-person-${slugify(name)}-category-${slugify(c)}`;
       return(
-        <Chip key={`${name}-${c}`} label={label} size='small' sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
+        <Chip key={key} label={label} size='small' sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
         )
       })}
     <Typography variant='body2'>{position}</Typography>
