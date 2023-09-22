@@ -95,13 +95,13 @@ const Person = ({ name, position, image, category, isDepartmentLead }) => {
   return <>
     <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
     <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
-    {category && category.map(c => {
+    {category ? category.map(c => {
       const label = `${c} Team${isDepartmentLead ? ' Lead' : ''}`;
       const key = `directory-person-${slugify(name)}-category-${slugify(c)}`;
       return(
-        <Chip key={key} label={label} size='small' sx={c && {color: '#fff', backgroundColor: getCategoryColor(c)}}/>
+        <Chip key={key} label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(c) }} />
         )
-      })}
+      }) : null}
     <Typography variant='body2'>{position}</Typography>
   </>
 };
