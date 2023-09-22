@@ -209,7 +209,6 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				<Container>
 					<Typography variant='sectionHeading' component='h2' marginBottom={5}>Meet Our Team</Typography>
 					<Typography variant='subtitle1' align='center' gutterBottom>Telemedica is an administrative company that serves the veteran community through our network of providers.</Typography>
-					<Typography variant='body1' align='center' gutterBottom>We offer a suite of niche services through a HIPAA-Compliant telehealth platform. We help you receive medical evidence and mental health care in less time, so you can get back to living your best life.</Typography>
 					<Directory items={[
 						{ label: 'Team Members', people: teamMembers },
 						{ label: 'Providers', people: providers },
