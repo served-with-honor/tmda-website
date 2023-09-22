@@ -23,16 +23,16 @@ export default function Directory({ items }) {
       <TabPanel key={`directory-panel-${index}`} value={value} index={index}>
         {people ? (
           <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
-            {people.map(({ name, position, image, category, isDepartmentLead }, index) => {
+            {people.map((person, index) => {
               return (
-                <Grid key={`directory-team-member-${slugify(name)}`} item xs={12} sm={6} md={3} lg={2}>
+                <Grid key={`directory-team-member-${slugify(person.name)}`} item xs={12} sm={6} md={3} lg={2}>
                   <motion.div
                     align="center"
                     initial={{ opacity: 0, y: -10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 * index }}
                   >
-                    <Person name={name} image={image} position={position} category={category} isDepartmentLead={isDepartmentLead} />
+                    <Person {...person} />
                   </motion.div>
                 </Grid>
               );
