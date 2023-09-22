@@ -23,7 +23,7 @@ export default function Directory({ items }) {
       <TabPanel key={`directory-panel-${index}`} value={value} index={index}>
         {people ? (
           <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
-            {people.map(({ name, position, image, category }, index) => {
+            {people.map(({ name, position, image, category, isDepartmentLead }, index) => {
               return (
                 <Grid key={`directory-team-member-${slugify(name)}`} item xs={12} sm={6} md={3} lg={2}>
                   <motion.div
@@ -32,7 +32,7 @@ export default function Directory({ items }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 * index }}
                   >
-                    <Person name={name} image={image} position={position} category={category}/>
+                    <Person name={name} image={image} position={position} category={category} isDepartmentLead={isDepartmentLead} />
                   </motion.div>
                 </Grid>
               );
@@ -79,7 +79,7 @@ const TabPanel = ({ children, value, index, ...other }) => (
   </div>
 );
 
-const Person = ({ name, position, image, category }) => {
+const Person = ({ name, position, image, category, isDepartmentLead }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   function checkColor(c) {
@@ -96,8 +96,9 @@ const Person = ({ name, position, image, category }) => {
     <Typography variant='h6' component='p'>{name}</Typography>
     <Typography variant='body2'>{position}</Typography>
     {category && category.map(c => {
+      const label = `${c} Team${isDepartmentLead ? ' Lead' : ''}`;
       return(
-        <Chip key={`${name}-${c}`}label={c} sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
+        <Chip key={`${name}-${c}`} label={label} sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
       )
     })}
   </>

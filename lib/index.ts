@@ -82,6 +82,7 @@ const getTeamMembers = async (): Promise<{ name: string, position: string, image
 
 const getProviders = () => (
   [
+    { name: 'Angela Venda', degree: 'PsyD', category: ['Psych'], isDepartmentLead: true, },
     { name: 'Jikesha Benton-Johnson', image: [ 'images/provider-photos/jikesha-benton-johnson.jpg', 'images/provider-photos/jikesha-benton-johnson@2x.jpg 2x', ], degree: 'PsyD', category: ['Psych'], },
     { name: 'Trevor Boon', degree: 'PsyD', category: ['Psych'], },
     { name: 'Crystal Frazier', image: [ 'images/provider-photos/crystal-frazier.jpg', 'images/provider-photos/crystal-frazier@2x.jpg 2x', ], degree: 'PsyD', category: ['Psych'], },
@@ -91,21 +92,20 @@ const getProviders = () => (
     { name: 'Erik Levy', degree: 'PsyD', category: ['Psych'], },
     { name: 'Reginald Riggins', image: [ 'images/provider-photos/reginald-riggins.jpg', 'images/provider-photos/reginald-riggins@2x.jpg 2x', ], degree: 'PhD', category: ['Psych'], },
     { name: 'Sehrish Tariq', image: [ 'images/provider-photos/sehrish-tariq.jpg', 'images/provider-photos/sehrish-tariq@2x.jpg 2x', ], degree: 'PsyD', category: ['Psych'], },
-    { name: 'Angela Venda', degree: 'PsyD', category: ['Psych'], },
     { name: 'Reed Vierra', image: [ 'images/provider-photos/reed-vierra.jpg', 'images/provider-photos/reed-vierra@2x.jpg 2x', ], degree: 'PsyD', category: ['Psych'], },
     { name: 'Jonathan Rapp', image: [ 'images/provider-photos/jonathan-rapp.jpg', 'images/provider-photos/jonathan-rapp@2x.jpg 2x', ], degree: 'PhD', category: ['Psych'], },
     { name: 'Julie Peters', image: [ 'images/provider-photos/julie-peters.jpg', 'images/provider-photos/julie-peters@2x.jpg 2x', ], degree: 'PsyD', category: ['Psych'], },
     { name: 'Sarah Zwetzig', image: [ 'images/provider-photos/sarah-zwetzig.jpg', 'images/provider-photos/sarah-zwetzig@2x.jpg 2x', ], degree: 'PhD', category: ['Psych'], },
     { name: 'Jacqueline Herrera', image: [ 'images/provider-photos/jacqueline-herrera.jpg', 'images/provider-photos/jacqueline-herrera@2x.jpg 2x', ], degree: 'PsyD', category: ['Psych'], },
+    { name: 'Tara Thompson', image: [ 'images/provider-photos/tara-thompson.jpg', 'images/provider-photos/tara-thompson@2x.jpg 2x', ], degree: 'PA-C', category: ['Nexus'], isDepartmentLead: true, },
     { name: 'Hannah Mathews', degree: 'PA-C', category: ['Nexus'], },
     { name: 'Nancy Reeves', degree: 'PA-C', category: ['Nexus'], },
     { name: 'Chad Retzloff', degree: 'PA-C', category: ['Nexus'], },
     { name: 'Lindsay Lyon', degree: 'PA-C', category: ['Nexus'], },
     { name: 'Shervon Robinson', degree: 'PA-C', category: ['Nexus'], },
-    { name: 'Tara Thompson', image: [ 'images/provider-photos/tara-thompson.jpg', 'images/provider-photos/tara-thompson@2x.jpg 2x', ], degree: 'PA-C', category: ['Nexus'], },
     { name: 'Randy Vena', degree: 'FNP-C', category: ['Nexus'], },
     { name: 'Sabrina Vizzini', degree: 'PA-C', category: ['Nexus'], },
-    { name: 'Daniel Olivero', degree: 'MD', category: ['Telemedicine Eval'], },
+    { name: 'Daniel Olivero', degree: 'MD', category: ['Telemedicine Eval'], isDepartmentLead: true, },
   ]
 );
 
