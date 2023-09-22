@@ -184,8 +184,8 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							</Box>
 						))}
 					</Slider>
-					<Box sx={{mt: 8, textAlign: 'center'}}>
-						<Button color='secondary' variant='contained' size='large' onClick={() => setIsBookingOpen(true)} sx>Book Now</Button>
+					<Box align={'center'} sx={{mt: 8}}>
+						<Button color='secondary' variant='contained' size='large' onClick={() => setIsBookingOpen(true)}>Get Started</Button>
 					</Box>
 				</Container>
 			</Box>
