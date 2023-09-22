@@ -87,7 +87,7 @@ const Person = ({ name, position, image, category, isDepartmentLead }) => {
       return blue[300]
     } else if (c === 'Nexus') {
       return red[400]
-    } else if (c === 'Telemedicine Eval'){
+    } else if (c === 'Telemedicine'){
       return green[400]
     }
   }

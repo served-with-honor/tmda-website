@@ -105,7 +105,7 @@ const getProviders = () => (
     { name: 'Shervon Robinson', degree: 'PA-C', category: ['Nexus'], },
     { name: 'Randy Vena', degree: 'FNP-C', category: ['Nexus'], },
     { name: 'Sabrina Vizzini', degree: 'PA-C', category: ['Nexus'], },
-    { name: 'Daniel Olivero', degree: 'MD', category: ['Telemedicine Eval'], isDepartmentLead: true, },
+    { name: 'Daniel Olivero', degree: 'MD', category: ['Telemedicine'], isDepartmentLead: true, },
   ]
 );
 
