@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
 import Page from '../components/Page'
@@ -20,7 +21,7 @@ import {
 	LatestPosts,
 } from '../components/home'
 import { slugify } from '../src/utils';
-import drSmilingImage from '../public/images/Dr_Smiling_Resized.jpeg'
+import googleRatingBadge from '../public/google-rating.svg'
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
@@ -128,10 +129,7 @@ export default function Home({ faqs, testimonials }) {
 				<Container maxWidth={'md'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Frequently Asked Questions</Typography>
 					<FAQs items={faqs} />
-					<Box sx={{
-						mt: 8,
-						textAlign: 'center',
-					}}>
+					<Box align={'center'} sx={{mt: 8,}}>
 						<Button color='primary' variant='contained' href='/faqs'>View All FAQs</Button>
 					</Box>
 				</Container>
@@ -144,6 +142,12 @@ export default function Home({ faqs, testimonials }) {
 					{testimonials ? (
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
+					<Box sx={{ mt: 8,  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
+						<Stack direction='row' spacing={1} alignItems='center'>
+							<Image src={googleRatingBadge}/>
+							<Typography variant={'h4'} component={'p'}>4.9</Typography>
+						</Stack>
+					</Box>
 					<Box align={'center'} sx={{ mt: 10 }}>
 							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'}>Leave a Review</Button>
 					</Box>
@@ -161,7 +165,6 @@ export default function Home({ faqs, testimonials }) {
 					</Box>
 				</Container>
 			</Box>
-			
 		</Page>
   )
 }
