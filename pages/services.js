@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import MuiLink from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -125,7 +126,9 @@ export default function ServicesPage({ prices }) {
 						) : null}
 						<Container sx={{ textAlign: 'center' }}>
 							<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
-							<Button href='/about#how-it-works'>How it Works</Button>
+							<Typography variant='subtitle1' component='p'>
+								<MuiLink href='/about#how-it-works'>How it Works</MuiLink>
+							</Typography>
 						</Container>
 					</Container>
 				</Box>
