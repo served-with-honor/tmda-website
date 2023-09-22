@@ -79,18 +79,19 @@ const TabPanel = ({ children, value, index, ...other }) => (
   </div>
 );
 
+function getCategoryColor(categoryName) {
+  switch (categoryName) {
+    case 'Psych': return blue[300];
+    case 'Nexus': return red[400];
+    case 'Telemedicine': return green[400];
+    default: return;
+  }
+}
+
 const Person = ({ name, position, image, category, isDepartmentLead }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
-  function checkColor(c) {
-    if (c === 'Psych'){
-      return blue[300]
-    } else if (c === 'Nexus') {
-      return red[400]
-    } else if (c === 'Telemedicine'){
-      return green[400]
-    }
-  }
+  
   return <>
     <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
     <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
@@ -98,7 +99,7 @@ const Person = ({ name, position, image, category, isDepartmentLead }) => {
       const label = `${c} Team${isDepartmentLead ? ' Lead' : ''}`;
       const key = `directory-person-${slugify(name)}-category-${slugify(c)}`;
       return(
-        <Chip key={key} label={label} size='small' sx={c && {color: '#fff', backgroundColor: checkColor(c)}}/>
+        <Chip key={key} label={label} size='small' sx={c && {color: '#fff', backgroundColor: getCategoryColor(c)}}/>
         )
       })}
     <Typography variant='body2'>{position}</Typography>
