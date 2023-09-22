@@ -88,18 +88,18 @@ function getCategoryColor(categoryName) {
   }
 }
 
-const Person = ({ name, position, image, category, isDepartmentLead }) => {
+const Person = ({ name, position, image, categories, isDepartmentLead }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   
   return <>
     <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
     <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
-    {category ? category.map(c => {
-      const label = `${c} Team${isDepartmentLead ? ' Lead' : ''}`;
-      const key = `directory-person-${slugify(name)}-category-${slugify(c)}`;
+    {categories ? categories.map(category => {
+      const label = `${category} Team${isDepartmentLead ? ' Lead' : ''}`;
+      const key = `directory-person-${slugify(name)}-category-${slugify(category)}`;
       return(
-        <Chip key={key} label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(c) }} />
+        <Chip key={key} label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(category) }} />
         )
       }) : null}
     <Typography variant='body2'>{position}</Typography>
