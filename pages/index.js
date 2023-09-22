@@ -79,28 +79,6 @@ export default function Home({ faqs, testimonials }) {
 				</Container>
 			</Box>
 
-			<Box paddingY={12}>
-				<Container>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Who is Telemedica LLC?</Typography>
-					<Grid container spacing={5}>
-						<Grid item sm={6} sx={{ width: '100%' }}>
-							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
-								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} sizes="(min-width: 1200px) 560px, (min-width: 600px) 50%, 600px" />
-							</Box>
-						</Grid>
-						<Grid item sm={6}>
-							<Typography variant={'h6'} component={'h3'}>Mission:</Typography>
-							<Typography variant={'body1'} gutterBottom>Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.</Typography>
-							<Typography variant={'h6'} component={'h3'}>Vision:</Typography>
-							<Typography variant={'body1'} gutterBottom>To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.</Typography>
-							<Typography variant={'h6'} component={'h3'}>Purpose:</Typography>
-							<Typography variant={'body1'}>To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.</Typography>
-							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More</Button>
-						</Grid>
-					</Grid>
-				</Container>
-			</Box>
-
 			<Box paddingY={12} align={'center'} backgroundColor='grey.50'>
 				<Container>
 					<motion.div
@@ -113,7 +91,7 @@ export default function Home({ faqs, testimonials }) {
 					<Grid container spacing={5}>
 						{([
 							{
-								title: 'IMOs & DBQs',
+								title: 'DBQs and Nexus Letters',
 								text: 'Evidence to support your VA claim. Nexus Letters (IMOs) and DBQs do not require an appointment. Simply book, upload your documents, and one of our licensed professionals will be in touch to let you know if a medical document is warranted.',
 							},
 							{
@@ -150,6 +128,12 @@ export default function Home({ faqs, testimonials }) {
 				<Container maxWidth={'md'}>
 					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Frequently Asked Questions</Typography>
 					<FAQs items={faqs} />
+					<Box sx={{
+						mt: 8,
+						textAlign: 'center',
+					}}>
+						<Button color='primary' variant='contained' href='/faqs'>View All FAQs</Button>
+					</Box>
 				</Container>
 			</Box>
 
