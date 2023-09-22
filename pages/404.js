@@ -121,19 +121,10 @@ export default function ErrorPage({ actionItems }) {
 					</Grid>
 				</Container>
 			</Box>
-
-			
-			{/* SECTION */}
-			<Section1 sx={{backgroundColor: 'secondary.100' }}
-				heading='Medical Evidence By Veterans, For Veterans'
-				text='Our vast network of Telehealth providers work together to provide high-quality medical evidence to veterans seeking to increase their disability benefits. Delivering peace of mind and expertise from our high quality licensed providers in all 50 states.'
-				button={{ url: '/contact-us', label: 'Get Connected Now' }}
-			/>
             
 			
-			
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 20 }}>
+			<Box sx={{ paddingY: 20 }}>
 				<Container maxWidth="md">
 					<Typography variant='sectionHeading' component='h2' gutterBottom>Our Promise to You</Typography>
 					<List sx={{ '.MuiListItemIcon-root': { alignSelf: 'flex-start' }}}>
