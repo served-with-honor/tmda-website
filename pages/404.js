@@ -1,10 +1,10 @@
-import { useRef, useContext } from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Page from '../components/Page'
+import Link from '../src/Link';
 import texture01 from '../public/texture-01.jpg'
 import { BookingContext } from '../context/BookingContext'
 import eventImage from '../public/images/event.png'
@@ -15,7 +15,6 @@ import CustomCard from '../components/CustomCard';
 
 export default function ErrorPage({ actionItems }) {
 	const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
-	const heroRef = useRef(null);
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 
 	return (
@@ -24,32 +23,19 @@ export default function ErrorPage({ actionItems }) {
 			{/* HERO */}
 			<Box sx={{
 				paddingTop: 20,
-				paddingBottom: 10,
+				paddingBottom: 15,
 				position: 'relative',
 				background: `url(${texture01.src}) center / cover no-repeat`,
 				overflowX: 'hidden',
-			}} ref={heroRef}>
-				<Box sx={{
-					position: 'absolute',
-					width: '50vw',
-					height: '100%',
-					right: '-5%',
-					top: '0',
-					display: { xs: 'none', md: 'flex' },
-					alignItems: 'center',
-				}}>
-				</Box>
+			}}>
 				<Container sx={{ position: 'relative' }}>
-					<Grid container spacing={3}>
-						<Grid item>
-							<Typography variant='h1' color='primary' gutterBottom>404 Error</Typography>
-							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }}>The page you are looking for does not exist.</Typography>
-							<Grid container spacing={2}>
-								<Grid item><Button variant='outlined' color='secondary' size='large' href='/'>Go To  The Home Page</Button></Grid>
-								<Grid item><Button variant='contained' color='secondary' size='large' href='/contact-us'>Contact Us</Button></Grid>
-							</Grid>
-						</Grid>
-					</Grid>
+					<Box maxWidth={'sm'}>
+						<Typography variant='h1' color='primary' sx={{ mb: 1 }}>whoops</Typography>
+						<Typography variant='lead' sx={{ mb: 5 }}>We can't seem to find the page your looking for. Hopefully these links can help you find what you need.</Typography>
+						<Typography variant='body1' sx={{ fontSize: 18, fontWeight: 600, mb: 1 }}><Link href="/about">Learn more about Telemedica &raquo;</Link></Typography>
+						<Typography variant='body1' sx={{ fontSize: 18, fontWeight: 600, mb: 1 }}><Link href="/services">See what services we offer &raquo;</Link></Typography>
+						<Typography variant='body1' sx={{ fontSize: 18, fontWeight: 600, mb: 1 }}><Link href="/blog">Read our latest post &raquo;</Link></Typography>
+					</Box>
 				</Container>
 			</Box>
 
