@@ -81,68 +81,7 @@ export default function ErrorPage({ actionItems }) {
 					</Grid>
 				</Container>
 			</Box>
-
-            {/* SECTION */}
-			<Box sx={{ py: 20, backgroundColor: 'secondary.100', }}>
-				<Container>
-					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
-					<Box sx={{ marginBottom: 10 }}>
-								<Grid container spacing={[3,5]} justifyContent={'center'}>
-									{[
-										{ num: 20, suffix: 'k+', text: 'Veterans Served' },
-										{ num: 90, suffix: '%', text: 'Success Rate' },
-										{ num: 20, suffix: '+', text: 'Licensed Providers' },
-									].map(({ num, suffix, text }, index) => (
-										<Grid item key={`stuff-${index}`}>
-											<Typography color='secondary' sx={{ fontSize: 40, fontWeight: 700, lineHeight: 1 }}>
-												<Counter to={num} duration={1.5} digits={2} />{suffix}
-											</Typography>
-											<Typography variant='body1'>{text}</Typography>
-										</Grid>
-									))}
-								</Grid>
-							</Box>
-					<Grid container spacing={3} justifyContent={'center'}>
-						{[
-							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon: missionIcon },
-							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon: visionIcon },
-							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: purposeIcon },
-						].map(({ heading, text, icon }, index) => (
-							<Grid item sm={6} md={4} key={`things-${index}`}>
-								<Card sx={{ height: '100%' }}>
-									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
-										<Image src={icon} alt='' width={50} height={50} />
-										<Typography variant='h5' component='h3' sx={{ mb: 3 }}>{heading}</Typography>
-										<Box><Typography variant='body1'>{text}</Typography></Box>
-									</CardContent>
-								</Card>
-							</Grid>
-						))}
-					</Grid>
-				</Container>
-			</Box>
-            
 			
-			{/* SECTION */}
-			<Box sx={{ paddingY: 20 }}>
-				<Container maxWidth="md">
-					<Typography variant='sectionHeading' component='h2' gutterBottom>Our Promise to You</Typography>
-					<List sx={{ '.MuiListItemIcon-root': { alignSelf: 'flex-start' }}}>
-						<ListItem>
-							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
-							<ListItemText>As an administrative company, Telemedica works to connect you with licensed professionals wherever you are.</ListItemText>
-						</ListItem>
-						<ListItem>
-							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
-							<ListItemText>All Telemedica providers hold doctoral degrees in psychology from graduate programs accredited by the American Psychological Association (APA) or the Psychological Clinical Science Accredited System (PCSAS).</ListItemText>
-						</ListItem>
-						<ListItem>
-							<ListItemIcon><AddIcon color='primary' /></ListItemIcon>
-							<ListItemText>Many of Telemedica&apos;s providers have experience working directly with the veterans community, have veteran family members, or are veterans themselves. Our providers understand what the VA is looking for and will work alongside you to make strong connections for your VA disability claim.</ListItemText>
-						</ListItem>
-					</List>
-				</Container>
-			</Box>		
 		</Page>
 	)
 };
