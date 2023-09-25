@@ -27,6 +27,7 @@ export default {
     patientPortal: 'https://telemedicallc.intakeq.com/portal',
     helpDesk: 'https://help.telemedicallc.com/',
     providerPortal: 'https://intakeq.com/',
+    jobs: 'https://telemedica.rippling-ats.com/',
   },
   // googleAnalyticsId: 'G-73TKHSVTNZ',
   newsletter: {
