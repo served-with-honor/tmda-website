@@ -30,7 +30,7 @@ export default function ErrorPage({ actionItems }) {
 			}}>
 				<Container sx={{ position: 'relative' }}>
 					<Box maxWidth={'sm'}>
-						<Typography variant='h1' color='primary' sx={{ mb: 1 }}>whoops</Typography>
+						<Typography variant='h1' color='primary' sx={{ mb: 5 }}>whoops</Typography>
 						<Typography variant='lead' sx={{ mb: 5 }}>We can't seem to find the page your looking for. Hopefully these links can help you find what you need.</Typography>
 						<Typography variant='body1' sx={{ fontSize: 18, fontWeight: 600, mb: 1 }}><Link href="/about">Learn more about Telemedica &raquo;</Link></Typography>
 						<Typography variant='body1' sx={{ fontSize: 18, fontWeight: 600, mb: 1 }}><Link href="/services">See what services we offer &raquo;</Link></Typography>
