@@ -103,7 +103,8 @@ const baseTheme = responsiveFontSizes(createTheme({
     MuiLink: {
       styleOverrides: {
         root: {
-          color: '#256958',
+          color: '#384e8e',
+          textDecorationColor: 'currentcolor',
         },
       },
     },
