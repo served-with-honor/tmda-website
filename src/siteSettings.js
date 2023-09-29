@@ -15,7 +15,7 @@ export default {
   ],
   contact: {
     phone: '+15128838446',
-    email: 'mailto:email@email.com',
+    email: 'customerservice@telemedicallc.com',
   },
   articleCategoryColors: {
     'nexus-letter': red[400],
