@@ -117,6 +117,7 @@ const MenuGroup = ({ label, items,  selected }) => {
       aria-haspopup="true"
       aria-expanded={open ? 'true' : undefined}
       onMouseEnter={handleOpen}
+      sx={{ fontWeight: 700 }}
     >
       {label}
     </Button>  
