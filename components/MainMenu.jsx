@@ -95,9 +95,15 @@ const MyMenuItem = styled(MenuItem)(({ theme }) => ({
   '&:hover, &:focus': {
     backgroundColor: 'transparent',
     color: theme.palette.secondary.main,
-
+    
     '&:before': { opacity: 1 },
+  },
+  
+  '&.Mui-selected': {
+    cursor: 'default',
+    color: theme.palette.secondary.main,
   }
+  
 }));
 
 const MenuGroup = ({ label, items,  selected }) => {
@@ -141,7 +147,7 @@ const MenuGroup = ({ label, items,  selected }) => {
         const key = `main-menu-sub-item-${slugify(text)}`;
 
         return (
-          <MyMenuItem key={key} selected={isSelected} disabled={isSelected}>
+          <MyMenuItem key={key} selected={isSelected}>
             <Typography variant={'subtitle1'} component={'span'}>
               {isSelected ? (
                 <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
