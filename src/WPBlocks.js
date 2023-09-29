@@ -109,7 +109,7 @@ const replaceButtons = ({ children, attribs }) => {
 	return (
 		<Grid item>
 			<Button variant={variant} color='primary' size={size} {...button.attribs}>
-				{domToReact(button.children)}
+				{domToReact(children)}
 			</Button>
 		</Grid>
 	);

@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react'
-import Script from 'next/script'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -89,14 +88,16 @@ export default function BookingWidget() {
           geoplugin_region: state
         } = body;
         setRegion(countryCode === 'US' ? state : 'Out of US');
-        setRegion(state);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        setRegion(null);
+        console.error(error);
+      })
   }, []);
   
   useEffect(() => {
-    setCookie('booking-location', region);
     if (!region) return;
+    setCookie('booking-location', region);
 
     const formId = siteSettings.booking.forms[region];
     if (formId) window.intakeqLocationId = formId;
@@ -105,7 +106,7 @@ export default function BookingWidget() {
     
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.async = true;
+    script.defer = true;
     script.src = "https://intakeq.com/js/widget.min.js?1";
     document.head.appendChild(script);
     
@@ -115,7 +116,6 @@ export default function BookingWidget() {
     <Box>
       {region ? (
         <>
-          {/* <Script src="https://intakeq.com/js/widget.min.js?1" strategy='lazyOnload'/> */}
           <Box sx={{ mx: '15px' }}>
             <Grid container alignItems="center" gap={1}>
               <Grid item><Typography variant='subtitle1'>{region}</Typography></Grid>
@@ -125,7 +125,8 @@ export default function BookingWidget() {
           <div id="intakeq" ref={ref} />
         </>
       ) : (
-        <>
+          <>
+          <Typography variant='h5' component='p' textAlign='center' sx={{ mb: 3 }}>Choose your location</Typography>
           <Grid container spacing={1} alignItems={'center'}>
             <Grid item md>
               <FormControl fullWidth>

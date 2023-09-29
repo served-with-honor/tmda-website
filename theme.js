@@ -1,37 +1,34 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { Oswald, Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 
-const oswald = Oswald({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
 const fontFamily = montserrat.style.fontFamily;
-const fontFamilySecondary = oswald.style.fontFamily;
 
 const baseTheme = responsiveFontSizes(createTheme({
   typography: {
     fontFamily,
-    fontFamilySecondary,
     h1: {
-      fontFamily: fontFamilySecondary,
+      fontSize: 75,
       fontWeight: 700,
     },
     h2: {
-      fontFamily: fontFamilySecondary,
+      fontSize: 42,
       fontWeight: 700,
     },
     h3: {
-      fontFamily: fontFamilySecondary,
+      fontSize: 38,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: fontFamilySecondary,
+      fontSize: 28,
       fontWeight: 700,
     },
     h5: {
-      fontFamily: fontFamilySecondary,
+      fontSize: 24,
       fontWeight: 700,
     },
     h6: {
-      fontFamily: fontFamilySecondary,
+      fontSize: 18,
       fontWeight: 700,
     },
     subtitle1: {
@@ -47,8 +44,7 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
     sectionHeading: {
       component: 'h2',
-      fontFamily: fontFamilySecondary,
-      fontSize: 48,
+      fontSize: 42,
       lineHeight: 1,
       textAlign: 'center',
       '&::after': {
@@ -103,7 +99,8 @@ const baseTheme = responsiveFontSizes(createTheme({
     MuiLink: {
       styleOverrides: {
         root: {
-          color: '#256958',
+          color: '#384e8e',
+          textDecorationColor: 'currentcolor',
         },
       },
     },

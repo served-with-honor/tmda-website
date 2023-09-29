@@ -8,6 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
+import siteSettings from '../src/siteSettings';
 
 export default function CareersPage() {
 	return (
@@ -28,7 +29,7 @@ export default function CareersPage() {
 							lineHeight: 1,
 							mb: 5,
 						}}>100% remote working opportunities.</Typography>
-						<Button href="#" variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button>
+						<Button href={siteSettings.externalLinks.jobs} target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button>
 					</Box>
 				</Container>
 			</Box>

@@ -141,7 +141,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			) : null}
 
 			{/* SECTION */}
-			<Box sx={{
+			<Box id='how-it-works' sx={{
 				paddingY: 20,
 				'.slick-slider': {
 					'&:before, &:after': {
@@ -168,11 +168,11 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					
 					<Slider {...sliderSettings}>
 						{[
-							{ title: 'Book Online', body: 'Choose a service and book online through our booking portal. Pay the $100 non-refundable booking fee (if applicable).' },
-							{ title: 'Submit Documentation', body: 'Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).' },
-							{ title: 'Connect', body: 'Connect with your provider via our convenient telehealth platform and receive your medical evidence. You will receive an email to join your appointment.*', subtext: '* If warranted - please note that the Nexus Letter service does not include a telehealth appointment with a provider.', },
-							{ title: 'Obtain', body: 'Receive your medical evidence (or therapists notes) directly to your patient portal. ' },
-							{ title: 'Submit & Receive', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim, or back your resubmission.' },
+							{ title: 'Book Online', body: 'Choose a service and book online through our booking portal. Pay a non-refundable booking fee.' },
+							{ title: 'Complete Intake', body: 'Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).' },
+							{ title: 'Connect', body: 'Connect with your provider via our convenient telehealth platform and receive your medical evidence. You will receive an email to join your appointment.', },
+							{ title: 'Medical Evidence', body: 'Receive your expert medical evidence from our professional independent providers directly to your patient portal.' },
+							{ title: 'Submit Your Claim', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim.' },
 						].map(({ title, body, subtext }, index) => (
 							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: { xs: 4, md: 8 } }}>
 								<Typography sx={{ color: 'secondary.light', position: 'absolute', fontSize: 300, fontWeight: 600, lineHeight: 1, opacity: 0.125, left: 0, top: 0, }}>{index + 1}</Typography>
@@ -184,6 +184,9 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							</Box>
 						))}
 					</Slider>
+					<Box align={'center'} sx={{mt: 8}}>
+						<Button color='secondary' variant='contained' size='large' onClick={() => setIsBookingOpen(true)}>Get Started</Button>
+					</Box>
 				</Container>
 			</Box>
 			
@@ -201,7 +204,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			<Section1
 				heading='Medical Evidence By Veterans, For Veterans'
 				text='Our vast network of Telehealth providers work together to provide high-quality medical evidence to veterans seeking to increase their disability benefits. Delivering peace of mind and expertise from our high quality licensed providers in all 50 states.'
-				button={{ url: '#', label: 'Get Connected Now' }}
+				button={{  label: 'Get Connected Now', action: () => setIsBookingOpen(true) }}
 			/>
 			
 			{/* SECTION */}
@@ -209,7 +212,6 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				<Container>
 					<Typography variant='sectionHeading' component='h2' marginBottom={5}>Meet Our Team</Typography>
 					<Typography variant='subtitle1' align='center' gutterBottom>Telemedica is an administrative company that serves the veteran community through our network of providers.</Typography>
-					<Typography variant='body1' align='center' gutterBottom>We offer a suite of niche services through a HIPAA-Compliant telehealth platform. We help you receive medical evidence and mental health care in less time, so you can get back to living your best life.</Typography>
 					<Directory items={[
 						{ label: 'Team Members', people: teamMembers },
 						{ label: 'Providers', people: providers },

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import MuiLink from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -21,7 +22,6 @@ import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 export default function ServicesPage({ prices }) {
-	const counterRef = useRef(null);
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = () => {
@@ -125,24 +125,17 @@ export default function ServicesPage({ prices }) {
 						) : null}
 						<Container sx={{ textAlign: 'center' }}>
 							<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
-							<Button href='/about#how-it-works'>How it Works</Button>
+							<Typography variant='subtitle1' component='p'>
+								<MuiLink href='/about#how-it-works'>How it Works</MuiLink>
+							</Typography>
 						</Container>
 					</Container>
 				</Box>
 				{/* SECTION */}
-				<Box sx={{ p: 10 }}>
+				<Box sx={{ py: 10 }}>
 					<Container maxWidth='md'>
 						<Typography variant='sectionHeading' component='h2' sx={{ mb: 10 }}>At-A-Glance Pricing</Typography>
-						{prices ? (
-							<Box sx={{
-								border: 1,
-								borderColor: 'primary.main',
-								borderRadius: 12,
-								p: 2,
-							}}>
-								<PriceTable columns={prices.columns} rows={prices.rows} />
-							</Box>
-						) : null}
+						{prices ? <PriceTable rows={prices} /> : null}
 						<Box sx={{ mt: 6 }}>
 							{/* Discount Section */}
 							<Typography display='inline' variant='h6'>Discounts: </Typography>
@@ -170,7 +163,7 @@ export default function ServicesPage({ prices }) {
 							Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 						</Typography>
 						<Grid container spacing={5} alignItems='center'>
-							<Grid item xs={12} md={6} ref={counterRef}>
+							<Grid item xs={12} md={6}>
 								<Box sx={{ maxWidth: 450, mx: 'auto' }}>
 									<Typography sx={{
 										fontSize: { xs: '6vw', sm: 32, },
@@ -179,7 +172,7 @@ export default function ServicesPage({ prices }) {
 									}}>
 										We've Helped more than
 										<Typography component='span' color='primary.600' sx={{ display: 'block', fontSize: '1.25em', fontWeight: 700, }}>
-											<Counter to={20000} parentRef={counterRef} /> veterans
+											<Counter to={20000} /> veterans
 										</Typography>
 										win their claim through:
 									</Typography>
@@ -226,25 +219,17 @@ export default function ServicesPage({ prices }) {
 }
 
 export async function getStaticProps() {
-	const prices = {
-		columns: [
-			'Service',
-			'Booking/Review Fee',
-			'Price',
-		],
-		rows: [
-			['Psych Eval/IMO*', '$100', '$1,395'],
-			['Telemedicine Evaluation*', '$100', '$895'],
-			['Medical Nexus Letter*', '$199', '$1,345'],
-			['Medical Nexus Letter Enhanced*', '$199', '$1,595'],
-			['DBQ Document*', '$199', '$1,145'],
-			['DBQ Document Enhanced*', '$199', '$1,400'],
-			['P&T Request Letter*', '$199', '$1,345'],
-			['Psych Rebuttal Letter', '$0', '$175'],
-			['Med Team Rebuttal Letter**', '$50', '$250'],
-			['Recurring Therapy', '$0', '$155 - $250'],
-		],
-	};
+	const prices = [
+		{ label: 'Telemedicine Evaluation*', fee: '$100', price: '$895', category: 'Telemedicine' },
+		{ label: 'Medical Nexus Letter*', fee: '$199', price: '$1,345', category: 'Nexus' },
+		{ label: 'Medical Nexus Letter Enhanced*', fee: '$199', price: '$1,595', category: 'Nexus' },
+		{ label: 'P&T Request Letter*', fee: '$199', price: '$1,345', category: 'Nexus' },
+		{ label: 'DBQ Document*', fee: '$199', price: '$1,145', category: 'Nexus' },
+		{ label: 'DBQ Document Enhanced*', fee: '$199', price: '$1,400', category: 'Nexus' },
+		{ label: 'Med Team Rebuttal Letter**', fee: '$50', price: '$250', category: 'Nexus' },
+		{ label: 'Psych Eval/IMO*', fee: '$100', price: '$1,395', category: 'Psych' },
+		{ label: 'Psych Rebuttal Letter', fee: '$0', price: '$175', category: 'Psych' },
+	];
 
 	return {
 		props: {

@@ -78,7 +78,7 @@ export default forwardRef(function Header({ isDark }, ref) {
           <Grid item>
             <Link href="/">
               <Image
-                src={isDark ? LogoWhite : Logo}
+                src={isDark && headerState === null ? LogoWhite : Logo}
                 alt={`${siteSettings.name} logo`}
                 width={225}
                 height={49}
