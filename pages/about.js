@@ -204,7 +204,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			<Section1
 				heading='Medical Evidence By Veterans, For Veterans'
 				text='Our vast network of Telehealth providers work together to provide high-quality medical evidence to veterans seeking to increase their disability benefits. Delivering peace of mind and expertise from our high quality licensed providers in all 50 states.'
-				button={{ url: '#', label: 'Get Connected Now' }}
+				button={{  label: 'Get Connected Now', action: () => setIsBookingOpen(true) }}
 			/>
 			
 			{/* SECTION */}
