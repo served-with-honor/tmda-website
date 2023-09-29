@@ -8,21 +8,27 @@ const baseTheme = responsiveFontSizes(createTheme({
   typography: {
     fontFamily,
     h1: {
+      fontSize: 75,
       fontWeight: 700,
     },
     h2: {
+      fontSize: 42,
       fontWeight: 700,
     },
     h3: {
+      fontSize: 38,
       fontWeight: 700,
     },
     h4: {
+      fontSize: 28,
       fontWeight: 700,
     },
     h5: {
+      fontSize: 24,
       fontWeight: 700,
     },
     h6: {
+      fontSize: 18,
       fontWeight: 700,
     },
     subtitle1: {
@@ -38,7 +44,7 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
     sectionHeading: {
       component: 'h2',
-      fontSize: 48,
+      fontSize: 42,
       lineHeight: 1,
       textAlign: 'center',
       '&::after': {
