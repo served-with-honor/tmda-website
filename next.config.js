@@ -18,7 +18,6 @@ const nextConfig = {
       { source: '/about-telemedicallc', destination: '/about', permanent: true },
       { source: '/services-we-offer', destination: '/services', permanent: true },
       { source: '/news-and-updates', destination: '/blog', permanent: true },
-      { source: '/contact-us', destination: '/contact', permanent: true },
 
       // Posts
       { source: '/how-much-does-a-nexus-letter-cost', destination: '/blog/how-much-does-a-nexus-letter-cost', permanent: true },
