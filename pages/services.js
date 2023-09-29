@@ -22,7 +22,6 @@ import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 export default function ServicesPage({ prices }) {
-	const counterRef = useRef(null);
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = () => {
@@ -164,7 +163,7 @@ export default function ServicesPage({ prices }) {
 							Ready to get started? Join the thousands of Veterans who have trusted Telemedica with their medical evidence needs.
 						</Typography>
 						<Grid container spacing={5} alignItems='center'>
-							<Grid item xs={12} md={6} ref={counterRef}>
+							<Grid item xs={12} md={6}>
 								<Box sx={{ maxWidth: 450, mx: 'auto' }}>
 									<Typography sx={{
 										fontSize: { xs: '6vw', sm: 32, },
@@ -173,7 +172,7 @@ export default function ServicesPage({ prices }) {
 									}}>
 										We've Helped more than
 										<Typography component='span' color='primary.600' sx={{ display: 'block', fontSize: '1.25em', fontWeight: 700, }}>
-											<Counter to={20000} parentRef={counterRef} /> veterans
+											<Counter to={20000} /> veterans
 										</Typography>
 										win their claim through:
 									</Typography>
