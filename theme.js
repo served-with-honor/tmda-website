@@ -1,37 +1,28 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { Oswald, Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 
-const oswald = Oswald({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
 const fontFamily = montserrat.style.fontFamily;
-const fontFamilySecondary = oswald.style.fontFamily;
 
 const baseTheme = responsiveFontSizes(createTheme({
   typography: {
     fontFamily,
-    fontFamilySecondary,
     h1: {
-      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h2: {
-      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h3: {
-      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h5: {
-      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     h6: {
-      fontFamily: fontFamilySecondary,
       fontWeight: 700,
     },
     subtitle1: {
@@ -47,7 +38,6 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
     sectionHeading: {
       component: 'h2',
-      fontFamily: fontFamilySecondary,
       fontSize: 48,
       lineHeight: 1,
       textAlign: 'center',

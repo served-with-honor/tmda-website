@@ -39,12 +39,11 @@ export default function CustomTabs({ items, name = 'Custom Tabs' }) {
             <Tab
               key={id}
               sx={{
-                fontWeight: 'bold',
+                fontWeight: 700,
                 textTransform: 'capitalize',
-                fontSize: 24,
+                fontSize: 20,
                 lineHeight: 1,
                 px: 0,
-                fontFamily: (theme) => theme.typography.fontFamilySecondary,
                 '&:not(:first-child)': { ml: 3 },
               }}
               variant='h5'
