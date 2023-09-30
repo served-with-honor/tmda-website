@@ -73,7 +73,7 @@ export default function Page({ title, description, children, darkHeader }) {
       
       {process.env.NODE_ENV === 'production' && settings.googleTagManagerId !== undefined ? (
         <noscript>
-          <iframe src={`https://www.googletagmanager.com/ns.html?id=${settings.googleTagManagerId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe>
+          <iframe src={`https://www.googletagmanager.com/ns.html?id=${settings.googleTagManagerId}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe>
         </noscript>
       ) : null}
       
