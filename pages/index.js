@@ -22,6 +22,7 @@ import {
 } from '../components/home'
 import { slugify } from '../src/utils';
 import googleRatingBadge from '../public/google-rating.svg'
+import generateRssFeed from '../utils/generateRSSFeed';
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
@@ -170,6 +171,7 @@ export default function Home({ faqs, testimonials }) {
 }
 
 export async function getStaticProps() {
+	await generateRssFeed();
 	const faqs = [
 		{
 			title: 'Does Telemedica do in-person appointments?',
