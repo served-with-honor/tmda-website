@@ -99,15 +99,15 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 					) : null}
 					<Grid container spacing={5}>
 						{posts && posts.length > 0 ? posts.map(post => (
-							<Grid item sm={4} key={slugify(`post-listing-item-${post.title}`)}>
+							<Grid item xs={12} sm={6} md={4} key={slugify(`post-listing-item-${post.title}`)}>
 								<ArticleCard {...post} />
 							</Grid>
 						)) : null}
 						
 						{isLoading ? <>
-							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
-							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
-							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item xs={12} sm={6} md={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item xs={12} sm={6} md={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item xs={12} sm={6} md={4}><ArticleCard isLoading={true} /></Grid>
 						</> : null}
 					</Grid>
 
