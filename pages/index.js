@@ -23,6 +23,7 @@ import {
 import { slugify } from '../src/utils';
 import googleRatingBadge from '../public/google-rating.svg'
 
+
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
@@ -31,6 +32,15 @@ export default function Home({ faqs, testimonials }) {
 		<Page>
     
 			<Hero />
+
+			<Box sx={{ py: 12 }}>
+				<Container maxWidth='md' align='center'>
+					<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>
+					<Typography variant="lead" sx={{ mb: 6 }}>Get your high-quality medical evidence from the medical evidence experts!</Typography>
+					<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims! Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
+					<Button variant='contained' color='secondary' href="https://telemedicallc.intakeq.com/booking?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff" target='_blank'>Connect Now</Button>
+				</Container>
+			</Box>
 		
 			<SectionFeatures1 />
 			
