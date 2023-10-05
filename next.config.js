@@ -54,6 +54,8 @@ const nextConfig = {
       // Documents
       { source: '/wp-content/uploads/2023/01/TMDA-INTERNAL-Price-List-Updated-Dec-2022-2.jpg', destination: '/services#pricing', permanent: true },
       { source: '/wp-content/uploads/2022/08/Nexus-Service-FAQ-External.docx.pdf', destination: '/faqs#nexus', permanent: true },
+      { source: '/wp-content/uploads/2022/08/Psych-Services-FAQ-External.docx.pdf', destination: '/faqs#psych', permanent: true },
+      { source: '/wp-content/uploads/2022/08/Therapy-FAQ-External.docx-1.pdf', destination: '/faqs', permanent: true },
     ]
   },
 }
