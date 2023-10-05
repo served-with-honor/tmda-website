@@ -41,7 +41,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			.then(({ data, error }) => {
 				if (error) throw error;
 				
-				const newPosts = data.posts.nodes.map(remapPost);
+				const newPosts = data.posts.nodes;
 				setPosts(prev => [...prev, ...newPosts]);
 
 				const { hasNextPage, endCursor } = data.posts.pageInfo
@@ -146,7 +146,7 @@ export async function getServerSideProps({ query }) {
 	}
 
 	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
-	const initialPosts = response.posts.nodes.map(remapPost);
+	const initialPosts = response.posts.nodes;
 	const { hasNextPage, endCursor } = response.posts.pageInfo;
 	const initialNextPage = hasNextPage ? endCursor : null;
 	
@@ -155,12 +155,3 @@ export async function getServerSideProps({ query }) {
 	
   return { props: { initialPosts, categories, selection, initialNextPage }}
 }
-
-const remapPost = (post) => ({
-	title: post.title,
-	excerpt: post.excerpt,
-	slug: post.slug,
-	date: post.date,
-	image: post.featuredImage?.node?.mediaItemUrl,
-	categories: post.categories.edges?.map(a => a.node),
-});
