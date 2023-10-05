@@ -50,6 +50,10 @@ const nextConfig = {
       { source: '/telemadica-newsletter-august-1', destination: '/blog', permanent: true },
       { source: '/september-newsletter-1', destination: '/blog', permanent: true },
       { source: '/september-newsletter-2', destination: '/blog', permanent: true },
+
+      // Documents
+      { source: '/wp-content/uploads/2023/01/TMDA-INTERNAL-Price-List-Updated-Dec-2022-2.jpg', destination: '/services#pricing', permanent: true },
+      { source: '/wp-content/uploads/2022/08/Nexus-Service-FAQ-External.docx.pdf', destination: '/faqs#nexus', permanent: true },
     ]
   },
 }
