@@ -100,8 +100,8 @@ export default function Home({ faqs, testimonials }) {
 								text: 'Receive a mental health or medical evaluation from one of our trusted, licensed providers. We conduct evaluations of 21 physical conditions, and can help you identify mental health condition(s) you may be living with.',
 							},
 							{
-								title: 'Recurring Therapy',
-								text: 'Ongoing therapy tailored to the Veteran Client experience. Receive mental health care from the comfort of your own home through our convenient and secure HIPAA-Compliant telehealth platform.',
+								title: 'Rebuttal Letters',
+								text: 'Rebuttal Letters help to address incorrect or inaccurate statements contained within VA denial letters. Available for mental health and medical denials. These letters are exclusively available to clients who have received a denial letter for a claim for which we have previously provided support.',
 							},
 						]).map(({ title, text }, index) => (
 							<Grid item sm={4} key={`section-what-we-do-item-${slugify(title)}`} sx={{ mb: 3 }}>
