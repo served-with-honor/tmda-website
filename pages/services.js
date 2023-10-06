@@ -35,7 +35,7 @@ export default function ServicesPage({ prices }) {
 	}
 	return (
 		<BookingContext.Provider value={{ scrollTo: handleBookNowClick }}>
-			<Page title={'Services'} darkHeader bookingAction={() => handleBookNowClick()}>	
+			<Page title={'Services'} description={'We offer Veterans a range of medical evaluation services including Nexus Letters, Mental Health Evaluations, Rebuttal Letters, and more.'} darkHeader bookingAction={() => handleBookNowClick()}>	
 				{/* HERO */}
 				<Box sx={{ 
 					pt: 15, 
