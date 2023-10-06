@@ -29,6 +29,7 @@ export default async function generateRssFeed() {
     const feed = new RSS(feedOptions);
 
     response.posts.nodes.forEach((post) => {
+        const categories = post.categories.map(a =>({'category': a.name}))
         feed.item({
             title: post.title,
             description: post.excerpt,
@@ -36,7 +37,7 @@ export default async function generateRssFeed() {
             date: post.date,
             author: post.author,
             custom_elements: [
-                {'categories': post.categories.map(a => a.name)},
+                ...categories,
                 {'featuredImage': post.image},
             ] 
         });
