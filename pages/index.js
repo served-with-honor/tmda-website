@@ -159,9 +159,9 @@ export default function Home({ faqs, testimonials }) {
 			</Box>
 
 			<Box paddingY={12} backgroundColor='grey.50'>
-				<Container size={'sm'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
-					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>What our veteran clients are saying about Telemedica.</Typography>
+				<Container maxWidth={'md'}>
+					<Typography variant={'sectionHeading'} sx={{ mb: 8 }}>Testimonials</Typography>
+					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30 }}>What satisfied veteran clients are saying about Telemedica.</Typography>
 					{testimonials ? (
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
