@@ -22,6 +22,7 @@ import {
 } from '../components/home'
 import { slugify } from '../src/utils';
 import googleRatingBadge from '../public/google-rating.svg'
+import ImageDrSmiling from '../public/images/Dr_Smiling_Resized.jpeg'
 import generateRssFeed from '../utils/generateRSSFeed';
 
 export default function Home({ faqs, testimonials }) {
@@ -32,6 +33,15 @@ export default function Home({ faqs, testimonials }) {
 		<Page>
     
 			<Hero />
+
+			<Box sx={{ py: 12 }}>
+				<Container maxWidth='md' align='center'>
+					<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>
+					<Typography variant="lead" sx={{ mb: 6 }}>Get your high-quality medical evidence from the medical evidence experts!</Typography>
+					<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims! Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
+					<Button variant='contained' color='secondary' href="https://telemedicallc.intakeq.com/booking?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff" target='_blank'>Connect Now</Button>
+				</Container>
+			</Box>
 		
 			<SectionFeatures1 />
 			
@@ -80,6 +90,19 @@ export default function Home({ faqs, testimonials }) {
 					</Grid>
 				</Container>
 			</Box>
+			
+			<Box paddingY={12} sx={{ position: 'relative'}} >
+				<Box sx={{ position: 'absolute', width: { xs: '100%', md: '50%' }, left: 0, top: 0, height: '100%', overflow: 'hidden', opacity: { xs: 0.15, md: 1 } }}>
+					<Image fill src={ImageDrSmiling} alt="" style={{ objectFit: 'cover' }} />
+				</Box>
+				<Container sx={{ position: 'relative' }}>
+					<Box sx={{ ml: { md: '50%' }, pl: { md: 12 } }}>
+						<Typography variant={'sectionHeading'} sx={{ mb: 5, textAlign: 'left', '&:after': { marginLeft: 0 }  }}>For Veterans.<br />By Veterans.</Typography>
+						<Typography variant={'subtitle1'} component={'p'} gutterBottom>The Medical Evidence Experts!</Typography>
+						<Typography variant={'body1'} gutterBottom>When you choose Telemedica, you choose providers who understand you, see you in your fight, and are experts in crafting high-quality medical evidence that wins VA claims. Our network of trusted providers understands the unique needs of the veteran community. Many of the providers in Telemedica's network have served veterans in the past, are military spouses, or are even veterans themselves. Don't leave the success of your claim to chance; get connected with a medical evidence expert today!</Typography>
+					</Box>
+				</Container>
+			</Box>
 
 			<Box paddingY={12} align={'center'} backgroundColor='grey.50'>
 				<Container>
@@ -101,8 +124,8 @@ export default function Home({ faqs, testimonials }) {
 								text: 'Receive a mental health or medical evaluation from one of our trusted, licensed providers. We conduct evaluations of 21 physical conditions, and can help you identify mental health condition(s) you may be living with.',
 							},
 							{
-								title: 'Recurring Therapy',
-								text: 'Ongoing therapy tailored to the Veteran Client experience. Receive mental health care from the comfort of your own home through our convenient and secure HIPAA-Compliant telehealth platform.',
+								title: 'Rebuttal Letters',
+								text: 'Rebuttal Letters help to address incorrect or inaccurate statements contained within VA denial letters. Available for mental health and medical denials. These letters are exclusively available to clients who have received a denial letter for a claim for which we have previously provided support.',
 							},
 						]).map(({ title, text }, index) => (
 							<Grid item sm={4} key={`section-what-we-do-item-${slugify(title)}`} sx={{ mb: 3 }}>
@@ -137,9 +160,9 @@ export default function Home({ faqs, testimonials }) {
 			</Box>
 
 			<Box paddingY={12} backgroundColor='grey.50'>
-				<Container size={'sm'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
-					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>What our veteran clients are saying about Telemedica.</Typography>
+				<Container maxWidth={'md'}>
+					<Typography variant={'sectionHeading'} sx={{ mb: 8 }}>Testimonials</Typography>
+					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30 }}>What satisfied veteran clients are saying about Telemedica.</Typography>
 					{testimonials ? (
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}

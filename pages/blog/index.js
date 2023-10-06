@@ -41,7 +41,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			.then(({ data, error }) => {
 				if (error) throw error;
 				
-				const newPosts = data.posts.nodes.map(remapPost);
+				const newPosts = data.posts.nodes;
 				setPosts(prev => [...prev, ...newPosts]);
 
 				const { hasNextPage, endCursor } = data.posts.pageInfo
@@ -69,7 +69,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			
 			{/* HERO */}
 			<Box sx={{ backgroundColor: 'secondary.800', paddingTop: 20, paddingBottom: 10 , position: 'relative', }}>
-				<Container spacing={3} alignItems='center' justifyContent={'space-between'} sx={{ color: 'secondary.contrastText' }}>
+				<Container spacing={3} sx={{ color: 'secondary.contrastText' }}>
 					<Typography variant='h2' component={'h1'} sx={{ mb: 2 }}>Telemedica Blog</Typography>
 					<Typography variant='body1' sx={{ fontSize: 24 }}>The most up-to-date and accurate information on Veteran Nexus Letters, Telemedicine, VA medical claims, benefits, and ratings, for veterans worldwide.</Typography>
 					<Button variant='contained' size='large' onClick={() => { setPopupOpen(true); }} sx={{my: 3}}>Subscribe</Button>
@@ -99,15 +99,15 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 					) : null}
 					<Grid container spacing={5}>
 						{posts && posts.length > 0 ? posts.map(post => (
-							<Grid item sm={4} key={slugify(`post-listing-item-${post.title}`)}>
+							<Grid item xs={12} sm={6} md={4} key={slugify(`post-listing-item-${post.title}`)}>
 								<ArticleCard {...post} />
 							</Grid>
 						)) : null}
 						
 						{isLoading ? <>
-							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
-							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
-							<Grid item sm={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item xs={12} sm={6} md={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item xs={12} sm={6} md={4}><ArticleCard isLoading={true} /></Grid>
+							<Grid item xs={12} sm={6} md={4}><ArticleCard isLoading={true} /></Grid>
 						</> : null}
 					</Grid>
 
@@ -146,7 +146,7 @@ export async function getServerSideProps({ query }) {
 	}
 
 	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
-	const initialPosts = response.posts.nodes.map(remapPost);
+	const initialPosts = response.posts.nodes;
 	const { hasNextPage, endCursor } = response.posts.pageInfo;
 	const initialNextPage = hasNextPage ? endCursor : null;
 	
@@ -155,12 +155,3 @@ export async function getServerSideProps({ query }) {
 	
   return { props: { initialPosts, categories, selection, initialNextPage }}
 }
-
-const remapPost = (post) => ({
-	title: post.title,
-	excerpt: post.excerpt,
-	slug: post.slug,
-	date: post.date,
-	image: post.featuredImage?.node?.mediaItemUrl,
-	categories: post.categories.edges?.map(a => a.node),
-});

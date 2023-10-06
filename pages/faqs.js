@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -12,9 +12,8 @@ import Page from '../components/Page'
 import { slugify } from '../src/utils';
 
 export default function FAQsPage({ items }) {
-	const topics = items.reduce((prev, cur, index) => (
-		!prev.includes(cur.topic) ? [...prev, cur.topic] : prev
-	), [])
+	const topics = [...new Set(items.map(({ topic }) => topic))];
+
 	const [expanded, setExpanded] = useState(false);
 	const [selectedCategory, setSelectedCategory] = useState('')
 	const [filteredItems, setFilteredItems] = useState(items)	
@@ -25,9 +24,18 @@ export default function FAQsPage({ items }) {
 
 	const handleTopicChange = (topic) => {
 		setSelectedCategory(topic);
-		const newItems = topic ? items.filter(item => item.topic === topic) : items;
-		setFilteredItems(newItems);
+		location.replace(`#${slugify(topic)}`);
 	}
+	
+	useEffect(() => {
+		const newItems = selectedCategory ? items.filter(item => slugify(item.topic) === selectedCategory) : items;
+		setFilteredItems(newItems);
+	}, [selectedCategory]);
+
+	useEffect(() => {
+		const initialCategory = window.location.hash.split('#')[1];
+		setSelectedCategory(initialCategory);
+	}, []);
 
 	return (
 		<Page title={'FAQs'}>
@@ -62,39 +70,43 @@ export default function FAQsPage({ items }) {
 						FAQs
 					</Typography>
 					
-					<Grid container spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
-						{topics.map( (topic, index) => 
-							<Grid item key={`faq-topic-${slugify(topic)}`}> 
-								<Button
-									onClick={() => handleTopicChange(topic)} 
-									variant='text' 
-									size='small' 
-									color={ selectedCategory === topic ? "primary" : "inherit"} 
-									sx={{margin: 1, textTransform: "none",}}
-								>
-									{topic}
-								</Button>
-							</Grid>
-						)}
-							<Grid item>
-							{selectedCategory === '' ? 
-								<div></div> 
-								:
-								<Button 
-									onClick={() => handleTopicChange('')} 
-									variant='text' 
-									size='small' 
-									color="inherit" 
-									sx={{margin: 1, textTransform: "none",}}
-								>
-									All
-								</Button>	
-							}
-							</Grid>
-					</Grid>
+					{topics ? (
+						<Grid container spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
+							{topics.map((topic) => {
+								const topicSlug = slugify(topic);
+								const isSelected = selectedCategory === topicSlug;
+								return (
+									<Grid item key={`faq-topic-${topicSlug}`}> 
+										<Button
+											onClick={() => handleTopicChange(topicSlug)} 
+											variant='text' 
+											size='small' 
+											color={ isSelected ? "primary" : "inherit"} 
+											sx={{margin: 1, textTransform: "none",}}
+										>
+											{topic}
+										</Button>
+									</Grid>
+								)
+							})}
+							{selectedCategory !== '' ? (
+								<Grid item>
+									<Button
+										onClick={() => handleTopicChange('')}
+										variant='text'
+										size='small'
+										color="inherit"
+										sx={{ margin: 1, textTransform: "none", }}
+									>
+										All
+									</Button>
+								</Grid>
+							) : null}
+						</Grid>
+					): null}
 					
 					<Box>
-						{filteredItems.length > 0 && (
+						{filteredItems.length > 0 ? (
 							filteredItems.map(({ question, answer }, index) => (
 								<Accordion
 									key={`faq-panel-${slugify(question)}`}
@@ -131,7 +143,7 @@ export default function FAQsPage({ items }) {
 									</AccordionDetails>
 								</Accordion>
 							))
-						)}
+						) : null}
 					</Box>
 				</Container> 
 			</Box>
