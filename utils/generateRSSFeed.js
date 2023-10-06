@@ -34,11 +34,10 @@ export default async function generateRssFeed() {
             description: post.excerpt,
             url: `${site_url}/blog/${post.slug}`,
             date: post.date,
-            author: post.author.node.name,
+            author: post.author,
             custom_elements: [
-                {'post:categories': post.categories.edges?.map(a => a.node.name)},
-                {'post:featuredImage': post.featuredImage?.node?.mediaItemUrl},
-
+                {'categories': post.categories.map(a => a.name)},
+                {'featuredImage': post.image},
             ] 
         });
        });
