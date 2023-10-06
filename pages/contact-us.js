@@ -22,7 +22,7 @@ export default function ContactUsPage({ actionItems }) {
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 
 	return (
-		<Page title={'Contact Us'}>
+		<Page title={'Contact Us'} description={'CONTACT INFO: Call (512) 883-8446 customerservice@telemedicallc.com QUESTIONS? How Can We Help You?'}>
 			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
 				<Container>
 					<Grid container gap={5} alignItems={'center'}>
