@@ -58,7 +58,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	};
 
 	return (
-		<Page title={'About'}>
+		<Page title={'About'} description={'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.'}>
 
 			{/* HERO */}
 			<Box sx={{
