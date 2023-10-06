@@ -132,7 +132,7 @@ export default function ServicesPage({ prices }) {
 					</Container>
 				</Box>
 				{/* SECTION */}
-				<Box sx={{ py: 10 }}>
+				<Box id='pricing' sx={{ py: 10 }}>
 					<Container maxWidth='md'>
 						<Typography variant='sectionHeading' component='h2' sx={{ mb: 10 }}>At-A-Glance Pricing</Typography>
 						{prices ? <PriceTable rows={prices} /> : null}

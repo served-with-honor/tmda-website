@@ -92,7 +92,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
             ) : null}
             
             <Typography variant={'body1'} component='div'>
-              {excerpt ? `${excerpt}...` : isLoading ? <>
+              {excerpt ? excerpt : isLoading ? <>
                 <Skeleton variant='text' />
                 <Skeleton variant='text' width={'80%'} />
                 <Skeleton variant='text' width={'90%'} />
