@@ -220,15 +220,24 @@ export default function ServicesPage({ prices }) {
 
 export async function getStaticProps() {
 	const prices = [
-		{ label: 'Telemedicine Evaluation*', fee: '$100', price: '$895', category: 'Telemedicine' },
-		{ label: 'Medical Nexus Letter*', fee: '$199', price: '$1,345', category: 'Nexus' },
-		{ label: 'Medical Nexus Letter Enhanced*', fee: '$199', price: '$1,595', category: 'Nexus' },
-		{ label: 'P&T Request Letter*', fee: '$199', price: '$1,345', category: 'Nexus' },
-		{ label: 'DBQ Document*', fee: '$199', price: '$1,145', category: 'Nexus' },
-		{ label: 'DBQ Document Enhanced*', fee: '$199', price: '$1,400', category: 'Nexus' },
-		{ label: 'Med Team Rebuttal Letter**', fee: '$50', price: '$250', category: 'Nexus' },
-		{ label: 'Psych Eval/IMO*', fee: '$100', price: '$1,395', category: 'Psych' },
-		{ label: 'Psych Rebuttal Letter', fee: '$0', price: '$175', category: 'Psych' },
+		{ label: 'Psych Team Record Review Fee', subtext: 'up to 500 pages', items: [{ label: 'Includes comprehensive chart review and record summary' }], amount: 204, category: 'Psych Team' },
+		{ label: 'Psych Eval & Independent Medical Opinion', subtext: '', amount: 495, category: 'Psych Team' },
+		// (Total price with records review= $599)
+		{ label: 'Psych Re-Evaluation ', amount: 150, category: 'Psych Team' },
+		{ label: 'Telemedicine Evaluation (DX)', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'Evaluation & DX Document', amount: 295 }], amount: 420, category: 'Med Team' },
+		{ label: 'Med Team Records Review Fee', subtext: 'up to 500 pages', items: [{ label: 'Includes record review summary' }], amount: 299, category: 'Med Team' },
+		{ label: 'P& T Request/Specialty Letter', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'NX Document', amount: 495 }], amount: 620, category: 'Med Team' },
+		{ label: 'Medical Nexus Letter', subtext: '1 connection', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'NX Document', amount: 395 }], amount: 520, category: 'Med Team' },
+		{ label: 'Medical Nexus Letter Enhanced', subtext: '2+ connections', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'NX Document', amount: 495 }], amount: 620, category: 'Med Team' },
+		{ label: 'DBQ', subtext: '1-4 pages', amount: 0, category: 'Med Team' },
+		// - $125 tech/Booking fee $200 DBQ document
+		{ label: 'DBQ Enhanced', subtext: '4+ pages', amount: 0, category: 'Med Team' },
+		// $125 tech/Booking Fee $300 DBQ Document
+		{ label: 'Rebuttal Letter', amount: [200,275], category: 'Additional' },
+		{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Additional' },
+		{ label: 'Unlimited Pages & Reviews for 90 days', subtext: 'must be added at the lime of booking', amount: '+$99', category: 'Additional' },
+		{ label: '', subtext: '', amount: 0, category: '' },
+		{ label: '', subtext: '', amount: 0, category: '' },
 	];
 
 	return {

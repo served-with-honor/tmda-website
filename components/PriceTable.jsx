@@ -9,7 +9,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { slugify } from '../src/utils';
+import { format } from 'path';
 
 export default function PriceTable({ rows }) {
   const categories = Array.from(new Set(rows.map(row => row.category))).filter(Boolean);
@@ -30,7 +32,7 @@ export default function PriceTable({ rows }) {
             variant={isCurrent ? 'contained' : 'outlined'}
             onClick={() => setSelectedCategory(category)}
             color={isCurrent ? "secondary" : "secondary"}
-            label={category}
+            label={`${category} Services`}
           />
         )
       })}
@@ -45,29 +47,64 @@ export default function PriceTable({ rows }) {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow sx={{ 'th': { color: 'secondary.main', fontWeight: '700' } }}>
-              <TableCell width={'100%'}>Service</TableCell>
-              <TableCell align='right'>Fee</TableCell>
+              <TableCell>Service</TableCell>
               <TableCell align='right'>Price</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <AnimatePresence>
-              {items.map(({ label, fee, price, category}, index) => (
-                selectedCategory === category && (
-                  <MotionRow
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { delay: index * 0.1 } }}
-                    exit={{ opacity: 0 }}
-                    mode='wait'
-                    key={`price-table-row-${index}`}
-                    sx= {{ '&:last-child td, &:last-child th': {borderBottom: 0} }}
-                  >
-                    <TableCell sx={{ fontWeight: '600' }}>{label}</TableCell>
-                    <TableCell align='right'>{fee}</TableCell>
-                    <TableCell align='right'>{price}</TableCell>
-                  </MotionRow>
-                )
-              ))}
+              {items.map(({ label, subtext, items, amount, category }, index) => {
+                const formatAmount = amount => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+                const price = typeof amount === 'number' ? formatAmount(amount) : Array.isArray(amount) ? amount.map(formatAmount).join(' - ') : amount;
+                return (
+                  selectedCategory === category ? <>
+                    <MotionRow
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, transition: { delay: index * 0.1 } }}
+                      exit={{ opacity: 0 }}
+                      mode='wait'
+                      key={`price-table-row-${index}`}
+                      sx={{ '&:last-child td, &:last-child th': { borderBottom: 0 }, '& td': { borderBottom: items ? 0 : null} }}
+                    >
+                      <TableCell>
+                        <Typography variant='subtitle2' component='span'>
+                        {label}
+                        </Typography>
+                        {subtext ? (
+                          <Typography variant='body2' component='span' sx={{ ml: 1 }}>
+                            ({subtext})
+                          </Typography>
+                        ) : null}
+                      </TableCell>
+                      <TableCell align='right'>
+                        <Typography variant='subtitle1' color='success.light'>{price}</Typography>
+                      </TableCell>
+                    </MotionRow>
+                    {items ? (
+                      <MotionRow
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, transition: { delay: index * 0.1 } }}
+                        exit={{ opacity: 0 }}
+                        key={`price-table-row-${index}-items`}
+                        sx={{ 'td': { pt: 0 } }}
+                      >
+                        <TableCell colSpan={2}>
+                        {items.map(({ label, amount }, index) => {
+                          return <Box>
+                              - {label}
+                            {amount ? (
+                              <Typography variant='body2' component='span' color='success.light' sx={{ ml: 1 }}>
+                                {formatAmount(amount)}
+                              </Typography>
+                            ) : null}
+                          </Box>;
+                        })}
+                        </TableCell>
+                      </MotionRow>
+                    ) : null}
+                  </> : null
+                );
+              })}
             </AnimatePresence>
           </TableBody>
         </Table>
