@@ -15,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from '../src/Link';
 
-export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay = 3000, openCondition, }) {
+export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay = 3000, openCondition, onPopupOpen}) {
   const endpoint = '/api/newsletter';
   const cookieName = 'newsletterSignedUp';
   const showDialog = Cookies.get(cookieName) === undefined;
@@ -55,6 +55,7 @@ export default function NewsletterDialog({ delay = 1000, expires = 7, closeDelay
   
   const handleClose = () => {
     setOpen(false);
+    onPopupOpen(false);
     // Cookies.set(cookieName, false, { expires });
   }
   

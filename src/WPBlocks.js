@@ -10,6 +10,14 @@ import Link from './Link';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableFooter from '@mui/material/TableFooter';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import { parserStripStyles, parserFixClass } from './utils'
 
 const getJustification = (classes) => {
@@ -80,10 +88,11 @@ export const replaceContent = (element) => {
 	if (name === 'h5') return <Typography variant='h6' component='h5' color='secondary.main' my={3}>{domToReact(children)}</Typography>
 	if (name === 'h6') return <Typography variant='h6' component='h6' color='secondary.main' my={2}>{domToReact(children)}</Typography>
 	if (name === 'ul') return renderUnorderedList(element);
-	if (name === 'hr') return <Divider />;
+	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
 
 	if (classes?.includes('wp-block-buttons')) return WPButtons(element);
 	if (classes?.includes('wp-block-media-text')) return WPMedia(element);
+	if (classes?.includes('wp-block-table')) return WPTable(element);
 	
 	return element;
 }
@@ -95,9 +104,8 @@ const replaceButtons = ({ children, attribs }) => {
 	const size = getSize(classes);
 	
 	const button = children.find(({ name }) => name === 'a');
-	parserStripStyles(attribs);
-	parserFixClass(attribs);
-		
+	parserStripStyles(button.attribs);
+	parserFixClass(button.attribs);
 	return (
 		<Grid item>
 			<Button variant={variant} color='primary' size={size} {...button.attribs}>
@@ -116,6 +124,62 @@ export const WPButtons = ({ attribs, children }) => {
 		<Grid container gap={2} justifyContent={justification} direction={direction}>
 			{domToReact(children, { replace: replaceButtons })}
 		</Grid>
+	);
+}
+
+export const WPTable = ({ children }) => {
+	const table = children.find(({ name }) => name === 'table');
+	const tableHeader = table?.children.find(({ name }) => name === 'thead')?.children[0];
+	const tableBody = table?.children.find(({ name }) => name === 'tbody');
+	const tableFooter = table?.children.find(({ name }) => name === 'tfoot')?.children[0];
+	const caption = children.find(({ name }) => name === 'figcaption');
+	
+	return (
+    <TableContainer component={Paper} sx={{ my: 6 }}>
+			<Table>
+
+				{caption ? (
+					<caption>{domToReact(caption.children)}</caption>
+				) : null}
+
+				{tableHeader ? (
+					<TableHead>
+						<TableRow>
+							{domToReact(tableHeader.children, {
+								replace: (element) => {
+									return <TableCell>{domToReact(element.children)}</TableCell>
+								}
+							})}
+						</TableRow>
+					</TableHead>
+				) : null}
+
+			{tableBody ? (
+				<TableBody>
+					{domToReact(tableBody.children, { replace: (row) => (
+						<TableRow>
+							{domToReact(row.children, { replace: (cell) => (
+								<TableCell>{domToReact(cell.children)}</TableCell>
+							)})}
+						</TableRow>
+					)})}
+				</TableBody>
+			): null}
+
+			{tableFooter ? (
+				<TableFooter>
+					<TableRow>
+						{domToReact(tableFooter.children, {
+							replace: (element) => {
+								return <TableCell>{domToReact(element.children)}</TableCell>
+							}
+						})}
+					</TableRow>
+				</TableFooter>
+			) : null}
+
+			</Table>
+		</TableContainer>
 	);
 }
 

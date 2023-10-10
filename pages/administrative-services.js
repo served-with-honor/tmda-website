@@ -7,7 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import CheckIcon from '@mui/icons-material/Check';
+import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import Image from 'next/image';
 import doctorImage from '../public/images/admin-services-image.png'
@@ -17,7 +17,7 @@ import heroImage from '../public/images/admin-services-hero.jpg'
 
 export default function AdministrativeServicesPage({ services, benefits }) {
 	return (
-		<Page title={'Administrative Services'}>
+		<Page title={'Administrative Services'} description={'Our administrative services enable the provider/practice to focus on providing quality clinical care without the burden of administrative and management functions.'}>
 			{/* HERO */}
 			<Box sx={{ 
 				pt: 20, 
@@ -115,7 +115,7 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 						component={'h2'}
 						mb={5}
 					>
-						Admin Benefits
+						Administrative Benefits
 					</Typography>
 					<List sx={{ 
 						'.MuiListItemIcon-root': { 	
@@ -126,7 +126,7 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 							return(
 								<ListItem key={`benefit-${index}`}>
 									<ListItemIcon>
-										<CheckIcon sx={{ color: 'primary.main' }} />
+										<AddIcon color='primary'/>
 									</ListItemIcon>
 									<ListItemText>
 										{benefit}

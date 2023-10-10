@@ -1,34 +1,34 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { Oswald, Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 
-const oswald = Oswald({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
+const fontFamily = montserrat.style.fontFamily;
 
 const baseTheme = responsiveFontSizes(createTheme({
   typography: {
-    fontFamily: montserrat.style.fontFamily,
+    fontFamily,
     h1: {
-      fontFamily: oswald.style.fontFamily,
+      fontSize: 75,
       fontWeight: 700,
     },
     h2: {
-      fontFamily: oswald.style.fontFamily,
+      fontSize: 42,
       fontWeight: 700,
     },
     h3: {
-      fontFamily: oswald.style.fontFamily,
+      fontSize: 38,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: oswald.style.fontFamily,
+      fontSize: 28,
       fontWeight: 700,
     },
     h5: {
-      fontFamily: oswald.style.fontFamily,
+      fontSize: 24,
       fontWeight: 700,
     },
     h6: {
-      fontFamily: oswald.style.fontFamily,
+      fontSize: 18,
       fontWeight: 700,
     },
     subtitle1: {
@@ -37,9 +37,14 @@ const baseTheme = responsiveFontSizes(createTheme({
     subtitle2: {
       fontWeight: 700,
     },
+    lead: {
+      component: 'p',
+      fontSize: 24,
+      lineHeight: 1.5,
+    },
     sectionHeading: {
-      fontFamily: oswald.style.fontFamily,
-      fontSize: 48,
+      component: 'h2',
+      fontSize: 42,
       lineHeight: 1,
       textAlign: 'center',
       '&::after': {
@@ -83,10 +88,19 @@ const baseTheme = responsiveFontSizes(createTheme({
     },
   }, 
   components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          sectionHeading: 'h2',
+          lead: 'p',
+        },
+      },
+    },
     MuiLink: {
       styleOverrides: {
         root: {
-          color: '#256958',
+          color: '#384e8e',
+          textDecorationColor: 'currentcolor',
         },
       },
     },
@@ -136,9 +150,10 @@ const darkTheme = createTheme({
   	MuiLink: {
   		styleOverrides: {
         root: {
-          color:  baseTheme.palette.primary['700'],
+          color:  baseTheme.palette.secondary['800'],
   				textDecoration: 'none',
           '&:hover': {
+            textDecorationColor: 'currentcolor',
             textDecoration: 'underline',
           },
         },

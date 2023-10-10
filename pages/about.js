@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -21,8 +21,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import BookingWidget from '../components/BookingWidget'
 import Section1 from '../components/about/Section1'
 import texture01 from '../public/texture-01.jpg'
 import missionIcon from '../public/images/mission.png'
@@ -31,11 +29,12 @@ import visionIcon from '../public/images/shared-vision.png'
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from '../lib/sanityConfig'
+import { BookingContext } from '../context/BookingContext'
 
 const builder = imageUrlBuilder(sanityClient);
 
 export default function AboutPage({ teamMembers, providers, serveTabs }) {
-	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+	const { setIsOpen: setIsBookingOpen } = useContext(BookingContext);
 	const heroRef = useRef(null);
 	const sliderSettings = {
     arrows: false,
@@ -59,7 +58,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	};
 
 	return (
-		<Page title={'About'}>
+		<Page title={'About'} description={'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.'}>
 
 			{/* HERO */}
 			<Box sx={{
@@ -87,7 +86,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }}>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
 								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
-								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
+								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
 							</Grid>
 							<Box sx={{ marginTop: 10 }}>
 								<Grid container spacing={[3,5]}>
@@ -111,16 +110,16 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			</Box>
 
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingTop: 20, paddingBottom: 30  }}>
+			<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 25  }}>
 				<Container>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'sm', marginX: 'auto' }}>We Are Committed To Serving Those Who Served</Typography>
-					<Grid container spacing={3}>
+					<Grid container spacing={3} justifyContent={'center'}>
 						{[
 							{ heading: 'Mission', text: 'Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.', icon: missionIcon },
 							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon: visionIcon },
 							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: purposeIcon },
 						].map(({ heading, text, icon }, index) => (
-							<Grid item sm key={`things-${index}`}>
+							<Grid item sm={6} md={4} key={`things-${index}`}>
 								<Card sx={{ height: '100%' }}>
 									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
 										<Image src={icon} alt='' width={50} height={50} />
@@ -142,7 +141,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			) : null}
 
 			{/* SECTION */}
-			<Box sx={{
+			<Box id='how-it-works' sx={{
 				paddingY: 20,
 				'.slick-slider': {
 					'&:before, &:after': {
@@ -169,11 +168,11 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					
 					<Slider {...sliderSettings}>
 						{[
-							{ title: 'Book Online', body: 'Choose a service and book online through our booking portal. Pay the $100 non-refundable booking fee (if applicable).' },
-							{ title: 'Submit Documentation', body: 'Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).' },
-							{ title: 'Connect', body: 'Connect with your provider via our convenient telehealth platform and receive your medical evidence. You will receive an email to join your appointment.*', subtext: '* If warranted - please note that the Nexus Letter service does not include a telehealth appointment with a provider.', },
-							{ title: 'Obtain', body: 'Receive your medical evidence (or therapists notes) directly to your patient portal. ' },
-							{ title: 'Submit & Receive', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim, or back your resubmission.' },
+							{ title: 'Book Online', body: 'Choose a service and book online through our booking portal. Pay a non-refundable booking fee.' },
+							{ title: 'Complete Intake', body: 'Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).' },
+							{ title: 'Connect', body: 'Connect with your provider via our convenient telehealth platform and receive your medical evidence. You will receive an email to join your appointment.', },
+							{ title: 'Medical Evidence', body: 'Receive your expert medical evidence from our professional independent providers directly to your patient portal.' },
+							{ title: 'Submit Your Claim', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim.' },
 						].map(({ title, body, subtext }, index) => (
 							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: { xs: 4, md: 8 } }}>
 								<Typography sx={{ color: 'secondary.light', position: 'absolute', fontSize: 300, fontWeight: 600, lineHeight: 1, opacity: 0.125, left: 0, top: 0, }}>{index + 1}</Typography>
@@ -185,6 +184,9 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							</Box>
 						))}
 					</Slider>
+					<Box align={'center'} sx={{mt: 8}}>
+						<Button color='secondary' variant='contained' size='large' onClick={() => setIsBookingOpen(true)}>Get Started</Button>
+					</Box>
 				</Container>
 			</Box>
 			
@@ -202,7 +204,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			<Section1
 				heading='Medical Evidence By Veterans, For Veterans'
 				text='Our vast network of Telehealth providers work together to provide high-quality medical evidence to veterans seeking to increase their disability benefits. Delivering peace of mind and expertise from our high quality licensed providers in all 50 states.'
-				button={{ url: '#', label: 'Get Connected Now' }}
+				button={{  label: 'Get Connected Now', action: () => setIsBookingOpen(true) }}
 			/>
 			
 			{/* SECTION */}
@@ -210,7 +212,6 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 				<Container>
 					<Typography variant='sectionHeading' component='h2' marginBottom={5}>Meet Our Team</Typography>
 					<Typography variant='subtitle1' align='center' gutterBottom>Telemedica is an administrative company that serves the veteran community through our network of providers.</Typography>
-					<Typography variant='body1' align='center' gutterBottom>We offer a suite of niche services through a HIPAA-Compliant telehealth platform. We help you receive medical evidence and mental health care in less time, so you can get back to living your best life.</Typography>
 					<Directory items={[
 						{ label: 'Team Members', people: teamMembers },
 						{ label: 'Providers', people: providers },
@@ -237,11 +238,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 						</ListItem>
 					</List>
 				</Container>
-			</Box>
-			
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>			
+			</Box>		
 		</Page>
 	)
 }
@@ -249,7 +246,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 export const getServerSideProps = async () => {
 	const teamMembersResponse = await getTeamMembers();
 	const teamMembers = teamMembersResponse.map(person => {
-		if (person.image) person.image = builder.image(person.image).size(300, 300).url();
+		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
 		return person;
 	})
 	const providers = getProviders().map(person => {
@@ -260,17 +257,14 @@ export const getServerSideProps = async () => {
 	const serveTabs = [
 		{
 			title: 'Who We Serve',
-			heading: 'Who',
 			body: 'We serve members of the veteran community who are seeking to apply for, or increase, the VA disability benefits they’ve earned for their honorable service.',
 		},
 		{
 			title: 'How We Serve',
-			heading: 'How',
 			body: 'High-quality medical evidence helps veterans win claims! From DBQs and Nexus Letters to Psych Evals and Telemedicine Evaluations, we make it easier than ever for veterans connect with a licensed provider through our HIPAA compliant telemedicine platform - anytime, anywhere.',
 		},
 		{
 			title: 'Why We Serve',
-			heading: 'Why',
 			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
 		},
 	]

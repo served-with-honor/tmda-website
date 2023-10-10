@@ -7,15 +7,6 @@ import ArticleCard from '../ArticleCard'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-const remapPost = (post) => ({
-	title: post.title,
-	excerpt: post.excerpt,
-	slug: post.slug,
-	date: post.date,
-	image: post.featuredImage?.node?.mediaItemUrl,
-	categories: post.categories.edges?.map(a => a.node),
-});
-
 export default function LatestPosts() {
 	const { data, error, isLoading } = useSWR('/api/posts?first=3', fetcher);
 	
@@ -32,7 +23,7 @@ export default function LatestPosts() {
       </> :
         data?.data?.posts?.nodes?.length > 0 ? data?.data?.posts?.nodes?.map(post =>
           <Grid item xs={12} sm={6} md={4} key={`post-listing-${post.slug}`}>
-            <ArticleCard {...remapPost(post)} />
+            <ArticleCard {...post} />
           </Grid>
         ) : null
       }

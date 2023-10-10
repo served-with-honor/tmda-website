@@ -15,7 +15,7 @@ export default {
   ],
   contact: {
     phone: '+15128838446',
-    email: 'mailto:email@email.com',
+    email: 'customerservice@telemedicallc.com',
   },
   articleCategoryColors: {
     'nexus-letter': red[400],
@@ -27,8 +27,10 @@ export default {
     patientPortal: 'https://telemedicallc.intakeq.com/portal',
     helpDesk: 'https://help.telemedicallc.com/',
     providerPortal: 'https://intakeq.com/',
+    jobs: 'https://telemedica.rippling-ats.com/',
   },
-  // googleAnalyticsId: 'G-73TKHSVTNZ',
+  googleTagManagerId: 'GTM-MLD2CCD',
+  googleAnalyticsId: 'G-73TKHSVTNZ',
   newsletter: {
     listId: '08b1d97e11',
     tags: ['website', 'newsletter'],

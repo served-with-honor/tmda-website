@@ -1,28 +1,28 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Dialog from '@mui/material/Dialog';
 import Page from '../components/Page'
 import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
-import BookingWidget from '../components/BookingWidget'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
 import eventImage from '../public/images/event.png'
 import monitorImage from '../public/images/monitor.png'
 import stethoscopeImage from '../public/images/stethoscope.png'
+import { BookingContext } from '../context/BookingContext'
 
 export default function ContactUsPage({ actionItems }) {
-	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+  const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
+  const [popupOpen, setPopupOpen] = useState(false);
 
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 
 	return (
-		<Page title={'Contact Us'}>
+		<Page title={'Contact Us'} description={'CONTACT INFO: Call (512) 883-8446 customerservice@telemedicallc.com QUESTIONS? How Can We Help You?'}>
 			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
 				<Container>
 					<Grid container gap={5} alignItems={'center'}>
@@ -60,11 +60,7 @@ export default function ContactUsPage({ actionItems }) {
 				</Container>
 			</Box>
 			
-			<NewsletterDialog delay={0} />
-
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>	
+			<NewsletterDialog delay={0} onPopupOpen={setPopupOpen}/>
   	</Page>
   )
 }

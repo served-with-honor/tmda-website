@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles';
@@ -7,15 +7,13 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Dialog from '@mui/material/Dialog';
-import BookingWidget from '../components/BookingWidget'
 import Link from '../src/Link';
 import Page from '../components/Page'
 import Hero from '../components/home/Hero'
 import Counter from '../components/Counter'
 import CircleFiller from '../components/CircleFiller'
-import { SectionDivider } from '../components/layout'
 import {
 	SectionFeatures1,
 	FAQs,
@@ -23,35 +21,44 @@ import {
 	LatestPosts,
 } from '../components/home'
 import { slugify } from '../src/utils';
-import drSmilingImage from '../public/images/Dr_Smiling_Resized (1).jpeg'
+import googleRatingBadge from '../public/google-rating.svg'
+import ImageDrSmiling from '../public/images/Dr_Smiling_Resized.jpeg'
+import generateRssFeed from '../utils/generateRSSFeed';
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
-	const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
 	
 	return (
 		<Page>
     
-			<Hero doStuff ={setIsBookingDialogOpen} />
+			<Hero />
+
+			<Box sx={{ py: 12 }}>
+				<Container maxWidth='md' align='center'>
+					<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>
+					<Typography variant="lead" sx={{ mb: 6 }}>Get your high-quality medical evidence from the medical evidence experts!</Typography>
+					<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims! Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
+					<Button variant='contained' color='secondary' href="https://telemedicallc.intakeq.com/booking?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff" target='_blank'>Connect Now</Button>
+				</Container>
+			</Box>
 		
 			<SectionFeatures1 />
 			
 			<Box ref={counterRef} sx={{
-				background: 'linear-gradient(180deg, #68A09E, #5D8C93)',
-				color: theme.palette.common.white,
+				background: 'linear-gradient(-135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				paddingY: 10,
 			}}>
 				<Container>
 					<Grid container={true} spacing={5} sx={{ alignItems: 'center' }}>
 						<Grid item md={8}>
-							<Typography variant={'h3'} component={'h2'} gutterBottom sx={{ marginBottom: 5 }}>
+							<Typography variant={'h3'} component={'h2'} color='secondary' gutterBottom sx={{ marginBottom: 5 }}>
 								Changing Lives&nbsp;
-								<Box component={'span'} sx={{  fontWeight: 300 }}>
+								<Box component={'span'} color='secondary.800' sx={{  fontWeight: 300 }}>
 									One Veteran At A Time
 								</Box>
 							</Typography>
-							<Typography varian={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
+							<Typography variant={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item md={4}>
 							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -63,7 +70,7 @@ export default function Home({ faqs, testimonials }) {
 									justifyContent: 'center',
 									alignItems: 'center',
 								}}>
-									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.secondary.main} radius={120} stroke={35} percent={65} />
+									<CircleFiller parentRef={counterRef} color={theme.palette.primary.main} color2={theme.palette.primary['100']} radius={120} stroke={35} percent={65} />
 								</Box>
 								<Box sx={{
 									fontSize: 30,
@@ -83,32 +90,21 @@ export default function Home({ faqs, testimonials }) {
 					</Grid>
 				</Container>
 			</Box>
-
-			<Box paddingY={12}>
-				<Container>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Who is Telemedica LLC?</Typography>
-					<Grid container spacing={5}>
-						<Grid item sm={6} sx={{ width: '100%' }}>
-							<Box sx={{ borderRadius: 1, position: 'relative', minHeight: '200px', height: '100%', overflow: 'hidden' }}>
-								<Image fill src={drSmilingImage} alt="" style={{ objectFit: 'cover' }} sizes="(min-width: 1200px) 560px, (min-width: 600px) 50%, 600px" />
-							</Box>
-						</Grid>
-						<Grid item sm={6}>
-							<Typography variant={'h6'} component={'h3'}>Mission:</Typography>
-							<Typography variant={'body1'} gutterBottom>Our mission is to continually innovate quality care for the Veteran Community through support, compassion, and a tech-forward approach. We are committed to serving those who served.</Typography>
-							<Typography variant={'h6'} component={'h3'}>Vision:</Typography>
-							<Typography variant={'body1'} gutterBottom>To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.</Typography>
-							<Typography variant={'h6'} component={'h3'}>Purpose:</Typography>
-							<Typography variant={'body1'}>To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.</Typography>
-							<Button variant={'contained'} href={'/about'} sx={{ mt: 5 }}>Learn More...</Button>
-						</Grid>
-					</Grid>
+			
+			<Box paddingY={12} sx={{ position: 'relative'}} >
+				<Box sx={{ position: 'absolute', width: { xs: '100%', md: '50%' }, left: 0, top: 0, height: '100%', overflow: 'hidden', opacity: { xs: 0.15, md: 1 } }}>
+					<Image fill src={ImageDrSmiling} alt="" style={{ objectFit: 'cover' }} />
+				</Box>
+				<Container sx={{ position: 'relative' }}>
+					<Box sx={{ ml: { md: '50%' }, pl: { md: 12 } }}>
+						<Typography variant={'sectionHeading'} sx={{ mb: 5, textAlign: 'left', '&:after': { marginLeft: 0 }  }}>For Veterans.<br />By Veterans.</Typography>
+						<Typography variant={'subtitle1'} component={'p'} gutterBottom>The Medical Evidence Experts!</Typography>
+						<Typography variant={'body1'} gutterBottom>When you choose Telemedica, you choose providers who understand you, see you in your fight, and are experts in crafting high-quality medical evidence that wins VA claims. Our network of trusted providers understands the unique needs of the veteran community. Many of the providers in Telemedica's network have served veterans in the past, are military spouses, or are even veterans themselves. Don't leave the success of your claim to chance; get connected with a medical evidence expert today!</Typography>
+					</Box>
 				</Container>
 			</Box>
 
-			<SectionDivider />
-
-			<Box paddingY={12} align={'center'}>
+			<Box paddingY={12} align={'center'} backgroundColor='grey.50'>
 				<Container>
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -120,7 +116,7 @@ export default function Home({ faqs, testimonials }) {
 					<Grid container spacing={5}>
 						{([
 							{
-								title: 'IMOs & DBQs',
+								title: 'DBQs and Nexus Letters',
 								text: 'Evidence to support your VA claim. Nexus Letters (IMOs) and DBQs do not require an appointment. Simply book, upload your documents, and one of our licensed professionals will be in touch to let you know if a medical document is warranted.',
 							},
 							{
@@ -128,8 +124,8 @@ export default function Home({ faqs, testimonials }) {
 								text: 'Receive a mental health or medical evaluation from one of our trusted, licensed providers. We conduct evaluations of 21 physical conditions, and can help you identify mental health condition(s) you may be living with.',
 							},
 							{
-								title: 'Recurring Therapy',
-								text: 'Ongoing therapy tailored to the Veteran Client experience. Receive mental health care from the comfort of your own home through our convenient and secure HIPAA-Compliant telehealth platform.',
+								title: 'Rebuttal Letters',
+								text: 'Rebuttal Letters help to address incorrect or inaccurate statements contained within VA denial letters. Available for mental health and medical denials. These letters are exclusively available to clients who have received a denial letter for a claim for which we have previously provided support.',
 							},
 						]).map(({ title, text }, index) => (
 							<Grid item sm={4} key={`section-what-we-do-item-${slugify(title)}`} sx={{ mb: 3 }}>
@@ -146,53 +142,59 @@ export default function Home({ faqs, testimonials }) {
 
 						))}
 					</Grid>
-					<Button variant={'contained'} href={'/services'} sx={{ mt: 8, px: { sm: 8 } }}>More about our services</Button>
+					<Button variant={'contained'} href={'/services'} sx={{ mt: 8 }}>Our Services</Button>
 				</Container>
 			</Box>
 			
 			<Box sx={{
-				background: 'linear-gradient(180deg, #68A09E, #4A6B82)',
+				background: 'linear-gradient(135deg, #e2f5f1 0%, #d5d9e4 100%)',
 				paddingY: 12,
 			}}>
 				<Container maxWidth={'md'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ color: 'common.white', mb: 8 }}>Frequently Asked Questions</Typography>
+					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Frequently Asked Questions</Typography>
 					<FAQs items={faqs} />
+					<Box align={'center'} sx={{mt: 8,}}>
+						<Button color='primary' variant='contained' href='/faqs'>View All FAQs</Button>
+					</Box>
 				</Container>
 			</Box>
 
-			<Box paddingY={12} backgroundColor={'#fafafa'}>
-				<Container size={'sm'}>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Testimonials</Typography>
-					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30, maxWidth: 720, marginX: 'auto' }}>Five-Star Ratings from Our Veteran Clients &amp; Providers Working with Telemedica.</Typography>
+			<Box paddingY={12} backgroundColor='grey.50'>
+				<Container maxWidth={'md'}>
+					<Typography variant={'sectionHeading'} sx={{ mb: 8 }}>Testimonials</Typography>
+					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30 }}>What satisfied veteran clients are saying about Telemedica.</Typography>
 					{testimonials ? (
 						<Box sx={{ marginY: 5 }}><Testimonials items={testimonials} /></Box>
 					) : null}
+					<Box sx={{ mt: 8,  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
+						<Stack direction='row' spacing={1} alignItems='center'>
+							<Image src={googleRatingBadge}/>
+							<Typography variant={'h4'} component={'p'}>4.9</Typography>
+						</Stack>
+					</Box>
 					<Box align={'center'} sx={{ mt: 10 }}>
-							<Button variant={'contained'} href={'#'} sx={{ px: { md: 10 }}}>Leave a Review</Button>
+							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'}>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
 
 			<Box paddingY={12}>
 				<Container>
-					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Check Out These Free Resources!<br />Find out more about _____.</Typography>
+					<Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Free Resource for Veterans</Typography>
 					<Box sx={{ mb: 8 }}>
 						<LatestPosts />
 					</Box>
 					<Box align={'center'}>
-						<Button variant={'contained'} href={'/blog'}>Find more free resources</Button>
+						<Button variant={'contained'} href={'/blog'}>More free resources</Button>
 					</Box>
 				</Container>
 			</Box>
-			
-			<Dialog open={isBookingDialogOpen} onClose={() => setIsBookingDialogOpen(false)} fullWidth={true}>
-				<Box sx={{ p: 3 }}><BookingWidget /></Box>
-			</Dialog>
 		</Page>
   )
 }
 
 export async function getStaticProps() {
+	await generateRssFeed();
 	const faqs = [
 		{
 			title: 'Does Telemedica do in-person appointments?',
