@@ -66,6 +66,8 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
   
   const handleClose = () => {
     setOpen(false);
+    reset();
+    
     if (onPopupOpen) onPopupOpen(false);
     Cookies.set(cookieName, false, { expires: cookieExpireClose });
   }
