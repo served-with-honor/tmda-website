@@ -6,92 +6,87 @@ import rebuttalLetterImage from '../public/images/logo-rebuttal-letter.png';
 
 export default [
   {
-    title: 'Nexus Letters',
+    title: 'Nexus Services',
     icon: { ...nexusImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
-          Telemedica offers Independent Medical Opinions (Nexus Letters) based on previously diagnosed disability conditions related to:
+          We specialize in Nexus Letters for your previously diagnosed disability conditions, including:
         </Typography>
-        <ul>
-          <Typography variant='body1'>+ Direct Service Connections</Typography>
-          <Typography variant='body1'>+ Secondary Service Connections </Typography>
-          <Typography variant='body1'>+ Presumptive Service Connections </Typography>
-        </ul>
+        <ol>
+          <Typography variant='body1' component='li'>Direct Service Connections</Typography>
+          <Typography variant='body1' component='li'>Secondary Service Connections </Typography>
+          <Typography variant='body1' component='li'>Presumptive Service Connections </Typography>
+        </ol>
         <Typography variant='body1'>
-          You will need to submit documents and/or medical records to your patient portal. Below is a list of the documents you will need to gather for this service.
+          Get started by submitting these documents via your secure patient portal:
         </Typography>
         
         <Typography sx={{ pt: 2 }} variant='body1'>Required Documentation:</Typography>
         <ul>
-          <li>DD214</li>
-          <li>Benefits Summary</li>
-          <li>Current treatment records (including your current diagnosis of your medical conditions).</li>
+          <Typography variant='body1'>+ DD214</Typography>
+          <Typography variant='body1'>+ Benefits Summary</Typography>
+          <Typography variant='body1'>+ Current Treatment Records (including diagnosis).</Typography>
         </ul>
-        <Typography variant='body1'>Recommended:</Typography>
+        <Typography variant='body1'>Recommended Docs:</Typography>
         <ul>
-          <li>Blue Button Report</li>
-          <li>Personal Statements</li>
-          <li>Buddy Letters</li>
-          <li>Medical Records</li>
-          <li>Lab tests/imaging studies</li>
+          <Typography variant='body1'>+ Blue Button Report</Typography>
+          <Typography variant='body1'>+ Personal Statements</Typography>
+          <Typography variant='body1'>+ Buddy Letters</Typography>
+          <Typography variant='body1'>+ Medical Records</Typography>
+          <Typography variant='body1'>+ Lab Tests/Imaging Studies</Typography>
         </ul>
       </>
   },
   {
-    title: 'Mental Health Evaluation',
+    title: 'Mental Health Evaluation and IMO',
     icon: { ...mentalHealthImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
-          Our team of licensed and professional providers will perform a comprehensive chart review and one of the following:
+          Our licensed professionals conduct thorough chart reviews and provide the following:
         </Typography>
         <ul>
-          <Typography variant='body1'>+ One time mental health assessment that can include a diagnosis (if applicable).</Typography>
-          <Typography variant='body1'>+ Comprehensive, evidence-based mental health examination.</Typography>
+          <Typography variant='body1'>+ One-time mental health assessment, including a diagnosis if applicable.</Typography>
+          <Typography variant='body1'>+ Comprehensive, evidence-based IMO (independent medical opinion) to help bolster your VA disability claim.</Typography>
         </ul>
         <Typography variant='body1'>
-          Before your appointment, you will need to submit documents and/or medical records to your patient portal. Below is a list of the documents you will need to gather for this service.
+          Before your appointment, please prepare the following documents for your patient portal:
         </Typography>
         
         <Typography sx={{ pt: 2 }} variant='body1'>Required:</Typography>
         <ul>
-          <li>DD214</li>
-          <li>Benefits Summary</li>
+          <Typography variant='body1'>+ DD214</Typography>
+          <Typography variant='body1'>+ Benefits Summary</Typography>
         </ul>
         <Typography variant='body1'>Recommended:</Typography>
         <ul>
-          <li>Personal Statements</li>
-          <li>Buddy Letters</li>
-          <li>Medical Records</li>
+          <Typography variant='body1'>+ Personal Statements</Typography>
+          <Typography variant='body1'>+ Buddy Letters</Typography>
+          <Typography variant='body1'>+ Medical Records</Typography>
+          <Typography variant='body1'>+ Blue Button Report</Typography>
         </ul>
       </>
   },
   {
-    title: 'Telemedicine Evaluations',
+    title: 'Telemedicine Evals',
     icon: { ...telemedicineImage, height: 40, width: 40},
     body:
       <>
         <Typography variant='body1'>
-          Our medical team provides telemedicine examinations to determine first-time medical diagnosis or confirmation/updated evaluations of 20 applicable conditions.*
+        Our medical team offers telemedicine examinations for initial medical diagnoses and confirmation or updated evaluations of 21 applicable conditions.* See the full list of conditions we assess below.
         </Typography>
         <Typography sx={{ pt: 2 }} variant='body1'>
-          *See below for the full list of conditions we evaluate for.
+          No documentation is mandatory for this service, but we strongly recommend uploading documents to your patient portal for a more comprehensive evaluation. Here are the recommended documents:
         </Typography>
-        <Typography sx={{ pt: 2 }} variant='body1'>
-          No documentation is required for this service, but it is highly recommended that you upload documentation to your patient portal. Below is a list of the recommended documents for this service.
-        </Typography>
-        <Typography sx={{ pt: 2 }} variant='body1'>Required:</Typography>
+        <Typography variant='body1'>Recommended Documents:</Typography>
         <ul>
-          <li>DD214</li>
-          <li>Benefits Summary</li>
-        </ul>
-        <Typography variant='body1'>Recommended:</Typography>
-        <ul>
-          <li>Blue Button Report</li>
-          <li>Personal Statements</li>
-          <li>Buddy Letters</li>
-          <li>Medical Records</li>
+          <Typography variant='body1'>+ DD214</Typography>
+          <Typography variant='body1'>+ Benefits Summary</Typography>
+          <Typography variant='body1'>+ Blue Button Report</Typography>
+          <Typography variant='body1'>+ Personal Statements</Typography>
+          <Typography variant='body1'>+ Buddy Letters</Typography>
+          <Typography variant='body1'>+ Medical Records</Typography>
         </ul>
       </>
   },
@@ -101,7 +96,10 @@ export default [
     body:
       <>
         <Typography variant='body1'>
-          Rebuttal letters are response documents that we write for veterans who have received medical evidence documents from Telemedica to submit with VA disability claims.  These letters are only for clients who receive a denial letter for a claim that we wrote a letter for.  The purpose of the letters are to respond to or refute incorrect or inaccurate statements in a denial letter.  Both our mental health and medical nexus services write these letters.
+          Our Rebuttal Letters serve as timely responses, prepared on behalf of veterans who have received medical evidence documents from Telemedica to accompany their VA disability claims. These letters are exclusively available to clients who have received a denial letter for a claim for which we have previously provided support.
+        </Typography>
+        <Typography sx={{pt: 2}} variant='body1'>
+          Rebuttal Letters help to address incorrect or inaccurate statements contained within VA denial letters. Available for mental health and medical denials.
         </Typography>
       </>
   },
