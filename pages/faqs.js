@@ -38,7 +38,7 @@ export default function FAQsPage({ items }) {
 	}, []);
 
 	return (
-		<Page title={'FAQs'}>
+		<Page title={'FAQs'} description={'(FAQ) Frequently asked questions about obtaining medical evidence for Your VA disability claim.'}>
 			{/* Hero */}
 			<Box
 				sx={{

@@ -12,7 +12,7 @@ import siteSettings from '../src/siteSettings';
 
 export default function CareersPage() {
 	return (
-		<Page title={'Careers'} darkHeader>
+		<Page title={'Careers'} description={'Explore A Career With Telemedica. Telemedica specializes in providing Veterans with high-quality medical evidence nationwide.'} darkHeader>
 			<Box sx={{ 
 				pt: 20,
 				pb: 15,

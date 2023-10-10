@@ -17,7 +17,7 @@ import heroImage from '../public/images/admin-services-hero.jpg'
 
 export default function AdministrativeServicesPage({ services, benefits }) {
 	return (
-		<Page title={'Administrative Services'}>
+		<Page title={'Administrative Services'} description={'Our administrative services enable the provider/practice to focus on providing quality clinical care without the burden of administrative and management functions.'}>
 			{/* HERO */}
 			<Box sx={{ 
 				pt: 20, 

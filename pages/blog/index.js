@@ -65,7 +65,7 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 	
 
 	return (
-		<Page title={'Telemedica Blog'} darkHeader>
+		<Page title={'Telemedica Blog'} description={'Free VA disability resources for Veterans needing more medical evidence for their VA claims. Click to read Telemedica Blog articles.'} darkHeader>
 			
 			{/* HERO */}
 			<Box sx={{ backgroundColor: 'secondary.800', paddingTop: 20, paddingBottom: 10 , position: 'relative', }}>
