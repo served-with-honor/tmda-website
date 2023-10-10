@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -17,7 +17,6 @@ import { BookingContext } from '../context/BookingContext'
 
 export default function ContactUsPage({ actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
-  const [popupOpen, setPopupOpen] = useState(false);
 
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 
@@ -59,8 +58,8 @@ export default function ContactUsPage({ actionItems }) {
 					</Grid>
 				</Container>
 			</Box>
-			
-			<NewsletterDialog delay={0} onPopupOpen={setPopupOpen}/>
+
+			<NewsletterDialog delay={3000} />
   	</Page>
   )
 }
