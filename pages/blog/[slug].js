@@ -5,6 +5,7 @@ import { getPost } from '../../lib/api'
 import Page from '../../components/Page'
 import BlogHero from '../../components/BlogHero'
 import { replaceContent } from '../../src/WPBlocks';
+import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
@@ -19,6 +20,8 @@ export default function Post({ post }) {
 					{contentComponents}
 				</Container>
 			</Box>
+
+			<NewsletterDialog delay={10000} />
   	</Page>
   )
 }
