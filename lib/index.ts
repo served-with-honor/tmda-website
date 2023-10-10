@@ -1,17 +1,10 @@
 import { addDoc, getFirestore, collection, Timestamp } from "firebase/firestore/lite";
 import firebase from './firebaseConfig';
 import sanityClient from './sanityConfig'
-import settings from '../src/siteSettings';
 
 const retry = require('retry');
 
 const mandrillClient = require("@mailchimp/mailchimp_transactional")(process.env.MANDRILL_API_KEY);
-const mailchimpClient = require("@mailchimp/mailchimp_marketing");
-
-mailchimpClient.setConfig({
-  apiKey: process.env.MAILCHIMP_API_KEY,
-  server: process.env.MAILCHIMP_SERVER,
-});
 
 const db = getFirestore(firebase);
 const retryOperationConfig = {
@@ -109,37 +102,9 @@ const getProviders = () => (
   ]
 );
 
-const newsletterSignup = async (email: string) => {
-  // const operation = retry.operation(retryOperationConfig);
-
-  return new Promise(async (resolve, reject) => {
-    // operation.attempt(async () => {
-      try {
-        const response = await mailchimpClient.lists.batchListMembers(settings.newsletter.listId, {
-          members: [{ email_address: email, status: 'subscribed' }],
-        });
-        
-        if (response.isAxiosError) throw response;
-        if (response.errors) throw response.errors[0].error;
-
-        return resolve(response);
-      } catch (error) {
-        if (typeof error === 'string' && error.includes('is already a list member, do you want to update? please provide update_existing:true in the request body')) {
-          return reject('You are already subscribed');
-        }
-        
-        return reject(error);
-        // if (operation.retry(error)) return;
-        // reject(operation.mainError(error));
-      }
-    // })
-  });
-}
-
 export {
   logContactForm,
   emailContactForm,
   getTeamMembers,
   getProviders,
-  newsletterSignup,
 }
