@@ -70,7 +70,7 @@ export default forwardRef(function Header({ isDark }, ref) {
         width: '100%',
         paddingY: [1, 3],
         marginTop: 0,
-        zIndex: 99,
+        zIndex: theme.zIndex.modal + 1,
       }}
     >
       <Container sx={{ position: 'relative' }}>

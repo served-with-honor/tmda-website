@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useCallback, useRef, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import { styled } from '@mui/system';
@@ -14,12 +14,18 @@ import { visuallyHidden } from '@mui/utils';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 import { BookingContext } from '../context/BookingContext'
+import { useTheme } from "@mui/material/styles";
 
 export default function MainMenu() {
   const router = useRouter();
   const selected = router.pathname;
 
+  const [menuShowingDropdown, setMenuShowingDropdown] = useState("");
   const { setIsOpen, scrollTo } = useContext(BookingContext);
+
+  const handleMenuShowingDropdownChange = useCallback((menuTitle) => {
+    setMenuShowingDropdown(menuTitle);
+  }, []);
   const handleBookingClick = scrollTo ? scrollTo : setIsOpen ? () => setIsOpen(true) : null;
 
   const items = [
@@ -56,7 +62,13 @@ export default function MainMenu() {
             {items.map(({ text, href, children }) => (
               <Grid item key={`main-menu-root-item-${slugify(text)}`}>
                 {children ? (
-                  <MenuGroup label={text} items={children} selected={selected} />
+                  <MenuGroup
+                    label={text}
+                    items={children}
+                    selected={selected}
+                    menuShowingDropdown={menuShowingDropdown}
+                    setMenuShowingDropdown={handleMenuShowingDropdownChange}
+                  />
                 ) : (
                   <Button variant={'contained'} size={'small'} href={href}>{text}</Button>
                 )}
@@ -106,41 +118,59 @@ const MyMenuItem = styled(MenuItem)(({ theme }) => ({
   
 }));
 
-const MenuGroup = ({ label, items,  selected }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleOpen = (event) => { setAnchorEl(event.currentTarget); };
-  const handleClose = () => { setAnchorEl(null); };
+const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowingDropdown }) => {
+
+  const theme = useTheme();
+  const buttonRef = useRef(null);
+  const showSubMenu = useCallback(() => {
+    setMenuShowingDropdown(label);
+  }, [label, setMenuShowingDropdown]);
+
+  const closeSubMenu = useCallback(() => {
+    setMenuShowingDropdown("");
+  }, [setMenuShowingDropdown]);
 
   const menuName = `basic-${slugify(label)}`;
   const buttonId = `${menuName}-button`;
   const menuId = `${menuName}-menu`;
 
   return <>
-    <Button variant={'text'} size={'small'}
+    <Button
+      ref={buttonRef}
+      variant={'text'}
+      size={'small'}
       id={buttonId}
-      aria-controls={open ? menuId : undefined}
+      // aria-controls={open ? menuId : undefined}
       aria-haspopup="true"
-      aria-expanded={open ? 'true' : undefined}
-      onMouseEnter={handleOpen}
-      sx={{ fontWeight: 700 }}
+      // aria-expanded={open ? 'true' : undefined}
+      onMouseEnter={() => { showSubMenu(); return; }}
+      onMouseLeave={() => { setMenuShowingDropdown(""); }}
+      sx={{
+        cursor: 'pointer',
+        margin: 0,
+        fontWeight: 700,
+        position: 'relative',
+        zIndex: theme.zIndex.modal + 1,
+      }}
     >
       {label}
     </Button>  
     <Menu
       id={menuId}
-      anchorEl={anchorEl}
-      open={open}
-      onMouseLeave={handleClose}
-      onClose={handleClose}
+      anchorEl={buttonRef.current}
+      open={menuShowingDropdown === label}
+      onClose={closeSubMenu}
       MenuListProps={{
         'aria-labelledby': buttonId,
-        onMouseLeave: handleClose,
       }}
       slotProps={{
-        paper: { sx: { borderRadius: 3, p: 1 } }
+        paper: {
+          sx: { borderRadius: 3, p: 1 },
+          onMouseEnter: () => { showSubMenu(); },
+          onMouseLeave: () => { closeSubMenu(); },
+        },
       }}
-      disableAutoFocusItem
+      keepMounted
     >
       {items.map(({ href, text, target, action }) => {
         const isSelected = href === selected;
