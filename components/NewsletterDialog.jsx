@@ -10,8 +10,8 @@ import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from '../src/Link';
 
@@ -22,7 +22,7 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
   const cookieName = 'newsletterSignedUp';
   const showDialog = Cookies.get(cookieName) === undefined;
   const [open, setOpen] = useState(false);
-  const { handleSubmit, control, formState: { errors } } = useForm();
+  const { handleSubmit, control, reset, formState: { errors } } = useForm();
   const { submit, isLoading, hasSubmited, error } = useFormSubmit();
   const onSubmit = async (data) => await submit(endpoint, data);
 
@@ -110,7 +110,22 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
                         control={control}
                         rules={{ required: 'Email is required', pattern: { value: /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'A valid email is required' } }}
                         render={({ field }) => (
-                          <TextField fullWidth label='Email' type='email' name="EMAIL" id="EMAIL" autoFocus helperText={errors?.email?.message?.toString()} error={!!(errors?.email)} {...field} />
+                          <TextField
+                            fullWidth
+                            label='Email'
+                            type='email'
+                            name="EMAIL"
+                            id="EMAIL"
+                            autoFocus
+                            helperText={errors?.email?.message?.toString()}
+                            error={!!(errors?.email)}
+                            InputProps={{
+                              endAdornment: (
+                                field.value ? <IconButton onClick={() => reset({ email: '' })}><CloseIcon /></IconButton> : null
+                              )
+                            }}
+                            {...field}
+                          />
                         )}
                       />
                     </Box>
