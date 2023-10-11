@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import { useFormSubmit } from '../hooks'
 import Alert from '@mui/material/Alert';
@@ -14,9 +15,14 @@ import Select from '@mui/material/Select';
 
 export default function ContactForm() {
   const formName = 'Contact Form Home';
+  const endpoint = '/api/form';
   const { handleSubmit, control, formState: { errors } } = useForm();
-  const { submit, isLoading, hasSubmited, error } = useFormSubmit();
-  const onSubmit = async (data) => await submit('/', data);
+  const { submit, isLoading, hasSubmited, error: submissionError } = useFormSubmit();
+  const onSubmit = async (data) => await submit(endpoint, data);
+
+  useEffect(() => {
+    if (submissionError) { console.error(submissionError); }
+  }, [submissionError])
 
   return hasSubmited ? (
     <Alert severity="success">Success!</Alert>
@@ -27,10 +33,9 @@ export default function ContactForm() {
   ) : (
       <form
         method="POST"
-        action="/"
+        action={endpoint}
         onSubmit={handleSubmit(onSubmit)}
         name={formName}
-        data-netlify="true"
       >
       <Grid container spacing={2}>
         <Grid item sm={6}>
@@ -105,7 +110,7 @@ export default function ContactForm() {
         >
           Submit
         </Button>
-          {error ? <Alert severity="error" sx={{ marginTop: 3 }}>Oh no, something went wrong!</Alert> : null}
+          {submissionError ? <Alert severity="error" sx={{ marginTop: 3 }}>Oh no, something went wrong!</Alert> : null}
       </Box>
     </form>
   )
