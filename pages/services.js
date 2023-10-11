@@ -220,24 +220,16 @@ export default function ServicesPage({ prices }) {
 
 export async function getStaticProps() {
 	const prices = [
-		{ label: 'Psych Team Record Review Fee', subtext: 'up to 500 pages', items: [{ label: 'Includes comprehensive chart review and record summary' }], amount: 204, category: 'Psych Team' },
-		{ label: 'Psych Eval & Independent Medical Opinion', subtext: '', amount: 495, category: 'Psych Team' },
-		// (Total price with records review= $599)
-		{ label: 'Psych Re-Evaluation ', amount: 150, category: 'Psych Team' },
-		{ label: 'Telemedicine Evaluation (DX)', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'Evaluation & DX Document', amount: 295 }], amount: 420, category: 'Med Team' },
-		{ label: 'Med Team Records Review Fee', subtext: 'up to 500 pages', items: [{ label: 'Includes record review summary' }], amount: 299, category: 'Med Team' },
-		{ label: 'P& T Request/Specialty Letter', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'NX Document', amount: 495 }], amount: 620, category: 'Med Team' },
-		{ label: 'Medical Nexus Letter', subtext: '1 connection', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'NX Document', amount: 395 }], amount: 520, category: 'Med Team' },
-		{ label: 'Medical Nexus Letter Enhanced', subtext: '2+ connections', items: [{ label: 'Tech/Booking Fee', amount: 125 }, { label: 'NX Document', amount: 495 }], amount: 620, category: 'Med Team' },
-		{ label: 'DBQ', subtext: '1-4 pages', amount: 0, category: 'Med Team' },
-		// - $125 tech/Booking fee $200 DBQ document
-		{ label: 'DBQ Enhanced', subtext: '4+ pages', amount: 0, category: 'Med Team' },
-		// $125 tech/Booking Fee $300 DBQ Document
-		{ label: 'Rebuttal Letter', amount: [200,275], category: 'Additional' },
-		{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Additional' },
-		{ label: 'Unlimited Pages & Reviews for 90 days', subtext: 'must be added at the lime of booking', amount: '+$99', category: 'Additional' },
-		{ label: '', subtext: '', amount: 0, category: '' },
-		{ label: '', subtext: '', amount: 0, category: '' },
+		{ label: 'Psych Eval/lMO*', fee: 100, amount: 1395, category: 'Mental Health Evals' },
+		{ label: 'Psych Rebuttal Letter', amount: 175, category: 'Mental Health Evals' },
+		{ label: 'Telemedicine Evaluation*', fee: 100, amount: 895, category: 'Medical/Nexus Services' },
+		{ label: 'Nexus Letter*', fee: 199, amount: 1345, category: 'Medical/Nexus Services' },
+		{ label: 'Nexus Letter Enhanced*', fee: 199, amount: 1595, category: 'Medical/Nexus Services' },
+		{ label: 'DBQ*', fee: 199, amount: 1145, category: 'Medical/Nexus Services' },
+		{ label: 'DBQ*', fee: 199, amount: 1145, category: 'Medical/Nexus Services' },
+		{ label: 'DBQ Enhanced*', fee: 199, amount: 1400, category: 'Medical/Nexus Services' },
+		{ label: 'P&T Request Letter*', fee: 199, amount: 1345, category: 'Medical/Nexus Services' },
+		{ label: 'Med Team Rebuttal Letter**', fee: 50, amount: 250, category: 'Medical/Nexus Services' },
 	];
 
 	return {
