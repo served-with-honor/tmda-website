@@ -137,7 +137,7 @@ export default function Home({ faqs, testimonials }) {
 									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
 								>
 									<Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50, mb: 3 }}>{index + 1}</Avatar>
-									<Typography variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
+									<Typography variant={'h4'} component={'h3'} sx={{ mb: 3, minHeight: { sm: '3.705em', md: '2.47em' } }}>{title}</Typography>
 									<Typography variant={'body1'}>{text}</Typography>
 								</motion.div>
 							</Grid>
