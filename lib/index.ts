@@ -1,19 +1,17 @@
-import { addDoc, getFirestore, collection, Timestamp } from "firebase/firestore/lite";
-import firebase from './firebaseConfig';
-import sanityClient from './sanityConfig'
-import settings from '../src/siteSettings';
-
+const firebase = require('firebase-admin');
+const { getFirestore, Timestamp } = require('firebase-admin/firestore');
 const retry = require('retry');
-
 const mandrillClient = require("@mailchimp/mailchimp_transactional")(process.env.MANDRILL_API_KEY);
 const mailchimpClient = require("@mailchimp/mailchimp_marketing");
+
+import sanityClient from './sanityConfig'
+import settings from '../src/siteSettings';
 
 mailchimpClient.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
   server: process.env.MAILCHIMP_SERVER,
 });
 
-const db = getFirestore(firebase);
 const retryOperationConfig = {
   retries: 3,
   factor: 2,
@@ -23,13 +21,18 @@ const retryOperationConfig = {
 
 const logContactForm = (data: Object) => {
   const operation = retry.operation(retryOperationConfig);
-  const ref = collection(db, "form-submissions");
-
+  
   return new Promise((resolve, reject) => {
     operation.attempt(async () => {
-      try{
-        const document = await addDoc(ref, { ...data, sentAt: Timestamp.now().toDate() });
-        resolve(document);
+      try {
+        const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG || '');
+        if (!firebase.apps.length) firebase.initializeApp({ credential: firebase.credential.cert(serviceAccount) });
+        const db = getFirestore();
+        const res = await db.collection('form-submissions').doc().set({
+          ...data,
+          sentAt: Timestamp.now().toDate()
+        });
+        resolve(res);
       } catch (error) {
         if (operation.retry(error)) return;
         reject(operation.mainError(error));
