@@ -22,9 +22,12 @@ export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items, 
 
   return (
     <Drawer
-      anchor="top"
+      anchor="left"
       open={isMobileMenuOpen}
       onClose={handleExpandMenu}
+      PaperProps={{
+        sx: { width: 'calc(100vw - 15px)' },
+      }}
     >
       <Box sx={{width: '100%'}}>
           <nav>
