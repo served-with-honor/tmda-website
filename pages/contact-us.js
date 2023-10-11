@@ -28,7 +28,7 @@ export default function ContactUsPage({ actionItems }) {
 					<Grid container gap={5} alignItems={'center'}>
 						<Grid item md>
 							<Typography variant='h1' color='primary'>Get In Touch</Typography>
-							<Typography variant='body1' sx={{ fontSize: 32 }}>Please let us know how we can assist you</Typography>
+							<Typography variant='body1' sx={{ fontSize: 32 }}>Please let us know how we can assist you.</Typography>
 						</Grid>
 						<Grid item md>
 							<Stack direction={'row'} gap={3}>
