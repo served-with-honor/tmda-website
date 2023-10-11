@@ -1,8 +1,25 @@
 import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Chip from '@mui/material/Chip';
+import AddIcon from '@mui/icons-material/Add';
+
 import nexusImage from '../public/images/nexus-dbqs.png';
 import mentalHealthImage from '../public/images/mental-health-evaluation.png';
 import telemedicineImage from '../public/images/telemedicine-evaluations.png';
 import rebuttalLetterImage from '../public/images/logo-rebuttal-letter.png';
+
+
+const CustomListItem = ({ children }) => {
+  return (
+    <ListItem dense>
+      <ListItemIcon sx={{ minWidth: 32 }}><AddIcon color='primary' /></ListItemIcon>
+      <ListItemText>{children}</ListItemText>
+    </ListItem>
+  );
+}
 
 export default [
   {
@@ -10,32 +27,27 @@ export default [
     icon: { ...nexusImage, height: 40, width: 40},
     body:
       <>
-        <Typography variant='body1'>
+        <Typography variant='body1' gutterBottom>
           We specialize in Nexus Letters for your previously diagnosed disability conditions, including:
         </Typography>
         <ol>
-          <Typography variant='body1' component='li'>Direct Service Connections</Typography>
-          <Typography variant='body1' component='li'>Secondary Service Connections </Typography>
-          <Typography variant='body1' component='li'>Presumptive Service Connections </Typography>
+          <li>Direct Service Connections</li>
+          <li>Secondary Service Connections </li>
+          <li>Presumptive Service Connections </li>
         </ol>
-        <Typography variant='body1'>
+        <Typography variant='subtitle2' component='p' gutterBottom>
           Get started by submitting these documents via your secure patient portal:
         </Typography>
-        
-        <Typography sx={{ pt: 2 }} variant='body1'>Required Documentation:</Typography>
-        <ul>
-          <Typography variant='body1'>+ DD214</Typography>
-          <Typography variant='body1'>+ Benefits Summary</Typography>
-          <Typography variant='body1'>+ Current Treatment Records (including diagnosis).</Typography>
-        </ul>
-        <Typography variant='body1'>Recommended Docs:</Typography>
-        <ul>
-          <Typography variant='body1'>+ Blue Button Report</Typography>
-          <Typography variant='body1'>+ Personal Statements</Typography>
-          <Typography variant='body1'>+ Buddy Letters</Typography>
-          <Typography variant='body1'>+ Medical Records</Typography>
-          <Typography variant='body1'>+ Lab Tests/Imaging Studies</Typography>
-        </ul>
+        <List>
+          <CustomListItem>DD214 <Chip label='Required' color='error' size='small' /></CustomListItem>
+          <CustomListItem>Benefits Summary <Chip label='Required' color='error' size='small' /></CustomListItem>
+          <CustomListItem>Current Treatment Records (including diagnosis) <Chip label='Required' color='error' size='small' /></CustomListItem>
+          <CustomListItem>Blue Button Report</CustomListItem>
+          <CustomListItem>Personal Statements</CustomListItem>
+          <CustomListItem>Buddy Letters</CustomListItem>
+          <CustomListItem>Medical Records</CustomListItem>
+          <CustomListItem>Lab Tests/Imaging Studies</CustomListItem>
+        </List>
       </>
   },
   {
@@ -46,26 +58,22 @@ export default [
         <Typography variant='body1'>
           Our licensed professionals conduct thorough chart reviews and provide the following:
         </Typography>
-        <ul>
-          <Typography variant='body1'>+ One-time mental health assessment, including a diagnosis if applicable.</Typography>
-          <Typography variant='body1'>+ Comprehensive, evidence-based IMO (independent medical opinion) to help bolster your VA disability claim.</Typography>
-        </ul>
-        <Typography variant='body1'>
+        <List>
+          <CustomListItem>One-time mental health assessment, including a diagnosis if applicable.</CustomListItem>
+          <CustomListItem>Comprehensive, evidence-based IMO (independent medical opinion) to help bolster your VA disability claim.</CustomListItem>
+        </List>
+        <Typography variant='subtitle2' component='p'>
           Before your appointment, please prepare the following documents for your patient portal:
         </Typography>
         
-        <Typography sx={{ pt: 2 }} variant='body1'>Required:</Typography>
-        <ul>
-          <Typography variant='body1'>+ DD214</Typography>
-          <Typography variant='body1'>+ Benefits Summary</Typography>
-        </ul>
-        <Typography variant='body1'>Recommended:</Typography>
-        <ul>
-          <Typography variant='body1'>+ Personal Statements</Typography>
-          <Typography variant='body1'>+ Buddy Letters</Typography>
-          <Typography variant='body1'>+ Medical Records</Typography>
-          <Typography variant='body1'>+ Blue Button Report</Typography>
-        </ul>
+        <List>
+          <CustomListItem>DD214 <Chip label='Required' color='error' size='small' /></CustomListItem>
+          <CustomListItem>Benefits Summary <Chip label='Required' color='error' size='small' /></CustomListItem>
+          <CustomListItem>Personal Statements</CustomListItem>
+          <CustomListItem>Buddy Letters</CustomListItem>
+          <CustomListItem>Medical Records</CustomListItem>
+          <CustomListItem>Blue Button Report</CustomListItem>
+        </List>
       </>
   },
   {
@@ -73,21 +81,24 @@ export default [
     icon: { ...telemedicineImage, height: 40, width: 40},
     body:
       <>
-        <Typography variant='body1'>
-        Our medical team offers telemedicine examinations for initial medical diagnoses and confirmation or updated evaluations of 21 applicable conditions.* See the full list of conditions we assess below.
+        <Typography variant='body1' gutterBottom>
+          Our medical team offers telemedicine examinations for initial medical diagnoses and confirmation or updated evaluations of 21 applicable conditions.
         </Typography>
-        <Typography sx={{ pt: 2 }} variant='body1'>
-          No documentation is mandatory for this service, but we strongly recommend uploading documents to your patient portal for a more comprehensive evaluation. Here are the recommended documents:
+        <Typography variant='body2' gutterBottom>
+          * See the full list of conditions we assess below.
         </Typography>
-        <Typography variant='body1'>Recommended Documents:</Typography>
-        <ul>
-          <Typography variant='body1'>+ DD214</Typography>
-          <Typography variant='body1'>+ Benefits Summary</Typography>
-          <Typography variant='body1'>+ Blue Button Report</Typography>
-          <Typography variant='body1'>+ Personal Statements</Typography>
-          <Typography variant='body1'>+ Buddy Letters</Typography>
-          <Typography variant='body1'>+ Medical Records</Typography>
-        </ul>
+        <Typography sx={{ mb: 3 }} variant='body1'>
+          No documentation is mandatory for this service, but we strongly recommend uploading documents to your patient portal for a more comprehensive evaluation.
+        </Typography>
+        <Typography variant='subtitle2' component='p'>Recommended Documents:</Typography>
+        <List>
+          <CustomListItem>DD214</CustomListItem>
+          <CustomListItem>Benefits Summary</CustomListItem>
+          <CustomListItem>Blue Button Report</CustomListItem>
+          <CustomListItem>Personal Statements</CustomListItem>
+          <CustomListItem>Buddy Letters</CustomListItem>
+          <CustomListItem>Medical Records</CustomListItem>
+        </List>
       </>
   },
   {
@@ -95,10 +106,10 @@ export default [
     icon: { ...rebuttalLetterImage, height: 40, width: 40},
     body:
       <>
-        <Typography variant='body1'>
+        <Typography variant='body1' gutterBottom>
           Our Rebuttal Letters serve as timely responses, prepared on behalf of veterans who have received medical evidence documents from Telemedica to accompany their VA disability claims. These letters are exclusively available to clients who have received a denial letter for a claim for which we have previously provided support.
         </Typography>
-        <Typography sx={{pt: 2}} variant='body1'>
+        <Typography variant='body1'>
           Rebuttal Letters help to address incorrect or inaccurate statements contained within VA denial letters. Available for mental health and medical denials.
         </Typography>
       </>
