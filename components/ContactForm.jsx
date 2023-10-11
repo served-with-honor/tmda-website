@@ -45,14 +45,16 @@ export default function ContactForm() {
           <Controller
             name="lastName"
             control={control}
-            render={({ field }) => <TextField label='Last Name' fullWidth {...field} /> }
+            rules={{ required: 'Last name is required' }}
+            render={({ field }) => <TextField label='Last Name' fullWidth required error={!!(errors?.lastName?.message)} {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
           <Controller
             name="phone"
             control={control}
-            render={({ field }) => <TextField label='Phone' fullWidth {...field} /> }
+            rules={{ required: 'Phone number is required' }}
+            render={({ field }) => <TextField label='Phone' fullWidth required error={!!(errors?.phone?.message)} {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
@@ -60,7 +62,7 @@ export default function ContactForm() {
             name="email"
             control={control}
             rules={{ required: 'Email is required', pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'A valid email is required' } }}
-            render={({ field }) => <TextField label='Email' fullWidth helperText={errors?.email?.message} error={!!(errors?.email)} {...field} /> }
+            render={({ field }) => <TextField label='Email' fullWidth required helperText={errors?.email?.message} error={!!(errors?.email)} {...field} /> }
           />
         </Grid>
         <Grid item xs={12}>
