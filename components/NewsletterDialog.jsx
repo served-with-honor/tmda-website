@@ -41,7 +41,7 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
   }, [openCondition]);
 
   useEffect(() => {
-    if (!showDialog || openCondition !== undefined) return;
+    if (!showDialog || openCondition !== undefined || scrollRef) return;
 
     if (!delay) {
       setOpen(true);
