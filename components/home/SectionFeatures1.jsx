@@ -13,7 +13,7 @@ export default function SectionFeatures1() {
   ];
 
   return (
-    <Box paddingY={12}>
+    <Box paddingY={12} sx={{ backgroundColor: 'grey.50'}}>
       <Container sx={{ position: 'relative' }}>
         {title ? (
           <motion.div
