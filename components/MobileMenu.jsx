@@ -17,15 +17,13 @@ import { visuallyHidden } from '@mui/utils';
 import ListItemButton from '@mui/material/ListItemButton';
 
 
+
 export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items }) {
-console.log(items)
 
 // create the list items includes the heading and the sub items 
 // have the background of the heading menu text with a different background color and hard line with the primary color
-    // we need to loop through items
-    // we need to loop through children and say that if it is undefined don't do anything... 
-    // if there is no href then there should be an action
 // have a border line at the bottom of each sub items
+//
 
 
 
@@ -37,58 +35,55 @@ console.log(items)
     >
       <Box sx={{width: '100%'}}>
           <nav>
+            <List sx={{mt: 10, mx: 2}}>
             {items.map(({ text, children, href }) => (
-              <List sx={{my: 8, mx: 6 }}>
-                <ListItem key={`mobile-menu-root-item-${slugify(text)}`}>
-                  {href ? <ListItemButton href={href}>
+              <>
+                <ListItem disablePadding key={`mobile-menu-root-item-${slugify(text)}`}>
+                  {href ? 
+                    <ListItemButton sx={{mt: -1, ml: -2}} href={href}>
                       <ListItemText primary={text} />
                     </ListItemButton> :
-                    <ListItemText primary={text} /> 
+                    <ListItemText sx={{borderBottom:'1px solid', borderBottomColor:'primary.main'}} primary={text} /> 
                   }
                 </ListItem>
                 {children && (
-                  <ListItem>
+                  <List>
                     {children.map(({ text: childText, href, target, action }) => (
+                    <ListItem disablePadding key={`mobile-menu-sub-item-${slugify(childText)}`}>                
+                      {!action ? 
                       <ListItemButton 
-                        key={`mobile-menu-sub-item-${slugify(childText)}`} 
                         href={href || null} 
-                        target={target || ''} 
-                        onClick={action || null}
+                        target={target || ''}
                       >
                         <ListItemText primary={childText} />
-                      </ListItemButton>
+                      </ListItemButton> : null}
+                    </ListItem>
                     ))}
-                  </ListItem>
+                  </List>
                 )}
-              </List>
+              </>
             ))}
-
-            {/* {items.map(({ text, children }) => (
-                <ListItem key={`mobile-menu-root-item-${slugify(text)}`}>
-                    <ListItemText primary={text} />
-                    <Divider />
-                    {children && (
-                      <>
-                        {children.map(({ text: childText, href, target, action }) => (
-                        <ListItem
-                            key={`mobile-menu-sub-item-${slugify(childText)}`}
-                        >
-                            {action ? (
-                            <ListItemText primary={childText} onClick={action} />
-                            ) : (
-                            <ListItemText
-                                primary={childText}
-                                component="a"
-                                href={href}
-                                target={target || ''}
-                            />
-                            )}
-                        </ListItem>
-                        ))}
-                      </>
-                    )}
-                </ListItem>
-                ))} */}
+            </List>
+            {items.map(({ children, text}) => (
+              <div key={`mobile-menu-root-item-${slugify(text)}`}>
+              {children && (
+                <Box sx={{textAlign: 'center', mb: 4}}>
+                  {children.map(({ text:childText, action}) => (
+                    action && 
+                    <Button 
+                      key={`mobile-menu-root-item-${slugify(text)}`} 
+                      onClick={action}
+                      variant='contained'
+                      color='secondary'
+                    >
+                      {childText}
+                    </Button>
+                  ))}
+                </Box>
+              )}
+              </div>
+            ))}
+            
           </nav>
 
       </Box>
