@@ -60,7 +60,7 @@ export default function MainMenu() {
     <Button onClick={()=> handleExpandMenu()} sx={{ display: { md: 'none' }}}>
       <MenuIcon />
     </Button>
-    <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleExpandMenu={handleExpandMenu} items={items}/>
+    <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleExpandMenu={handleExpandMenu} items={items} router={router}/>
     {items ? (
       <Box sx={{ display: { xs: 'none', md: 'initial' }}}>
         <nav>
