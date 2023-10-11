@@ -37,6 +37,7 @@ export default function MainMenu() {
         { text: 'Blog', href: '/blog' },
         { text: 'Patient Portal', href: settings.externalLinks.patientPortal, target: '_blank' },
         { text: 'Book Now', action: handleBookingClick },
+        { text: 'FAQs', href: '/faqs' },
       ],
     },
     {
@@ -70,7 +71,7 @@ export default function MainMenu() {
                     setMenuShowingDropdown={handleMenuShowingDropdownChange}
                   />
                 ) : (
-                  <Button variant={'contained'} size={'small'} href={href}>{text}</Button>
+                  <Button variant={'contained'} size={'small'} href={href} sx={{ px: 2 }}>{text}</Button>
                 )}
               </Grid>
             ))}
