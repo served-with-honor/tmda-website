@@ -8,18 +8,20 @@ export default async function handler(
   res: NextApiResponse<{ data: string | undefined, error?: unknown }>
 ) {
   try {
-    const { name, email, message } = JSON.parse(req.body) || {};
+    const { firstName, lastName, phone, type, email, message } = JSON.parse(req.body) || {};
     const data = {
-      subject: siteSettings.form.subject,
+      subject: siteSettings.contact.form.subject,
       html: `<table>
-        <tr><td>Name:</td><td>${name}</td></tr>
+        <tr><td>Name:</td><td>${firstName} ${lastName}</td></tr>
+        <tr><td>Phone:</td><td>${phone}</td></tr>
         <tr><td>Email:</td><td>${email}</td></tr>
+        <tr><td>Request Type:</td><td>${type}</td></tr>
         <tr><td>Message:</td><td>${message}</td></tr>
       </table>`,
     };
 
     await Promise.all([
-      logContactForm({ name, email, message }),
+      logContactForm({ firstName, lastName, phone, email, type, message }),
       emailContactForm(data),
     ])
     
