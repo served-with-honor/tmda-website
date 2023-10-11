@@ -24,10 +24,12 @@ import { slugify } from '../src/utils';
 import googleRatingBadge from '../public/google-rating.svg'
 import ImageDrSmiling from '../public/images/Dr_Smiling_Resized.jpeg'
 import generateRssFeed from '../utils/generateRSSFeed';
+import NewsletterDialog from '../components/NewsletterDialog'
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
+	const newsletterPopupRef = useRef(null);
 	
 	return (
 		<Page>
@@ -184,11 +186,14 @@ export default function Home({ faqs, testimonials }) {
 					<Box sx={{ mb: 8 }}>
 						<LatestPosts />
 					</Box>
-					<Box align={'center'}>
+					<Box align={'center'} ref={newsletterPopupRef}>
 						<Button variant={'contained'} href={'/blog'}>More free resources</Button>
 					</Box>
 				</Container>
 			</Box>
+
+			<NewsletterDialog scrollRef={newsletterPopupRef} />
+
 		</Page>
   )
 }
