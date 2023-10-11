@@ -121,10 +121,15 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
                             autoFocus
                             helperText={errors?.email?.message?.toString()}
                             error={!!(errors?.email)}
+                            sx={{ 
+                              '.MuiInputBase-input': { py: '11px' },
+                              '.MuiInputLabel-root': { top: '-5px' },
+                              '.MuiInputLabel-root.Mui-focused, .MuiInputLabel-shrink': { top: 0 },
+                            }}
                             InputProps={{
-                              endAdornment: (
-                                field.value ? <IconButton onClick={() => reset({ email: '' })}><CloseIcon /></IconButton> : null
-                              )
+                              endAdornment: field.value ? (
+                                <IconButton onClick={() => reset({ email: '' })}><CloseIcon /></IconButton> 
+                              ) : null
                             }}
                             {...field}
                           />
@@ -132,7 +137,7 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
                       />
                     </Box>
                     <Box>
-                      <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0}>Subscribe</Button>
+                      <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: 5 }}>Subscribe</Button>
                     </Box>
                   </Stack>
                 {error ? <Alert severity="error" sx={{ marginTop: 3 }}>{error}</Alert> : null}
