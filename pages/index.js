@@ -24,10 +24,12 @@ import { slugify } from '../src/utils';
 import googleRatingBadge from '../public/google-rating.svg'
 import ImageDrSmiling from '../public/images/Dr_Smiling_Resized.jpeg'
 import generateRssFeed from '../utils/generateRSSFeed';
+import NewsletterDialog from '../components/NewsletterDialog'
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
+	const newsletterPopupRef = useRef(null);
 	
 	return (
 		<Page>
@@ -135,7 +137,7 @@ export default function Home({ faqs, testimonials }) {
 									transition={{ duration: 0.5, delay: (index * 0.1) + 0.5 }}
 								>
 									<Avatar sx={{ bgcolor: 'secondary.main', height: 50, width: 50, mb: 3 }}>{index + 1}</Avatar>
-									<Typography variant={'h4'} component={'h3'} sx={{ mb: 3 }}>{title}</Typography>
+									<Typography variant={'h4'} component={'h3'} sx={{ mb: 3, minHeight: { sm: '3.705em', md: '2.47em' } }}>{title}</Typography>
 									<Typography variant={'body1'}>{text}</Typography>
 								</motion.div>
 							</Grid>
@@ -184,11 +186,14 @@ export default function Home({ faqs, testimonials }) {
 					<Box sx={{ mb: 8 }}>
 						<LatestPosts />
 					</Box>
-					<Box align={'center'}>
+					<Box align={'center'} ref={newsletterPopupRef}>
 						<Button variant={'contained'} href={'/blog'}>More free resources</Button>
 					</Box>
 				</Container>
 			</Box>
+
+			<NewsletterDialog scrollRef={newsletterPopupRef} />
+
 		</Page>
   )
 }

@@ -31,9 +31,11 @@ export default {
   },
   googleTagManagerId: 'GTM-MLD2CCD',
   googleAnalyticsId: 'G-73TKHSVTNZ',
-  newsletter: {
-    listId: '08b1d97e11',
-    tags: ['website', 'newsletter'],
+  mailchimp: {
+    tags: [
+      3514092, // Website
+      3514096, // Newsletter
+    ],
   },
   booking: {
     id: '6220cc1b8bb5475494af878a',

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -14,15 +14,15 @@ import eventImage from '../public/images/event.png'
 import monitorImage from '../public/images/monitor.png'
 import stethoscopeImage from '../public/images/stethoscope.png'
 import { BookingContext } from '../context/BookingContext'
+import { formatPhoneNumber } from '../src/utils';
 
 export default function ContactUsPage({ actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
-  const [popupOpen, setPopupOpen] = useState(false);
 
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
-
+	
 	return (
-		<Page title={'Contact Us'} description={'CONTACT INFO: Call (512) 883-8446 customerservice@telemedicallc.com QUESTIONS? How Can We Help You?'}>
+		<Page title={'Contact Us'} description={`CONTACT INFO: Call ${formatPhoneNumber(settings.contact.phone)} ${settings.contact.email} QUESTIONS? How Can We Help You?`}>
 			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
 				<Container>
 					<Grid container gap={5} alignItems={'center'}>
@@ -59,8 +59,8 @@ export default function ContactUsPage({ actionItems }) {
 					</Grid>
 				</Container>
 			</Box>
-			
-			<NewsletterDialog delay={0} onPopupOpen={setPopupOpen}/>
+
+			<NewsletterDialog delay={3000} />
   	</Page>
   )
 }

@@ -32,7 +32,7 @@ export default function PriceTable({ rows }) {
             variant={isCurrent ? 'contained' : 'outlined'}
             onClick={() => setSelectedCategory(category)}
             color={isCurrent ? "secondary" : "secondary"}
-            label={`${category} Services`}
+            label={category}
           />
         )
       })}
@@ -47,15 +47,17 @@ export default function PriceTable({ rows }) {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow sx={{ 'th': { color: 'secondary.main', fontWeight: '700' } }}>
-              <TableCell>Service</TableCell>
-              <TableCell align='right'>Price</TableCell>
+              <TableCell width='100%'>Service</TableCell>
+              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Booking Fee</TableCell>
+              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Price per Document</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <AnimatePresence>
-              {items.map(({ label, subtext, items, amount, category }, index) => {
+              {items.map(({ label, subtext, items, amount, fee, category }, index) => {
                 const formatAmount = amount => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
                 const price = typeof amount === 'number' ? formatAmount(amount) : Array.isArray(amount) ? amount.map(formatAmount).join(' - ') : amount;
+                const feeDisplay = typeof fee === 'number' ? formatAmount(fee) : Array.isArray(fee) ? fee.map(formatAmount).join(' - ') : fee;
                 return (
                   selectedCategory === category ? <>
                     <MotionRow
@@ -75,6 +77,9 @@ export default function PriceTable({ rows }) {
                             ({subtext})
                           </Typography>
                         ) : null}
+                      </TableCell>
+                      <TableCell align='right'>
+                        <Typography variant='subtitle1' color='success.light'>{feeDisplay}</Typography>
                       </TableCell>
                       <TableCell align='right'>
                         <Typography variant='subtitle1' color='success.light'>{price}</Typography>
