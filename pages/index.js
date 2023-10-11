@@ -30,6 +30,7 @@ export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
 	const newsletterPopupRef = useRef(null);
+	const testimonialsSectionRef = useRef(null);
 	
 	return (
 		<Page>
@@ -60,7 +61,13 @@ export default function Home({ faqs, testimonials }) {
 									One Veteran At A Time
 								</Box>
 							</Typography>
-							<Typography variant={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
+							<Typography variant={'body1'}>
+								We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it,{' '}
+								<Link href={'#testimonials'} color={'inherit'} sx={{ fontWeight: '700' }} onClick={(event) => {
+									event.preventDefault();
+									testimonialsSectionRef.current.scrollIntoView({ behavior: 'smooth' })
+								}}>read what other Veterans are saying</Link>
+								{' '}about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item md={4}>
 							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -161,7 +168,7 @@ export default function Home({ faqs, testimonials }) {
 				</Container>
 			</Box>
 
-			<Box paddingY={12} backgroundColor='grey.50'>
+			<Box paddingY={12} backgroundColor='grey.50' id="testimonials" ref={testimonialsSectionRef}>
 				<Container maxWidth={'md'}>
 					<Typography variant={'sectionHeading'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30 }}>What satisfied veteran clients are saying about Telemedica.</Typography>
