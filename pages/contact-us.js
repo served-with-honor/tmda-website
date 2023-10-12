@@ -10,6 +10,7 @@ import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
+import texture01 from '../public/texture-01.jpg'
 import eventImage from '../public/images/event.png'
 import monitorImage from '../public/images/monitor.png'
 import stethoscopeImage from '../public/images/stethoscope.png'
@@ -23,7 +24,11 @@ export default function ContactUsPage({ actionItems }) {
 	
 	return (
 		<Page title={'Contact Us'} description={`CONTACT INFO: Call ${formatPhoneNumber(settings.contact.phone)} ${settings.contact.email} QUESTIONS? How Can We Help You?`}>
-			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
+			<Box sx={{
+				paddingTop: 20,
+				paddingBottom: 10,
+				background: `url(${texture01.src}) center / cover no-repeat`,
+			}}>
 				<Container>
 					<Typography variant='h1' color='primary'>Get In Touch</Typography>
 					<Typography variant='body1' sx={{ fontSize: 32, mb: 3 }}>Please let us know how we can assist you.</Typography>
@@ -34,7 +39,7 @@ export default function ContactUsPage({ actionItems }) {
 				</Container>
 			</Box>
 			
-			<Box sx={{ paddingY: 20, backgroundColor: 'secondary.100' }}>
+			<Box sx={{ paddingY: 20 }}>
 				<Container>
 					<Typography variant='h2' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
 					<Typography variant='body1' align='center' gutterBottom sx={{ mb: 10 }}>Fill out the form below to send us a message and a member of our team will get back to you shortly!</Typography>
@@ -42,7 +47,7 @@ export default function ContactUsPage({ actionItems }) {
 				</Container>
 			</Box>
 			
-			<Box sx={{ paddingY: 10 }}>
+			<Box sx={{ paddingY: 10, backgroundColor: 'grey.50' }}>
 				<Container>
 					<Grid container spacing={5}>
 						{actionItems.map((item, index) => (
