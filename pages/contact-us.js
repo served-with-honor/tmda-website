@@ -28,7 +28,7 @@ export default function ContactUsPage({ actionItems }) {
 					<Typography variant='h1' color='primary'>Get In Touch</Typography>
 					<Typography variant='body1' sx={{ fontSize: 32, mb: 3 }}>Please let us know how we can assist you.</Typography>
 					<Stack direction={'row'} gap={3}>
-						<Button size='large' color='primary' variant={'contained'} href={settings.contact.phone} target="_blank">Call Us</Button>
+						<Button size='large' color='primary' variant={'contained'} href={`tel:${settings.contact.phone}`} target="_blank">Call Us</Button>
 						<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
 					</Stack>
 				</Container>
