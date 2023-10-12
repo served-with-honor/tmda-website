@@ -177,7 +177,7 @@ export default function Home({ faqs, testimonials }) {
 					) : null}
 					<Box sx={{ mt: 8,  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
 						<Stack direction='row' spacing={1} alignItems='center'>
-							<Image src={googleRatingBadge}/>
+							<Image src={googleRatingBadge} alt='Google Rating'/>
 							<Typography variant={'h4'} component={'p'}>4.9</Typography>
 						</Stack>
 					</Box>
