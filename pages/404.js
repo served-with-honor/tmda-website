@@ -7,9 +7,9 @@ import Page from '../components/Page'
 import Link from '../src/Link';
 import texture01 from '../public/texture-01.jpg'
 import { BookingContext } from '../context/BookingContext'
-import eventImage from '../public/images/event.png'
-import monitorImage from '../public/images/monitor.png'
-import stethoscopeImage from '../public/images/stethoscope.png'
+import eventImage from '../public/images/event.svg'
+import monitorImage from '../public/images/monitor.svg'
+import stethoscopeImage from '../public/images/stethoscope.svg'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
 
