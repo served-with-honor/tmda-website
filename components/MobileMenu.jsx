@@ -4,7 +4,6 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import { slugify } from '../src/utils';
-import Button from '@mui/material/Button'
 import ListItemButton from '@mui/material/ListItemButton';
 
 export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items, currentPage }) {
@@ -20,14 +19,14 @@ export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items, 
       <Box>
           <nav>
             <List sx={{ mt: 10 }}>
-            {items.map(item => (
-              <RootItem
-                key={`mobile-menu-root-item-${slugify(item.text)}`}
-                {...item}
-                handleExpandMenu={handleExpandMenu}
-                currentPage={currentPage}
-              />
-            ))}
+              {items.map(item => (
+                <RootItem
+                  key={`mobile-menu-root-item-${slugify(item.text)}`}
+                  {...item}
+                  handleExpandMenu={handleExpandMenu}
+                  currentPage={currentPage}
+                />
+              ))}
             </List>
           </nav>
       </Box>
@@ -36,17 +35,17 @@ export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items, 
 }
 
 const RootItem = ({ text, children, href, currentPage, handleExpandMenu }) => {
-  const isActive = (url) => currentPage === url;
+  const isActive = currentPage === href;
   
   const itemStyles = {
-    color: isActive(href) ? 'primary.main' : null,
+    color: isActive ? 'primary.main' : null,
     borderBottom: children ? '1px solid' : null,
     borderBottomColor: children ? 'primary.main' : null,
     pb: 1,
   };
   const textStyles = {
     fontWeight: 700,
-    color: href ? 'primary.main' : null,
+    color: href ? 'secondary.600' : null,
   }
   
   return (
@@ -72,26 +71,46 @@ const RootItem = ({ text, children, href, currentPage, handleExpandMenu }) => {
 }
 
 const SubMenu = ({ items, currentPage, handleExpandMenu }) => {
-  const isActive = (url) => currentPage === url;
-  
   return (
     <List>
-      {items.map(({ text, href, target, action }) => (
-        <ListItem
-          key={`mobile-menu-sub-item-${slugify(text)}`}
-          disablePadding
-        >
-          {action ? (
-            <ListItemButton onClick={() => { handleExpandMenu(false); action(); }}>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          ) : (
-            <ListItemButton href={href} target={target || ''} component='a'>
-              <ListItemText sx={{ color: isActive(href) ? 'primary.main' : null }} primary={text} />
-            </ListItemButton>
-          )}
-        </ListItem>
-      ))}
+      {items.map(({ text, href, target, action }) => {
+        const isActive = currentPage === href;
+        const buttonStyles = {
+          // py: '3px',
+        };
+        const textStyles = {
+          fontWeight: 600,
+          color: isActive ? null : 'secondary.600',
+        };
+        return (
+          <ListItem
+            key={`mobile-menu-sub-item-${slugify(text)}`}
+            disablePadding
+            sx={{
+              '&:before': isActive ? {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                height: '100%',
+                borderLeft: isActive ? 'solid 4px' : null,
+                borderLeftColor: isActive ? 'secondary.main' : null,
+              } : null,
+            }}
+          >
+            {action ? (
+              <ListItemButton onClick={() => { handleExpandMenu(false); action(); }} sx={{ ...buttonStyles }}>
+                <ListItemText primary={text} primaryTypographyProps={{ ...textStyles }} />
+              </ListItemButton>
+            ) : (
+              <ListItemButton href={href} target={target || ''} component='a'  sx={{ ...buttonStyles }}>
+                <ListItemText primary={text} primaryTypographyProps={{ ...textStyles }} />
+              </ListItemButton>
+            )}
+          </ListItem>
+        );
+      })}
     </List>
   );
 }
