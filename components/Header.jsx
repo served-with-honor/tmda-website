@@ -32,16 +32,24 @@ export default forwardRef(function Header({ isDark }, ref) {
   };
   
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (scrollY.current < 2) {
+    const headerHeight = ref.current.offsetHeight;
+    const isScrollingUp = scrollY.current < scrollY.prev;
+    const isPastHeader = scrollY.current >= headerHeight;
+
+    if (isScrollingUp && scrollY.current < 2) {
       setHeaderState(null);
       return;
     }
-    if (scrollY.current < scrollY.prev) {
+
+    if (isScrollingUp) {
       setHeaderState('sticky');
       return;
     }
     
-    setHeaderState('hidden');
+    if (!isScrollingUp && isPastHeader) {
+      setHeaderState('hidden');
+      return;
+    }
   });
   
   useEffect(() => {
