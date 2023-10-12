@@ -71,8 +71,8 @@ export default forwardRef(function Header({ isDark }, ref) {
         paddingY: [1, 3],
         marginTop: 0,
         zIndex: theme.zIndex.modal + 1,
-        '.MuiButton-text': headerState === null ? { color: 'primary.200' } : null,
-        '.MuiButton-contained': headerState === null ? { backgroundColor: 'primary.300' } : null,
+        '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
+        '.MuiButton-contained': isDark && headerState === null ? { backgroundColor: 'primary.300' } : null,
       }}
     >
       <Container sx={{ position: 'relative' }}>
