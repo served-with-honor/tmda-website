@@ -72,13 +72,13 @@ export default function ContactForm() {
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth error={!!(errors?.type)} >
-            <InputLabel id="stuff">Request Type</InputLabel>
+            <InputLabel id="contact-form-field-type">Request Type</InputLabel>
             <Controller
               name="type"
               control={control}
               rules={{ required: 'Type is required' }}
               render={({ field }) =>
-                <Select defaultValue="" labelId="stuff" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
+                <Select defaultValue="" labelId="contact-form-field-type" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
                   <MenuItem value="Learn More">Learn More</MenuItem>
                   <MenuItem value="Billing">Billing</MenuItem>
                   <MenuItem value="General Inquiry">General Inquiry</MenuItem>

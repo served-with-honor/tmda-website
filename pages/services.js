@@ -187,7 +187,7 @@ export default function ServicesPage({ prices }) {
 											'Services available nation-wide',
 											'Fast turnaround times',
 										].map((item, index) => (
-											<ListItem key={`stuff-${index}`}>
+											<ListItem key={`booking-feature-${index}`}>
 												<ListItemIcon><AddIcon color='primary'/></ListItemIcon>
 												<ListItemText>{item}</ListItemText>
 											</ListItem>
