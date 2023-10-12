@@ -40,8 +40,8 @@ export default function ContactUsPage({ actionItems }) {
 			</Box>
 			
 			<Box sx={{ paddingY: 20 }}>
-				<Container>
-					<Typography variant='h2' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
+				<Container maxWidth='md'>
+					<Typography variant='sectionHeading' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
 					<Typography variant='body1' align='center' gutterBottom sx={{ mb: 10 }}>Fill out the form below to send us a message and a member of our team will get back to you shortly!</Typography>
 					<ContactForm />
 				</Container>
