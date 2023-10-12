@@ -8,8 +8,6 @@ import Button from '@mui/material/Button'
 import ListItemButton from '@mui/material/ListItemButton';
 
 export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items, currentPage }) {
-  const isActive = (url) => currentPage === url;
-  
   return (
     <Drawer
       anchor="left"
@@ -19,65 +17,81 @@ export default function MobileMenu({ isMobileMenuOpen, handleExpandMenu, items, 
         sx: { width: 'calc(100vw - 15px)' },
       }}
     >
-      <Box sx={{width: '100%'}}>
+      <Box>
           <nav>
-            <List sx={{mt: 10, mx: 2}}>
-            {items.map(({ text, children, href }) => {
-              return (
-                <>
-                  <ListItem disablePadding key={`mobile-menu-root-item-${slugify(text)}`}>
-                    {href ?
-                      <ListItemButton sx={{ mt: -1, ml: -2 }} href={href}>
-                        <ListItemText sx={{ color: isActive(href) ? 'primary.main' : null }} primary={text} />
-                      </ListItemButton> :
-                      <ListItemText sx={{ borderBottom: '1px solid', borderBottomColor: 'primary.main' }} primary={text} />
-                    }
-                  </ListItem>
-                  {children && (
-                    <List>
-                      {children.map(({ text: childText, href, target, action }) => (
-                        <ListItem
-                          disablePadding
-                          key={`mobile-menu-sub-item-${slugify(childText)}`}
-                        >
-                          {!action ?
-                            <ListItemButton
-                              href={href || null}
-                              target={target || ''}
-                            >
-                              <ListItemText sx={{ color: isActive(href) ? 'primary.main' : null }} primary={childText} />
-                            </ListItemButton> : null}
-                        </ListItem>
-                      ))}
-                    </List>
-                  )}
-                </>
-              );
-            })}
-            </List>
-            {items.map(({ children, text}) => (
-              <div key={`mobile-menu-root-item-${slugify(text)}`}>
-              {children && (
-                <Box sx={{textAlign: 'center', mb: 4}}>
-                  {children.map(({ text:childText, action}) => (
-                    action && 
-                    <Button 
-                      key={`mobile-menu-root-item-${slugify(text)}`} 
-                      onClick={action}
-                      variant='contained'
-                      color='secondary'
-                    >
-                      {childText}
-                    </Button>
-                  ))}
-                </Box>
-              )}
-              </div>
+            <List sx={{ mt: 10 }}>
+            {items.map(item => (
+              <RootItem
+                key={`mobile-menu-root-item-${slugify(item.text)}`}
+                {...item}
+                handleExpandMenu={handleExpandMenu}
+                currentPage={currentPage}
+              />
             ))}
-            
+            </List>
           </nav>
-
       </Box>
     </Drawer>
   )
+}
+
+const RootItem = ({ text, children, href, currentPage, handleExpandMenu }) => {
+  const isActive = (url) => currentPage === url;
+  
+  const itemStyles = {
+    color: isActive(href) ? 'primary.main' : null,
+    borderBottom: children ? '1px solid' : null,
+    borderBottomColor: children ? 'primary.main' : null,
+    pb: 1,
+  };
+  const textStyles = {
+    fontWeight: 700,
+    color: href ? 'primary.main' : null,
+  }
+  
+  return (
+    <>
+      <ListItem>
+        {href ? (
+          <ListItemButton sx={{ p: 0, ...itemStyles }} href={href} component='a'>
+            <ListItemText primaryTypographyProps={textStyles} primary={text} />
+          </ListItemButton>
+        ) : (
+          <ListItemText sx={{ ...itemStyles }} primaryTypographyProps={textStyles} primary={text} />
+        )}
+      </ListItem>
+      {children ? (
+        <SubMenu
+          items={children}
+          currentPage={currentPage}
+          handleExpandMenu={handleExpandMenu}
+        />
+      ) : null}
+    </>
+  );
+}
+
+const SubMenu = ({ items, currentPage, handleExpandMenu }) => {
+  const isActive = (url) => currentPage === url;
+  
+  return (
+    <List>
+      {items.map(({ text, href, target, action }) => (
+        <ListItem
+          key={`mobile-menu-sub-item-${slugify(text)}`}
+          disablePadding
+        >
+          {action ? (
+            <ListItemButton onClick={() => { handleExpandMenu(false); action(); }}>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          ) : (
+            <ListItemButton href={href} target={target || ''} component='a'>
+              <ListItemText sx={{ color: isActive(href) ? 'primary.main' : null }} primary={text} />
+            </ListItemButton>
+          )}
+        </ListItem>
+      ))}
+    </List>
+  );
 }
