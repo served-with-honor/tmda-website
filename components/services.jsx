@@ -6,10 +6,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Chip from '@mui/material/Chip';
 import AddIcon from '@mui/icons-material/Add';
 
-import nexusImage from '../public/images/nexus-dbqs.png';
-import mentalHealthImage from '../public/images/mental-health-evaluation.png';
-import telemedicineImage from '../public/images/telemedicine-evaluations.png';
-import rebuttalLetterImage from '../public/images/logo-rebuttal-letter.png';
+import nexusImage from '../public/images/nexus-dbqs.svg';
+import mentalHealthImage from '../public/images/mental-health-evaluation.svg';
+import telemedicineImage from '../public/images/telemedicine-evaluations.svg';
+import rebuttalLetterImage from '../public/images/logo-rebuttal-letter.svg';
 
 
 const CustomListItem = ({ children }) => {

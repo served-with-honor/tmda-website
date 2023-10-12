@@ -23,9 +23,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import Section1 from '../components/about/Section1'
 import texture01 from '../public/texture-01.jpg'
-import missionIcon from '../public/images/mission.png'
-import purposeIcon from '../public/images/Purpose.png'
-import visionIcon from '../public/images/shared-vision.png'
+import missionIcon from '../public/images/mission.svg'
+import purposeIcon from '../public/images/Purpose.svg'
+import visionIcon from '../public/images/shared-vision.svg'
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from '../lib/sanityConfig'

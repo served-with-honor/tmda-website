@@ -10,10 +10,9 @@ import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
-import texture01 from '../public/texture-01.jpg'
-import eventImage from '../public/images/event.png'
-import monitorImage from '../public/images/monitor.png'
-import stethoscopeImage from '../public/images/stethoscope.png'
+import eventImage from '../public/images/event.svg'
+import monitorImage from '../public/images/monitor.svg'
+import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
 
