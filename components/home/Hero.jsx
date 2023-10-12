@@ -47,7 +47,7 @@ export default function Hero() {
 					</Box>
         </Typography>
         <Grid container spacing={2}>
-          <Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
+          <Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} sx={{ backgroundColor: 'secondary.100' }}>Patient Portal</Button></Grid>
           <Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsOpen(true)}>Book Now</Button></Grid>
         </Grid>
       </Container>
