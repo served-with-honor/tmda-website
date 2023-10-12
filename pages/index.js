@@ -30,6 +30,7 @@ export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
 	const counterRef = useRef(null);
 	const newsletterPopupRef = useRef(null);
+	const testimonialsSectionRef = useRef(null);
 	
 	return (
 		<Page>
@@ -60,7 +61,13 @@ export default function Home({ faqs, testimonials }) {
 									One Veteran At A Time
 								</Box>
 							</Typography>
-							<Typography variant={'body1'}>We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it, <strong><Link href={'#'} color={'inherit'}>read what other Veterans are saying</Link></strong> about Telemedica LLC.</Typography>
+							<Typography variant={'body1'}>
+								We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it,{' '}
+								<Link href={'#testimonials'} color={'inherit'} sx={{ fontWeight: '700' }} onClick={(event) => {
+									event.preventDefault();
+									testimonialsSectionRef.current.scrollIntoView({ behavior: 'smooth' })
+								}}>read what other Veterans are saying</Link>
+								{' '}about Telemedica LLC.</Typography>
 						</Grid>
 						<Grid item md={4}>
 							<Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -161,7 +168,7 @@ export default function Home({ faqs, testimonials }) {
 				</Container>
 			</Box>
 
-			<Box paddingY={12} backgroundColor='grey.50'>
+			<Box paddingY={12} backgroundColor='grey.50' id="testimonials" ref={testimonialsSectionRef}>
 				<Container maxWidth={'md'}>
 					<Typography variant={'sectionHeading'} sx={{ mb: 8 }}>Testimonials</Typography>
 					<Typography align={'center'} variant={'body1'} sx={{ fontSize: 30 }}>What satisfied veteran clients are saying about Telemedica.</Typography>
@@ -170,7 +177,7 @@ export default function Home({ faqs, testimonials }) {
 					) : null}
 					<Box sx={{ mt: 8,  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
 						<Stack direction='row' spacing={1} alignItems='center'>
-							<Image src={googleRatingBadge}/>
+							<Image src={googleRatingBadge} alt='Google Rating'/>
 							<Typography variant={'h4'} component={'p'}>4.9</Typography>
 						</Stack>
 					</Box>
@@ -220,8 +227,32 @@ export async function getStaticProps() {
 	];
 	const testimonials = [
 		{
+			text: 'With evolving technology comes our ability to conduct safe and secure medical appointments through a video conferencing system. Telemedica LLC provided an approach to my appointment that both efficiently and effective. My doctor was prompt, even early to the appointment, there was a period of introduction and discussion to manage expectation, and then a very professional doctor\'s appointment conducted in the privacy of our spaces.The most positive and best experience to a medical appointment I\'ve ever had. Highly, highly, recommend Telemedica LLC.',
+			author: 'Nell Gruben',
+		},
+		{
+			text: 'As a Veteran I know that Telemedica ROCKS! I have had 2 AWESOME EXPERIENCES with this healthcare company. Their website is USER FRIENDLY! I know this due to being 64 years young. Some one is always ready to help via phone, patient portal and email. Their response time is spot on! Thank you Telemedica!',
+			author: 'Curtis Tinsley',
+		},
+		{
+			text: 'My TeleVisit on Telemedica LLC was one of the best online meetings I have attended in a long time. The User Interface is intuitive and easy to navigate and the video/audio was totally functional without a glitch. The process of uploading documents was as easy as click & drop. Yes, I would recommend Telemedica LLC for your important TeleVisit.',
+			author: 'Aaron Holder',
+		},
+		{
+			text: 'Just recently had my VA evaluation. My doctor was punctual, informative, and asked the tough questions and pertinent questions that needed to be asked but still was very respectful and empathetic. I would recommend Telemedica 100 times over to get the job done. They were also very flexible with my schedule to get appointment in as soon as possible',
+			author: 'John & Jessica Maddrah',
+		},
+		{
+			text: 'If I had to pick three words - Best in Class. They\'ve not only helped me, but they\'ve helped my wife too. Vets helping vets is fundamentally perfect. They\'ve either gone through what you\'re going through, or they know someone who has. In this way, they can help fully capture the severity of symptoms and their impacts on your daily life. Can\'t recommend them enough, they really are worth it!',
+			author: 'Tyrrell M.Brown, Sr.',
+		},
+		{
+			text: 'I had a great experience with Telemedica. They provided exceptional customer focused service for me. It was very easy for me to schedule the appointment, uploading the documents was easy and stress free. The provider was on time for my appointment. She was thorough and very professional and attentive. She made me feel very comfortable, so I was able to share some very, very personal things about my experiences. Not once did I feel like I was being rushed or judged by the provider. It felt good being able to get things off of my chest. Another thing I noted about my provider is she was well prepared for the appointment. It became obvious during our conversation that she had actually read my charts, records and written statements. Yes, I said it, conversation, we had an actual conversation about my experiences, both then and now. I am so very happy TM services came into my life. Speaking Veteran to Veteran, I highly recommend Telemedica Services. We have a listening ear with TELEMEDICA. I am a "Very Satisfied" customer!',
+			author: 'Anonymous',
+		},
+		{
 			text: 'This is a great resource to use to help get your mental health issues out and be evaluated to put in for a VA disability claim.The doctor made me feel at ease.And I was able to dig into my emotions and not be afraid to hide things.I was more open then i thought and she listened and was helpful.',
-			author: 'Anonymous ',
+			author: 'Anonymous',
 		},
 		{
 			text: 'This was the first time I used Telemedica LLC and my experience was amazing. My provider was patient, caring, respectfully and courteous. I recommend this company for all your medical needs. THANK YOU TELEMEDICA! I am grateful.',

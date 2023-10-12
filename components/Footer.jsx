@@ -58,8 +58,8 @@ export default function Footer() {
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Quick Links</Typography>
 									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
 										<li><Link href={'/about'}>About</Link></li>
-										<li><Link href={'/blog'}>News & Updates</Link></li>
 										<li><Link href={'/services'}>Services</Link></li>
+										<li><Link href={'/blog'}>News & Updates</Link></li>
 										<li><Link href={'/careers'}>Careers</Link></li>
 										<li><Link href={'/faqs'}>FAQs</Link></li>
 									</ul>
@@ -79,7 +79,7 @@ export default function Footer() {
 								</Grid>
 
 								<Grid item xs={12} sm={6} md={6}>
-									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Recent Updates</Typography>
+									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Recent Blogs</Typography>
 									{isLoading ? <Box>
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />

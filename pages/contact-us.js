@@ -28,7 +28,7 @@ export default function ContactUsPage({ actionItems }) {
 					<Grid container gap={5} alignItems={'center'}>
 						<Grid item md>
 							<Typography variant='h1' color='primary'>Get In Touch</Typography>
-							<Typography variant='body1' sx={{ fontSize: 32 }}>Please let us know how we can assist you</Typography>
+							<Typography variant='body1' sx={{ fontSize: 32 }}>Please let us know how we can assist you.</Typography>
 						</Grid>
 						<Grid item md>
 							<Stack direction={'row'} gap={3}>
@@ -42,7 +42,7 @@ export default function ContactUsPage({ actionItems }) {
 			
 			<Box sx={{ paddingY: 20, backgroundColor: 'secondary.100' }}>
 				<Container>
-					<Typography variant='h2' color='primary' align='center' gutterBottom>How Can We Help You?</Typography>
+					<Typography variant='h2' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
 					<Typography variant='body1' align='center' gutterBottom sx={{ mb: 10 }}>Fill out the form below to send us a message and a member of our team will get back to you shortly!</Typography>
 					<ContactForm />
 				</Container>

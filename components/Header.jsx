@@ -10,7 +10,7 @@ import siteSettings from '../src/siteSettings';
 
 export default forwardRef(function Header({ isDark }, ref) {
   const [scope, animate] = useAnimate();
-  const [headerState, setHeaderState] = useState();
+  const [headerState, setHeaderState] = useState(null);
   const { scrollY } = useScroll();
   const theme = useTheme();
 
@@ -32,16 +32,24 @@ export default forwardRef(function Header({ isDark }, ref) {
   };
   
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (scrollY.current < 2) {
+    const headerHeight = ref.current.offsetHeight;
+    const isScrollingUp = scrollY.current < scrollY.prev;
+    const isPastHeader = scrollY.current >= headerHeight;
+
+    if (isScrollingUp && scrollY.current < 2) {
       setHeaderState(null);
       return;
     }
-    if (scrollY.current < scrollY.prev) {
+
+    if (isScrollingUp) {
       setHeaderState('sticky');
       return;
     }
     
-    setHeaderState('hidden');
+    if (!isScrollingUp && isPastHeader) {
+      setHeaderState('hidden');
+      return;
+    }
   });
   
   useEffect(() => {
@@ -71,6 +79,8 @@ export default forwardRef(function Header({ isDark }, ref) {
         paddingY: [1, 3],
         marginTop: 0,
         zIndex: theme.zIndex.modal + 1,
+        '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
+        '.MuiButton-contained': isDark && headerState === null ? { backgroundColor: 'primary.300' } : null,
       }}
     >
       <Container sx={{ position: 'relative' }}>
@@ -78,7 +88,7 @@ export default forwardRef(function Header({ isDark }, ref) {
           <Grid item>
             <Link href="/">
               <Image
-                src={isDark && headerState === null ? LogoWhite : Logo}
+                src={isDark && headerState !== 'sticky' ? LogoWhite : Logo}
                 alt={`${siteSettings.name} logo`}
                 width={225}
                 height={49}

@@ -95,7 +95,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 										{ num: 90, suffix: '%', text: 'Success Rate' },
 										{ num: 20, suffix: '+', text: 'Licensed Providers' },
 									].map(({ num, suffix, text }, index) => (
-										<Grid item key={`stuff-${index}`}>
+										<Grid item key={`hero-metric-${index}`}>
 											<Typography color='secondary' sx={{ fontSize: 40, fontWeight: 700, lineHeight: 1 }}>
 												<Counter to={num} duration={1.5} digits={2} />{suffix}
 											</Typography>
@@ -119,7 +119,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							{ heading: 'Vision', text: 'To be the most trusted health resource that connects the Veteran Community to a network of care providers on their path to wellbeing.', icon: visionIcon },
 							{ heading: 'Purpose', text: 'To provide ease and accessibility to world-class care providers for veterans seeking to improve their quality of life.', icon: purposeIcon },
 						].map(({ heading, text, icon }, index) => (
-							<Grid item sm={6} md={4} key={`things-${index}`}>
+							<Grid item sm={6} md={4} key={`feature-box-${index}`}>
 								<Card sx={{ height: '100%' }}>
 									<CardContent sx={{ textAlign: 'center', padding: 5 }}>
 										<Image src={icon} alt='' width={50} height={50} />
@@ -174,7 +174,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							{ title: 'Medical Evidence', body: 'Receive your expert medical evidence from our professional independent providers directly to your patient portal.' },
 							{ title: 'Submit Your Claim', body: 'After you receive your medical evidence, your VA claim submission is in your hands! Use your documentation to bolster your claim.' },
 						].map(({ title, body, subtext }, index) => (
-							<Box key={`thingy-${index}`} sx={{ position: 'relative', padding: { xs: 4, md: 8 } }}>
+							<Box key={`how-it-works-slide-${index}`} sx={{ position: 'relative', padding: { xs: 4, md: 8 } }}>
 								<Typography sx={{ color: 'secondary.light', position: 'absolute', fontSize: 300, fontWeight: 600, lineHeight: 1, opacity: 0.125, left: 0, top: 0, }}>{index + 1}</Typography>
 								<Box sx={{ position: 'relative' }}>
 									<Typography variant='h3' color='secondary'>{title}:</Typography>

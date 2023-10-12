@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import { useFormSubmit } from '../hooks'
 import Alert from '@mui/material/Alert';
@@ -14,9 +15,14 @@ import Select from '@mui/material/Select';
 
 export default function ContactForm() {
   const formName = 'Contact Form Home';
+  const endpoint = '/api/form';
   const { handleSubmit, control, formState: { errors } } = useForm();
-  const { submit, isLoading, hasSubmited, error } = useFormSubmit();
-  const onSubmit = async (data) => await submit('/', data);
+  const { submit, isLoading, hasSubmited, error: submissionError } = useFormSubmit();
+  const onSubmit = async (data) => await submit(endpoint, data);
+
+  useEffect(() => {
+    if (submissionError) { console.error(submissionError); }
+  }, [submissionError])
 
   return hasSubmited ? (
     <Alert severity="success">Success!</Alert>
@@ -27,10 +33,9 @@ export default function ContactForm() {
   ) : (
       <form
         method="POST"
-        action="/"
+        action={endpoint}
         onSubmit={handleSubmit(onSubmit)}
         name={formName}
-        data-netlify="true"
       >
       <Grid container spacing={2}>
         <Grid item sm={6}>
@@ -45,14 +50,16 @@ export default function ContactForm() {
           <Controller
             name="lastName"
             control={control}
-            render={({ field }) => <TextField label='Last Name' fullWidth {...field} /> }
+            rules={{ required: 'Last name is required' }}
+            render={({ field }) => <TextField label='Last Name' fullWidth required error={!!(errors?.lastName?.message)} {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
           <Controller
             name="phone"
             control={control}
-            render={({ field }) => <TextField label='Phone' fullWidth {...field} /> }
+            rules={{ required: 'Phone number is required' }}
+            render={({ field }) => <TextField label='Phone' fullWidth required error={!!(errors?.phone?.message)} {...field} /> }
           />
         </Grid>
         <Grid item sm={6}>
@@ -65,17 +72,17 @@ export default function ContactForm() {
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth error={!!(errors?.type)} >
-            <InputLabel id="stuff">Request Type</InputLabel>
+            <InputLabel id="contact-form-field-type">Request Type</InputLabel>
             <Controller
               name="type"
               control={control}
               rules={{ required: 'Type is required' }}
               render={({ field }) =>
-                <Select defaultValue="" labelId="stuff" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
-                  <MenuItem value="Customer Service">Customer Service</MenuItem>
+                <Select defaultValue="" labelId="contact-form-field-type" label='Request Type' fullWidth error={!!(errors?.type)} {...field}>
+                  <MenuItem value="Learn More">Learn More</MenuItem>
                   <MenuItem value="Billing">Billing</MenuItem>
-                  <MenuItem value="Pricing">Pricing</MenuItem>
-                  <MenuItem value="General inquiry">General inquiry</MenuItem>
+                  <MenuItem value="General Inquiry">General Inquiry</MenuItem>
+                  <MenuItem value="Customer Service">Customer Service</MenuItem>
                 </Select>
               }
             />
@@ -103,7 +110,7 @@ export default function ContactForm() {
         >
           Submit
         </Button>
-          {error ? <Alert severity="error" sx={{ marginTop: 3 }}>Oh no, something went wrong!</Alert> : null}
+          {submissionError ? <Alert severity="error" sx={{ marginTop: 3 }}>Oh no, something went wrong!</Alert> : null}
       </Box>
     </form>
   )
