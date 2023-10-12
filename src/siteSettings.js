@@ -27,6 +27,7 @@ export default {
     'veteran-resources': purple[400],
   },
   externalLinks: {
+    booking: 'https://telemedicallc.intakeq.com/booking',
     patientPortal: 'https://telemedicallc.intakeq.com/portal',
     helpDesk: 'https://help.telemedicallc.com/',
     providerPortal: 'https://intakeq.com/',

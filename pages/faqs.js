@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import Page from '../components/Page'
 import { slugify } from '../src/utils';
+import siteSettings from '../src/siteSettings';
 
 export default function FAQsPage({ items }) {
 	const topics = [...new Set(items.map(({ topic }) => topic))];
@@ -289,7 +290,7 @@ export const getStaticProps = async () => {
 		},
 		{
 			question: "Can I book over the phone?",
-			answer: 'You may book through our booking link - https://telemedicallc.intakeq.com/booking, but if you encounter any issues, feel free to reach out to customer service for assistance.',
+			answer: `You may book through our booking link - ${siteSettings.externalLinks.booking}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
 			topic: 'General',
 		},
 		{
