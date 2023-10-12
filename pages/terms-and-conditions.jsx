@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Page from '../components/Page'
 import Link from '../src/Link';
+import TermlyWidget from '../components/TermlyWidget';
 
 export default function ContactUsPage() {
 	return (
@@ -15,16 +16,7 @@ export default function ContactUsPage() {
 			
 			<Box sx={{ m: 10 }}>
 				<Container>
-
-					{/* Termly Tracking Code */}
-					{/* <div name="termly-embed" data-id="d53cf8d7-00fc-418f-a433-e8feb01a7500" data-type="iframe"></div>
-					<script type="text/javascript">{`(function(d, s, id) {
-						var js, tjs = d.getElementsByTagName(s)[0];
-						if (d.getElementById(id)) return;
-						js = d.createElement(s); js.id = id;
-						js.src = "https://app.termly.io/embed-policy.min.js";
-						tjs.parentNode.insertBefore(js, tjs);
-					}(document, 'script', 'termly-jssdk'));`}</script> */}
+					<TermlyWidget id={'d53cf8d7-00fc-418f-a433-e8feb01a7500'} />
 
 					<Typography variant='body1' gutterBottom>If you would like to contact us regarding Telemedica LLC, our telemedicine services, our service providers, additional services, or have a general inquiry, you can also <Link href={'/contact-us'}>click here to contact us</Link>.</Typography>
 					<Typography variant='body1' gutterBottom>If you were directed to this page in error, and would like to learn more about our telemedicine services, including Nexus Letters, Medical Diagnosis, a mental evaluation, and more, please <Link href={'/'}>click here to be directed to our home page</Link>.</Typography>
