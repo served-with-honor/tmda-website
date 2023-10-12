@@ -99,7 +99,7 @@ export default function BookingWidget() {
     if (!region) return;
     setCookie('booking-location', region);
 
-    const formId = siteSettings.booking.forms[region];
+    const formId = siteSettings.booking.locations[region];
     if (formId) window.intakeqLocationId = formId;
     
     ref.current.replaceChildren();
