@@ -15,6 +15,7 @@ import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 import { BookingContext } from '../context/BookingContext'
 import { useTheme } from "@mui/material/styles";
+import MobileMenu from './MobileMenu'
 
 export default function MainMenu() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function MainMenu() {
 
   const [menuShowingDropdown, setMenuShowingDropdown] = useState("");
   const { setIsOpen, scrollTo } = useContext(BookingContext);
+  const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false);
 
   const handleMenuShowingDropdownChange = useCallback((menuTitle) => {
     setMenuShowingDropdown(menuTitle);
@@ -51,11 +53,15 @@ export default function MainMenu() {
     { text: 'Get In Touch', href: '/contact-us' }
   ];
 
+  function handleExpandMenu() {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
   return <>
-    <Button sx={{ display: { md: 'none' }}}>
+    <Button onClick={()=> handleExpandMenu()} sx={{ display: { md: 'none' }}}>
       <MenuIcon />
-      <Typography component='span' sx={visuallyHidden}>Open Menu</Typography>
     </Button>
+    <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleExpandMenu={handleExpandMenu} items={items} currentPage={selected}/>
     {items ? (
       <Box sx={{ display: { xs: 'none', md: 'initial' }}}>
         <nav>
