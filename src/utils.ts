@@ -14,16 +14,17 @@ const getSocialIcon = (str: string) => {
   return { name: 'Site', text: '', Icon: LinkIcon };
 }
 
-function formatPhoneNumber(phone: string, sep: string) {
+// TODO - add support for international numbers
+function formatPhoneNumber(phone: string, separator: string) {
   const cleaned = phone.toString().replace(/\D/g, '');
-  const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
-  if (!match) return;
+  const matches = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+  if (!matches) return;
 
-  const intlCode = (match[1] ? '+1' : '');
-  const idk = match.splice(2);
+  const intlCode = (matches[1] ? '+1' : '');
+  const parts = matches.splice(2);
 
-  if(sep) return `${intlCode} ${idk.join(sep)}`.trim();
-  return `${intlCode} (${idk[0]}) ${idk[1]}-${idk[2]}`.trim();
+  if(separator) return `${intlCode} ${parts.join(separator)}`.trim();
+  return `${intlCode} (${parts[0]}) ${parts[1]}-${parts[2]}`.trim();
 }
 
 function truncateString(string, limit, displayEllipses) {
