@@ -6,7 +6,7 @@ export default {
   defaultPageDescription: 'Telemedica provides high-quality Disability Examinations, VA Nexus Letters, VA DBQs, and Independent Psychological Evaluations for Veterans worldwide.',
   url: 'https://telemedicallc.com',
   company: 'Telemedica LLC',
-  copyrightYearInitial: 2023,
+  copyrightYearInitial: 2020,
   social: [
     'https://www.facebook.com/telemedicallc',
     'https://instagram.com/telemedicallc',
