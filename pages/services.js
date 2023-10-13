@@ -48,27 +48,17 @@ export default function ServicesPage({ prices }) {
 				}}>
 					<Container sx={{ pb: 3 }}>
 						<Box sx={{ my: { xs: 5, md: 10 } }}>
-						<Typography 
-							variant='h3' 
-							component='h1' 
-							sx={{ mb: 1}}
-						>
-							Empowering Veterans with Strong {" "}
-						<br />
-						<Box 
-							component='span' 
-							sx={{ 
-								color: 'primary.main',
-							}}
-						>
-							Medical Evidence {" "}
-						</Box>
-							for VA Disability Claims
-						</Typography>
-						<Typography variant='lead' sx={{ fontSize: 32 }}>
-							Your partner in securing the benefits you deserve on your path to well-being!
+							<Typography 
+								variant='h2' 
+								component='h1' 
+								sx={{ mb: 1}}
+							>
+								Serving Those Who Served
 							</Typography>
-							</Box>
+							<Typography variant='lead' sx={{ fontSize: 32 }}>
+								The #1 Health Resource For Veterans
+							</Typography>
+						</Box>
 					</Container>
 					<Container maxWidth='md'>
 						<Box 

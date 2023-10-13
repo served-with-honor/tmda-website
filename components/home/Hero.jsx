@@ -38,13 +38,16 @@ export default function Hero() {
       
       <Container sx={{ position: 'relative' }}>
         <Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
-					Serving Those Who Served
+          Empowering <br />Veterans
 				</Typography>
-				<Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
-					The #1 Health Resource For Veterans On Their Path To&nbsp;
+        <Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
+          with Quality&nbsp;
+					{/* The #1 Health Resource For Veterans On Their Path To&nbsp; */}
 					<Box component='span' sx={{ display: { xs: 'block', sm: 'inline' } }}>
-              <TextFlipper items={['Life Change.', 'Vitality.', 'Wellbeing.', 'Health.', 'Happiness.', 'Community.',]} lineColor={theme.palette.primary.main} />&nbsp;
-					</Box>
+              <TextFlipper items={['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evaluations', 'Mental Health Evaluations', 'Recurring Care']} lineColor={theme.palette.primary.main} />&nbsp;
+          </Box>
+          <br />
+          for VA Disability Claims.
         </Typography>
         <Grid container spacing={2}>
           <Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} sx={{ backgroundColor: 'secondary.100' }}>Patient Portal</Button></Grid>
