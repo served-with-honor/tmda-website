@@ -36,9 +36,9 @@ export default function MainMenu() {
       children: [
         { text: 'About', href: '/about' },
         { text: 'Services', href: '/services' },
+        { text: 'Book Now', action: handleBookingClick },
         { text: 'Blog', href: '/blog' },
         { text: 'Patient Portal', href: settings.externalLinks.patientPortal, target: '_blank' },
-        { text: 'Book Now', action: handleBookingClick },
         { text: 'FAQs', href: '/faqs' },
       ],
     },

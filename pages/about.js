@@ -23,9 +23,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import Section1 from '../components/about/Section1'
 import texture01 from '../public/texture-01.jpg'
-import missionIcon from '../public/images/mission.png'
-import purposeIcon from '../public/images/Purpose.png'
-import visionIcon from '../public/images/shared-vision.png'
+import missionIcon from '../public/images/mission.svg'
+import purposeIcon from '../public/images/Purpose.svg'
+import visionIcon from '../public/images/shared-vision.svg'
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from '../lib/sanityConfig'
@@ -37,7 +37,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	const { setIsOpen: setIsBookingOpen } = useContext(BookingContext);
 	const heroRef = useRef(null);
 	const sliderSettings = {
-    arrows: false,
+    arrows: true,
 		dots: true,
 		infinite: false,
 		speed: 500,
@@ -147,7 +147,6 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 					'&:before, &:after': {
 						position: 'absolute',
 						height: '100%',
-						backgroundColor: 'red',
 						top: 0,
 						width: '10px',
 						content: '""',
@@ -161,7 +160,18 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 						background: 'linear-gradient(to left, rgba(240,240,240,1) 0%, rgba(255,255,255,0) 100%)',
 						right: 0,
 					}
-				}
+				},
+				'.slick-prev, .slick-next': {
+					height: 30,
+					width: 30,
+				},
+				'.slick-prev': { left: -40 },
+				'.slick-next': { right: -40 },
+				'.slick-prev:before, .slick-next:before': {
+					color: 'grey.400',
+					fontSize: 30,
+					opacity: 1,
+				},
 			}}>
 				<Container maxWidth='md' disableGutters>
 					<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10 }}>How It Works</Typography>

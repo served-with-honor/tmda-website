@@ -24,7 +24,9 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 export default function ServicesPage({ prices }) {
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
-	const handleBookNowClick = () => {
+	const handleBookNowClick = (event) => {
+		event.preventDefault();
+		
 		const isMobileDevice = window.innerWidth < 900;
 		const behavior = 'smooth'
 		if(isMobileDevice) {
@@ -32,6 +34,7 @@ export default function ServicesPage({ prices }) {
 		} else {
 			desktopBookingSectionRef.current.scrollIntoView({behavior})
 		}
+		window.history.replaceState({}, '', '#booking');
 	}
 	return (
 		<BookingContext.Provider value={{ scrollTo: handleBookNowClick }}>
@@ -45,27 +48,17 @@ export default function ServicesPage({ prices }) {
 				}}>
 					<Container sx={{ pb: 3 }}>
 						<Box sx={{ my: { xs: 5, md: 10 } }}>
-						<Typography 
-							variant='h3' 
-							component='h1' 
-							sx={{ mb: 1}}
-						>
-							Empowering Veterans with Strong {" "}
-						<br />
-						<Box 
-							component='span' 
-							sx={{ 
-								color: 'primary.main',
-							}}
-						>
-							Medical Evidence {" "}
-						</Box>
-							for VA Disability Claims
-						</Typography>
-						<Typography variant='lead' sx={{ fontSize: 32 }}>
-							Your partner in securing the benefits you deserve on your path to well-being!
+							<Typography 
+								variant='h2' 
+								component='h1' 
+								sx={{ mb: 1}}
+							>
+								Serving Those Who Served
 							</Typography>
-							</Box>
+							<Typography variant='lead' sx={{ fontSize: 32 }}>
+								The #1 Health Resource For Veterans
+							</Typography>
+						</Box>
 					</Container>
 					<Container maxWidth='md'>
 						<Box 
@@ -95,6 +88,7 @@ export default function ServicesPage({ prices }) {
 											variant='contained' 
 											color='secondary' 
 											size='large'
+											href='#booking'
 											onClick={handleBookNowClick}
 										>
 											Book Now
@@ -148,8 +142,10 @@ export default function ServicesPage({ prices }) {
 						</Box>
 					</Container>
 				</Box>
+				
 				{/* Booking Section */}
 				<Box
+					id='booking'
 					ref={desktopBookingSectionRef} 
 					sx={{
 						py: 10, 
@@ -202,7 +198,7 @@ export default function ServicesPage({ prices }) {
 									sx={{
 										boxShadow: 5,
 										borderRadius: 5,
-										height:{ md: '625px' }, 
+										maxHeight:{ md: '625px' }, 
 										overflow: { md: 'auto' },
 										p: 3,
 									}}

@@ -25,6 +25,7 @@ import googleRatingBadge from '../public/google-rating.svg'
 import ImageDrSmiling from '../public/images/Dr_Smiling_Resized.jpeg'
 import generateRssFeed from '../utils/generateRSSFeed';
 import NewsletterDialog from '../components/NewsletterDialog'
+import siteSettings from '../src/siteSettings';
 
 export default function Home({ faqs, testimonials }) {
 	const theme = useTheme();
@@ -42,7 +43,7 @@ export default function Home({ faqs, testimonials }) {
 					<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>
 					<Typography variant="lead" sx={{ mb: 6 }}>Get your high-quality medical evidence from the medical evidence experts!</Typography>
 					<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims! Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
-					<Button variant='contained' color='secondary' href="https://telemedicallc.intakeq.com/booking?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff" target='_blank'>Connect Now</Button>
+					<Button variant='contained' color='secondary' href={`${siteSettings.externalLinks.booking}?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff`} target='_blank'>Connect Now</Button>
 				</Container>
 			</Box>
 		
@@ -65,6 +66,7 @@ export default function Home({ faqs, testimonials }) {
 								We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it,{' '}
 								<Link href={'#testimonials'} color={'inherit'} sx={{ fontWeight: '700' }} onClick={(event) => {
 									event.preventDefault();
+									window.history.replaceState({}, '', '#testimonials');
 									testimonialsSectionRef.current.scrollIntoView({ behavior: 'smooth' })
 								}}>read what other Veterans are saying</Link>
 								{' '}about Telemedica LLC.</Typography>
@@ -209,42 +211,43 @@ export async function getStaticProps() {
 	await generateRssFeed();
 	const faqs = [
 		{
-			title: 'Does Telemedica do in-person appointments?',
-			text: 'This is held for the dropdown as the answer to FAQ1.',
+			title: 'Will my appointment be in person or online?',
+			text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere.Mental Health and Telemedicine Evaluations will be conducted online via video call.The link is sent a few minutes before the appointment.Nexus Letter services do not require an appointment.',
 		},
 		{
-			title: 'What do I need in order to get an evaluation with Telemedica?',
-			text: 'This is held for the dropdown as the answer to FAQ2.',
+			title: 'Do you take insurance or offer payment plans?',
+			text: 'Telemedica does not accept insurance or offer payment plants at this time.',
 		},
 		{
-			title: 'What forms of Payment do you accept?',
-			text: 'This is held for the dropdown as the answer to FAQ3.',
+			title: 'How long will it take for me to receive my documents?',
+			text: 'Our average turnaround time is 7-10 business days.Turnaround time for Nexus Letter rush services is two(2) business days(please note that rush services are an extra $100 per document).',
+	
 		},
 		{
-			title: 'Do you accept insurance?',
-			text: 'This is held for the dropdown as the answer to FAQ4.',
-		},
+			title: 'Can I book over the phone?',
+			text: `You may book through our booking link - ${siteSettings.externalLinks.booking}, but if you encounter any issues, feel free to reach out to Customer Service for assistance.`,
+		}
 	];
 	const testimonials = [
 		{
 			text: 'With evolving technology comes our ability to conduct safe and secure medical appointments through a video conferencing system. Telemedica LLC provided an approach to my appointment that both efficiently and effective. My doctor was prompt, even early to the appointment, there was a period of introduction and discussion to manage expectation, and then a very professional doctor\'s appointment conducted in the privacy of our spaces.The most positive and best experience to a medical appointment I\'ve ever had. Highly, highly, recommend Telemedica LLC.',
-			author: 'Nell Gruben',
+			author: 'Nell G.',
 		},
 		{
 			text: 'As a Veteran I know that Telemedica ROCKS! I have had 2 AWESOME EXPERIENCES with this healthcare company. Their website is USER FRIENDLY! I know this due to being 64 years young. Some one is always ready to help via phone, patient portal and email. Their response time is spot on! Thank you Telemedica!',
-			author: 'Curtis Tinsley',
+			author: 'Curtis T.',
 		},
 		{
 			text: 'My TeleVisit on Telemedica LLC was one of the best online meetings I have attended in a long time. The User Interface is intuitive and easy to navigate and the video/audio was totally functional without a glitch. The process of uploading documents was as easy as click & drop. Yes, I would recommend Telemedica LLC for your important TeleVisit.',
-			author: 'Aaron Holder',
+			author: 'Aaron H.',
 		},
 		{
 			text: 'Just recently had my VA evaluation. My doctor was punctual, informative, and asked the tough questions and pertinent questions that needed to be asked but still was very respectful and empathetic. I would recommend Telemedica 100 times over to get the job done. They were also very flexible with my schedule to get appointment in as soon as possible',
-			author: 'John & Jessica Maddrah',
+			author: 'John & Jessica M.',
 		},
 		{
 			text: 'If I had to pick three words - Best in Class. They\'ve not only helped me, but they\'ve helped my wife too. Vets helping vets is fundamentally perfect. They\'ve either gone through what you\'re going through, or they know someone who has. In this way, they can help fully capture the severity of symptoms and their impacts on your daily life. Can\'t recommend them enough, they really are worth it!',
-			author: 'Tyrrell M.Brown, Sr.',
+			author: 'Tyrrell B.',
 		},
 		{
 			text: 'I had a great experience with Telemedica. They provided exceptional customer focused service for me. It was very easy for me to schedule the appointment, uploading the documents was easy and stress free. The provider was on time for my appointment. She was thorough and very professional and attentive. She made me feel very comfortable, so I was able to share some very, very personal things about my experiences. Not once did I feel like I was being rushed or judged by the provider. It felt good being able to get things off of my chest. Another thing I noted about my provider is she was well prepared for the appointment. It became obvious during our conversation that she had actually read my charts, records and written statements. Yes, I said it, conversation, we had an actual conversation about my experiences, both then and now. I am so very happy TM services came into my life. Speaking Veteran to Veteran, I highly recommend Telemedica Services. We have a listening ear with TELEMEDICA. I am a "Very Satisfied" customer!',
@@ -264,7 +267,7 @@ export async function getStaticProps() {
 		},
 		{
 			text: 'To all my brothers and sisters veterans, If you truly need so help in live from our ups and downs in the military stress, PLEASE contact Telemedical LLC, they are the real deal. Very knowledgeable and so professional. After 38 years I finally was able to vent to someone and get professional help. Please reach out to this team, get the help we as veterans deserve.',
-			author: 'Cpl.Spears',
+			author: 'Cpl. Spears',
 		},
 		{
 			text: 'I\'m only making this post in the hopes that someone can make a great decision. This for me was an amazing choice in the right direction. I have never done anything like this before and never thought I had to either. The truth is I don\'t like to be vulnerable but this is the place to be honest and open.I believe this was the right decision for myself and my family.This was my first time talking to a psychologist and I felt truly heard without prejudice. 10/10 recommend for anyone looking to make change for themselves.',

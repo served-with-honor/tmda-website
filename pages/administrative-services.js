@@ -27,7 +27,7 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 			>
 				<Container>
 					<Typography variant={'h2'} component={'h1'}>
-						Simplified Administration for Providers Serving the Veteran Community
+						Simplified Admin Services for Providers Serving the Veteran Community
 					</Typography>
 					<Typography variant={'h6'} component={'p'} sx={{ pt: 2, pb: 5}}>
 						We Let You Do What You Do Best & We Handle The Rest!

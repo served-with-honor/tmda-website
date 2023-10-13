@@ -1,15 +1,17 @@
-import React from 'react'
+import { useContext } from 'react'
 import { motion } from 'framer-motion';
 import { Button, Box, Container, Grid, Typography } from '@mui/material';
 import { slugify } from '../../src/utils';
 import settings from '../../src/siteSettings';
+import { BookingContext } from '../../context/BookingContext'
 
 export default function SectionFeatures1() {
+  const { setIsOpen } = useContext(BookingContext);
   const title = 'How Can We Help?'
   const items = [
-    { body: 'For new or returning clients', button: { label: 'Get Started', url: '#' }, },
-    { body: 'Booking, pay invoices, upload documents', button: { label: 'Patient Portal', url: settings.externalLinks.patientPortal }, },
-    { body: 'For current Telemedica providers', button: { label: 'Provider Portal', url: settings.externalLinks.providerPortal }, },
+    { body: 'For new or returning clients', button: { label: 'Get Started', action: () => setIsOpen(true) }, },
+    { body: 'Booking, pay invoices, upload documents', button: { label: 'Patient Portal', url: settings.externalLinks.patientPortal, target: '_blank' }, },
+    { body: 'For current Telemedica providers', button: { label: 'Provider Portal', url: settings.externalLinks.providerPortal, target: '_blank' }, },
   ];
 
   return (
@@ -46,7 +48,9 @@ export default function SectionFeatures1() {
                   <Button
                     size={'large'}
                     variant={'contained'}
-                    href={item.button.url}
+                    href={item.button.url || null}
+                    target={item.button.target || 'self'}
+                    onClick={item.button.action || null}
                   >
                     {item.button.label}
                   </Button>

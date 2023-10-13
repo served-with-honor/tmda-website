@@ -10,11 +10,12 @@ import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
 import settings from '../src/siteSettings';
 import CustomCard from '../components/CustomCard';
-import eventImage from '../public/images/event.png'
-import monitorImage from '../public/images/monitor.png'
-import stethoscopeImage from '../public/images/stethoscope.png'
+import eventImage from '../public/images/event.svg'
+import monitorImage from '../public/images/monitor.svg'
+import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
+import texture01 from '../public/texture-01.jpg'
 
 export default function ContactUsPage({ actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
@@ -23,32 +24,30 @@ export default function ContactUsPage({ actionItems }) {
 	
 	return (
 		<Page title={'Contact Us'} description={`CONTACT INFO: Call ${formatPhoneNumber(settings.contact.phone)} ${settings.contact.email} QUESTIONS? How Can We Help You?`}>
-			<Box sx={{ paddingTop: 20, paddingBottom: 10, }}>
+			<Box sx={{
+				paddingTop: 20,
+				paddingBottom: 10,
+				background: `url(${texture01.src}) center / cover no-repeat`,
+			}}>
 				<Container>
-					<Grid container gap={5} alignItems={'center'}>
-						<Grid item md>
-							<Typography variant='h1' color='primary'>Get In Touch</Typography>
-							<Typography variant='body1' sx={{ fontSize: 32 }}>Please let us know how we can assist you.</Typography>
-						</Grid>
-						<Grid item md>
-							<Stack direction={'row'} gap={3}>
-								<Button size='large' color='primary' variant={'contained'} href={settings.contact.phone} target="_blank">Call Us</Button>
-								<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
-							</Stack>
-						</Grid>
-					</Grid>
+					<Typography variant='h1' color='primary'>Get In Touch</Typography>
+					<Typography variant='body1' sx={{ fontSize: 32, mb: 3 }}>Please let us know how we can assist you.</Typography>
+					<Stack direction={'row'} gap={3}>
+						<Button size='large' color='primary' variant={'contained'} href={`tel:${settings.contact.phone}`} target="_blank">Call Us</Button>
+						<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
+					</Stack>
 				</Container>
 			</Box>
 			
-			<Box sx={{ paddingY: 20, backgroundColor: 'secondary.100' }}>
-				<Container>
-					<Typography variant='h2' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
+			<Box sx={{ paddingY: 20 }}>
+				<Container maxWidth='md'>
+					<Typography variant='sectionHeading' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
 					<Typography variant='body1' align='center' gutterBottom sx={{ mb: 10 }}>Fill out the form below to send us a message and a member of our team will get back to you shortly!</Typography>
 					<ContactForm />
 				</Container>
 			</Box>
 			
-			<Box sx={{ paddingY: 10 }}>
+			<Box sx={{ paddingY: 10, backgroundColor: 'grey.50' }}>
 				<Container>
 					<Grid container spacing={5}>
 						{actionItems.map((item, index) => (

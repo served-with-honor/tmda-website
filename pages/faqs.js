@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import Page from '../components/Page'
 import { slugify } from '../src/utils';
+import siteSettings from '../src/siteSettings';
 
 export default function FAQsPage({ items }) {
 	const topics = [...new Set(items.map(({ topic }) => topic))];
@@ -24,7 +25,8 @@ export default function FAQsPage({ items }) {
 
 	const handleTopicChange = (topic) => {
 		setSelectedCategory(topic);
-		location.replace(`#${slugify(topic)}`);
+		const hash = topic ? `#${slugify(topic)}` : location.href.split('#')[0];
+		window.history.replaceState({}, '', hash);
 	}
 	
 	useEffect(() => {
@@ -289,7 +291,7 @@ export const getStaticProps = async () => {
 		},
 		{
 			question: "Can I book over the phone?",
-			answer: 'You may book through our booking link - https://telemedicallc.intakeq.com/booking, but if you encounter any issues, feel free to reach out to customer service for assistance.',
+			answer: `You may book through our booking link - ${siteSettings.externalLinks.booking}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
 			topic: 'General',
 		},
 		{
@@ -417,37 +419,37 @@ export const getStaticProps = async () => {
 		{
 			question: 'How many conditions can I be diagnosed with in 1 visit?',
 			answer: 'Each visit can render up to 2 diagnoses without the need to add additional time or schedule a second appointment.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 		{
 			question: 'Is the fee per visit or per diagnosis?',
 			answer: 'The fee is per evaluation document. If you were seen for multiple conditions, our fees are per condition.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 		{
 			question: 'Can I be seen for a condition that is not listed on your approved condition list?',
 			answer: 'Possibly. If you would like to be seen for a condition that is not listed on our approved list, please reach out to our customer service team for assistance, and they can confirm with the medical team.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 		{
 			question: 'Do you offer treatment or prescription services?',
 			answer: 'No, not at this time.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 		{
 			question: 'Do you take my insurance?',
 			answer: 'No, we do not accept any forms of insurance at this time.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 		{
 			question: 'Do you have a physical location that I can be seen in person?',
 			answer: 'No, not at this time.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 		{
 			question: 'Do you write medical opinion letters?',
 			answer: 'No, opinion letters are written by medical nexus or mental health teams.',
-			topic: 'Telemedicine Evaluation Team FAQ',
+			topic: 'Telemedicine',
 		},
 	]
 
