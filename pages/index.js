@@ -66,6 +66,7 @@ export default function Home({ faqs, testimonials }) {
 								We've delivered life changing medical evidence to more than 20,000 Veterans, and we hope we can provide the same for YOU! But don't just take our word for it,{' '}
 								<Link href={'#testimonials'} color={'inherit'} sx={{ fontWeight: '700' }} onClick={(event) => {
 									event.preventDefault();
+									window.history.replaceState({}, '', '#testimonials');
 									testimonialsSectionRef.current.scrollIntoView({ behavior: 'smooth' })
 								}}>read what other Veterans are saying</Link>
 								{' '}about Telemedica LLC.</Typography>

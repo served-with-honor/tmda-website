@@ -24,7 +24,9 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 export default function ServicesPage({ prices }) {
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
-	const handleBookNowClick = () => {
+	const handleBookNowClick = (event) => {
+		event.preventDefault();
+		
 		const isMobileDevice = window.innerWidth < 900;
 		const behavior = 'smooth'
 		if(isMobileDevice) {
@@ -32,6 +34,7 @@ export default function ServicesPage({ prices }) {
 		} else {
 			desktopBookingSectionRef.current.scrollIntoView({behavior})
 		}
+		window.history.replaceState({}, '', '#booking');
 	}
 	return (
 		<BookingContext.Provider value={{ scrollTo: handleBookNowClick }}>
@@ -95,6 +98,7 @@ export default function ServicesPage({ prices }) {
 											variant='contained' 
 											color='secondary' 
 											size='large'
+											href='#booking'
 											onClick={handleBookNowClick}
 										>
 											Book Now
@@ -148,8 +152,10 @@ export default function ServicesPage({ prices }) {
 						</Box>
 					</Container>
 				</Box>
+				
 				{/* Booking Section */}
 				<Box
+					id='booking'
 					ref={desktopBookingSectionRef} 
 					sx={{
 						py: 10, 
