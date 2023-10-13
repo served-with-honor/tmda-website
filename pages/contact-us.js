@@ -15,6 +15,7 @@ import monitorImage from '../public/images/monitor.svg'
 import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
+import texture01 from '../public/texture-01.jpg'
 
 export default function ContactUsPage({ actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
