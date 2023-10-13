@@ -128,7 +128,7 @@ export default function BookingWidget() {
           <>
           <Typography variant='h5' component='p' textAlign='center' sx={{ mb: 3 }}>Choose your location</Typography>
           <Grid container spacing={1} alignItems={'center'}>
-            <Grid item md>
+            <Grid item xs>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Location</InputLabel>
                 <Select
