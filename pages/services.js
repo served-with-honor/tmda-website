@@ -198,7 +198,7 @@ export default function ServicesPage({ prices }) {
 									sx={{
 										boxShadow: 5,
 										borderRadius: 5,
-										height:{ md: '625px' }, 
+										maxHeight:{ md: '625px' }, 
 										overflow: { md: 'auto' },
 										p: 3,
 									}}
