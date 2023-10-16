@@ -42,8 +42,9 @@ export default function Home({ faqs, testimonials }) {
 				<Container maxWidth='md' align='center'>
 					<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>
 					<Typography variant="lead" sx={{ mb: 6 }}>Get your high-quality medical evidence from the medical evidence experts!</Typography>
-					<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims! Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
-					<Button variant='contained' color='secondary' href={`${siteSettings.externalLinks.booking}?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff`} target='_blank'>Connect Now</Button>
+					<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims!</Typography>
+					<Typography variant="body1" sx={{ my: 6 }}>Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
+					<Button variant='contained' color='secondary' href={`${siteSettings.externalLinks.booking}?serviceId=158c606a-bcb8-4fc4-9103-4b435fb154ff`} target='_blank'>Book Your Free Call Now</Button>
 				</Container>
 			</Box>
 		
@@ -212,7 +213,7 @@ export async function getStaticProps() {
 	const faqs = [
 		{
 			title: 'Will my appointment be in person or online?',
-			text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere.Mental Health and Telemedicine Evaluations will be conducted online via video call.The link is sent a few minutes before the appointment.Nexus Letter services do not require an appointment.',
+			text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere.Mental Health and Telemedicine Evaluations will be conducted online via video call.The link is sent a few minutes before the appointment. Nexus Letter services do not require an appointment.',
 		},
 		{
 			title: 'Do you take insurance or offer payment plans?',
