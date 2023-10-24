@@ -45,18 +45,17 @@ export default function FAQsPage({ items }) {
 			<Box
 				sx={{
 					py: 25,
-					'br': { display: {xs: 'none', md: 'initial'}}
+					'br': { display: { xs: 'none', md: 'initial' } }
 				}}
 			>
 				<Container>
-					<Typography variant={'h2'} component={'h1'} sx={{pb: 3}}>
-						We’re Here to Support You {" "}
-						<br />
-					<Box component='span' sx={{color:'primary.main'}}>
-						Every Step of the Way
-					</Box>	
+					<Typography variant={'h2'} component={'h1'} sx={{ pb: 3 }}>
+						We're Here to Support You {" "}<br />
+						<Box component='span' color='primary.main'>
+							Every Step of the Way
+						</Box>	
 					</Typography>
-					<Typography variant={'body1'}>
+					<Typography variant='lead'>
 						Everything You Need to Know About Obtaining Medical Evidence for Your VA Disability Claim
 					</Typography>
 				</Container>
