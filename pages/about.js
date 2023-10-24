@@ -143,6 +143,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			{/* SECTION */}
 			<Box id='how-it-works' sx={{
 				py: 10,
+				px: { xs: '40px', md: 0 },
 				'.slick-slider': {
 					'&:before, &:after': {
 						position: 'absolute',
