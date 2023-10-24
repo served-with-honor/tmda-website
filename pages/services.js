@@ -99,7 +99,8 @@ export default function ServicesPage({ prices }) {
 											variant='contained' 
 											color='secondary' 
 											size='large' 
-											href={siteSettings.externalLinks.patientPortal} 
+											href={siteSettings.externalLinks.patientPortal}
+											target='_blank'
 										>
 											Patient Portal
 										</Button>

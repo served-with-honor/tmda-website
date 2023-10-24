@@ -187,7 +187,7 @@ export default function Home({ faqs, testimonials }) {
 						</Stack>
 					</Box>
 					<Box align={'center'} sx={{ mt: 10 }}>
-							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'}>Leave a Review</Button>
+							<Button variant={'contained'} href={'https://g.page/r/CXLI9fZbuI4iEB0/review'} target='_blank'>Leave a Review</Button>
 					</Box>
 				</Container>
 			</Box>
