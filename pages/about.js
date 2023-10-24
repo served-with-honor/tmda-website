@@ -142,7 +142,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 
 			{/* SECTION */}
 			<Box id='how-it-works' sx={{
-				paddingY: 20,
+				py: 10,
 				'.slick-slider': {
 					'&:before, &:after': {
 						position: 'absolute',
@@ -198,7 +198,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			</Box>
 			
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 5 }}>
 				<Container>
 					<Grid container spacing={2} justifyContent='center'>
 						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
