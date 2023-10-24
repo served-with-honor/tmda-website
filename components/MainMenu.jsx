@@ -100,7 +100,7 @@ const MyMenuItem = styled(MenuItem)(({ theme }) => ({
   lineHeight: 1,
   
   'span': { lineHeight: 'inherit' },
-  'a': {
+  'a, button': {
     color: 'inherit',
     textDecoration: 'none',
   },
