@@ -129,7 +129,7 @@ export default function ServicesPage({ prices }) {
 				<Box id='pricing' sx={{ py: 10 }}>
 					<Container maxWidth='md'>
 						<Typography variant='sectionHeading' component='h2' sx={{ mb: 10 }}>At-A-Glance Pricing</Typography>
-						{prices ? <PriceTable rows={prices} /> : null}
+						{prices ? <PriceTable rows={prices.items} /> : null}
 						<Box sx={{ mt: 6 }}>
 							{/* Discount Section */}
 							<Typography display='inline' variant='h6'>Discounts: </Typography>
@@ -137,8 +137,11 @@ export default function ServicesPage({ prices }) {
 							<Typography sx={{ fontStyle: 'italic', pt: 1.5, pb: 2}} >First-time discounts and 3rd-party discounts may apply. Inquire within.</Typography>
 							{/* Disclaimer Section */}
 							<Typography variant='h6'>Disclaimers:</Typography>
-							<Typography sx={{ fontStyle: 'italic', pt: 1.5}}>*The non-refundable appointment/booking fee covers the cost of the Telemedica provider's time/effort to review the veteran's case and to ensure they can assist the veteran.</Typography>
-							<Typography sx={{ fontStyle: 'italic', py: 1.5}} >**$50 fee not applicable in all cases. Fee charged on a case-by-case basis.</Typography>
+							{prices.disclaimers.map(({ indicator, text}) => (
+								<Typography sx={{ fontStyle: 'italic', pt: 1.5 }} key={`pricing-table-disclaimer-${indicator}`}>
+									<sup>{indicator}</sup> {text}
+								</Typography>
+							))}
 						</Box>
 					</Container>
 				</Box>
@@ -215,21 +218,27 @@ export default function ServicesPage({ prices }) {
 }
 
 export async function getStaticProps() {
-	const prices = [
-		{ label: 'Psych Eval & Independent Medical Opinion*', amount: 1495, category: 'Mental Health Evaluations', },
-		{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
-		{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
-		{ label: 'Telemedicine Evaluation (DX)*', amount: 985, category: 'Medica/Nexus Services', },
-		{ label: 'Medical Nexus Chart Review Fee*', subtext: 'up to 500 pages', amount: 299, category: 'Medica/Nexus Services', },
-		{ label: 'P& T Request/Specialty Letter**', amount: 1345, category: 'Medica/Nexus Services', },
-		{ label: 'Medical Nexus Letter**', subtext: '1 connection', amount: 1345, category: 'Medica/Nexus Services', },
-		{ label: 'Medical Nexus Letter Enhanced**', subtext: '2+ connections', amount: 1595, category: 'Medica/Nexus Services', },
-		{ label: 'DBQ**', subtext: '1-4 pages', amount: 1145, category: 'Medica/Nexus Services', },
-		{ label: 'DBQ Enhanced**', subtext: '4+ pages', amount: 1400, category: 'Medica/Nexus Services', },
-		{ label: 'Rebuttal Letter', amount: 275, category: 'Medica/Nexus Services', },
-		{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Medica/Nexus Services', },
-		{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medica/Nexus Services', },
-	];
+	const prices = {
+		items: [
+			{ label: 'Psych Eval & Independent Medical Opinion', disclaimer: '*', amount: 1495, category: 'Mental Health Evaluations', },
+			{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
+			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
+			{ label: 'Telemedicine Evaluation (DX)', disclaimer: '*', amount: 985, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '*', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
+			{ label: 'P& T Request/Specialty Letter', disclaimer: '**', amount: 1345, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Letter', disclaimer: '**', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Letter Enhanced', disclaimer: '**', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
+			{ label: 'DBQ', disclaimer: '**', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
+			{ label: 'DBQ Enhanced', disclaimer: '**', subtext: '4+ pages', amount: 1400, category: 'Medical/Nexus Services', },
+			{ label: 'Rebuttal Letter', amount: 275, category: 'Medical/Nexus Services', },
+			{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Medical/Nexus Services', },
+			{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medical/Nexus Services', },
+		],
+		disclaimers: [
+			{ indicator: '*', text: 'The non-refundable appointment/booking fee covers the cost of the Telemedica provider\'s time/effort to review the veteran\'s case and to ensure they can assist the veteran.', },
+			{ indicator: '**', text: '$50 fee not applicable in all cases.Fee charged on a case-by -case basis.', },
+		],
+	};
 
 	return {
 		props: {

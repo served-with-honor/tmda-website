@@ -53,7 +53,7 @@ export default function PriceTable({ rows }) {
           </TableHead>
           <TableBody>
             <AnimatePresence>
-              {items.map(({ label, subtext, items, amount, fee, category }, index) => {
+              {items.map(({ label, subtext, items, amount, disclaimer, category }, index) => {
                 const formatAmount = amount => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
                 const price = typeof amount === 'number' ? formatAmount(amount) : Array.isArray(amount) ? amount.map(formatAmount).join(' - ') : amount;
                 return (
@@ -68,8 +68,9 @@ export default function PriceTable({ rows }) {
                     >
                       <TableCell>
                         <Typography variant='subtitle2' component='span'>
-                        {label}
+                          {label}
                         </Typography>
+                          {disclaimer ? <sup>{disclaimer}</sup> : null}
                         {subtext ? (
                           <Typography variant='body2' component='span' sx={{ ml: 1 }}>
                             ({subtext})
