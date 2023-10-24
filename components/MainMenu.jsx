@@ -58,7 +58,12 @@ export default function MainMenu() {
   }
 
   return <>
-    <Button onClick={()=> handleExpandMenu()} sx={{ display: { md: 'none' }}}>
+    <Button
+      onClick={() => handleExpandMenu()}
+      sx={{ display: { md: 'none' } }}
+      aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+      aria-expanded={isMobileMenuOpen}
+    >
       <MenuIcon />
     </Button>
     <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleExpandMenu={handleExpandMenu} items={items} currentPage={selected}/>
@@ -189,7 +194,7 @@ const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowing
               {isSelected ? (
                 <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
               ) : action ? (
-                <MUILink onClick={action}>{ text }</MUILink>
+                <MUILink component='button' onClick={action}>{ text }</MUILink>
               ) : (
                 <Link href={href} target={target || ''}>{text}</Link>
               )}
