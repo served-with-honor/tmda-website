@@ -204,7 +204,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 10 }}>
 				<Container>
 					<Grid container spacing={2} justifyContent='center'>
-						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
+						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
 						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 					</Grid>
 				</Container>
