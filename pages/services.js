@@ -216,16 +216,19 @@ export default function ServicesPage({ prices }) {
 
 export async function getStaticProps() {
 	const prices = [
-		{ label: 'Psych Eval/lMO*', fee: 100, amount: 1395, category: 'Mental Health Evals' },
-		{ label: 'Psych Rebuttal Letter', amount: 175, category: 'Mental Health Evals' },
-		{ label: 'Telemedicine Evaluation*', fee: 100, amount: 895, category: 'Medical/Nexus Services' },
-		{ label: 'Nexus Letter*', fee: 199, amount: 1345, category: 'Medical/Nexus Services' },
-		{ label: 'Nexus Letter Enhanced*', fee: 199, amount: 1595, category: 'Medical/Nexus Services' },
-		{ label: 'DBQ*', fee: 199, amount: 1145, category: 'Medical/Nexus Services' },
-		{ label: 'DBQ*', fee: 199, amount: 1145, category: 'Medical/Nexus Services' },
-		{ label: 'DBQ Enhanced*', fee: 199, amount: 1400, category: 'Medical/Nexus Services' },
-		{ label: 'P&T Request Letter*', fee: 199, amount: 1345, category: 'Medical/Nexus Services' },
-		{ label: 'Med Team Rebuttal Letter**', fee: 50, amount: 250, category: 'Medical/Nexus Services' },
+		{ label: 'Psych Eval & Independent Medical Opinion*', amount: 1495, category: 'Mental Health Evaluations', },
+		{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
+		{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
+		{ label: 'Telemedicine Evaluation (DX)*', amount: 985, category: 'Medica/Nexus Services', },
+		{ label: 'Medical Nexus Chart Review Fee*', subtext: 'up to 500 pages', amount: 299, category: 'Medica/Nexus Services', },
+		{ label: 'P& T Request/Specialty Letter**', amount: 1345, category: 'Medica/Nexus Services', },
+		{ label: 'Medical Nexus Letter**', subtext: '1 connection', amount: 1345, category: 'Medica/Nexus Services', },
+		{ label: 'Medical Nexus Letter Enhanced**', subtext: '2+ connections', amount: 1595, category: 'Medica/Nexus Services', },
+		{ label: 'DBQ**', subtext: '1-4 pages', amount: 1145, category: 'Medica/Nexus Services', },
+		{ label: 'DBQ Enhanced**', subtext: '4+ pages', amount: 1400, category: 'Medica/Nexus Services', },
+		{ label: 'Rebuttal Letter', amount: 275, category: 'Medica/Nexus Services', },
+		{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Medica/Nexus Services', },
+		{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medica/Nexus Services', },
 	];
 
 	return {
