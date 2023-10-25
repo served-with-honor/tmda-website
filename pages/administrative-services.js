@@ -15,9 +15,9 @@ import CustomCard from '../components/CustomCard';
 import siteSettings from '../src/siteSettings';
 import heroImage from '../public/images/admin-services-hero.jpg'
 
-export default function AdministrativeServicesPage({ services, benefits }) {
+export default function AdministrativeServicesPage({ title, description, services, benefits }) {
 	return (
-		<Page title={'Administrative Services'} description={'Our administrative services enable the provider/practice to focus on providing quality clinical care without the burden of administrative and management functions.'}>
+		<Page title={title} description={description}>
 			{/* HERO */}
 			<Box sx={{ 
 				pt: 20, 
@@ -166,6 +166,9 @@ export default function AdministrativeServicesPage({ services, benefits }) {
 }
 
 export async function getStaticProps() {
+	const title = 'Administrative Services';
+	const description = 'Our administrative services enable the provider/practice to focus on providing quality clinical care without the burden of administrative and management functions.';
+
 	const services = [
 		{
 			"heading": "Operations Management",
@@ -223,5 +226,5 @@ export async function getStaticProps() {
 		"Access to best in class customer care specialists.",
 	]
 
-	return { props: { services, benefits }}
+	return { props: { title, description, services, benefits }}
 }

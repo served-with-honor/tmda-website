@@ -33,7 +33,7 @@ import { BookingContext } from '../context/BookingContext'
 
 const builder = imageUrlBuilder(sanityClient);
 
-export default function AboutPage({ teamMembers, providers, serveTabs }) {
+export default function AboutPage({ title, description, teamMembers, providers, serveTabs }) {
 	const { setIsOpen: setIsBookingOpen } = useContext(BookingContext);
 	const heroRef = useRef(null);
 	const sliderSettings = {
@@ -58,7 +58,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	};
 
 	return (
-		<Page title={'About'} description={'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.'}>
+		<Page title={title} description={description}>
 
 			{/* HERO */}
 			<Box sx={{
@@ -252,6 +252,9 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 }
 
 export const getServerSideProps = async () => {
+	const title = 'About';
+	const description = 'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.';
+
 	const teamMembersResponse = await getTeamMembers();
 	const teamMembers = teamMembersResponse.map(person => {
 		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
@@ -276,5 +279,5 @@ export const getServerSideProps = async () => {
 			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
 		},
 	]
-	return { props: { teamMembers, providers, serveTabs } };
+	return { props: { title, description, teamMembers, providers, serveTabs } };
 }

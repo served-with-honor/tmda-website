@@ -21,7 +21,7 @@ import Counter from '../components/Counter'
 import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
-export default function ServicesPage({ prices }) {
+export default function ServicesPage({ title, description, prices }) {
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = (event) => {
@@ -38,7 +38,7 @@ export default function ServicesPage({ prices }) {
 	}
 	return (
 		<BookingContext.Provider value={{ scrollTo: handleBookNowClick }}>
-			<Page title={'Services'} description={'We offer Veterans a range of medical evaluation services including Nexus Letters, Mental Health Evaluations, Rebuttal Letters, and more.'} darkHeader bookingAction={() => handleBookNowClick()}>	
+			<Page title={title} description={description} darkHeader bookingAction={() => handleBookNowClick()}>	
 				{/* HERO */}
 				<Box sx={{ 
 					pt: 15, 
@@ -219,6 +219,9 @@ export default function ServicesPage({ prices }) {
 }
 
 export async function getStaticProps() {
+	const title = 'Services';
+	const description = 'We offer Veterans a range of medical evaluation services including Nexus Letters, Mental Health Evaluations, Rebuttal Letters, and more.';
+
 	const prices = {
 		items: [
 			{ label: 'Psych Eval & Independent Medical Opinion', disclaimer: '*', amount: 1495, category: 'Mental Health Evaluations', },
@@ -241,9 +244,5 @@ export async function getStaticProps() {
 		],
 	};
 
-	return {
-		props: {
-			prices,
-		}
-	}
+	return { props: { title, description, prices, } }
 }

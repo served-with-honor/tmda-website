@@ -17,13 +17,13 @@ import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
 import texture01 from '../public/texture-01.jpg'
 
-export default function ContactUsPage({ actionItems }) {
+export default function ContactUsPage({ title, description, actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
 
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 	
 	return (
-		<Page title={'Contact Us'} description={`CONTACT INFO: Call ${formatPhoneNumber(settings.contact.phone)} ${settings.contact.email} QUESTIONS? How Can We Help You?`}>
+		<Page title={title} description={description}>
 			<Box sx={{
 				paddingTop: 20,
 				paddingBottom: 10,
@@ -65,6 +65,9 @@ export default function ContactUsPage({ actionItems }) {
 }
 
 export async function getStaticProps() {
+	const title = 'Contact Us';
+	const description = `CONTACT INFO: Call ${formatPhoneNumber(settings.contact.phone)} ${settings.contact.email} QUESTIONS? How Can We Help You?`;
+
 	const actionItems = [
 		{
 			image: { ...eventImage, width: 85, height: 85 },
@@ -86,5 +89,5 @@ export async function getStaticProps() {
 		},
 	]
 
-	return { props: { actionItems } };
+	return { props: { title, description, actionItems } };
 }

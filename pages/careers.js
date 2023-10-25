@@ -10,9 +10,9 @@ import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import siteSettings from '../src/siteSettings';
 
-export default function CareersPage() {
+export default function CareersPage({ title, description }) {
 	return (
-		<Page title={'Careers'} description={'Explore A Career With Telemedica. Telemedica specializes in providing Veterans with high-quality medical evidence nationwide.'} darkHeader>
+		<Page title={title} description={description} darkHeader>
 			<Box sx={{ 
 				pt: 20,
 				pb: 15,
@@ -70,4 +70,11 @@ export default function CareersPage() {
 			</Box>
   	</Page>
   )
+}
+
+export async function getStaticProps() {
+	const title = 'Careers';
+	const description = 'Explore A Career With Telemedica. Telemedica specializes in providing Veterans with high-quality medical evidence nationwide.';
+
+	return { props: { title, description, }}
 }

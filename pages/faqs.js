@@ -12,7 +12,7 @@ import Page from '../components/Page'
 import { slugify } from '../src/utils';
 import faqItems from '../lib/content/faqs';
 
-export default function FAQsPage({ items }) {
+export default function FAQsPage({ title, description, items }) {
 	const topics = [...new Set(items.map(({ topic }) => topic))];
 
 	const [expanded, setExpanded] = useState(false);
@@ -40,7 +40,7 @@ export default function FAQsPage({ items }) {
 	}, []);
 
 	return (
-		<Page title={'FAQs'} description={'(FAQ) Frequently asked questions about obtaining medical evidence for Your VA disability claim.'}>
+		<Page title={title} description={description}>
 			{/* Hero */}
 			<Box
 				sx={{
@@ -178,7 +178,9 @@ export default function FAQsPage({ items }) {
 }
 
 export const getStaticProps = async () => {
+	const title = 'FAQs';
+	const description = '(FAQ) Frequently asked questions about obtaining medical evidence for Your VA disability claim.';
 	const items = faqItems;
 
-	return { props: { items } }
+	return { props: { title, description, items } }
 }
