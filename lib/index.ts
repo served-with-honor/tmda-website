@@ -108,7 +108,10 @@ const getProviders = () => (
     { name: 'Shervon Robinson', degree: 'PA-C', categories: ['Nexus'], },
     { name: 'Randy Vena', degree: 'FNP-C', categories: ['Nexus'], },
     { name: 'Sabrina Vizzini', degree: 'PA-C', categories: ['Nexus'], },
-    { name: 'Daniel Olivero', degree: 'MD', categories: ['Telemedicine'], isDepartmentLead: true, },
+    { name: 'Daniel Olivero', image: [ 'images/provider-photos/daniel-olivero.jpg', 'images/provider-photos/daniel-olivero@2x.jpg 2x', ], degree: 'MD', categories: ['Telemedicine'], isDepartmentLead: true, },
+    { name: 'Jonathan Olivero', degree: 'MA', categories: ['Telemedicine'], },
+    { name: 'Moses Olivero', degree: 'MA', categories: ['Telemedicine'], },
+    { name: 'Danny Olivero', degree: 'MA', categories: ['Telemedicine'], },
   ]
 );
 
