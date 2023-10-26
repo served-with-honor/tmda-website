@@ -103,19 +103,13 @@ export default {
       // 'Northern Mariana Islands': '0',
       'Out of US': '53'
     },
-    categories: [
-      '1d25b960-b5eb-4351-a111-14caecc1bdff', // Mental Health Evaluations
-      '93e695cc-b1c9-4eac-832f-299e60c96370', // Medical Nexus Services
-      '42cbe660-d079-4f2e-84e7-240e5ce05a7f', // Telemedicine Evaluation Services
-      '8f35ce75-ade2-4f09-851a-e703fd1337f0', // Therapeutic Services
-      '89fa2975-8191-415d-b808-879e664f2b7b', // Rebuttal Letters
-    ],
-    categories: [
-      '1d25b960-b5eb-4351-a111-14caecc1bdff', // Mental Health Evaluations
-      '93e695cc-b1c9-4eac-832f-299e60c96370', // Medical Nexus Services
-      '42cbe660-d079-4f2e-84e7-240e5ce05a7f', // Telemedicine Evaluation Services
-      '8f35ce75-ade2-4f09-851a-e703fd1337f0', // Therapeutic Services
-      '89fa2975-8191-415d-b808-879e664f2b7b', // Rebuttal Letters
-    ],
+    services: {
+      discoveryCall: '158c606a-bcb8-4fc4-9103-4b435fb154ff', // Free Discovery Call
+      mentalHealthEvals: '1d25b960-b5eb-4351-a111-14caecc1bdff', // Mental Health Evaluations
+      medicalNexus: '93e695cc-b1c9-4eac-832f-299e60c96370', // Medical Nexus Services
+      telemedicineEvals: '42cbe660-d079-4f2e-84e7-240e5ce05a7f', // Telemedicine Evaluation Services
+      therapeutic: '8f35ce75-ade2-4f09-851a-e703fd1337f0', // Therapeutic Services
+      rebuttalLetters: '89fa2975-8191-415d-b808-879e664f2b7b', // Rebuttal Letters
+    },
   },
 }
