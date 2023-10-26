@@ -27,6 +27,8 @@ export default function FAQsPage({ title, description, items }) {
 		setSelectedCategory(topic);
 		const hash = topic ? `#${slugify(topic)}` : location.href.split('#')[0];
 		window.history.replaceState({}, '', hash);
+		const hash = topic ? `#${slugify(topic)}` : location.href.split('#')[0];
+		window.history.replaceState({}, '', hash);
 	}
 	
 	useEffect(() => {

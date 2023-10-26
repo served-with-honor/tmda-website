@@ -40,15 +40,16 @@ export default function Hero() {
       
       <Container sx={{ position: 'relative' }}>
         <Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
-          Empowering Veterans
+          Empowering <br />Veterans
 				</Typography>
-        <Typography variant={'body1'} fontSize={{ xs: 26, sm: 30 }} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
-          with Quality
-          <Box component='span' sx={{ display: { xs: 'block', sm: 'inline' } }}>
-              <TextFlipper items={flipperItems} lineColor={theme.palette.primary.main} />&nbsp;
+        <Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
+          with Quality&nbsp;
+					{/* The #1 Health Resource For Veterans On Their Path To&nbsp; */}
+					<Box component='span' sx={{ display: { xs: 'block', sm: 'inline' } }}>
+              <TextFlipper items={['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evaluations', 'Mental Health Evaluations', 'Recurring Care']} lineColor={theme.palette.primary.main} />&nbsp;
           </Box>
           <br />
-          for VA Disability Claims
+          for VA Disability Claims.
         </Typography>
         
         <Grid container spacing={2}>

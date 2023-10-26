@@ -13,8 +13,12 @@ import CustomCard from '../components/CustomCard';
 import eventImage from '../public/images/event.svg'
 import monitorImage from '../public/images/monitor.svg'
 import stethoscopeImage from '../public/images/stethoscope.svg'
+import eventImage from '../public/images/event.svg'
+import monitorImage from '../public/images/monitor.svg'
+import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
+import texture01 from '../public/texture-01.jpg'
 import texture01 from '../public/texture-01.jpg'
 
 export default function ContactUsPage({ title, description, actionItems }) {
@@ -36,9 +40,18 @@ export default function ContactUsPage({ title, description, actionItems }) {
 						<Button size='large' color='primary' variant={'contained'} href={`tel:${settings.contact.phone}`} target="_blank">Call Us</Button>
 						<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
 					</Stack>
+					<Typography variant='h1' color='primary'>Get In Touch</Typography>
+					<Typography variant='body1' sx={{ fontSize: 32, mb: 3 }}>Please let us know how we can assist you.</Typography>
+					<Stack direction={'row'} gap={3}>
+						<Button size='large' color='primary' variant={'contained'} href={`tel:${settings.contact.phone}`} target="_blank">Call Us</Button>
+						<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
+					</Stack>
 				</Container>
 			</Box>
 			
+			<Box sx={{ paddingY: 20 }}>
+				<Container maxWidth='md'>
+					<Typography variant='sectionHeading' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
 			<Box sx={{ paddingY: 20 }}>
 				<Container maxWidth='md'>
 					<Typography variant='sectionHeading' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
@@ -47,6 +60,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 				</Container>
 			</Box>
 			
+			<Box sx={{ paddingY: 10, backgroundColor: 'grey.50' }}>
 			<Box sx={{ paddingY: 10, backgroundColor: 'grey.50' }}>
 				<Container>
 					<Grid container spacing={5}>
