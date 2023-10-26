@@ -177,6 +177,10 @@ const MenuGroup = ({ label, items, selected }) => {
       {items.map(({ href, text, target, action }) => {
         const isSelected = href === selected;
         const key = `main-menu-sub-item-${slugify(text)}`;
+        const newAction = action ? () => {
+          setIsOpen(false);
+          action();
+        } : null;
 
         return (
           <MyMenuItem key={key} selected={isSelected}>
@@ -184,7 +188,7 @@ const MenuGroup = ({ label, items, selected }) => {
               {isSelected ? (
                 <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
               ) : action ? (
-                <MUILink component='button' onClick={action}>{ text }</MUILink>
+                <MUILink component='button' onClick={newAction}>{ text }</MUILink>
               ) : (
                 <Link href={href} target={target || ''}>{text}</Link>
               )}
