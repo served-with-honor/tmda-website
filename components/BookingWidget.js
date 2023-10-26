@@ -9,9 +9,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import { useCookies } from 'react-cookie';
 import siteSettings from '../src/siteSettings';
-import { slugify } from '../src/utils'
+import { slugify } from '../src/utils';
 
-export default function BookingWidget() {
+export default function BookingWidget({ service = null }) {
   const regionsList = [
     'Alabama',
     'Alaska',
@@ -100,7 +100,18 @@ export default function BookingWidget() {
     setCookie('booking-location', region);
 
     const formId = siteSettings.booking.locations[region];
-    if (formId) window.intakeqLocationId = formId;
+    if (formId) {
+      window.intakeqLocationId = formId;
+    } else {
+      delete window.intakeqLocationId;
+    }
+    
+    const serviceId = siteSettings.booking.services[service];
+    if (serviceId) {
+      window.intakeqServiceId = serviceId;
+    } else {
+      delete window.intakeqServiceId;
+    }
     
     ref.current.replaceChildren();
     
@@ -110,7 +121,7 @@ export default function BookingWidget() {
     script.src = "https://intakeq.com/js/widget.min.js?1";
     document.head.appendChild(script);
     
-  }, [region]);
+  }, [region, service]);
   
   return (
     <Box>

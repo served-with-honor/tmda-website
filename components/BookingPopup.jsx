@@ -7,7 +7,7 @@ import BookingWidget from './BookingWidget'
 import { BookingContext } from '../context/BookingContext'
 
 export default function BookingPopup() {
-  const { isOpen, setIsOpen } = useContext(BookingContext);
+  const { isOpen, setIsOpen, service } = useContext(BookingContext);
   
   return (
     <Dialog open={isOpen || false} onClose={() => setIsOpen(false)} fullWidth={true}>
@@ -23,7 +23,7 @@ export default function BookingPopup() {
         >
         <CloseIcon />
       </IconButton>
-      <Box sx={{ p: 3 }}><BookingWidget /></Box>
+      <Box sx={{ p: 3 }}><BookingWidget service={service} /></Box>
     </Dialog>
   );
 }
