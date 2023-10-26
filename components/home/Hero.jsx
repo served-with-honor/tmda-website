@@ -6,7 +6,9 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles';
 import TextFlipper from '../TextFlipper';
+import TextFlipper from '../TextFlipper';
 import { BookingContext } from '../../context/BookingContext'
+import siteSettings from '../../src/siteSettings';
 import siteSettings from '../../src/siteSettings';
 
 export default function Hero() {
@@ -56,7 +58,32 @@ export default function Hero() {
           for VA Disability Claims.
         </Typography>
         
+        
         <Grid container spacing={2}>
+            <Grid item>
+              <Button
+                variant='outlined'
+                color='secondary'
+                size='large'
+                sx={{ backgroundColor: 'secondary.100' }}
+                href={siteSettings.externalLinks.patientPortal}
+                target='_blank'
+              >
+                Patient Portal
+              </Button>
+            </Grid>
+            
+            <Grid item>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                onClick={() => setIsOpen(true)}
+              >
+                Book Now
+              </Button>
+            </Grid>
+            
             <Grid item>
               <Button
                 variant='outlined'
@@ -83,7 +110,9 @@ export default function Hero() {
             
         </Grid>
 
+
       </Container>
     </Box>
   )
 }
+
