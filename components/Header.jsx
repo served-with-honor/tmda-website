@@ -80,7 +80,8 @@ export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
         marginTop: 0,
         zIndex: theme.zIndex.drawer + 1,
         '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
-        '.MuiButton-contained': isDark && headerState === null ? { backgroundColor: 'primary.300' } : null,
+        '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
+        '.MuiSvgIcon-root': isDark && headerState === null ? { color: 'primary.600' } : null,
       }}
     >
       <Container sx={{ position: 'relative' }}>
