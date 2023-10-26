@@ -8,6 +8,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
+import MuiLink from '@mui/material/Link';
 import Link from '../src/Link';
 import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
@@ -98,7 +99,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
                 <Skeleton variant='text' width={'90%'} />
                 <Skeleton variant='text' width={'50%'}  />
               </> : null}
-              {url ? <Link href={url} aria-hidden={true}>continue reading</Link> : null}
+              {url ? <MuiLink component='span' aria-hidden={true}>continue reading</MuiLink> : null}
             </Typography>
             
           </Box>

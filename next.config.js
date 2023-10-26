@@ -5,6 +5,10 @@ const nextConfig = {
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
     SANITY_DATASET: process.env.SANITY_DATASET,
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   async redirects() {
     return [
       // Pages
@@ -52,10 +56,21 @@ const nextConfig = {
       { source: '/september-newsletter-2', destination: '/blog', permanent: true },
 
       // Documents
-      { source: '/wp-content/uploads/2023/01/TMDA-INTERNAL-Price-List-Updated-Dec-2022-2.jpg', destination: '/services#pricing', permanent: true },
       { source: '/wp-content/uploads/2022/08/Nexus-Service-FAQ-External.docx.pdf', destination: '/faqs#nexus', permanent: true },
       { source: '/wp-content/uploads/2022/08/Psych-Services-FAQ-External.docx.pdf', destination: '/faqs#psych', permanent: true },
       { source: '/wp-content/uploads/2022/08/Therapy-FAQ-External.docx-1.pdf', destination: '/faqs', permanent: true },
+      { source: '/wp-content/uploads/2023/03/TMDA-EXTERNAL-Price-List-Updated-January-2023-1.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2023/01/TMDA-EXTERNAL-Price-List-Updated-January-2023-2.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2023/01/TMDA-INTERNAL-Price-List-Updated-Dec-2022-2.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2022/05/Recurring-Therapy-Internal-Price-List-2.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2022/04/External-Price-List-4-resized.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2022/04/External-Price-List-4.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2021/10/External-Price-List-3.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2021/09/CROPPED_External-Price-List-1.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2021/09/RESIZED_External-Price-List-1-3.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2021/09/RESIZED_External-Price-List-1-2.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2021/04/External-Price-List-resized.jpg', destination: '/services#pricing', permanent: true, },
+      { source: '/wp-content/uploads/2021/04/External-Price-List.png', destination: '/services#pricing', permanent: true, },
     ]
   },
 }

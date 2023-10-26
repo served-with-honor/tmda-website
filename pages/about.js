@@ -33,7 +33,7 @@ import { BookingContext } from '../context/BookingContext'
 
 const builder = imageUrlBuilder(sanityClient);
 
-export default function AboutPage({ teamMembers, providers, serveTabs }) {
+export default function AboutPage({ title, description, teamMembers, providers, serveTabs }) {
 	const { setIsOpen: setIsBookingOpen } = useContext(BookingContext);
 	const heroRef = useRef(null);
 	const sliderSettings = {
@@ -58,7 +58,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 	};
 
 	return (
-		<Page title={'About'} description={'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.'}>
+		<Page title={title} description={description}>
 
 			{/* HERO */}
 			<Box sx={{
@@ -85,7 +85,7 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							<Typography variant='h1' color='primary' gutterBottom>Stop Fighting. <br />Start Winning.</Typography>
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }}>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
-								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal}>Patient Portal</Button></Grid>
+								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
 							</Grid>
 							<Box sx={{ marginTop: 10 }}>
@@ -142,7 +142,8 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 
 			{/* SECTION */}
 			<Box id='how-it-works' sx={{
-				paddingY: 20,
+				py: 10,
+				px: { xs: '40px', md: 0 },
 				'.slick-slider': {
 					'&:before, &:after': {
 						position: 'absolute',
@@ -194,17 +195,14 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 							</Box>
 						))}
 					</Slider>
-					<Box align={'center'} sx={{mt: 8}}>
-						<Button color='secondary' variant='contained' size='large' onClick={() => setIsBookingOpen(true)}>Get Started</Button>
-					</Box>
 				</Container>
 			</Box>
 			
 			{/* SECTION */}
-			<Box sx={{ backgroundColor: 'secondary.100', paddingY: 10 }}>
+			<Box sx={{ backgroundColor: 'secondary.100', py: 5 }}>
 				<Container>
 					<Grid container spacing={2} justifyContent='center'>
-						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingDialogOpen(true)}>Book Now</Button></Grid>
+						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
 						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 					</Grid>
 				</Container>
@@ -254,6 +252,9 @@ export default function AboutPage({ teamMembers, providers, serveTabs }) {
 }
 
 export const getServerSideProps = async () => {
+	const title = 'About';
+	const description = 'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.';
+
 	const teamMembersResponse = await getTeamMembers();
 	const teamMembers = teamMembersResponse.map(person => {
 		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
@@ -278,5 +279,5 @@ export const getServerSideProps = async () => {
 			body: 'No veteran deserves to be denied or underrated for disability benefits. When veterans submit medical evidence with their VA disability claims, they are more likely to win that claim. We are here to help you on your path to wellbeing.',
 		},
 	]
-	return { props: { teamMembers, providers, serveTabs } };
+	return { props: { title, description, teamMembers, providers, serveTabs } };
 }

@@ -5,14 +5,15 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles';
-import TextFlipper from '../TextFlipper'
-import siteSettings from '../../src/siteSettings';
+import TextFlipper from '../TextFlipper';
 import { BookingContext } from '../../context/BookingContext'
+import siteSettings from '../../src/siteSettings';
 
 export default function Hero() {
   const { setIsOpen } = useContext(BookingContext);
-	const theme = useTheme();
-
+  const theme = useTheme();
+  const flipperItems = ['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evals', 'Mental Health Evals', 'Recurring Care'];
+	
   return (
     <Box sx={{
       backgroundColor: '#eee',
@@ -23,6 +24,7 @@ export default function Hero() {
       justifyContent: 'center',
       py: 15,
     }}>
+
       <Box sx={{
         position: 'absolute',
         width: '100%',
@@ -42,17 +44,40 @@ export default function Hero() {
 				</Typography>
         <Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
           with Quality&nbsp;
-					{/* The #1 Health Resource For Veterans On Their Path To&nbsp; */}
 					<Box component='span' sx={{ display: { xs: 'block', sm: 'inline' } }}>
               <TextFlipper items={['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evaluations', 'Mental Health Evaluations', 'Recurring Care']} lineColor={theme.palette.primary.main} />&nbsp;
           </Box>
           <br />
           for VA Disability Claims.
         </Typography>
+        
         <Grid container spacing={2}>
-          <Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} sx={{ backgroundColor: 'secondary.100' }}>Patient Portal</Button></Grid>
-          <Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsOpen(true)}>Book Now</Button></Grid>
+            <Grid item>
+              <Button
+                variant='outlined'
+                color='secondary'
+                size='large'
+                sx={{ backgroundColor: 'secondary.100' }}
+                href={siteSettings.externalLinks.patientPortal}
+                target='_blank'
+              >
+                Patient Portal
+              </Button>
+            </Grid>
+            
+            <Grid item>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                onClick={() => setIsOpen(true)}
+              >
+                Book Now
+              </Button>
+            </Grid>
+            
         </Grid>
+
       </Container>
     </Box>
   )

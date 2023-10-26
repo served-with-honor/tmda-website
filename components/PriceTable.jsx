@@ -54,10 +54,11 @@ export default function PriceTable({ rows }) {
           </TableHead>
           <TableBody>
             <AnimatePresence>
-              {items.map(({ label, subtext, items, amount, fee, category }, index) => {
+              {items.map(({ label, subtext, items, amount, fee, disclaimer, category }, index) => {
                 const formatAmount = amount => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
                 const price = typeof amount === 'number' ? formatAmount(amount) : Array.isArray(amount) ? amount.map(formatAmount).join(' - ') : amount;
                 const feeDisplay = typeof fee === 'number' ? formatAmount(fee) : Array.isArray(fee) ? fee.map(formatAmount).join(' - ') : fee;
+               
                 return (
                   selectedCategory === category ? <>
                     <MotionRow
@@ -70,8 +71,9 @@ export default function PriceTable({ rows }) {
                     >
                       <TableCell>
                         <Typography variant='subtitle2' component='span'>
-                        {label}
+                          {label}
                         </Typography>
+                          {disclaimer ? <sup>{disclaimer}</sup> : null}
                         {subtext ? (
                           <Typography variant='body2' component='span' sx={{ ml: 1 }}>
                             ({subtext})
@@ -79,7 +81,11 @@ export default function PriceTable({ rows }) {
                         ) : null}
                       </TableCell>
                       <TableCell align='right'>
-                        <Typography variant='subtitle1' color='success.light'>{feeDisplay}</Typography>
+                        {typeof fee === 'number' ? (
+                          <Typography variant='subtitle1' color='success.light'>{formatAmount(fee)}</Typography>
+                        ) : (
+                          <Typography variant='body1'>{fee}</Typography>
+                        )}
                       </TableCell>
                       <TableCell align='right'>
                         <Typography variant='subtitle1' color='success.light'>{price}</Typography>
