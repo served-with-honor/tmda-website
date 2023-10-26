@@ -7,7 +7,7 @@ import settings from '../src/siteSettings';
 import BookingPopup from '../components/BookingPopup'
 import { BookingContext } from '../context/BookingContext'
 
-export default function Page({ title, description, children, darkHeader }) {
+export default function Page({ title, description, children, darkHeader, hasHeroVideo }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
@@ -77,7 +77,7 @@ export default function Page({ title, description, children, darkHeader }) {
         </noscript>
       ) : null}
       
-      <Header ref={ref} isDark={darkHeader} />
+      <Header ref={ref} isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
       <main style={{ marginTop: headerHeight }}>{children}</main>
       {hasBookingPopup ? <BookingPopup /> : null}
       <Footer />
