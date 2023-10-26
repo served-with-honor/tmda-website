@@ -48,7 +48,7 @@ const baseTheme = responsiveFontSizes(createTheme({
       lineHeight: 1,
       textAlign: 'center',
       '&::after': {
-        backgroundColor: 'hsl(165, 48%, 62%)',
+        backgroundColor: '#70cdb5',
         content: '""',
         display: 'block',
         height: 2,
@@ -61,7 +61,7 @@ const baseTheme = responsiveFontSizes(createTheme({
   },
   palette: {
     primary: {
-      main: 'hsl(165, 48%, 62%)',
+      main: '#70cdb5',
       contrastText: '#000',
       100: '#eaf8f4',
       200: '#c0e9df',
