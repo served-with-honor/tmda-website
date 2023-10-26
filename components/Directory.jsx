@@ -100,8 +100,10 @@ const Person = ({ name, position, image, categories, isDepartmentLead }) => {
       const key = `directory-person-${slugify(name)}-category-${slugify(category)}`;
       return(
         <Chip key={key} label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(category) }} />
-        )
-      }) : null}
-    <Typography variant='body2'>{position}</Typography>
+      )
+    }) : null}
+    {position ? (
+      <Typography variant='body2'>{position}</Typography>
+    ) : null}
   </>
 };
