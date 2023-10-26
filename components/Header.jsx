@@ -78,7 +78,7 @@ export default forwardRef(function Header({ isDark }, ref) {
         width: '100%',
         paddingY: [1, 3],
         marginTop: 0,
-        zIndex: theme.zIndex.modal + 1,
+        zIndex: theme.zIndex.drawer + 1,
         '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
         '.MuiButton-contained': isDark && headerState === null ? { backgroundColor: 'primary.300' } : null,
       }}
