@@ -12,8 +12,7 @@ import siteSettings from '../../src/siteSettings';
 export default function Hero() {
   const { setIsOpen } = useContext(BookingContext);
   const theme = useTheme();
-  const flipperItems = ['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evals', 'Mental Health Evals', 'Recurring Care'];
-	
+  
   return (
     <Box sx={{
       backgroundColor: '#eee',
@@ -42,14 +41,21 @@ export default function Hero() {
         <Typography variant={'h1'} color={'secondary'} fontSize={30} sx={{ textTransform: 'uppercase' }}>
           Empowering <br />Veterans
 				</Typography>
-        <Typography variant={'body1'} fontSize={30} sx={{ fontStyle: 'italic', maxWidth: 600, mb: 5 }}>
+        <Typography variant={'body1'} sx={{
+          fontStyle: 'italic',
+          maxWidth: 600,
+          mb: 5,
+          fontSize: { xs: 26, sm: 30 },
+          'br': { display: { xs: 'none', sm: 'block' } },
+        }}>
           with Quality&nbsp;
 					<Box component='span' sx={{ display: { xs: 'block', sm: 'inline' } }}>
-              <TextFlipper items={['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evaluations', 'Mental Health Evaluations', 'Recurring Care']} lineColor={theme.palette.primary.main} />&nbsp;
+            <TextFlipper items={['Nexus Letters', 'DBQs', 'IMOs', 'Medical Evidence', 'Medical Evals', 'Mental Health Evals', 'Recurring Care']} lineColor={theme.palette.primary.main} />&nbsp;
           </Box>
           <br />
           for VA Disability Claims.
         </Typography>
+        
         
         <Grid container spacing={2}>
             <Grid item>
@@ -78,7 +84,9 @@ export default function Hero() {
             
         </Grid>
 
+
       </Container>
     </Box>
   )
 }
+
