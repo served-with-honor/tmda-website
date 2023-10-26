@@ -6,12 +6,22 @@ import { BookingContext } from '../context/BookingContext'
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+  const [bookingService, setBookingService] = useState(null);
 
+  const openBookingDialog = (isOpen, service = null) => {
+    setIsBookingDialogOpen(isOpen);
+    setBookingService(isOpen ? service : null);
+  }
+  
   return (
     <ThemeProvider theme={baseTheme}>
       <CssBaseline />
 
-      <BookingContext.Provider value={{ isOpen: isBookingDialogOpen, setIsOpen: setIsBookingDialogOpen }}>
+      <BookingContext.Provider value={{
+        isOpen: isBookingDialogOpen,
+        setIsOpen: openBookingDialog,
+        service: bookingService,
+      }}>
         <Component {...pageProps} />
       </BookingContext.Provider>
     </ThemeProvider>

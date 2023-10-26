@@ -261,7 +261,7 @@ export const getServerSideProps = async () => {
 		return person;
 	})
 	const providers = getProviders().map(person => {
-		person.position = person.degree;
+		person.position = person.degree || null;
 		delete person.degree;
 		return person;
 	});

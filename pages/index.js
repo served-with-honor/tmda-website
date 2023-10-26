@@ -17,7 +17,7 @@ export default function Home() {
 	const testimonialsRef = useRef(null);
 	
 	return (
-		<Page>
+		<Page hasHeroVideo>
     
 			<Hero />
 

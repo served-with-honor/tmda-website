@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from '../src/Link';
 import { styled } from '@mui/system';
@@ -15,20 +15,17 @@ import { slugify } from '../src/utils';
 import settings from '../src/siteSettings';
 import { BookingContext } from '../context/BookingContext'
 import { useTheme } from "@mui/material/styles";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MobileMenu from './MobileMenu'
 
 export default function MainMenu() {
   const router = useRouter();
   const selected = router.pathname;
 
-  const [menuShowingDropdown, setMenuShowingDropdown] = useState("");
   const { setIsOpen, scrollTo } = useContext(BookingContext);
-  const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false);
-
-  const handleMenuShowingDropdownChange = useCallback((menuTitle) => {
-    setMenuShowingDropdown(menuTitle);
-  }, []);
   const handleBookingClick = scrollTo ? scrollTo : setIsOpen ? () => setIsOpen(true) : null;
+  
+  const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false);
 
   const items = [
     {
@@ -78,8 +75,6 @@ export default function MainMenu() {
                     label={text}
                     items={children}
                     selected={selected}
-                    menuShowingDropdown={menuShowingDropdown}
-                    setMenuShowingDropdown={handleMenuShowingDropdownChange}
                   />
                 ) : (
                   <Button variant={'contained'} size={'small'} href={href} sx={{ px: 2 }}>{text}</Button>
@@ -130,17 +125,10 @@ const MyMenuItem = styled(MenuItem)(({ theme }) => ({
   
 }));
 
-const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowingDropdown }) => {
-
-  const theme = useTheme();
+const MenuGroup = ({ label, items, selected }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
-  const showSubMenu = useCallback(() => {
-    setMenuShowingDropdown(label);
-  }, [label, setMenuShowingDropdown]);
-
-  const closeSubMenu = useCallback(() => {
-    setMenuShowingDropdown("");
-  }, [setMenuShowingDropdown]);
+  const theme = useTheme();
 
   const menuName = `basic-${slugify(label)}`;
   const buttonId = `${menuName}-button`;
@@ -154,9 +142,8 @@ const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowing
       id={buttonId}
       // aria-controls={open ? menuId : undefined}
       aria-haspopup="true"
-      // aria-expanded={open ? 'true' : undefined}
-      onMouseEnter={() => { showSubMenu(); return; }}
-      onMouseLeave={() => { setMenuShowingDropdown(""); }}
+      aria-expanded={isOpen}
+      onClick={() => { setIsOpen(!isOpen); }}
       sx={{
         cursor: 'pointer',
         margin: 0,
@@ -166,20 +153,23 @@ const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowing
       }}
     >
       {label}
+      <KeyboardArrowDownIcon sx={{
+        color: 'primary.800',
+        transition: 'all 0.125s ease-in-out',
+        transform: isOpen ? 'rotate(-180deg)' : null,
+      }} size='small' />
     </Button>  
     <Menu
       id={menuId}
       anchorEl={buttonRef.current}
-      open={menuShowingDropdown === label}
-      onClose={closeSubMenu}
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
       MenuListProps={{
         'aria-labelledby': buttonId,
       }}
       slotProps={{
         paper: {
-          sx: { borderRadius: 3, p: 1 },
-          onMouseEnter: () => { showSubMenu(); },
-          onMouseLeave: () => { closeSubMenu(); },
+          sx: { borderRadius: 3, p: 1 }
         },
       }}
       keepMounted
@@ -187,6 +177,10 @@ const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowing
       {items.map(({ href, text, target, action }) => {
         const isSelected = href === selected;
         const key = `main-menu-sub-item-${slugify(text)}`;
+        const newAction = action ? () => {
+          setIsOpen(false);
+          action();
+        } : null;
 
         return (
           <MyMenuItem key={key} selected={isSelected}>
@@ -194,7 +188,7 @@ const MenuGroup = ({ label, items, selected, menuShowingDropdown, setMenuShowing
               {isSelected ? (
                 <><Box component={'span'} sx={visuallyHidden}>Current Page: </Box>{text}</>
               ) : action ? (
-                <MUILink component='button' onClick={action}>{ text }</MUILink>
+                <MUILink component='button' onClick={newAction}>{ text }</MUILink>
               ) : (
                 <Link href={href} target={target || ''}>{text}</Link>
               )}

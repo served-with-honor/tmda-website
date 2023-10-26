@@ -8,7 +8,7 @@ import Logo from '../public/images/logo.svg'
 import LogoWhite from '../public/images/logo-white.svg'
 import siteSettings from '../src/siteSettings';
 
-export default forwardRef(function Header({ isDark }, ref) {
+export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
   const [scope, animate] = useAnimate();
   const [headerState, setHeaderState] = useState(null);
   const { scrollY } = useScroll();
@@ -21,7 +21,7 @@ export default forwardRef(function Header({ isDark }, ref) {
     },
     'initial': {
       position: 'absolute',
-      backgroundColor: 'rgba(255,255,255,0)',
+      backgroundColor: hasHeroVideo && !isDark ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0)',
       y: 0,
     },
     'sticky': {
@@ -78,7 +78,7 @@ export default forwardRef(function Header({ isDark }, ref) {
         width: '100%',
         paddingY: [1, 3],
         marginTop: 0,
-        zIndex: theme.zIndex.modal + 1,
+        zIndex: theme.zIndex.drawer + 1,
         '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
         '.MuiButton-contained': isDark && headerState === null ? { backgroundColor: 'primary.300' } : null,
       }}
