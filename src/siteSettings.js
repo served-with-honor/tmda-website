@@ -42,6 +42,9 @@ export default {
       3514096, // Newsletter
     ],
   },
+  calendly: {
+    discoveryCall: 'https://calendly.com/rrealsola/discovery-call',
+  },
   booking: {
     id: '6220cc1b8bb5475494af878a',
     locations: {

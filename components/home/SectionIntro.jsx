@@ -1,15 +1,24 @@
-import { useContext } from 'react';
+import { useState, useRef, useEffect } from 'react'; 
+import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { BookingContext } from '../../context/BookingContext'
+import { PopupModal } from "react-calendly";
+import siteSettings from '../../src/siteSettings';
 
 export default function SectionIntro() {
-	const { setIsOpen } = useContext(BookingContext);
-
+	const [isOpen, setIsOpen] = useState(false);
+	const ref = useRef(null);
+	
+	useEffect(() => {
+		document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+	}, [isOpen]);
+	
+	const theme = useTheme();
+	
 	return (
-		<Box sx={{ py: 12 }}>
+		<Box sx={{ py: 12 }} ref={ref}>
 			<Container maxWidth='md' align='center'>
 				
 				<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>
@@ -22,12 +31,25 @@ export default function SectionIntro() {
 				<Button
 					variant='contained'
 					color='secondary'
-					onClick={() => setIsOpen(true, 'discoveryCall')}
+					onClick={() => setIsOpen(true)}
 				>
 					Book Your Free Call Now
 				</Button>
 
 			</Container>
+
+			<PopupModal
+				url={siteSettings.calendly.discoveryCall}
+				rootElement={ref.current}
+				open={isOpen}
+				onModalClose={() => setIsOpen(false)}
+				pageSettings={{
+					primaryColor: theme.palette.primary.main,
+					hideEventTypeDetails: true,
+					hideGdprBanner: true,
+				}}
+			/>
+			
 		</Box>
 	);
 };
