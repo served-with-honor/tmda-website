@@ -45,7 +45,6 @@ export default {
   booking: {
     id: '6220cc1b8bb5475494af878a',
     locations: {
-    locations: {
       'Alabama': '1',
       'Alaska': '4',
       'Arizona': '5',
