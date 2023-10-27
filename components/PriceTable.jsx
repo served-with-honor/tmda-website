@@ -48,8 +48,7 @@ export default function PriceTable({ rows }) {
           <TableHead>
             <TableRow sx={{ 'th': { color: 'secondary.main', fontWeight: '700' } }}>
               <TableCell width='100%'>Service</TableCell>
-              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Booking Fee</TableCell>
-              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Price per Document</TableCell>
+              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Price</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,8 +56,7 @@ export default function PriceTable({ rows }) {
               {items.map(({ label, subtext, items, amount, fee, disclaimer, category }, index) => {
                 const formatAmount = amount => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
                 const price = typeof amount === 'number' ? formatAmount(amount) : Array.isArray(amount) ? amount.map(formatAmount).join(' - ') : amount;
-                const feeDisplay = typeof fee === 'number' ? formatAmount(fee) : Array.isArray(fee) ? fee.map(formatAmount).join(' - ') : fee;
-               
+                
                 return (
                   selectedCategory === category ? <>
                     <MotionRow
@@ -80,13 +78,7 @@ export default function PriceTable({ rows }) {
                           </Typography>
                         ) : null}
                       </TableCell>
-                      <TableCell align='right'>
-                        {typeof fee === 'number' ? (
-                          <Typography variant='subtitle1' color='success.light'>{formatAmount(fee)}</Typography>
-                        ) : (
-                          <Typography variant='body1'>{fee}</Typography>
-                        )}
-                      </TableCell>
+                      
                       <TableCell align='right'>
                         <Typography variant='subtitle1' color='success.light'>{price}</Typography>
                       </TableCell>
