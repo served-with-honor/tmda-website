@@ -74,6 +74,7 @@ export default function ServicesPage({ title, description, prices }) {
 								title="video_title"
 								aspectWidth={16}
 								aspectHeight={9}
+								params={`rel=0&color=white`}
 							/>
 								<Grid
 									container 
