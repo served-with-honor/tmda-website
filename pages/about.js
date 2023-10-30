@@ -265,6 +265,8 @@ export const getServerSideProps = async () => {
 		person.categories = [person.team] || null;
 		person.position = person.certification || null;
 		delete person.certification;
+		person.isDepartmentLead = person.isTeamLead || null;
+		delete person.isTeamLead;
 		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
 		return person;
 	});
