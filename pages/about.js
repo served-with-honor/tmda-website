@@ -261,7 +261,8 @@ export const getServerSideProps = async () => {
 		return person;
 	})
 	const providersResponse = await getProviders();
-		const providers = providersResponse.map(person => {
+	const providers = providersResponse.map(person => {
+		person.categories = [person.team] || null;
 		person.position = person.certification || null;
 		delete person.certification;
 		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
