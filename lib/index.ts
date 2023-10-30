@@ -71,6 +71,7 @@ const getTeamMembers = async (): Promise<{ name: string, position: string, image
     *[
       _type == "teamMember"
       && active
+      && hidden != true
       && 'Telemedica' in entity[]
       && !(_id in path("drafts.**")) 
     ] | order(orderRank asc){
