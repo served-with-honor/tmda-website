@@ -8,7 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { slugify } from '../src/utils';
 import { format } from 'path';
@@ -23,20 +23,21 @@ export default function PriceTable({ rows }) {
   }, [selectedCategory]);
 
   return <>
-    <Stack direction='row' justifyContent={'center'} gap={1} sx={{ marginBottom: 3 }}>
+    <Grid container gap={1} sx={{ justifyContent: 'center', marginBottom: 3 }}>
       {categories.map((category) => {
         const isCurrent = selectedCategory === category;
         return (
-          <Chip
-            key={`price-table-category-${slugify(category)}-button`}
-            variant={isCurrent ? 'contained' : 'outlined'}
-            onClick={() => setSelectedCategory(category)}
-            color={isCurrent ? "secondary" : "secondary"}
-            label={category}
-          />
+          <Grid item key={`price-table-category-${slugify(category)}-button`}>
+            <Chip
+              variant={isCurrent ? 'contained' : 'outlined'}
+              onClick={() => setSelectedCategory(category)}
+              color={isCurrent ? "secondary" : "secondary"}
+              label={category}
+            />
+          </Grid>
         )
       })}
-    </Stack>
+    </Grid>
     <Box sx={{
       border: 1,
       borderColor: 'primary.main',
