@@ -260,9 +260,11 @@ export const getServerSideProps = async () => {
 		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
 		return person;
 	})
-	const providers = getProviders().map(person => {
-		person.position = person.degree || null;
-		delete person.degree;
+	const providersResponse = await getProviders();
+		const providers = providersResponse.map(person => {
+		person.position = person.certification || null;
+		delete person.certification;
+		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
 		return person;
 	});
 	const serveTabs = [
