@@ -68,12 +68,22 @@ export default function PriceTable({ rows }) {
                       sx={{ '&:last-child td, &:last-child th': { borderBottom: 0 }, '& td': { borderBottom: items ? 0 : null} }}
                     >
                       <TableCell>
-                        <Typography variant='subtitle2' component='span'>
+                        <Typography
+                          variant='subtitle2'
+                          component='span'
+                          sx={{ mr: subtext ? 1 : 0 }}
+                        >
                           {label}
+                          {disclaimer ? (
+                            <Typography component='sup' varian='body2'>{disclaimer}</Typography>
+              )           : null}
                         </Typography>
-                          {disclaimer ? <sup>{disclaimer}</sup> : null}
                         {subtext ? (
-                          <Typography variant='body2' component='span' sx={{ ml: 1 }}>
+                          <Typography
+                            variant='body2'
+                            component='span'
+                            sx={{ display: { xs: 'block', sm: 'initial' } }}
+                          >
                             ({subtext})
                           </Typography>
                         ) : null}
