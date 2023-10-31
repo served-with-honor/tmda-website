@@ -39,7 +39,7 @@ export default function SectionFAQs() {
   return (
     <Box sx={{
       background: 'linear-gradient(135deg, #e2f5f1 0%, #d5d9e4 100%)',
-      paddingY: 12,
+      py: { xs: 7, md: 10, },
     }}>
       <Container maxWidth='md'>
         <Typography variant='sectionHeading' component='h2' sx={{ mb: 8 }}>Frequently Asked Questions</Typography>

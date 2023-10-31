@@ -6,7 +6,7 @@ import ImageDrSmiling from '../../public/images/Dr_Smiling_Resized.jpeg'
 
 export default function SectionBenefits() {
   return (
-			<Box paddingY={12} sx={{ position: 'relative'}} >
+    <Box sx={{ py: { xs: 7, md: 10, }, position: 'relative', }}>
       <Box sx={{ position: 'absolute', width: { xs: '100%', md: '50%' }, left: 0, top: 0, height: '100%', overflow: 'hidden', opacity: { xs: 0.15, md: 1 } }}>
         <Image fill src={ImageDrSmiling} alt="" style={{ objectFit: 'cover' }} />
       </Box>

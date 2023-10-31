@@ -26,7 +26,7 @@ export default function SectionPrimaryActions() {
   ];
 
   return (
-    <Box paddingY={12} sx={{ backgroundColor: 'grey.50'}}>
+    <Box sx={{ backgroundColor: 'grey.50', py: { xs: 7, md: 10 }, }}>
       <Container sx={{ position: 'relative' }}>
 
         <motion.div

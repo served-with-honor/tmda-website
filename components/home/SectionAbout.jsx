@@ -21,7 +21,7 @@ export default function SectionAbout({ testimonialsRef }) {
   return (
     <Box ref={counterRef} sx={{
       background: 'linear-gradient(-135deg, #e2f5f1 0%, #d5d9e4 100%)',
-      paddingY: 10,
+      py: { xs: 7, md: 10, },
     }}>
       <Container>
         <Grid container={true} spacing={5} sx={{ alignItems: 'center' }}>
