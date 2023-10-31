@@ -255,16 +255,17 @@ export const getServerSideProps = async () => {
 	const title = 'About';
 	const description = 'Telemedica is committed to providing high-quality medical evidence for veterans in all 50 states seeking to increase their VA disability benefits.';
 
+	const createPersonImage = person => ({ ...person, image: person?.image? builder.image(person.image).size(300, 300).url() : null });
+
 	const teamMembersResponse = await getTeamMembers();
-	const teamMembers = teamMembersResponse.map(person => {
-		person.image = person?.image ? builder.image(person.image).size(300, 300).url() : null;
-		return person;
-	})
-	const providers = getProviders().map(person => {
-		person.position = person.degree || null;
-		delete person.degree;
+	const teamMembers = teamMembersResponse.map(createPersonImage);
+	const providersResponse = await getProviders();
+	const providers = providersResponse.map(createPersonImage).map(person => {
+		person.position = person.certification || null;
+		delete person.certification;
 		return person;
 	});
+	
 	const serveTabs = [
 		{
 			title: 'Who We Serve',
