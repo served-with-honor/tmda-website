@@ -63,7 +63,7 @@ const Column = ({ text, button, index }) => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
       >
-        <Typography variant={'body1'} align={'center'} marginBottom={3}>
+        <Typography variant={'body1'} align={'center'} gutterBottom>
           <Button
             size={'large'}
             variant={'contained'}

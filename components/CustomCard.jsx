@@ -56,7 +56,7 @@ export default function CustomCard({ image, heading, description, button, entire
                 <Typography color='secondary' variant='h6' component='h2' marginBottom={3}>{heading}</Typography>
             ) : null}
             {description ? (
-                <Typography variant='body1' marginBottom={3}>{description}</Typography>
+                <Typography variant='body1' gutterBottom>{description}</Typography>
             ) : null}
             {button ? (
                 <Button

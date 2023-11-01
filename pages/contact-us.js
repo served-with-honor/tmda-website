@@ -31,7 +31,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 			}}>
 				<Container>
 					<Typography variant='h1' color='primary'>Get In Touch</Typography>
-					<Typography variant='body1' sx={{ fontSize: 32, mb: 3 }}>Please let us know how we can assist you.</Typography>
+					<Typography variant='body1' gutterBottom sx={{ fontSize: 32, }}>Please let us know how we can assist you.</Typography>
 					<Stack direction={'row'} gap={3}>
 						<Button size='large' color='primary' variant={'contained'} href={`tel:${settings.contact.phone}`} target="_blank">Call Us</Button>
 						<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
@@ -42,7 +42,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 			<Box sx={{ paddingY: 20 }}>
 				<Container maxWidth='md'>
 					<Typography variant='sectionHeading' color='secondary' align='center' gutterBottom>How Can We Help You?</Typography>
-					<Typography variant='body1' align='center' gutterBottom sx={{ mb: 10 }}>Fill out the form below to send us a message and a member of our team will get back to you shortly!</Typography>
+					<Typography variant='body1' align='center' sx={{ mb: 10 }}>Fill out the form below to send us a message and a member of our team will get back to you shortly!</Typography>
 					<ContactForm />
 				</Container>
 			</Box>

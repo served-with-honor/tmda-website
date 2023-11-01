@@ -85,7 +85,7 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
       </IconButton>
       <Box sx={{ backgroundColor: 'primary.100', p: 5, textAlign: 'center' }}>
         <Typography variant='h2' gutterBottom color='primary.700'>Stay Connected</Typography>
-        <Typography variant='body1' sx={{ mb: 3 }}>Updates at your fingertips! Subscribe to our email list and stay connected to our growing veteran community</Typography>
+        <Typography variant='body1' gutterBottom>Updates at your fingertips! Subscribe to our email list and stay connected to our growing veteran community</Typography>
         <Box sx={{ mb: 3 }}>
           { hasSubmited ? (
             <Alert severity="success">Success!</Alert>

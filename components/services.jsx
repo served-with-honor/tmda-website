@@ -87,7 +87,7 @@ export default [
         <Typography variant='body2' gutterBottom>
           * See the full list of conditions we assess below.
         </Typography>
-        <Typography sx={{ mb: 3 }} variant='body1'>
+        <Typography gutterBottom variant='body1'>
           No documentation is mandatory for this service, but we strongly recommend uploading documents to your patient portal for a more comprehensive evaluation.
         </Typography>
         <Typography variant='subtitle2' component='p'>Recommended Documents:</Typography>
