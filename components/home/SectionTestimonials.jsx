@@ -14,7 +14,7 @@ import items from '../../lib/content/testimonials';
 
 export default forwardRef(function SectionTestimonials(props, ref) {
   return (
-    <Box paddingY={12} backgroundColor='grey.50' id="testimonials" ref={ref}>
+    <Box id="testimonials" ref={ref} sx={{ backgroundColor: 'grey.50', py: { xs: 7, md: 10, }, }}>
       <Container maxWidth={'md'}>
 				
         <Typography variant={'sectionHeading'} sx={{ mb: 8 }}>Testimonials</Typography>

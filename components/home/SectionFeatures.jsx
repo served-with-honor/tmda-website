@@ -24,7 +24,7 @@ export default function SectionFeatures() {
   ];
   
   return (
-    <Box paddingY={12} align={'center'} backgroundColor='grey.50'>
+    <Box align={'center'} sx={{ backgroundColor: 'grey.50', py: { xs: 7, md: 10, }, }}>
       <Container>
         <motion.div
           initial={{ opacity: 0 }}

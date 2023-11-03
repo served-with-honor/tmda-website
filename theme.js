@@ -95,6 +95,13 @@ const baseTheme = responsiveFontSizes(createTheme({
           lead: 'p',
         },
       },
+      styleOverrides: {
+        body1: ({ ownerState, theme }) => ({
+          ...(ownerState.gutterBottom && {
+            marginBottom: theme.spacing(3),
+          }),
+        }),
+      },
     },
     MuiLink: {
       styleOverrides: {

@@ -34,8 +34,7 @@ export default {
     providerPortal: 'https://intakeq.com/',
     jobs: 'https://telemedica.rippling-ats.com/',
   },
-  googleTagManagerId: 'GTM-MLD2CCD',
-  googleAnalyticsId: 'G-73TKHSVTNZ',
+  googleMeasurementId: 'GTM-MLD2CCD',
   mailchimp: {
     tags: [
       3514092, // Website

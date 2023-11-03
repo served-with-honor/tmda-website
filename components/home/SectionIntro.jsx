@@ -18,7 +18,7 @@ export default function SectionIntro() {
 	const theme = useTheme();
 	
 	return (
-		<Box sx={{ py: 12 }} ref={ref}>
+		<Box sx={{ py: { xs: 7, md: 10, }, }} ref={ref}>
 			<Container maxWidth='md' align='center'>
 				
 				<Typography variant="sectionHeading">Medical Evidence Wins Claims!</Typography>

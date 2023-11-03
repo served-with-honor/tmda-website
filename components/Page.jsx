@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
+import Script from 'next/script'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from './Header'
@@ -40,40 +41,29 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <meta name="msapplication-TileColor" content="#74c8b4"/>
         <meta name="theme-color" content="#ffffff" />
         
-        {process.env.NODE_ENV === 'production' ? (
-          settings.googleTagManagerId !== undefined ? (
-            <>
-              <script>
-                {`
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${settings.googleTagManagerId}');
-                `}
-              </script>
-            </>
-          ) : settings.googleAnalyticsId !== undefined ? (
-            <>
-              <script src={`https://www.googletagmanager.com/gtag/js?id=${settings.googleAnalyticsId}`} />
-              <script id="google-analytics">
-                {`
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-
-                  gtag('config', '${settings.googleAnalyticsId}');
-                `}
-              </script>
-            </>
-          ) : null
-        ) : null}
+        {settings.googleMeasurementId ? (<>
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${settings.googleMeasurementId}`} />
+          <Script>
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+    
+              gtag('config', '${settings.googleMeasurementId}');
+            `}
+          </Script>
+        </>) : null}
 
       </Head>
       
-      {process.env.NODE_ENV === 'production' && settings.googleTagManagerId !== undefined ? (
+      {settings.googleMeasurementId ? (
         <noscript>
-          <iframe src={`https://www.googletagmanager.com/ns.html?id=${settings.googleTagManagerId}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${settings.googleMeasurementId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
         </noscript>
       ) : null}
       

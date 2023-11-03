@@ -14,7 +14,7 @@ export default forwardRef(function SectionArticles(props, ref) {
   const { data, error, isLoading } = useSWR('/api/posts?first=3', fetcher);
   
   return (
-    <Box paddingY={12} ref={ref}>
+    <Box sx={{ py: { xs: 7, md: 10, }, }} ref={ref}>
       <Container>
         
         <Typography variant={'sectionHeading'} component={'h2'} sx={{ mb: 8 }}>Free Resource for Veterans</Typography>

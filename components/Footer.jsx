@@ -41,11 +41,13 @@ export default function Footer() {
 		<ThemeProvider theme={darkTheme}>
 			<footer>
 				<Box sx={{
-					// background: 'linear-gradient(180deg, #1F2C52, #000)',
 					backgroundColor: 'secondary.100',
 					pt: 8,
 					pb: 3,
 					color: 'text.primary',
+					'ul': { listStyleType: 'none', pl: 0 },
+					'li': { mt: 0, mb: 1, },
+					'li:last-of-type': { mb: 0 }
 				}}>
 					<Container>
 						<Grid container spacing={5}>
@@ -56,7 +58,7 @@ export default function Footer() {
 							<Grid container item sm={12} md={9} spacing={5}>
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Quick Links</Typography>
-									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+									<ul>
 										<li><Link href={'/about'}>About</Link></li>
 										<li><Link href={'/services'}>Services</Link></li>
 										<li><Link href={'/blog'}>News & Updates</Link></li>
@@ -67,12 +69,12 @@ export default function Footer() {
 
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get Help</Typography>
-									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+									<ul>
 										<li><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></li>
 										<li><Link href={'/contact-us'}>Contact Us</Link></li>
 									</ul>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get In Touch</Typography>
-									<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+									<ul>
 										<li><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></li>
 										<li><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></li>
 									</ul>
@@ -86,13 +88,15 @@ export default function Footer() {
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
 										<Skeleton variant="text" sx={{ fontSize: '1rem', mt: 3 }} animation="wave" />
 									</Box> : posts && posts.length > 0 ? (
-										<ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-											{posts.map(({ title, slug }) => {
-												const limit = 64;
-												const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
-												return <Box component='li' key={`footer-article-${slug}`} sx={{ mb: 2 }}><Link href={`/blog/${slug}`}>{text}</Link></Box>
-											})}
-										</ul>
+										<Box sx={{ 'li': { mb: 2 } }}>
+											<ul>
+												{posts.map(({ title, slug }) => {
+													const limit = 64;
+													const text = title.length > limit ? `${title.substring(0, limit).trim()}...` : title;
+													return <li component='li' key={`footer-article-${slug}`}><Link href={`/blog/${slug}`}>{text}</Link></li>
+												})}
+											</ul>
+										</Box>
 										): null}
 								</Grid>
 

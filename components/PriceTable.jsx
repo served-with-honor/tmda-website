@@ -8,7 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { slugify } from '../src/utils';
 import { format } from 'path';
@@ -23,20 +23,21 @@ export default function PriceTable({ rows }) {
   }, [selectedCategory]);
 
   return <>
-    <Stack direction='row' justifyContent={'center'} gap={1} sx={{ marginBottom: 3 }}>
+    <Grid container gap={1} sx={{ justifyContent: 'center', marginBottom: 3 }}>
       {categories.map((category) => {
         const isCurrent = selectedCategory === category;
         return (
-          <Chip
-            key={`price-table-category-${slugify(category)}-button`}
-            variant={isCurrent ? 'contained' : 'outlined'}
-            onClick={() => setSelectedCategory(category)}
-            color={isCurrent ? "secondary" : "secondary"}
-            label={category}
-          />
+          <Grid item key={`price-table-category-${slugify(category)}-button`}>
+            <Chip
+              variant={isCurrent ? 'contained' : 'outlined'}
+              onClick={() => setSelectedCategory(category)}
+              color={isCurrent ? "secondary" : "secondary"}
+              label={category}
+            />
+          </Grid>
         )
       })}
-    </Stack>
+    </Grid>
     <Box sx={{
       border: 1,
       borderColor: 'primary.main',
@@ -48,8 +49,7 @@ export default function PriceTable({ rows }) {
           <TableHead>
             <TableRow sx={{ 'th': { color: 'secondary.main', fontWeight: '700' } }}>
               <TableCell width='100%'>Service</TableCell>
-              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Booking Fee</TableCell>
-              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Price per Document</TableCell>
+              <TableCell align='right' sx={{ whiteSpace: 'nowrap' }}>Price</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,8 +57,7 @@ export default function PriceTable({ rows }) {
               {items.map(({ label, subtext, items, amount, fee, disclaimer, category }, index) => {
                 const formatAmount = amount => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
                 const price = typeof amount === 'number' ? formatAmount(amount) : Array.isArray(amount) ? amount.map(formatAmount).join(' - ') : amount;
-                const feeDisplay = typeof fee === 'number' ? formatAmount(fee) : Array.isArray(fee) ? fee.map(formatAmount).join(' - ') : fee;
-               
+                
                 return (
                   selectedCategory === category ? <>
                     <MotionRow
@@ -70,23 +69,27 @@ export default function PriceTable({ rows }) {
                       sx={{ '&:last-child td, &:last-child th': { borderBottom: 0 }, '& td': { borderBottom: items ? 0 : null} }}
                     >
                       <TableCell>
-                        <Typography variant='subtitle2' component='span'>
+                        <Typography
+                          variant='subtitle2'
+                          component='span'
+                          sx={{ mr: subtext ? 1 : 0 }}
+                        >
                           {label}
+                          {disclaimer ? (
+                            <Typography component='sup' varian='body2'>{disclaimer}</Typography>
+              )           : null}
                         </Typography>
-                          {disclaimer ? <sup>{disclaimer}</sup> : null}
                         {subtext ? (
-                          <Typography variant='body2' component='span' sx={{ ml: 1 }}>
+                          <Typography
+                            variant='body2'
+                            component='span'
+                            sx={{ display: { xs: 'block', sm: 'initial' } }}
+                          >
                             ({subtext})
                           </Typography>
                         ) : null}
                       </TableCell>
-                      <TableCell align='right'>
-                        {typeof fee === 'number' ? (
-                          <Typography variant='subtitle1' color='success.light'>{formatAmount(fee)}</Typography>
-                        ) : (
-                          <Typography variant='body1'>{fee}</Typography>
-                        )}
-                      </TableCell>
+                      
                       <TableCell align='right'>
                         <Typography variant='subtitle1' color='success.light'>{price}</Typography>
                       </TableCell>

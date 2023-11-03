@@ -1,11 +1,14 @@
 import { useState, useEffect, forwardRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTheme, Box, Container, Grid } from '@mui/material'
-import { motion, useAnimate, useScroll, useMotionValueEvent } from "framer-motion"
-import MainMenu from './MainMenu'
-import Logo from '../public/images/logo.svg'
-import LogoWhite from '../public/images/logo-white.svg'
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import { motion, useAnimate, useScroll, useMotionValueEvent } from 'framer-motion';
+import MainMenu from './MainMenu';
+import Logo from '../public/images/logo.svg';
+import LogoWhite from '../public/images/logo-white.svg';
 import siteSettings from '../src/siteSettings';
 
 export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
@@ -80,7 +83,8 @@ export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
         marginTop: 0,
         zIndex: theme.zIndex.drawer + 1,
         '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
-        '.MuiButton-contained': isDark && headerState === null ? { backgroundColor: 'primary.300' } : null,
+        '.MuiButton-text': isDark && headerState === null ? { color: 'primary.200' } : null,
+        '.MuiSvgIcon-root': isDark && headerState === null ? { color: 'primary.600' } : null,
       }}
     >
       <Container sx={{ position: 'relative' }}>
