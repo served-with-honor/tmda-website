@@ -135,7 +135,7 @@ export default function ServicesPage({ title, description, prices }) {
 						<Box sx={{ mt: 6 }}>
 							{/* Discount Section */}
 							<Typography display='inline' variant='h6'>Discounts: </Typography>
-							<Typography sx={{ fontStyle: 'italic'}} display='inline'>A volume discount of 15% applies when you purchase three (3) or more documents.</Typography>
+							<Typography sx={{ fontStyle: 'italic'}} display='inline'>A volume discount of 10% applies when you purchase three (3) or more documents.</Typography>
 							<Typography sx={{ fontStyle: 'italic', pt: 1.5, pb: 2}} >First-time discounts and 3rd-party discounts may apply. Inquire within.</Typography>
 							{/* Disclaimer Section */}
 							<Typography variant='h6'>Disclaimers:</Typography>
