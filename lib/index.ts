@@ -57,6 +57,8 @@ const emailContactForm = async (data: Object) => {
       try {
         const response = await mandrillClient.messages.send({ message });
         if (response.isAxiosError) throw response;
+        if (response[0].status === 'rejected' || response[0].status === 'invalid') throw response[0].reject_reason;
+        
         resolve(response);
       } catch (error) {
         if (operation.retry(error)) return;
