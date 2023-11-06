@@ -5,7 +5,6 @@ const mandrillClient = require("@mailchimp/mailchimp_transactional")(process.env
 const mailchimpClient = require("@mailchimp/mailchimp_marketing");
 
 import sanityClient from './sanityConfig'
-import settings from '../src/siteSettings';
 
 mailchimpClient.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
@@ -44,20 +43,22 @@ const logContactForm = (data: Object) => {
 const emailContactForm = async (data: Object) => {
   const operation = retry.operation(retryOperationConfig);
   const message = {
-    ...{
-      from_email: process.env.EMAIL_FROM,
-      from_name: process.env.EMAIL_NAME,
-      to: process.env.EMAIL_TO?.split(',').map(email => ({ email })),
-    },
-    ...data
+    ...data,
+    from_email: process.env.EMAIL_FROM,
+    from_name: process.env.EMAIL_NAME,
+    to: [{ email: process.env.EMAIL_TO }],
   };
 
   return new Promise((resolve, reject) => {
+    if(!message.from_email) reject('No from email');
+    if(!message.to) reject('No to email');
+
     operation.attempt(async () => {
       try {
         const response = await mandrillClient.messages.send({ message });
-        if (response.isAxiosError) throw response;
-        if (response[0].status === 'rejected' || response[0].status === 'invalid') throw response[0].reject_reason;
+        if (response.isAxiosError) throw response.response?.data?.message || response;
+        if (response.length < 1) throw 'whooops';
+        if (response[0].reject_reason) throw response[0].reject_reason;
         
         resolve(response);
       } catch (error) {
