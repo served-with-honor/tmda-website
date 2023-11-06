@@ -18,12 +18,11 @@ export default async function handler(
     }).toString();
 
     const result = await fetch(url, { method: 'POST' });
-    const body = await result.json();
     
-    if (!result.ok) {
-      if (body.error) throw Error(body.error);  
-      throw Error(`${result.status}: ${result.statusText}`);
-    }
+    if (!result.ok) throw Error(`${result.status}: ${result.statusText}`);
+    
+    const body = await result.json();
+    if (body.error) throw Error(body.error);
 
     if (body.result !== "success") throw Error(body.msg);
     

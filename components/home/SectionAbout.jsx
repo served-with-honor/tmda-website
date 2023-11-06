@@ -19,7 +19,7 @@ export default function SectionAbout({ testimonialsRef }) {
   }
   
   return (
-    <Box ref={counterRef} sx={{
+    <Box sx={{
       background: 'linear-gradient(-135deg, #e2f5f1 0%, #d5d9e4 100%)',
       py: { xs: 7, md: 10, },
       textAlign: { xs: 'center', md: 'left' },
@@ -44,7 +44,7 @@ export default function SectionAbout({ testimonialsRef }) {
               {' '}about Telemedica LLC.</Typography>
           </Grid>
           <Grid item md={4} sx={{ mx: 'auto' }}>
-            <Box sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Box ref={counterRef} sx={{ position: 'relative', height: 275, width: 275, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Box sx={{
                 position: 'absolute',
                 height: '100%',
