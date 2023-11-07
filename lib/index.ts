@@ -2,12 +2,6 @@ const firebase = require('firebase-admin');
 const { getFirestore, Timestamp } = require('firebase-admin/firestore');
 const retry = require('retry');
 const mandrillClient = require("@mailchimp/mailchimp_transactional")(process.env.MANDRILL_API_KEY);
-const mailchimpClient = require("@mailchimp/mailchimp_marketing");
-
-mailchimpClient.setConfig({
-  apiKey: process.env.MAILCHIMP_API_KEY,
-  server: process.env.MAILCHIMP_SERVER,
-});
 
 const retryOperationConfig = {
   retries: 3,
