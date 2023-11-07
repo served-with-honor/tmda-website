@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { useCookies } from 'react-cookie';
 import siteSettings from '../src/siteSettings';
 import { slugify } from '../src/utils';
+import constants from '../src/constants';
 
 export default function BookingWidget({ service = null }) {
   const regionsList = [
@@ -80,7 +81,7 @@ export default function BookingWidget({ service = null }) {
       return;
     }
     
-    fetch(`http://www.geoplugin.net/json.gp?`)
+    fetch(constants.geoPlugin.url)
       .then(response => response.json())
       .then(body => {
         const {
@@ -118,7 +119,7 @@ export default function BookingWidget({ service = null }) {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.defer = true;
-    script.src = "https://intakeq.com/js/widget.min.js?1";
+    script.src = constants.intakeq.widgetUrl;
     document.head.appendChild(script);
     
   }, [region, service]);

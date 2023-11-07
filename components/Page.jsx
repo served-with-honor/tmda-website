@@ -7,6 +7,7 @@ import Footer from './Footer'
 import settings from '../src/siteSettings';
 import BookingPopup from '../components/BookingPopup'
 import { BookingContext } from '../context/BookingContext'
+import constants from '../src/constants';
 
 export default function Page({ title, description, children, darkHeader, hasHeroVideo }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
@@ -42,7 +43,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <meta name="theme-color" content="#ffffff" />
         
         {settings.googleMeasurementId ? (<>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${settings.googleMeasurementId}`} />
+          <Script src={constants.google.gtmWidgetUrl} />
           <Script>
             {`
               window.dataLayer = window.dataLayer || [];
@@ -59,7 +60,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
       {settings.googleMeasurementId ? (
         <noscript>
           <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${settings.googleMeasurementId}`}
+            src={constants.google.gtmNoScriptUrl}
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
