@@ -1,6 +1,21 @@
 import sanityClient from '../src/sanityConfig';
+import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 
-const getTeamMembers = async (): Promise<{ name: string, position: string, image?: any }[]> => {
+interface ITeamMember {
+  name: string,
+  position: string,
+  image?: SanityImageSource,
+}
+
+interface IProvider {
+  name: string,
+  certification: string,
+  team: string,
+  image?: SanityImageSource,
+  isTeamLead?: boolean
+}
+
+const getTeamMembers = async (): Promise<ITeamMember[]> => {
   const query = `
     *[
       _type == "teamMember"
@@ -18,7 +33,7 @@ const getTeamMembers = async (): Promise<{ name: string, position: string, image
   return await sanityClient.fetch(query);
 }
 
-const getProviders = async (): Promise<{ name: string, certification: string, team: string, image?: any, isTeamLead?: boolean }[]> => {
+const getProviders = async (): Promise<IProvider[]> => {
   const query = `
     *[_type=='provider'
     && active
