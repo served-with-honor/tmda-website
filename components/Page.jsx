@@ -44,23 +44,24 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#74c8b4"/>
         <meta name="msapplication-TileColor" content="#74c8b4"/>
         <meta name="theme-color" content="#ffffff" />
-        
-        {settings.googleMeasurementId ? (<>
-          <Script src={constants.google.gtmWidgetUrl} />
-          <Script>
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-    
-              gtag('config', '${settings.googleMeasurementId}');
-            `}
-          </Script>
-        </>) : null}
-
       </Head>
       
-      {settings.googleMeasurementId ? (
+      <Header ref={ref} isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
+      <main style={{ marginTop: headerHeight }}>{children}</main>
+      {hasBookingPopup ? <BookingPopup /> : null}
+      <Footer />
+      
+      {settings.googleMeasurementId ? <>
+        <Script src={constants.google.gtmWidgetUrl} />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', '${settings.googleMeasurementId}');
+          `}
+        </Script>
         <noscript>
           <iframe
             src={constants.google.gtmNoScriptUrl}
@@ -69,13 +70,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
             style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
-      ) : null}
-      
-      <Header ref={ref} isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
-      <main style={{ marginTop: headerHeight }}>{children}</main>
-      {hasBookingPopup ? <BookingPopup /> : null}
-      <Footer />
-      
+      </> : null}
     </>
   )
 }
