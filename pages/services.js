@@ -24,9 +24,7 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 export default function ServicesPage({ title, description, prices }) {
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
-	const handleBookNowClick = (event) => {
-		event.preventDefault();
-		
+	const handleBookNowClick = () => {
 		const isMobileDevice = window.innerWidth < 900;
 		const behavior = 'smooth'
 		if(isMobileDevice) {

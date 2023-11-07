@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import MapAnim from '../components/MapAnim'
-import { getTeamMembers, getProviders } from '../lib'
+import { getTeamMembers, getProviders } from '../lib/sanity'
 import siteSettings from '../src/siteSettings';
 import Counter from '../components/Counter'
 import CustomTabs from '../components/CustomTabs'
@@ -22,13 +22,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import Section1 from '../components/about/Section1'
-import texture01 from '../public/texture-01.jpg'
+import texture01 from '../public/images/texture-01.jpg'
 import missionIcon from '../public/images/mission.svg'
 import purposeIcon from '../public/images/Purpose.svg'
 import visionIcon from '../public/images/shared-vision.svg'
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url"
-import sanityClient from '../lib/sanityConfig'
+import sanityClient from '../src/sanityConfig'
 import { BookingContext } from '../context/BookingContext'
 
 const builder = imageUrlBuilder(sanityClient);

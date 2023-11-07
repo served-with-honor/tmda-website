@@ -3,3 +3,4 @@ User-agent: *
 Disallow: /api/posts
 Disallow: /api/newsletter
 Disallow: /api/form
+Disallow: /discovery-call-confirmed

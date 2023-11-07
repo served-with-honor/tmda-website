@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
 import Link from '@mui/material/Link';
 import Page from '../../components/Page'
-import { getPosts, getCategories, getCategory } from '../../lib/api'
+import { getPosts, getCategories, getCategory } from '../../lib/wordpress'
 import ArticleCard from '../../components/ArticleCard'
 import { slugify } from '../../src/utils';
 import NewsletterDialog from '../../components/NewsletterDialog'

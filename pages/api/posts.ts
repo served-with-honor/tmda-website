@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getPosts } from '../../lib/api'
+import { getPosts } from '../../lib/wordpress'
 
 export default async function handler(
   request: NextApiRequest,

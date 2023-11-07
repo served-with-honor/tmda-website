@@ -2,11 +2,11 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Page from '../components/Page'
-import texture01 from '../public/texture-01.jpg';
+import texture01 from '../public/images/texture-01.jpg';
 
 export default function DiscoveryCallConfirmedPage() {
 	return (
-		<Page title={'Discovery Call Confirmation'}>
+		<Page title={'Discovery Call Confirmation'} noindex>
 
 			{/* HERO */}
 			<Box sx={{

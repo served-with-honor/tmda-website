@@ -1,6 +1,6 @@
 import fs from 'fs';
 import RSS from 'rss';
-import { getPosts } from '../lib/api';
+import { getPosts } from '../lib/wordpress';
 import settings from '../src/siteSettings'
 
 export default async function generateRssFeed() {

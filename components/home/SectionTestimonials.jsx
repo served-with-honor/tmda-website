@@ -11,6 +11,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import items from '../../lib/content/testimonials';
+import siteSettings from '../../src/siteSettings';
 
 export default forwardRef(function SectionTestimonials(props, ref) {
   return (
@@ -31,7 +32,7 @@ export default forwardRef(function SectionTestimonials(props, ref) {
         </Box>
 				
         <Box align='center' sx={{ mt: 10 }}>
-          <Button variant='contained' href='https://g.page/r/CXLI9fZbuI4iEB0/review' target='_blank'>
+          <Button variant='contained' href={siteSettings.externalLinks.googleReviews} target='_blank'>
             Leave A Review
           </Button>
         </Box>

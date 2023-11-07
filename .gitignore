@@ -33,3 +33,6 @@ yarn-error.log*
 .env.production.local
 
 *.http
+
+# Local Netlify folder
+.netlify

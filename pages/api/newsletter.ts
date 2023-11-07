@@ -1,6 +1,6 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import settings from '../../src/siteSettings';
+import constants from '../../src/constants';
 
 export default async function handler(
   request: NextApiRequest,
@@ -9,7 +9,7 @@ export default async function handler(
   try {
     const { email } = JSON.parse(request.body) || {};
 
-    const url = new URL(`https://${process.env.MAILCHIMP_COMPANY}.${process.env.MAILCHIMP_SERVER}.list-manage.com/subscribe/post-json`);
+    const url = new URL(constants.mailchimp.subscribeUrl);
     url.search = new URLSearchParams({
       u: process.env.MAILCHIMP_USER_ID,
       id: process.env.MAILCHIMP_AUDIENCE_ID,

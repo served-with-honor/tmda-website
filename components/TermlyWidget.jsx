@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
+import constants from '../src/constants';
+
 export default function TermlyWidget({ id }) {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://app.termly.io/embed-policy.min.js';
+    script.src = constants.termly.embedUrl;
     script.async = true;
     document.body.appendChild(script);
   }, []);

@@ -1,23 +1,12 @@
 import settings from '../src/siteSettings';
+import { getPosts } from '../lib/wordpress';
 
-const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-function generateSiteMap(posts) {
+function generateSiteMap(pages, posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
-     <url>
-       <loc>${settings.url}</loc>
-     </url>
-     ${posts
-       .map(({ id }) => {
-         return `
-       <url>
-           <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
-       </url>
-     `;
-       })
-       .join('')}
+     <url><loc>${settings.url}</loc></url>
+     ${pages.map(page => `<url><loc>${settings.url}/${page}</loc></url>`).join('')}
+     ${posts.map(({ slug }) => `<url><loc>${settings.url}/blog/${slug}</loc></url>`).join('')}
    </urlset>
  `;
 }
@@ -27,12 +16,24 @@ function SiteMap() {
 }
 
 export async function getServerSideProps({ res }) {
-  // We make an API call to gather the URLs for our site
-  const request = await fetch(EXTERNAL_DATA_URL);
-  const posts = await request.json();
+  const pages = [
+    'about',
+    'administrative-services',
+    'careers',
+    'contact-us',
+    'faqs',
+    'privacy-policy',
+    'services',
+    'terms-and-conditions',
+    'blog',
+  ];
+
+  // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
+  const response = await getPosts({ first: 100 });
+  const posts = response.posts.nodes;
 
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(posts);
+  const sitemap = generateSiteMap(pages, posts);
 
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser

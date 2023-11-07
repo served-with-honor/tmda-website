@@ -23,5 +23,5 @@ describe('truncateString', () => {
   test('', () => { expect(truncateString('Hello World', 6, true)).toBe('Hello...'); });
   test('', () => { expect(truncateString('Hello World', 50, true)).toBe('Hello World'); });
   test('', () => { expect(truncateString('Hello World')).toBe('Hello World'); });
-  test('', () => { expect(truncateString()).toBe(null); });
+  test('', () => { expect(truncateString()).toBe(''); });
 });
