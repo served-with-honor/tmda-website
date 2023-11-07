@@ -33,6 +33,7 @@ export default {
     helpDesk: 'https://help.telemedicallc.com/',
     providerPortal: 'https://intakeq.com/',
     jobs: 'https://telemedica.rippling-ats.com/',
+    googleReviews: 'https://g.page/r/CXLI9fZbuI4iEB0/review',
   },
   googleMeasurementId: 'GTM-MLD2CCD',
   mailchimp: {
