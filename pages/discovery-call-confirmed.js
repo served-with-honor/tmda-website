@@ -6,7 +6,7 @@ import texture01 from '../public/images/texture-01.jpg';
 
 export default function DiscoveryCallConfirmedPage() {
 	return (
-		<Page title={'Discovery Call Confirmation'}>
+		<Page title={'Discovery Call Confirmation'} noindex>
 
 			{/* HERO */}
 			<Box sx={{
