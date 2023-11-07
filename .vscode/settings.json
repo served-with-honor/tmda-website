@@ -2,6 +2,7 @@
   "files.exclude": {
     "node_modules/": true,
     ".next/": true,
+    ".netlify/": true,
     ".swc/": true,
   }
 }
