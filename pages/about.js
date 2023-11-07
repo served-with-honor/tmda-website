@@ -22,7 +22,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CardContent } from '@mui/material';
 import Section1 from '../components/about/Section1'
-import texture01 from '../public/texture-01.jpg'
+import texture01 from '../public/images/texture-01.jpg'
 import missionIcon from '../public/images/mission.svg'
 import purposeIcon from '../public/images/Purpose.svg'
 import visionIcon from '../public/images/shared-vision.svg'

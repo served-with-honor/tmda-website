@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Page from '../components/Page'
 import Link from '../src/Link';
-import texture01 from '../public/texture-01.jpg'
+import texture01 from '../public/images/texture-01.jpg'
 import { BookingContext } from '../context/BookingContext'
 import eventImage from '../public/images/event.svg'
 import monitorImage from '../public/images/monitor.svg'
