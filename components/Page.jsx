@@ -9,7 +9,7 @@ import BookingPopup from '../components/BookingPopup'
 import { BookingContext } from '../context/BookingContext'
 import constants from '../src/constants';
 
-export default function Page({ title, description, children, darkHeader, hasHeroVideo }) {
+export default function Page({ title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
@@ -33,6 +33,9 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:locale" content="en_US" />
+        {noindex || nofollow ? (
+          <meta name="robots" content={`${noindex ? 'noindex' : ''}${noindex && nofollow ? ',' : ''}${nofollow ? 'nofollow' : ''}`} />
+         ) : null}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
