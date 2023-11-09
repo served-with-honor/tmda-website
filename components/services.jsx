@@ -4,6 +4,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 import AddIcon from '@mui/icons-material/Add';
 
 import nexusImage from '../public/images/nexus-dbqs.svg';
@@ -82,7 +84,7 @@ export default [
     body:
       <>
         <Typography variant='body1' gutterBottom>
-          Our medical team offers telemedicine examinations for initial medical diagnoses and confirmation or updated evaluations of 21 applicable conditions.
+          Our medical team offers telemedicine examinations for initial medical diagnoses and confirmation or updated evaluations of 20 applicable conditions.
         </Typography>
         <Typography variant='body2' gutterBottom>
           * See the full list of conditions we assess below.
@@ -90,15 +92,45 @@ export default [
         <Typography gutterBottom variant='body1'>
           No documentation is mandatory for this service, but we strongly recommend uploading documents to your patient portal for a more comprehensive evaluation.
         </Typography>
-        <Typography variant='subtitle2' component='p'>Recommended Documents:</Typography>
-        <List>
-          <CustomListItem>DD214</CustomListItem>
-          <CustomListItem>Benefits Summary</CustomListItem>
-          <CustomListItem>Blue Button Report</CustomListItem>
-          <CustomListItem>Personal Statements</CustomListItem>
-          <CustomListItem>Buddy Letters</CustomListItem>
-          <CustomListItem>Medical Records</CustomListItem>
-        </List>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3}>
+            <Typography variant='subtitle2' component='p'>Recommended Documents:</Typography>
+            <List>
+              <CustomListItem>DD214</CustomListItem>
+              <CustomListItem>Benefits Summary</CustomListItem>
+              <CustomListItem>Blue Button Report</CustomListItem>
+              <CustomListItem>Personal Statements</CustomListItem>
+              <CustomListItem>Buddy Letters</CustomListItem>
+              <CustomListItem>Medical Records</CustomListItem>
+            </List>
+          </Grid>
+          <Grid item sx={{ display: { xs: 'none', md: 'block' } }}><Divider orientation='vertical' /></Grid>
+          <Grid item xs={12} md>
+            <Typography variant='subtitle2' component='p'>Applicable Conditions:</Typography>
+            <List sx={{ columns: { xs: 1, sm: 2, md: 3 }}}>
+              <CustomListItem>Patellofemoral Disorder</CustomListItem>
+              <CustomListItem>Chronic Pharyngitis</CustomListItem>
+              <CustomListItem>Tinnitus</CustomListItem>
+              <CustomListItem>Plantar Fasciitis</CustomListItem>
+              <CustomListItem>Radiculopathy</CustomListItem>
+              <CustomListItem>Peripheral Neuropathy</CustomListItem>
+              <CustomListItem>Allergic Rhinitis</CustomListItem>
+              <CustomListItem>Skin Conditions</CustomListItem>
+              <CustomListItem>Vertigo</CustomListItem>
+              <CustomListItem>Sinusitis</CustomListItem>
+              <CustomListItem>Ménière's Disease</CustomListItem>
+              <CustomListItem>ED</CustomListItem>
+              <CustomListItem>IBS</CustomListItem>
+              <CustomListItem>GERD</CustomListItem>
+              <CustomListItem>Headaches</CustomListItem>
+              <CustomListItem>Chronic Fatigue Syndrome</CustomListItem>
+              <CustomListItem>Female Sexual Arousal Disorder</CustomListItem>
+              <CustomListItem>Lumbosacral Strain / Lumbago</CustomListItem>
+              <CustomListItem>Chronic Tonsilitis</CustomListItem>
+              <CustomListItem>Fibromyalgia</CustomListItem>
+            </List>
+          </Grid>
+        </Grid>
       </>
   },
   {
