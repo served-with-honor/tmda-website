@@ -37,17 +37,7 @@ export default function CareersPage({ title, description }) {
 			<Box sx={{ py: 10 }}>
 				<Container>
 					<Typography variant={'h2'} gutterBottom align='center'>The Benefits of a Career with Telemedica</Typography>
-					<List sx={{
-						display: { md: 'flex' },
-						flexFlow: { md: 'column wrap' },
-						height: { md: 250 },
-						'.MuiListItem-root': {
-							width: { md: '50%' },
-						},
-						'.MuiListItemIcon-root': { 	
-							alignSelf: 'flex-start'
-						},
-					}}>
+					<List sx={{ columns: { xs: 1, md: 2 } }}>
 						{[
 							{ heading: 'Remote work:', text: 'Jobs available throughout the US and its territories.' },
 							{ heading: 'Growth with us:', text: 'Opportunity to grow with the company and be promoted within.' },
@@ -55,8 +45,8 @@ export default function CareersPage({ title, description }) {
 							{ heading: 'Flexible Schedules:', text: 'Jobs to fit lifestyles from all walks of life.' },
 						].map( ({ heading, text }, index) => {
 							return(
-								<ListItem key={`benefit-${index}`}>
-									<ListItemIcon>
+								<ListItem key={`benefit-${index}`} sx={{ alignItems: 'flex-start' }}>
+									<ListItemIcon sx={{ mt: 0.5, minWidth: 32 }}>
 										<AddIcon color='primary'/>
 									</ListItemIcon>
 									<ListItemText>
