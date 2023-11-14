@@ -1,6 +1,9 @@
 import settings from './siteSettings';
 
 export default {
+    wordpress: {
+        rankmath: `${process.env.WORDPRESS_URL}/wp-json/rankmath/v1/getHead`,
+    },
     google: {
         gtmWidgetUrl: new URL(`https://www.googletagmanager.com/gtag/js?id=${settings.googleMeasurementId}`),
         gtmNoScriptUrl: new URL(`https://www.googletagmanager.com/ns.html?id=${settings.googleMeasurementId}`),
