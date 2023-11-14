@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
 import Script from 'next/script'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import parse from 'html-react-parser';
 import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
@@ -9,7 +10,7 @@ import BookingPopup from '../components/BookingPopup'
 import { BookingContext } from '../context/BookingContext'
 import constants from '../src/constants';
 
-export default function Page({ title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
+export default function Page({ metadata, title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
   const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
@@ -26,6 +27,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
   return (
     <>
       <Head>
+        {metadata ? parse(metadata) : null}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta property="og:url" content={url} />
