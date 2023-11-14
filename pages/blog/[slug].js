@@ -1,18 +1,18 @@
 import parse from 'html-react-parser';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import { getPost } from '../../lib/wordpress'
+import { getPost, getPostMetaData } from '../../lib/wordpress'
 import Page from '../../components/Page'
 import BlogHero from '../../components/BlogHero'
 import { replaceContent } from '../../src/WPBlocks';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
-export default function Post({ post }) {
+export default function Post({ post, metadata }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
 	const contentComponents = parse(content, { replace: replaceContent });
 	
 	return (
-		<Page title={title}>
+		<Page title={title} metadata={metadata}>
 			<BlogHero {...{ title, author, date, modifed, categories, featuredImage }} />
 			
 			<Box sx={{ my: 10 }}>
@@ -30,5 +30,6 @@ export const getServerSideProps = async ({ params, query }) => {
 	const { slug } = params;
 	const { preview } = query;
 	const { post } = await getPost({ slug, preview });
-	return { props: { post } }
+	const metadata = await getPostMetaData(slug);
+	return { props: { post, metadata } }
 }
