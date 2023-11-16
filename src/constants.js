@@ -1,9 +1,7 @@
-import settings from './siteSettings';
-
 export default {
     google: {
-        gtmWidgetUrl: new URL(`https://www.googletagmanager.com/gtag/js?id=${settings.googleMeasurementId}`),
-        gtmNoScriptUrl: new URL(`https://www.googletagmanager.com/ns.html?id=${settings.googleMeasurementId}`),
+        gtmWidgetUrl: new URL(`https://www.googletagmanager.com/gtag/js`),
+        gtmNoScriptUrl: new URL(`https://www.googletagmanager.com/ns.html`),
     },
     mailchimp: {
         subscribeUrl: new URL(`https://${process.env.MAILCHIMP_COMPANY}.${process.env.MAILCHIMP_SERVER}.list-manage.com/subscribe/post-json`),

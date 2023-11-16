@@ -52,7 +52,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
       <Footer />
       
       {settings.googleMeasurementId ? <>
-        <Script src={constants.google.gtmWidgetUrl} />
+        <Script src={`${constants.google.gtmWidgetUrl}?id=${settings.googleMeasurementId}`} />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -64,7 +64,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
         </Script>
         <noscript>
           <iframe
-            src={constants.google.gtmNoScriptUrl}
+            src={`${constants.google.gtmNoScriptUrl}?id=${settings.googleMeasurementId}`}
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
