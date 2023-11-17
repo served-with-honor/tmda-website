@@ -78,22 +78,21 @@ export default function BookingWidget({ service = null }) {
     window.intakeq = siteSettings.booking.id;
     if (cookies['booking-location']) {
       setRegion(cookies['booking-location']);
-      return;
+    } else {
+      fetch(constants.geoPlugin.url)
+        .then(response => response.json())
+        .then(body => {
+          const {
+            geoplugin_countryCode: countryCode,
+            geoplugin_region: state
+          } = body;
+          setRegion(countryCode === 'US' ? state : 'Out of US');
+        })
+        .catch(error => {
+          setRegion(null);
+          console.error(error);
+        });
     }
-    
-    fetch(constants.geoPlugin.url)
-      .then(response => response.json())
-      .then(body => {
-        const {
-          geoplugin_countryCode: countryCode,
-          geoplugin_region: state
-        } = body;
-        setRegion(countryCode === 'US' ? state : 'Out of US');
-      })
-      .catch(error => {
-        setRegion(null);
-        console.error(error);
-      })
   }, []);
   
   useEffect(() => {
