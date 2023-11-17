@@ -11,6 +11,7 @@ import { useCookies } from 'react-cookie';
 import siteSettings from '../src/siteSettings';
 import { slugify } from '../src/utils';
 import constants from '../src/constants';
+import { getUSRegion } from '../lib/geolocation';
 
 export default function BookingWidget({ service = null }) {
   const regionsList = [
@@ -74,23 +75,18 @@ export default function BookingWidget({ service = null }) {
   const ref = useRef(null);
   const [cookies, setCookie] = useCookies(['booking-location']);
 
-  useEffect(async () => {
+  useEffect(() => {
     window.intakeq = siteSettings.booking.id;
     if (cookies['booking-location']) {
       setRegion(cookies['booking-location']);
     } else {
-      try {
-        const response = await fetch(constants.geoPlugin.url);
-        const body = await response.json();
-        const {
-          geoplugin_countryCode: countryCode,
-          geoplugin_region: state
-        } = body;
-        setRegion(countryCode === 'US' ? state : 'Out of US');
-      } catch (error) {
-        console.error(error);
-        setRegion(null);
-      }
+      getUSRegion()
+        .then(region => { setRegion(region || 'Out of US'); })
+        .catch((error) => {
+          setRegion(null);
+          console.error('Problem fetching geolocation', error);
+        })
+      ;
     }
   }, []);
   
