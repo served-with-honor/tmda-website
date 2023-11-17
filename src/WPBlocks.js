@@ -69,8 +69,8 @@ const renderListItem = ({ type, children }) => {
 	if (type !== 'tag') return;
 	
 	return (
-		<ListItem dense>
-			<ListItemIcon sx={{ minWidth: 0, mr: 2 }}><AddIcon sx={{ color: 'primary.main' }} /></ListItemIcon>
+		<ListItem dense sx={{ alignItems: 'flex-start' }}>
+			<ListItemIcon sx={{ minWidth: 0, mr: 2, mt: 0.25, }}><AddIcon sx={{ color: 'primary.main' }} /></ListItemIcon>
 			<ListItemText>{domToReact(children, { replace: renderElementContents })}</ListItemText>
 		</ListItem>
 	);	
