@@ -76,6 +76,20 @@ const renderListItem = ({ type, children }) => {
 	);	
 }
 
+const renderImage = ({ attribs, children }) => {
+	return (
+		<img
+			src={attribs.src}
+			srcset={attribs.srcset}
+			sizes={attribs.sizes}
+			alt={attribs.alt}
+			width={attribs.width}
+			height={attribs.height}
+			style={{ height: 'auto', maxWidth: '100%', }}
+		/>
+	);
+};
+
 export const replaceContent = (element) => {
 	const { children, name, attribs } = element;
 	const { class: classes } = attribs || {};
@@ -88,9 +102,11 @@ export const replaceContent = (element) => {
 	if (name === 'h5') return <Typography variant='h6' component='h5' color='secondary.main' my={3}>{domToReact(children)}</Typography>
 	if (name === 'h6') return <Typography variant='h6' component='h6' color='secondary.main' my={2}>{domToReact(children)}</Typography>
 	if (name === 'ul') return renderUnorderedList(element);
+	if (name === 'img') return renderImage(element);
 	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
 
 	if (classes?.includes('wp-block-buttons')) return WPButtons(element);
+	if (classes?.includes('wp-block-image')) return WPImage(element);
 	if (classes?.includes('wp-block-media-text')) return WPMedia(element);
 	if (classes?.includes('wp-block-table')) return WPTable(element);
 	
@@ -180,6 +196,14 @@ export const WPTable = ({ children }) => {
 
 			</Table>
 		</TableContainer>
+	);
+}
+
+export const WPImage = ({ children }) => {
+	return (
+		<Box sx={{ my: 3 }}>
+			{domToReact(children, { replace: replaceContent })}
+		</Box>
 	);
 }
 
