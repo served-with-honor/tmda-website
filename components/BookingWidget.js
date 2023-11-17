@@ -74,24 +74,23 @@ export default function BookingWidget({ service = null }) {
   const ref = useRef(null);
   const [cookies, setCookie] = useCookies(['booking-location']);
 
-  useEffect(() => {
+  useEffect(async () => {
     window.intakeq = siteSettings.booking.id;
     if (cookies['booking-location']) {
       setRegion(cookies['booking-location']);
     } else {
-      fetch(constants.geoPlugin.url)
-        .then(response => response.json())
-        .then(body => {
-          const {
-            geoplugin_countryCode: countryCode,
-            geoplugin_region: state
-          } = body;
-          setRegion(countryCode === 'US' ? state : 'Out of US');
-        })
-        .catch(error => {
-          setRegion(null);
-          console.error(error);
-        });
+      try {
+        const response = await fetch(constants.geoPlugin.url);
+        const body = await response.json();
+        const {
+          geoplugin_countryCode: countryCode,
+          geoplugin_region: state
+        } = body;
+        setRegion(countryCode === 'US' ? state : 'Out of US');
+      } catch (error) {
+        console.error(error);
+        setRegion(null);
+      }
     }
   }, []);
   
