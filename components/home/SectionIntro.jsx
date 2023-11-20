@@ -10,6 +10,31 @@ import siteSettings from '../../src/siteSettings';
 export default function SectionIntro() {
 	const [isOpen, setIsOpen] = useState(false);
 	const ref = useRef(null);
+
+	useEffect(() => {
+		const handleCalendlyEventScheduled = (event) => {
+			// Confirm that this event was sent by Calendly
+			const isCalendlyEvent = event.origin === 'https://calendly.com' && event.data.event && event.data.event.indexOf('calendly.') === 0;
+			const hasScheduled = event.data.event === 'calendly.event_scheduled';
+			if (!isCalendlyEvent || !hasScheduled) return;
+
+			// TODO - Investigate event data payload to determine if any other data should be passed to Google Analytics
+			// console.log("Event details:", event.data.payload);
+
+			// Send event to Google Analytics
+			window.dataLayer.push({
+				'event': 'discovery_call_booked',
+			});
+		};
+		
+		// Listen for message from Calendly - https://help.calendly.com/hc/en-us/articles/223147027-Embed-options-overview?tab=advanced#6
+		window.addEventListener("message", handleCalendlyEventScheduled);
+			
+		// Remove event listener on cleanup
+    return () => {
+      window.removeEventListener('message', handleCalendlyEventScheduled);
+    }
+	}, []);
 	
 	useEffect(() => {
 		document.body.style.overflow = isOpen ? 'hidden' : 'unset';
