@@ -98,16 +98,16 @@ export const replaceContent = (element) => {
 	if (parent) return;
 	if (type === 'text' && !data.trim().length) return;
 
-	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
 	if (classes?.includes('wp-block-heading')) return WPHeading(element);
-	if (name === 'ul') return renderUnorderedList(element);
-	if (name === 'img') return renderImage(element);
-	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
-
 	if (classes?.includes('wp-block-buttons')) return WPButtons(element);
 	if (classes?.includes('wp-block-image')) return WPImage(element);
 	if (classes?.includes('wp-block-media-text')) return WPMedia(element);
 	if (classes?.includes('wp-block-table')) return WPTable(element);
+
+	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
+	if (name === 'ul') return renderUnorderedList(element);
+	if (name === 'img') return renderImage(element);
+	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
 	
 	return element;
 }
