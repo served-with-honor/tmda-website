@@ -265,8 +265,20 @@ export const WPMedia = ({ attribs, children }) => {
 }
 
 export const WPTableOfContents = (element) => {
-	const { name } = element;
-	if (name === 'ul') return renderUnorderedList(element);
+	const { name, attribs, children } = element;
+	const { class: classes } = attribs || {};
 	
-	return <>{domToReact(element.children)}</>;
+	if (classes?.includes('simpletoc-title'))
+		return (
+			<Typography
+				variant='h6'
+				component='h2'
+				color='secondary.main'
+				gutterBottom
+			>
+				{domToReact(children)}
+			</Typography>
+		);
+	
+	if (classes?.includes('simpletoc-list')) return renderUnorderedList(element);
 }
