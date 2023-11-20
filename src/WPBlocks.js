@@ -112,6 +112,10 @@ export const replaceContent = (element) => {
 	return element;
 }
 
+export const replaceSideContent = (element) => {
+	return <></>;
+}
+
 export const WPHeading = ({ name, children, attribs }) => {
 	const { id } = attribs || {};
 	const component = name === 'h1' ? 'h2' : name;
