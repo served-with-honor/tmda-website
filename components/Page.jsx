@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import Script from 'next/script'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from './Header'
@@ -7,7 +6,7 @@ import Footer from './Footer'
 import settings from '../src/siteSettings';
 import BookingPopup from '../components/BookingPopup'
 import { BookingContext } from '../context/BookingContext'
-import constants from '../src/constants';
+import GoogleTagManger from './GoogleTagManager';
 
 export default function Page({ title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
@@ -49,32 +48,11 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <meta name="msapplication-TileColor" content="#74c8b4"/>
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      
+      <GoogleTagManger />
       <Header ref={ref} isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
       <main style={{ marginTop: headerHeight }}>{children}</main>
       {hasBookingPopup ? <BookingPopup /> : null}
       <Footer />
-      
-      {settings.googleMeasurementId ? <>
-        <Script src={`${constants.google.gtmWidgetUrl}?id=${settings.googleMeasurementId}`} />
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-  
-            gtag('config', '${settings.googleMeasurementId}');
-          `}
-        </Script>
-        <noscript>
-          <iframe
-            src={`${constants.google.gtmNoScriptUrl}?id=${settings.googleMeasurementId}`}
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          ></iframe>
-        </noscript>
-      </> : null}
     </>
   )
 }
