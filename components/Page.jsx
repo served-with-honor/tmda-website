@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
-import BookingPopup from '../components/BookingPopup'
+import BookingPopup from './BookingPopup'
 import { BookingContext } from '../context/BookingContext'
 import GoogleTagManger from './GoogleTagManager';
 
