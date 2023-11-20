@@ -97,6 +97,8 @@ export const replaceContent = (element) => {
 	
 	if (parent) return;
 	if (type === 'text' && !data.trim().length) return;
+	if(classes?.includes('simpletoc-list')) return <></>;
+	if (classes?.includes('simpletoc-title')) return <></>;
 
 	if (classes?.includes('wp-block-heading')) return WPHeading(element);
 	if (classes?.includes('wp-block-buttons')) return WPButtons(element);
@@ -113,7 +115,12 @@ export const replaceContent = (element) => {
 }
 
 export const replaceSideContent = (element) => {
-	return <></>;
+	if (
+		!element?.attribs?.class?.includes('simpletoc-list')
+		&& !element?.attribs?.class?.includes('simpletoc-title')
+	) return <></>;
+
+	return WPTableOfContents(element);
 }
 
 export const WPHeading = ({ name, children, attribs }) => {
@@ -256,4 +263,11 @@ export const WPMedia = ({ attribs, children }) => {
 				)})}
 		</Box>
 	);
+}
+
+export const WPTableOfContents = (element) => {
+	const { name } = element;
+	if (name === 'ul') return renderUnorderedList(element);
+	
+	return <>{domToReact(element.children)}</>;
 }
