@@ -8,13 +8,28 @@ import BookingPopup from '../components/BookingPopup'
 import { BookingContext } from '../context/BookingContext'
 import GoogleTagManger from './GoogleTagManager';
 
-export default function Page({ title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
+export default function Page({
+  title,
+  description,
+  children,
+  darkHeader,
+  hasHeroVideo,
+  noindex,
+  nofollow
+}) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
   const router = useRouter();
 
-  const pageTitle = `${settings.name} | ${title || settings.defaultPageTitle}`;
-  const pageDescription = description || settings.defaultPageDescription;
-  const url = `${settings.url}${router.asPath}`;
+  const {
+    name: siteName,
+    url: siteUrl,
+    defaultPageTitle,
+    defaultPageDescription
+  } = settings;
+
+  const pageTitle = `${siteName} | ${title || defaultPageTitle}`;
+  const pageDescription = description || defaultPageDescription;
+  const pageUrl = `${siteUrl}${router.asPath}`;
   const pageRobots = (
     noindex && nofollow ? 'none'
     : noindex ? 'noindex'
@@ -27,8 +42,8 @@ export default function Page({ title, description, children, darkHeader, hasHero
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta property="og:url" content={url} />
-        <meta property="og:site_name" content={settings.name} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:site_name" content={siteName} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:locale" content="en_US" />
