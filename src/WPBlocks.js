@@ -81,7 +81,7 @@ const renderImage = ({ attribs, children }) => {
 	return (
 		<img
 			src={attribs.src}
-			srcset={attribs.srcset}
+			srcSet={attribs.srcset}
 			sizes={attribs.sizes}
 			alt={attribs.alt}
 			width={attribs.width}
