@@ -10,6 +10,7 @@ import { slugify } from '../src/utils';
 import defaultProfile from '../public/default-profile.png'
 import Chip from '@mui/material/Chip';
 import { blue, green, red } from '@mui/material/colors'
+import { Stack } from '@mui/system';
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
@@ -94,13 +95,21 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
   const label = `${team} Team${isTeamLead ? ' Lead' : ''}`;
 
   return <>
-    <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
-    <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
-    {team ?
-      <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team) }}></Chip> : null
-    }
-    {position ? (
-      <Typography variant='body2'>{position}</Typography>
-    ) : null}
+    <Grid container spacing={2}>
+      <Grid item xs={3} md={12}>
+        <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {sm: 64, md: 150}, height: {sm: 64, md: 150}, marginBottom: 3, mx: 'auto' }} />        
+      </Grid>
+      <Grid item xs={9} md={12}>
+          <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
+          {position ? (
+          <Typography variant='body2'>{position}</Typography>
+          ) : null}
+        {team ?
+          <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : null
+        }
+      </Grid>
+    </Grid>
+    
+    
   </>
 };
