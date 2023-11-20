@@ -95,12 +95,7 @@ export const replaceContent = (element) => {
 	const { class: classes } = attribs || {};
 
 	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
-	if (name === 'h1') return <Typography variant='h4' component='h2' color='secondary.main' my={6}>{domToReact(children)}</Typography>
-	if (name === 'h2') return <Typography variant='h4' component='h2' color='secondary.main' my={6}>{domToReact(children)}</Typography>
-	if (name === 'h3') return <Typography variant='h5' component='h3' color='secondary.main' my={5}>{domToReact(children)}</Typography>
-	if (name === 'h4') return <Typography variant='h6' component='h4' color='secondary.main' my={4}>{domToReact(children)}</Typography>
-	if (name === 'h5') return <Typography variant='h6' component='h5' color='secondary.main' my={3}>{domToReact(children)}</Typography>
-	if (name === 'h6') return <Typography variant='h6' component='h6' color='secondary.main' my={2}>{domToReact(children)}</Typography>
+	if (classes?.includes('wp-block-heading')) return WPHeading(element);
 	if (name === 'ul') return renderUnorderedList(element);
 	if (name === 'img') return renderImage(element);
 	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
