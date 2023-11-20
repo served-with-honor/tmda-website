@@ -22,6 +22,12 @@ export default function Page({ title, description, children, darkHeader, hasHero
   const pageTitle = `${settings.name} | ${title || settings.defaultPageTitle}`;
   const pageDescription = description || settings.defaultPageDescription;
   const url = `${settings.url}${router.asPath}`;
+  const pageRobots = (
+    noindex && nofollow ? 'none'
+    : noindex ? 'noindex'
+    : nofollow ? 'nofollow'
+    : null
+  );
 
   return (
     <>
@@ -33,9 +39,7 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:locale" content="en_US" />
-        {noindex || nofollow ? (
-          <meta name="robots" content={`${noindex ? 'noindex' : ''}${noindex && nofollow ? ',' : ''}${nofollow ? 'nofollow' : ''}`} />
-         ) : null}
+        {pageRobots ? <meta name="robots" content={pageRobots} /> : null}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
