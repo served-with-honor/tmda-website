@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
+import router from 'next/router';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -12,14 +13,33 @@ import siteSettings from '../src/siteSettings';
 import { slugify } from '../src/utils';
 import constants from '../src/constants';
 import { getUSRegion } from '../lib/geolocation';
+import { BookingContext } from '../context/BookingContext'
 
 export default function BookingWidget({ service = null }) {
+  const { setIsOpen } = useContext(BookingContext);
+
   const regionsList = [...constants.usRegions, 'Out of US'];
 
   const [newLocation, setNewLocation] = useState('');
   const [region, setRegion] = useState(null);
   const ref = useRef(null);
   const [cookies, setCookie] = useCookies(['booking-location']);
+
+  const handleAppointmentBooked = ({ detail }) => {
+    // Send event to Google Analytics
+    window.dataLayer.push({
+      'event': 'appointment_booked',
+      "userEmail": detail.ClientEmail,
+      "serviceName": detail.ServiceName,
+      "amountPaid": detail.TotalAmountPaid,
+      "appointmentConfirmed": detail.Status === 2,
+    });
+
+    if(setIsOpen) setIsOpen(false);
+    
+    // Redirect to confirmation page
+    router.push(`/service-booked-confirmed?service=${detail.ServiceName}&name=${detail.ClientName}`);
+  };
 
   useEffect(() => {
     window.intakeq = siteSettings.booking.id;
@@ -33,6 +53,14 @@ export default function BookingWidget({ service = null }) {
           console.error('Problem fetching geolocation', error);
         })
       ;
+    }
+
+    // Listen for appointment booked event - https://support.intakeq.com/article/243-booking-widget-javascript-events
+    window.addEventListener('intakeqAppointmentBooked', handleAppointmentBooked);
+    
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener('intakeqAppointmentBooked', handleAppointmentBooked);
     }
   }, []);
   
