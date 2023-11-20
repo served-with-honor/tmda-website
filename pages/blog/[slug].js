@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid'
 import { getPost } from '../../lib/wordpress'
 import Page from '../../components/Page'
 import BlogHero from '../../components/BlogHero'
-import { replaceContent, replaceSideContent } from '../../src/WPBlocks';
+import { replaceContent, replaceSideContent } from '../../src/wp-blocks';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
