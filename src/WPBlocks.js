@@ -92,8 +92,11 @@ const renderImage = ({ attribs, children }) => {
 };
 
 export const replaceContent = (element) => {
-	const { children, name, attribs } = element;
+	const { parent, type, children, name, attribs, data } = element;
 	const { class: classes } = attribs || {};
+	
+	if (parent) return;
+	if (type === 'text' && !data.trim().length) return;
 
 	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
 	if (classes?.includes('wp-block-heading')) return WPHeading(element);
