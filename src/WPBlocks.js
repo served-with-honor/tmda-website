@@ -108,7 +108,6 @@ export const replaceContent = (element) => {
 
 	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
 	if (name === 'ul') return renderUnorderedList(element);
-	if (name === 'img') return renderImage(element);
 	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
 	
 	return element;
@@ -228,7 +227,7 @@ export const WPTable = ({ children }) => {
 export const WPImage = ({ children }) => {
 	return (
 		<Box sx={{ my: 3 }}>
-			{domToReact(children, { replace: replaceContent })}
+			{domToReact(children, { replace: renderImage })}
 		</Box>
 	);
 }
