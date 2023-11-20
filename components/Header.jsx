@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from '@mui/material/styles';
@@ -11,7 +11,8 @@ import Logo from '../public/images/logo.svg';
 import LogoWhite from '../public/images/logo-white.svg';
 import siteSettings from '../src/siteSettings';
 
-export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
+export default function Header({ isDark, hasHeroVideo }) {
+  const ref = useRef(null);
   const [scope, animate] = useAnimate();
   const [headerState, setHeaderState] = useState(null);
   const { scrollY } = useScroll();
@@ -106,4 +107,4 @@ export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
       </Container>
     </Box>
   )
-})
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useContext } from 'react'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from './Header'
@@ -10,13 +10,7 @@ import GoogleTagManger from './GoogleTagManager';
 
 export default function Page({ title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const ref = useRef(null);
   const router = useRouter();
-
-  useEffect(() => {
-    // if (ref.current) setHeaderHeight(ref.current.clientHeight);
-  }, [ref])
 
   const pageTitle = `${settings.name} | ${title || settings.defaultPageTitle}`;
   const pageDescription = description || settings.defaultPageDescription;
@@ -49,8 +43,8 @@ export default function Page({ title, description, children, darkHeader, hasHero
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <GoogleTagManger />
-      <Header ref={ref} isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
-      <main style={{ marginTop: headerHeight }}>{children}</main>
+      <Header isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
+      <main>{children}</main>
       {hasBookingPopup ? <BookingPopup /> : null}
       <Footer />
     </>
