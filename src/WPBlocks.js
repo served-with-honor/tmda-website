@@ -105,10 +105,10 @@ export const replaceContent = (element) => {
 	if (classes?.includes('wp-block-image')) return WPImage(element);
 	if (classes?.includes('wp-block-media-text')) return WPMedia(element);
 	if (classes?.includes('wp-block-table')) return WPTable(element);
+	if (classes?.includes('wp-block-separator')) return WPSeparator(element);
 
 	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
 	if (name === 'ul') return renderUnorderedList(element);
-	if (name === 'hr') return <Divider sx={{ my: 6 }} />;
 	
 	return element;
 }
@@ -281,4 +281,9 @@ export const WPTableOfContents = (element) => {
 		);
 	
 	if (classes?.includes('simpletoc-list')) return renderUnorderedList(element);
+}
+
+export const WPSeparator = ({ attribs }) => {
+	const maxWidth = attribs?.class?.includes('is-style-wide') ? 620 : 'min(10.5rem, 13vw)';
+	return <Divider sx={{ my: 6, mx: 'auto', maxWidth }} />
 }
