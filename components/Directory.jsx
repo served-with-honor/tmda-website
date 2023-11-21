@@ -10,7 +10,6 @@ import { slugify } from '../src/utils';
 import defaultProfile from '../public/default-profile.png'
 import Chip from '@mui/material/Chip';
 import { blue, green, red } from '@mui/material/colors'
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
@@ -93,7 +92,6 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   const label = `${team} Team${isTeamLead ? ' Lead' : ''}`;
-  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
   return <>
     <Grid container spacing={5}>
@@ -102,11 +100,9 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
       </Grid>
       <Grid item xs={8} md={12} sx={{textAlign: {xs:'left', sm: 'center'}}}>
           <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}
-          {isDesktop && position && team ? (
-            <Typography variant='body2'>{position}</Typography>):
-          position && team ? (
-          <Typography variant='body2' component='span'>{` ${position}`}</Typography>
-          ) : position && <Typography variant='body2'>{position}</Typography>}
+          {position && team ? (
+            <Typography variant='body2' sx={{display: {xs: 'inline-block', sm:'block'}}}>&nbsp;{position}</Typography>):
+              position && <Typography variant='body2'>{position}</Typography>}
           </Typography>
         {team && isTeamLead ?
           <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : team && <Chip label={label} size='small' variant='outlined' sx={{ color: getCategoryColor(team), borderColor: getCategoryColor(team)}}></Chip>
