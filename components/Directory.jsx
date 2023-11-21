@@ -108,8 +108,8 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
           <Typography variant='body2' component='span'>{` ${position}`}</Typography>
           ) : position && <Typography variant='body2'>{position}</Typography>}
           </Typography>
-        {team ?
-          <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : null
+        {team && isTeamLead ?
+          <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : team && <Chip label={label} size='small' variant='outlined' sx={{ color: getCategoryColor(team), borderColor: getCategoryColor(team)}}></Chip>
         }
       </Grid>
     </Grid>
