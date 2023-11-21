@@ -1,6 +1,6 @@
 import { domToReact } from 'html-react-parser';
 import Typography from '@mui/material/Typography'
-import { renderUnorderedList } from './generics';
+import WPBlockList from './WPBlockList';
 
 export default function SimpleTOC(element) {
 	const { name, attribs, children } = element;
@@ -18,5 +18,5 @@ export default function SimpleTOC(element) {
 			</Typography>
 		);
 	
-	if (classes?.includes('simpletoc-list')) return renderUnorderedList(element);
+	if (classes?.includes('simpletoc-list')) return WPBlockList(element);
 }

@@ -7,6 +7,7 @@ import WPBlockButtons from './WPBlockButtons';
 import SimpleTOC from './SimpleTOC';
 import WPBlockImage from './WPBlockImage';
 import WPBlockSeparator from './WPBlockSeparator';
+import WPBlockList from './WPBlockList';
 import { renderElementContents } from './generics';
 
 export const replaceContent = (element) => {
@@ -30,7 +31,7 @@ export const replaceContent = (element) => {
 	if (classNames?.includes('wp-block-separator')) return WPBlockSeparator(element);
 
 	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
-	if (name === 'ul') return renderUnorderedList(element);
+	if (name === 'ul') return WPBlockList(element);
 	
 	return element;
 }
