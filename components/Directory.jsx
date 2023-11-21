@@ -96,13 +96,13 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
 
   return <>
     <Grid container spacing={2}>
-      <Grid item xs={3} md={12}>
-        <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {sm: 64, md: 150}, height: {sm: 64, md: 150}, marginBottom: 3, mx: 'auto' }} />        
+      <Grid item xs={6} md={12}>
+        <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {xs: 72, md: 150}, height: {xs: 72, md: 150}, marginBottom: 1, mx: 'auto' }} />        
       </Grid>
-      <Grid item xs={9} md={12}>
+      <Grid item xs={6} md={12} sx={{textAlign: {xs:'left', sm: 'center'}}}>
           <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}
           {position && team ? (
-          <Typography variant='body2' component='span'>{` - ${position}`}</Typography>
+          <Typography variant='body2' component='span'>{` ${position}`}</Typography>
           ) : position && <Typography variant='body2'>{position}</Typography>}
           </Typography>
         {team ?
