@@ -5,13 +5,23 @@ import Grid from '@mui/material/Grid'
 import { getPost } from '../../lib/wordpress'
 import Page from '../../components/Page'
 import BlogHero from '../../components/BlogHero'
-import { replaceContent, replaceSideContent } from '../../src/wp-blocks';
+import WPBlocks from '../../src/wp-blocks';
+import SimpleTOC from '../../src/wp-blocks/SimpleTOC';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
-	const contentComponents = parse(content, { replace: replaceContent });
-	const sideContent = parse(content, { replace: replaceSideContent });
+	
+	const isSimpleTOC = (element) => element?.attribs?.class?.includes('simpletoc-list') || element?.attribs?.class?.includes('simpletoc-title');
+
+	// Exclude SimpleTOC
+	const contentComponents = parse(content, {
+		replace: (element) => !isSimpleTOC(element) ? WPBlocks(element) : <></>
+	});
+
+	const sideContent = parse(content, {
+		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element) : <></>
+	});
 	
 	return (
 		<Page title={title}>
