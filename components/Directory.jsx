@@ -100,10 +100,11 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
         <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {sm: 64, md: 150}, height: {sm: 64, md: 150}, marginBottom: 3, mx: 'auto' }} />        
       </Grid>
       <Grid item xs={9} md={12}>
-          <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
-          {position ? (
-          <Typography variant='body2'>{position}</Typography>
-          ) : null}
+          <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}
+          {position && team ? (
+          <Typography variant='body2' component='span'>{` - ${position}`}</Typography>
+          ) : position && <Typography variant='body2'>{position}</Typography>}
+          </Typography>
         {team ?
           <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : null
         }
