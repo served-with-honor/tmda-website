@@ -10,7 +10,7 @@ import { slugify } from '../src/utils';
 import defaultProfile from '../public/default-profile.png'
 import Chip from '@mui/material/Chip';
 import { blue, green, red } from '@mui/material/colors'
-import { Stack } from '@mui/system';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
@@ -93,15 +93,18 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
   const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
   const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
   const label = `${team} Team${isTeamLead ? ' Lead' : ''}`;
+  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
   return <>
-    <Grid container spacing={2}>
-      <Grid item xs={6} md={12}>
+    <Grid container spacing={5}>
+      <Grid item xs={4} md={12}>
         <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {xs: 72, md: 150}, height: {xs: 72, md: 150}, marginBottom: 1, mx: 'auto' }} />        
       </Grid>
-      <Grid item xs={6} md={12} sx={{textAlign: {xs:'left', sm: 'center'}}}>
+      <Grid item xs={8} md={12} sx={{textAlign: {xs:'left', sm: 'center'}}}>
           <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}
-          {position && team ? (
+          {isDesktop && position && team ? (
+            <Typography variant='body2'>{position}</Typography>):
+          position && team ? (
           <Typography variant='body2' component='span'>{` ${position}`}</Typography>
           ) : position && <Typography variant='body2'>{position}</Typography>}
           </Typography>
