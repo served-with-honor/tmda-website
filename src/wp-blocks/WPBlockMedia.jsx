@@ -1,6 +1,6 @@
 import { domToReact } from 'html-react-parser';
 import Box from '@mui/material/Box';
-import { replaceContent } from './generics';
+import { replaceContent, getGridVerticalAlignment } from './generics';
 
 export default function WPBlockMedia({ attribs, children }) {
 	const { class: classes, style } = attribs || {};
@@ -32,12 +32,4 @@ export default function WPBlockMedia({ attribs, children }) {
 				)})}
 		</Box>
 	);
-}
-
-const getGridVerticalAlignment = (classes) => {
-	if (classes.includes('is-vertically-aligned-center')) return 'center';
-	if(classes.includes('is-vertically-aligned-bottom')) return 'flex-end';
-	if(classes.includes('is-vertically-aligned-top')) return 'flex-start';
-	
-	return;
 }

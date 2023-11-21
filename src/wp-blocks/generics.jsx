@@ -37,3 +37,30 @@ const renderListItem = ({ type, children }) => {
 		</ListItem>
 	);	
 }
+
+export const getJustification = (classes) => {
+	if (classes.includes('is-content-justification-center')) return 'center';
+	if (classes.includes('is-content-justification-right')) return 'flex-end';
+	if (classes.includes('is-content-justification-left')) return 'flex-start';
+	if (classes.includes('is-content-justification-space-between')) return 'space-between';
+	return '';
+}
+
+export const getSize = (classes) => {
+	if (!classes) return '';
+	if (classes.includes('has-x-large-font-size')) return 'large';
+	if (classes.includes('has-large-font-size')) return 'large';
+	if (classes.includes('has-medium-font-size')) return 'medium';
+	if (classes.includes('has-small-font-size')) return 'small';
+	return '';
+}
+
+export const getGridDirection = (classes) => classes?.includes('is-vertical') ? 'column' : 'row';
+
+export const getGridVerticalAlignment = (classes) => {
+	if (classes.includes('is-vertically-aligned-center')) return 'center';
+	if(classes.includes('is-vertically-aligned-bottom')) return 'flex-end';
+	if(classes.includes('is-vertically-aligned-top')) return 'flex-start';
+	
+	return;
+}
