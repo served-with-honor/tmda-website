@@ -25,11 +25,15 @@ export default function PersonCard({ name, position, image, isTeamLead, category
         <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {xs: 72, md: 150}, height: {xs: 72, md: 150}, marginBottom: 1, mx: 'auto' }} />        
       </Grid>
       <Grid item xs md={12} sx={{ textAlign: { xs: 'left', md: 'center' } }}>
-        <Box sx={[ category && position ? { display: ['flex', 'flex', 'initial']} : null ]}>
+        <Box sx={[
+          position ? {
+            display: ['flex', 'flex', 'initial'],
+            flexWrap: 'wrap',
+            columnGap: 1,
+          } : null
+        ]}>
           <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
-          {position ? (
-            <Typography variant='body2' sx={[ category ? { ml: [1, 1, 0] } : null ]}>{position}</Typography>
-          ) : null}
+          {position ? <Typography variant='body2'>{position}</Typography> : null}
         </Box>
         {category ? (
           <Chip
