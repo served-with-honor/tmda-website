@@ -98,16 +98,13 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
       <Grid item md={12}>
         <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {xs: 72, md: 150}, height: {xs: 72, md: 150}, marginBottom: 1, mx: 'auto' }} />        
       </Grid>
-      <Grid item xs md={12} sx={{textAlign: {xs:'left', md: 'center'}}}>
-          <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}
+      <Grid item xs md={12} sx={{ textAlign: { xs: 'left', md: 'center' } }}>
+        <Box sx={[ team && position ? { display: ['flex', 'flex', 'initial']} : null ]}>
+          <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
           {position ? (
-            team ? (
-              <Typography variant='body2' component={!isDesktop ? 'span' : null}>{!isDesktop ? ' ' : null}{position}</Typography>
-            ) : (
-              <Typography variant='body2'>{position}</Typography>
-            )
+            <Typography variant='body2' sx={[ team ? { ml: [1, 1, 0] } : null ]}>{position}</Typography>
           ) : null}
-          </Typography>
+        </Box>
         {team ? (
           <Chip
             label={label}
