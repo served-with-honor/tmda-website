@@ -94,7 +94,7 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
   const label = `${team} Team${isTeamLead ? ' Lead' : ''}`;
 
   return <>
-    <Grid container spacing={{ xs: 3, md: 1 }}>
+    <Grid container spacing={{ xs: 3, md: 1 }} alignItems={'center'}>
       <Grid item md={12}>
         <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {xs: 72, md: 150}, height: {xs: 72, md: 150}, marginBottom: 1, mx: 'auto' }} />        
       </Grid>
