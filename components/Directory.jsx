@@ -108,9 +108,19 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
             )
           ) : null}
           </Typography>
-        {team && isTeamLead ?
-          <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : team && <Chip label={label} size='small' variant='outlined' sx={{ color: getCategoryColor(team), borderColor: getCategoryColor(team)}}></Chip>
-        }
+        {team ? (
+          <Chip
+            label={label}
+            size='small'
+            variant={isTeamLead ? 'contained' : 'outlined'}
+            sx={[
+              { color: isTeamLead ? '#fff' : getCategoryColor(team) },
+              isTeamLead
+                ? { backgroundColor: getCategoryColor(team) }
+                : { borderColor: getCategoryColor(team) },
+            ]}
+          />
+        ) : null}
       </Grid>
     </Grid>
     
