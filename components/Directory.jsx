@@ -100,9 +100,13 @@ const Person = ({ name, position, image, isTeamLead, team }) => {
       </Grid>
       <Grid item xs md={12} sx={{textAlign: {xs:'left', md: 'center'}}}>
           <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}
-          {position && team ? (
-            <Typography variant='body2' sx={{display: {xs: 'inline-block', sm:'block'}}}>&nbsp;{position}</Typography>):
-              position && <Typography variant='body2'>{position}</Typography>}
+          {position ? (
+            team ? (
+              <Typography variant='body2' component={!isDesktop ? 'span' : null}>{!isDesktop ? ' ' : null}{position}</Typography>
+            ) : (
+              <Typography variant='body2'>{position}</Typography>
+            )
+          ) : null}
           </Typography>
         {team && isTeamLead ?
           <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team)}}></Chip> : team && <Chip label={label} size='small' variant='outlined' sx={{ color: getCategoryColor(team), borderColor: getCategoryColor(team)}}></Chip>
