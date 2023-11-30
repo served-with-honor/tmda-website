@@ -7,12 +7,10 @@ import Chip from '@mui/material/Chip';
 import { blue, green, red } from '@mui/material/colors'
 
 function getCategoryColor(categoryName) {
-  switch (categoryName) {
-    case 'Psych': return blue[300];
-    case 'Nexus': return red[400];
-    case 'Telemedicine': return green[400];
-    default: return;
-  }
+  if (categoryName.includes('Psych')) return blue[300];
+  if (categoryName.includes('Nexus')) return red[400];
+  if (categoryName.includes('Telemedicine')) return green[400];
+  return;
 }
 
 export default function PersonCard({ name, position, image, isTeamLead, category }) {
