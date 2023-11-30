@@ -16,13 +16,12 @@ function getCategoryColor(categoryName) {
 }
 
 export default function PersonCard({ name, position, image, isTeamLead, category }) {
-  const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
-  const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
-  
+  const color = category ? getCategoryColor(category) : null;
+
   return <>
     <Grid container spacing={{ xs: 2, md: 1 }} alignItems={'center'}>
       <Grid item md={12}>
-        <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: {xs: 72, md: 150}, height: {xs: 72, md: 150}, marginBottom: 1, mx: 'auto' }} />        
+        <Media name={name} image={image} />
       </Grid>
       <Grid item xs md={12} sx={{ textAlign: { xs: 'left', md: 'center' } }}>
         <Box sx={[
@@ -35,20 +34,37 @@ export default function PersonCard({ name, position, image, isTeamLead, category
           <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
           {position ? <Typography variant='body2'>{position}</Typography> : null}
         </Box>
-        {category ? (
-          <Chip
-            label={category}
-            size='small'
-            variant={isTeamLead ? 'contained' : 'outlined'}
-            sx={[
-              { color: isTeamLead ? '#fff' : getCategoryColor(category) },
-              isTeamLead
-                ? { backgroundColor: getCategoryColor(category) }
-                : { borderColor: getCategoryColor(category) },
-            ]}
-          />
-        ) : null}
+        {category ? <Category label={category} isFeatured={isTeamLead} color={color} /> : null}
       </Grid>
     </Grid>
   </>
 };
+
+const Media = ({ name, image }) => {
+  const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
+  const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
+  
+  return <Avatar
+    srcSet={srcset}
+    src={imageUrl}
+    alt={`${name} profile photo`}
+    sx={{
+      width: { xs: 72, md: 150 },
+      height: { xs: 72, md: 150 },
+      marginBottom: 1,
+      mx: 'auto',
+    }}
+  />
+};
+
+const Category = ({ label, isFeatured, color }) => (
+  <Chip
+    label={label}
+    size='small'
+    variant={isFeatured ? 'contained' : 'outlined'}
+    sx={[
+      { color: isFeatured ? '#fff' : color },
+      isFeatured ? { backgroundColor: color } : { borderColor: color },
+    ]}
+  />
+);
