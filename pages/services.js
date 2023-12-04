@@ -118,6 +118,7 @@ export default function ServicesPage({ title, description, prices }) {
 						</Box>
 						) : null}
 						<Container sx={{ textAlign: 'center' }}>
+							<Button variant='contained' href='#booking' sx={{mb: 2}}>Book Now</Button>
 							<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
 							<Typography variant='subtitle1' component='p'>
 								<MuiLink href='/about#how-it-works'>How it Works</MuiLink>
