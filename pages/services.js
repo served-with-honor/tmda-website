@@ -115,7 +115,7 @@ export default function ServicesPage({ title, description, prices }) {
 						{services ? (
 						<Box mb={10} sx={{textAlign: 'center'}}>
 							<CustomAccordion items={services} />
-							<Button variant='contained' href='#booking' sx={{mt: 6}}>Book Now</Button>
+							<Button variant='contained' href='#booking' sx={{mt: 2}}>Book Now</Button>
 						</Box>
 						) : null}
 						<Container sx={{ textAlign: 'center' }}>
