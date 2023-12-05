@@ -113,9 +113,11 @@ export default function ServicesPage({ title, description, prices }) {
 					<Container>
 						<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 						{services ? (
-						<Box mb={10} sx={{textAlign: 'center'}}>
+						<Box mb={10}>
 							<CustomAccordion items={services} />
-							<Button variant='contained' href='#booking' sx={{mt: 2}}>Book Now</Button>
+							<Box sx={{textAlign: 'center'}}>
+								<Button variant='contained' href='#booking' sx={{mt: 2}}>Book Now</Button>
+							</Box>
 						</Box>
 						) : null}
 						<Container sx={{ textAlign: 'center' }}>
