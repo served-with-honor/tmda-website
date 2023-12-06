@@ -32,10 +32,12 @@ export default function Post({ post }) {
 			<Box sx={{ my: 10 }}>
 				<Container>
 					<Grid container spacing={4}>
-						<Grid item xs={12} md={4}>
-							<Box sx={{position: 'sticky', top: '8rem'}}>{sideContent}</Box>
-						</Grid>
-						<Grid item xs={12} md={8}>{contentComponents}</Grid>
+						{sideContent.length ? (
+							<Grid item xs={12} md={4}>
+								<Box sx={{position: 'sticky', top: '8rem'}}>{sideContent}</Box>
+							</Grid>
+						) : null}
+						<Grid item xs={12} md={sideContent.length ? 8 : 12}>{contentComponents}</Grid>
 					</Grid>
 				</Container>
 			</Box>
