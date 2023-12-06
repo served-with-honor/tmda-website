@@ -10,6 +10,7 @@ export const renderElementContents = (element) => {
 
 	if (type === 'text') return data;
 	if (name === 'a') return <Link {...attribs}>{domToReact(children)}</Link>
+	if (name === 'p') return <Typography variant='body1' gutterBottom>{domToReact(children, { replace: renderElementContents })}</Typography>
 	
 	return domToReact(element);
 }
