@@ -5,7 +5,6 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import MuiLink from '@mui/material/Link';
@@ -56,7 +55,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
 
           {/* Categories */}
           {categories && categories.length > 0 ? (
-            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
+            <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5, }}>
               {categories.map(({ slug: categorySlug, name }) => {
                 const color = settings.articleCategoryColors[categorySlug];
                 return <Chip
@@ -70,12 +69,12 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
                   href={`/blog?category=${categorySlug}`}
                 />
               })}
-            </Stack>
+            </Box>
           ) : isLoading ? (
-            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
+            <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5, }}>
               <Skeleton variant='rounded' width={100} height={20} sx={{ borderRadius: 10 }} />
               <Skeleton variant='rounded' width={100} height={20} sx={{ borderRadius: 10 }} />
-            </Stack>
+            </Box>
           ) : null}
 
           <Box onClick={() => handleClick(articleSlug)}>
