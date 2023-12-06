@@ -12,12 +12,11 @@ import { renderElementContents } from './generics';
 export default function WPBlocks(element) {
 	const { parent, type, children, name, attribs, data } = element;
 	const { class: classNames } = attribs || {};
-	
 	if (parent) return;
 	
 	// Ignore empty text nodes
-	if (type === 'text' && !data.trim().length) return;
-
+	if (type === 'text' && (!data.trim().length || data.match(/^(\\n)+$/))) return;
+	
 	if (classNames?.includes('wp-block-heading')) return WPBlockHeading(element);
 	if (classNames?.includes('wp-block-buttons')) return WPBlockButtons(element);
 	if (classNames?.includes('wp-block-image')) return WPBlockImage(element);
