@@ -56,7 +56,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
 
           {/* Categories */}
           {categories && categories.length > 0 ? (
-            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
+            <Stack direction="row" sx={{ flexWrap: 'wrap', marginBottom: 2 }}>
               {categories.map(({ slug: categorySlug, name }) => {
                 const color = settings.articleCategoryColors[categorySlug];
                 return <Chip
@@ -64,7 +64,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
                   variant={'contained'}
                   component="a"
                   label={name}
-                  sx={color ? { color: '#fff', backgroundColor: color } : {}}
+                  sx={color ? { color: '#fff', backgroundColor: color, margin: .25 } : {}}
                   size={'small'}
                   clickable
                   href={`/blog?category=${categorySlug}`}
