@@ -18,10 +18,12 @@ export default function Post({ post }) {
 
 	// Exclude SimpleTOC
 	const contentComponents = parse(content, {
+		trim: true,
 		replace: (element) => !isSimpleTOC(element) ? WPBlocks(element) : <></>
 	}).filter(removeFragments);
 
 	const sideContent = parse(content, {
+		trim: true,
 		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element) : <></>
 	}).filter(removeFragments);
 	
