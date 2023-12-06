@@ -7,15 +7,15 @@ import WPBlockButtons from './WPBlockButtons';
 import WPBlockImage from './WPBlockImage';
 import WPBlockSeparator from './WPBlockSeparator';
 import WPBlockList from './WPBlockList';
-import { renderElementContents } from './generics';
+import { renderElementContents, isEmptyText } from './generics';
 
 export default function WPBlocks(element) {
-	const { parent, type, children, name, attribs, data } = element;
+	const { parent, type, children, name, attribs } = element;
 	const { class: classNames } = attribs || {};
 	if (parent) return;
 	
 	// Ignore empty text nodes
-	if (type === 'text' && (!data.trim().length)) return;
+	if(isEmptyText(element)) return;
 	
 	if (classNames?.includes('wp-block-heading')) return WPBlockHeading(element);
 	if (classNames?.includes('wp-block-buttons')) return WPBlockButtons(element);

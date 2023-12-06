@@ -40,3 +40,9 @@ export const getGridVerticalAlignment = (classes) => {
 	
 	return;
 }
+
+export const isEmptyText = ({ type, data }) => (
+	type === 'text' && (
+		!data.trim().length || data.match(/^(\\n)+$/)
+	)
+);
