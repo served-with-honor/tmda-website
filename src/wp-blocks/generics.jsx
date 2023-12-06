@@ -11,7 +11,6 @@ export const renderElementContents = (element) => {
 	if (type === 'text') return data;
 	if (name === 'a') return <Link {...attribs}>{domToReact(children)}</Link>
 	
-	if (children) return domToReact(children, { replace: renderElementContents });
 	return domToReact(element);
 }
 
