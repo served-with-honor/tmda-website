@@ -1,3 +1,4 @@
+import React from 'react'
 import parse from 'html-react-parser';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -13,15 +14,16 @@ export default function Post({ post }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
 	
 	const isSimpleTOC = (element) => element?.attribs?.class?.includes('simpletoc-list') || element?.attribs?.class?.includes('simpletoc-title');
+	const removeFragments = (element) => element.type !==	React.Fragment
 
 	// Exclude SimpleTOC
 	const contentComponents = parse(content, {
 		replace: (element) => !isSimpleTOC(element) ? WPBlocks(element) : <></>
-	});
+	}).filter(removeFragments);
 
 	const sideContent = parse(content, {
 		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element) : <></>
-	});
+	}).filter(removeFragments);
 	
 	return (
 		<Page title={title}>
