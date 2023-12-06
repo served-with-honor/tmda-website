@@ -10,9 +10,8 @@ import WPBlockList from './WPBlockList';
 import { renderElementContents, isEmptyText } from './generics';
 
 export default function WPBlocks(element) {
-	const { parent, type, children, name, attribs } = element;
+	const { children, name, attribs } = element;
 	const { class: classNames } = attribs || {};
-	if (parent) return;
 	
 	// Ignore empty text nodes
 	if(isEmptyText(element)) return;
