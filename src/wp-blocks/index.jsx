@@ -24,7 +24,7 @@ export default function WPBlocks(element) {
 	if (classNames?.includes('wp-block-separator')) return WPBlockSeparator(element);
 
 	// These blocks do not have any class names
-	if (name === 'p') return <Typography variant='body1' my={3}>{domToReact(children, { replace: renderElementContents })}</Typography>
+	if (name === 'p') return <Typography variant='body1' gutterBottom>{domToReact(children, { replace: renderElementContents })}</Typography>
 	if (name === 'ul') return WPBlockList(element);
 	
 	return element;
