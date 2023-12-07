@@ -34,6 +34,11 @@ export default function SimpleTOC(element) {
 				display: 'block',
 				textDecoration: 'none',
 				':hover': { textDecoration: 'underline' },
+				':focus': { 
+					color: 'primary.main',
+					fontWeight: 'bold',
+					textDecoration: 'underline' 
+				},
 			},
 		}}>
 			<ol>
@@ -66,3 +71,4 @@ const renderContent = (element) => {
 	
 	return domToReact(element);
 }
+
