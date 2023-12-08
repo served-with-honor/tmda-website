@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import parse from 'html-react-parser';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -12,19 +12,21 @@ import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
+	const [currentSelectedItem, setCurrentSelectedItem] = useState('#ftoc-heading-3');
 	
-	const isSimpleTOC = (element) => element?.attribs?.class?.includes('simpletoc-list') || element?.attribs?.class?.includes('simpletoc-title');
+	const isSimpleTOC = (element) => element?.attribs?.class?.includes('simpletoc-list') || element?.attribs?.class?.includes('simpletoc-title')
+	
 	const removeFragments = (element) => element.type !==	React.Fragment
 
 	// Exclude SimpleTOC
 	const contentComponents = parse(content, {
 		trim: true,
-		replace: (element) => !isSimpleTOC(element) ? WPBlocks(element) : <></>
+		replace: (element) => !isSimpleTOC(element) ? WPBlocks(element, currentSelectedItem) : <></>
 	}).filter(removeFragments);
 
 	const sideContent = parse(content, {
 		trim: true,
-		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element) : <></>
+		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element, currentSelectedItem) : <></>
 	}).filter(removeFragments);
 	
 	return (
@@ -34,12 +36,13 @@ export default function Post({ post }) {
 			<Box sx={{ my: 10 }}>
 				<Container>
 					<Grid container spacing={4}>
-						{sideContent.length ? (
 							<Grid item xs={12} md={4}>
-								<Box sx={{position: 'sticky', top: '8rem'}}>{sideContent}</Box>
+								<Box sx={{position: 'sticky', top: '8rem'}}>
+									<button onClick={() => setCurrentSelectedItem('poops')}>poops</button>
+									{sideContent}
+								</Box>
 							</Grid>
-						) : null}
-						<Grid item xs={12} md={sideContent.length ? 8 : 12}>{contentComponents}</Grid>
+						<Grid item xs={12} md={8}>{contentComponents}</Grid>
 					</Grid>
 				</Container>
 			</Box>
