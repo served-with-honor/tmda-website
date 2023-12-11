@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Link from '../Link';
 import { isEmptyText } from './generics';
 
-export default function SimpleTOC(element, current) {
+export default function SimpleTOC(element) {
 	const { attribs, children } = element;
 	const { class: classes } = attribs || {};
 	
@@ -34,15 +34,10 @@ export default function SimpleTOC(element, current) {
 				display: 'block',
 				textDecoration: 'none',
 				':hover': { textDecoration: 'underline' },
-				// ':focus': { 
-				// 	color: 'primary.main',
-				// 	fontWeight: 'bold',
-				// 	textDecoration: 'underline' 
-				// },
 			},
 		}}>
 			<ol>
-				{domToReact(children, { replace: (element) => renderListItem(element, current) })}
+				{domToReact(children, { replace: (element) => renderListItem(element) })}
 			</ol>
 		</Box>
 	);
@@ -50,25 +45,25 @@ export default function SimpleTOC(element, current) {
 	return domToReact(element);
 }
 
-const renderListItem = (element, current) => {
+const renderListItem = (element) => {
 	if(isEmptyText(element)) return;
 	
 	return <li>
-		{domToReact(element.children, { replace: (element) => renderContent(element, current) })}
+		{domToReact(element.children, { replace: (element) => renderContent(element) })}
 	</li>;
 }
 
-const renderContent = (element, current) => {
+const renderContent = (element) => {
 	const { name, children, attribs } = element;
 	
 	if (isEmptyText(element)) return;
 	
 	if (name === 'ul') return (
-		<ol>{domToReact(children, { replace: (element) => renderListItem(element, current) })}</ol>
+		<ol>{domToReact(children, {replace: (element) => renderListItem(element)})}</ol>
 	);
 
-	if (name === 'a' && children) return <Link {...attribs} sx={{color: current === attribs.href ? 'red' : null }}>
-		{current}{domToReact(children)}</Link>
+	if (name === 'a' && children) return <Link id={`${attribs.href}-toc`} {...attribs}>
+		{domToReact(children)}</Link>
 	
 	return domToReact(element);
 }

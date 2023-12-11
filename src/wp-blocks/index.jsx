@@ -9,13 +9,12 @@ import WPBlockSeparator from './WPBlockSeparator';
 import WPBlockList from './WPBlockList';
 import { renderElementContents, isEmptyText } from './generics';
 
-export default function WPBlocks(element) {
+export default function WPBlocks(element, current) {
 	const { children, name, attribs } = element;
 	const { class: classNames } = attribs || {};
 	
 	// Ignore empty text nodes
 	if(isEmptyText(element)) return;
-	if ((/^ftoc-heading-\d+$/).test(attribs.id)) return <div>I need it to return the WPBlock heading</div>;
 	if (classNames?.includes('wp-block-heading')) return WPBlockHeading(element);
 	if (classNames?.includes('wp-block-buttons')) return WPBlockButtons(element);
 	if (classNames?.includes('wp-block-image')) return WPBlockImage(element);
@@ -29,5 +28,3 @@ export default function WPBlocks(element) {
 	
 	return element;
 }
-
-// need to connect refs to framer motion -> when the ref is in view, will utilize useEffect to update the table of contents

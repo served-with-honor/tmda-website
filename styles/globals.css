@@ -1,3 +1,11 @@
 html, body {
     scroll-behavior: smooth;
 }
+
+[id*="#ftoc-heading-"][id*="-toc"].active {
+    font-weight: bolder;
+    background-color: #70cdb5;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 100ms ease-in-out;
+}
