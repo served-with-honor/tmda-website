@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Link from '../Link';
 import { isEmptyText } from './generics';
 
-export default function SimpleTOC(element) {
+export default function SimpleTOC(element, currentSection) {
 	const { attribs, children } = element;
 	const { class: classes } = attribs || {};
 	
@@ -29,7 +29,6 @@ export default function SimpleTOC(element) {
 			lineHeight: 1.1,
 			fontSize: 'body2.fontSize',
 			'ol': { pl: 2, },
-			'li': { my: 2, },
 			'a': {
 				display: 'block',
 				textDecoration: 'none',
@@ -37,7 +36,7 @@ export default function SimpleTOC(element) {
 			},
 		}}>
 			<ol>
-				{domToReact(children, { replace: (element) => renderListItem(element) })}
+				{domToReact(children, { replace: (element) => renderListItem(element, currentSection) })}
 			</ol>
 		</Box>
 	);
@@ -45,25 +44,42 @@ export default function SimpleTOC(element) {
 	return domToReact(element);
 }
 
-const renderListItem = (element) => {
+const renderListItem = (element, currentSection) => {
 	if(isEmptyText(element)) return;
 	
 	return <li>
-		{domToReact(element.children, { replace: (element) => renderContent(element) })}
+		{domToReact(element.children, { replace: (element) => renderContent(element, currentSection) })}
 	</li>;
 }
 
-const renderContent = (element) => {
+const renderContent = (element, currentSection) => {
 	const { name, children, attribs } = element;
 	
 	if (isEmptyText(element)) return;
 	
 	if (name === 'ul') return (
-		<ol>{domToReact(children, {replace: (element) => renderListItem(element)})}</ol>
+		<ol>{domToReact(children, {replace: (element) => renderListItem(element, currentSection)})}</ol>
 	);
 
-	if (name === 'a' && children) return <Link id={`${attribs.href}-toc`} {...attribs}>
-		{domToReact(children)}</Link>
+	if (name === 'a' && children) {
+		const highlightedSection = currentSection === attribs.href;
+		return( 
+			<Link 
+				id={`${attribs.href}`} 
+				{...attribs}
+				sx={[
+					{
+						padding: 1,
+					},
+					highlightedSection && {
+						fontWeight: 'bold',
+						backgroundColor: 'primary.200',
+						borderRadius: 1,
+					}
+				]}
+			>
+				{domToReact(children)}
+			</Link>)}
 	
 	return domToReact(element);
 }
