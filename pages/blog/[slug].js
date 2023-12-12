@@ -27,17 +27,26 @@ export default function Post({ post }) {
 	const headings = document.querySelectorAll('[id^="ftoc-heading"]');
 
     headings.forEach((section) => {
-		console.log('section', section)
       observer.observe(section);
     });
+
+	//handle scroll to top of page
+	const handleScroll = () => {
+		const scrolledToTop = window.scrollY === 0;
+		if (scrolledToTop) {
+		  setCurrentSection(null);
+		}
+	  };
+  
+	  window.addEventListener('scroll', handleScroll);
 
     return () => {
       headings.forEach((section) => {
         observer.unobserve(section);
       });
+	  window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-	
 	
 	const isSimpleTOC = (element) => element?.attribs?.class?.includes('simpletoc-list') || element?.attribs?.class?.includes('simpletoc-title')
 	
