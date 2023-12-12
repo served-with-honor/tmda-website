@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import parse from 'html-react-parser';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -12,29 +12,27 @@ import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
+	const [currentSection, setCurrentSection] = useState(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const id = entry.target.getAttribute('id');
-        const selected = document.getElementById(`#${id}-toc`);
-
         if (entry.intersectionRatio > 0) {
-          selected.classList.add('active');
-
-        } else {
-		  selected.classList.remove('active');
-		}
+          setCurrentSection(`#${id}`);
+        } 
       });
     });
 
-    document.querySelectorAll('[id^="ftoc-heading"]').forEach((section) => {
+	const headings = document.querySelectorAll('[id^="ftoc-heading"]');
+
+    headings.forEach((section) => {
 		console.log('section', section)
       observer.observe(section);
     });
 
     return () => {
-      document.querySelectorAll('[id^="ftoc-heading"]').forEach((section) => {
+      headings.forEach((section) => {
         observer.unobserve(section);
       });
     };
@@ -53,7 +51,7 @@ export default function Post({ post }) {
 
 	const sideContent = parse(content, {
 		trim: true,
-		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element) : <></>
+		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element, currentSection) : <></>
 	}).filter(removeFragments);
 	
 	return (
