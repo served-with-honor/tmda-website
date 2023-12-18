@@ -8,10 +8,10 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (...args) => fetch(...args).then((res) => res.json()).then(res => res.data.posts);
 
 export default forwardRef(function SectionArticles(props, ref) {
-  const { data, error, isLoading } = useSWR('/api/posts?first=3', fetcher);
+  const { data: posts, error, isLoading } = useSWR('/api/posts?first=3', fetcher);
   
   return (
     <Box sx={{ py: { xs: 7, md: 10, }, }} ref={ref}>
@@ -29,7 +29,7 @@ export default forwardRef(function SectionArticles(props, ref) {
                 <Grid item sm={6} md={4}><ArticleCard isLoading /></Grid>
                 <Grid item sm={6} md={4}><ArticleCard isLoading /></Grid>
               </> :
-                data?.data?.posts?.nodes?.length > 0 ? data?.data?.posts?.nodes?.map(post =>
+                posts?.length > 0 ? posts.map(post =>
                   <Grid item xs={12} sm={6} md={4} key={`post-listing-${post.slug}`}>
                     <ArticleCard {...post} />
                   </Grid>

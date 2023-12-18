@@ -24,6 +24,6 @@ export default function Post({ post }) {
 }
 export async function getServerSideProps({ params }) {
   const id = parseInt(params.id, 10);
-  const { post } = await getPost({ id, preview: true });
+  const { post } = await getPost({ id, asPreview: true });
   return { props: { post } };
 }

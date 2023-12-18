@@ -28,10 +28,15 @@ export async function getServerSideProps({ res }) {
     'blog',
   ];
 
-  // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
-  const response = await getPosts({ first: 100 });
-  const posts = response.posts.nodes;
-
+  let posts = [];
+  try {
+    // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
+    const postsData = await getPosts({ first: 100 });
+    posts = postsData.posts;
+  } catch (error) {
+    console.error(error);
+  }
+  
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(pages, posts);
 

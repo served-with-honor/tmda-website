@@ -6,16 +6,14 @@ import settings from '../src/siteSettings'
 export default async function generateRssFeed() {
     const site_url = settings.url
     
-    const response = await getPosts();
-    // const allPosts = response.posts.nodes.map((post) => ({
-    //     title: post.title,
-    //     excerpt: post.excerpt,
-    //     slug: post.slug,
-    //     date: post.date,
-    //     image: post.featuredImage?.node?.mediaItemUrl,
-    //     categories: post.categories.edges?.map(a => a.node),
-    //     author: post.author.node.name,
-    // }));
+    let posts = [];
+    try {
+        // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
+        const postsData = await getPosts({ first: 100 });
+        posts = postsData.posts;
+    } catch (error) {
+        console.error(error);
+    }
 
     const feedOptions = {
         title: settings.defaultPageTitle,
@@ -28,8 +26,8 @@ export default async function generateRssFeed() {
 
     const feed = new RSS(feedOptions);
 
-    response.posts.nodes.forEach((post) => {
-        const categories = post.categories.map(a =>({'category': a.name}))
+    posts.forEach((post) => {
+        const categories = post.categories.map(({ name }) => ({ 'category': name }));
         feed.item({
             title: post.title,
             description: post.excerpt,
