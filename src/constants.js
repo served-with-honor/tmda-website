@@ -2,7 +2,9 @@ import settings from './siteSettings';
 
 export default {
     wordpress: {
-        rankmath: `${process.env.WORDPRESS_URL}/wp-json/rankmath/v1/getHead`,
+        posts: 'https://admin.telemedicallc.com/blog',
+        graphql: 'https://admin.telemedicallc.com/graphql',
+        rankmath: 'https://admin.telemedicallc.com/wp-json/rankmath/v1/getHead',
     },
     google: {
         gtmWidgetUrl: new URL(`https://www.googletagmanager.com/gtag/js?id=${settings.googleMeasurementId}`),
