@@ -138,6 +138,7 @@ export async function getServerSideProps({ query }) {
 	const after = query.after || null;
 	let selection = null;
 	let queryCategory = null;
+	let categories = [];
 
 	if (query.category) {
 		const currentCategory = await getCategory(query.category);
@@ -150,8 +151,8 @@ export async function getServerSideProps({ query }) {
 	const { hasNextPage, endCursor } = response.posts.pageInfo;
 	const initialNextPage = hasNextPage ? endCursor : null;
 	
-	const categoriesResponse = await getCategories();
-	const categories = categoriesResponse.categories.nodes.filter(item => item.slug !== 'uncategorized');
+	categories = await getCategories();
+	categories = categories.filter(({ slug }) => slug !== 'uncategorized');
 	
   return { props: { initialPosts, categories, selection, initialNextPage }}
 }
