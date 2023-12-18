@@ -1,4 +1,5 @@
 import parse from 'html-react-parser';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import { getPost } from '../../lib/wordpress'
@@ -8,6 +9,18 @@ import { replaceContent } from '../../src/WPBlocks';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
+	if (!post) return (
+		<Page>
+			<Box sx={{ mt: 20, mb: 10 }}>
+				<Container>
+					<Alert severity="error">There was a problem loading this post</Alert>
+				</Container>
+			</Box>
+
+			<NewsletterDialog delay={10000} />
+  	</Page>
+  );
+
 	const { author, categories, title, content, featuredImage, date, modifed, metadata } = post;
 	const contentComponents = parse(content, { replace: replaceContent });
 	
