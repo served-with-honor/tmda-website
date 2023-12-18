@@ -7,8 +7,8 @@ import BlogHero from '../../components/BlogHero'
 import { replaceContent } from '../../src/WPBlocks';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
-export default function Post({ post, metadata }) {
-	const { author, categories, title, content, featuredImage, date, modifed } = post;
+export default function Post({ post }) {
+	const { author, categories, title, content, featuredImage, date, modifed, metadata } = post;
 	const contentComponents = parse(content, { replace: replaceContent });
 	
 	return (
@@ -29,7 +29,6 @@ export default function Post({ post, metadata }) {
 export const getServerSideProps = async ({ params, query }) => {
 	const { slug } = params;
 	const { preview } = query;
-	const { post } = await getPost({ slug, preview });
-	const metadata = await getPostMetaData(slug);
-	return { props: { post, metadata } }
+	const post = await getPost({ slug, preview });
+	return { props: { post } }
 }
