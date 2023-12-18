@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import { getPost, getPostMetaData } from '../../lib/wordpress'
+import { getPost } from '../../lib/wordpress'
 import Page from '../../components/Page'
 import BlogHero from '../../components/BlogHero'
 import { replaceContent } from '../../src/WPBlocks';
@@ -29,6 +29,6 @@ export default function Post({ post }) {
 export const getServerSideProps = async ({ params, query }) => {
 	const { slug } = params;
 	const { preview } = query;
-	const post = await getPost({ slug, preview });
+	const post = await getPost(slug, { asPreview: preview });
 	return { props: { post } }
 }
