@@ -41,10 +41,10 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			.then(({ data, error }) => {
 				if (error) throw error;
 				
-				const newPosts = data.posts.nodes;
+				const newPosts = data.posts;
 				setPosts(prev => [...prev, ...newPosts]);
 
-				const { hasNextPage, endCursor } = data.posts.pageInfo
+				const { hasNextPage, endCursor } = data.pageInfo
 				setNextPage(hasNextPage ? endCursor : null);
 				
 				setA11yAlertText('');
@@ -146,10 +146,8 @@ export async function getServerSideProps({ query }) {
 		queryCategory = [currentCategory.id];
 	}
 
-	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
-	const initialPosts = response.posts.nodes;
-	const { hasNextPage, endCursor } = response.posts.pageInfo;
-	const initialNextPage = hasNextPage ? endCursor : null;
+	const { posts: initialPosts, pageInfo } = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
+	const initialNextPage = pageInfo.hasNextPage ? pageInfo.endCursor : null;
 	
 	categories = await getCategories();
 	categories = categories.filter(({ slug }) => slug !== 'uncategorized');
