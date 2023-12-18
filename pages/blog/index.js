@@ -140,9 +140,9 @@ export async function getServerSideProps({ query }) {
 	let queryCategory = null;
 
 	if (query.category) {
-		const { category } = await getCategory(query.category);
-		selection = category;
-		queryCategory = [category.id];
+		const currentCategory = await getCategory(query.category);
+		selection = currentCategory;
+		queryCategory = [currentCategory.id];
 	}
 
 	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
