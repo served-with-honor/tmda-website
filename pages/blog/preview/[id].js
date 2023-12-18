@@ -4,7 +4,7 @@ import Container from '@mui/material/Container'
 import { getPost } from '../../../lib/wordpress'
 import Page from '../../../components/Page'
 import BlogHero from '../../../components/BlogHero'
-import { replaceContent } from '../../../src/WPBlocks';
+import { replaceContent } from '../../../src/wp-blocks';
 
 export default function Post({ post }) {
 	const { author, categories, title, content, featuredImage, date, modifed } = post;
