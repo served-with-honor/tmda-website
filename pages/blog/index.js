@@ -60,6 +60,10 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 	}
 
 	useEffect(() => {
+		if(!initialPosts || initialPosts.length < 1) setError('There was an issue trying to load the articles.');
+	}, [initialPosts]);
+
+	useEffect(() => {
 		if (loadMoreInView && !isLoading && nextPage) loadMore(nextPage);
 	}, [loadMoreInView]);
 	
@@ -125,9 +129,9 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 					{nextPage ? <>
 						<div ref={loadMoreRef} />
 						<Link href={`blog?after=${nextPage}`} sx={visuallyHidden}>Next Page</Link>
-					</> : (
+					</> : posts ? (
 						<Typography variant='subtitle2' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
-					)}
+					) : null}
 				</Container>
 			</Box>
   	</Page>
@@ -139,18 +143,33 @@ export async function getServerSideProps({ query }) {
 	let selection = null;
 	let queryCategory = null;
 	let categories = [];
+	let initialPosts = [];
+	let initialNextPage = null;
 
 	if (query.category) {
 		const currentCategory = await getCategory(query.category);
-		selection = currentCategory;
-		queryCategory = [currentCategory.id];
+		if (currentCategory) {
+			selection = currentCategory;
+			queryCategory = [currentCategory.id];
+		}
 	}
 
-	const { posts: initialPosts, pageInfo } = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
-	const initialNextPage = pageInfo.hasNextPage ? pageInfo.endCursor : null;
+	try {
+		const { posts, pageInfo } = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
+		if(!posts || posts.length < 1) throw new Error('No posts found');
+		
+		initialPosts = posts;
+		initialNextPage = pageInfo.hasNextPage ? pageInfo.endCursor : null;
+	} catch (error) {
+		console.error(error);
+	}
 	
-	categories = await getCategories();
-	categories = categories.filter(({ slug }) => slug !== 'uncategorized');
-	
-  return { props: { initialPosts, categories, selection, initialNextPage }}
+	try {
+		categories = await getCategories();
+		categories = categories.filter(({ slug }) => slug !== 'uncategorized');
+	} catch (error) {
+		console.error(error);
+	}
+
+	return { props: { initialPosts, categories, selection, initialNextPage }}
 }
