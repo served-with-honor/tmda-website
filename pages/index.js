@@ -11,13 +11,14 @@ import SectionTestimonials from '../components/home/SectionTestimonials'
 import SectionArticles from '../components/home/SectionArticles'
 import NewsletterDialog from '../components/NewsletterDialog'
 import generateRssFeed from '../utils/generateRSSFeed';
+import { getPostMetaData } from '../lib/wordpress';
 
-export default function Home() {
+export default function Home({ metadata }) {
 	const newsletterPopupRef = useRef(null);
 	const testimonialsRef = useRef(null);
 	
 	return (
-		<Page hasHeroVideo>
+		<Page hasHeroVideo metadata={metadata}>
     
 			<Hero />
 
@@ -44,7 +45,10 @@ export default function Home() {
 }
 
 export async function getStaticProps() {
-	await generateRssFeed();
+	const [metadata] = await Promise.all([
+		getPostMetaData('/'),
+		generateRssFeed(),
+	]);
 
-	return { props: { } }
+	return { props: { metadata } }
 }
