@@ -7,9 +7,9 @@ import Chip from '@mui/material/Chip';
 import { blue, green, red } from '@mui/material/colors'
 
 function getCategoryColor(categoryName) {
-  if (categoryName.includes('Psych')) return blue[300];
-  if (categoryName.includes('Nexus')) return red[400];
-  if (categoryName.includes('Telemedicine')) return green[400];
+  if (categoryName.includes('Psych')) return blue[600];
+  if (categoryName.includes('Nexus')) return red[600];
+  if (categoryName.includes('Telemedicine')) return green[600];
   return;
 }
 
