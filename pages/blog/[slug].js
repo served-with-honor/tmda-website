@@ -63,20 +63,24 @@ export default function Post({ post }) {
 		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element, currentSection) : <></>
 	}).filter(removeFragments);
 	
+	const hasSideContent = sideContent && sideContent.length > 0;
+
 	return (
 		<Page title={title}>
 			<BlogHero {...{ title, author, date, modifed, categories, featuredImage }} />
 			
 			<Box sx={{ my: 10 }}>
 				<Container>
-					<Grid container spacing={4}>
-							<Grid item xs={12} md={4}>
-								<Box sx={{position: 'sticky', top: '8rem'}}>
-									{sideContent}
-								</Box>
-							</Grid>
-						<Grid item xs={12} md={8}>{contentComponents}</Grid>
+					{hasSideContent ? (
+						<Grid container spacing={4}>
+								<Grid item xs={12} md={4}>
+									<Box sx={{position: 'sticky', top: '8rem'}}>
+										{sideContent}
+									</Box>
+								</Grid>
+							<Grid item xs={12} md={8}>{contentComponents}</Grid>
 					</Grid>
+				) : contentComponents}
 				</Container>
 			</Box>
 
