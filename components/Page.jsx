@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
+import React, { useRef, useContext } from 'react'
 import Script from 'next/script'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -12,13 +12,8 @@ import constants from '../src/constants';
 
 export default function Page({ metadata, title, description, children, darkHeader, hasHeroVideo, noindex, nofollow }) {
   const { setIsOpen: hasBookingPopup } = useContext(BookingContext);
-  const [headerHeight, setHeaderHeight] = useState(0);
   const ref = useRef(null);
   const router = useRouter();
-
-  useEffect(() => {
-    // if (ref.current) setHeaderHeight(ref.current.clientHeight);
-  }, [ref])
 
   const containsMetaTag = (name) => metadata && metadata.search(`name="${name}"`) > -1;
 
@@ -49,7 +44,7 @@ export default function Page({ metadata, title, description, children, darkHeade
       </Head>
       
       <Header ref={ref} isDark={darkHeader} hasHeroVideo={hasHeroVideo} />
-      <main style={{ marginTop: headerHeight }}>{children}</main>
+      <main>{children}</main>
       {hasBookingPopup ? <BookingPopup /> : null}
       <Footer />
       
