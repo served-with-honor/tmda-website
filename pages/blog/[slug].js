@@ -24,7 +24,7 @@ export default function Post({ post }) {
       });
     });
 
-	const headings = document.querySelectorAll('[id^="ftoc-heading"]');
+	const headings = document.querySelectorAll('h2[id],h3[id],h4[id],h5[id],h6[id]');
 
     headings.forEach((section) => {
       observer.observe(section);
