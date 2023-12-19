@@ -263,6 +263,8 @@ export const getServerSideProps = async () => {
 	const providers = providersResponse.map(createPersonImage).map(person => {
 		person.position = person.certification || null;
 		delete person.certification;
+		person.category = person.team ? `${person.team} Team${person.isTeamLead ? ' Lead' : ''}` : null;
+		delete person.team;
 		return person;
 	});
 	
