@@ -2,7 +2,7 @@ import React, { useRef, useContext } from 'react'
 import Script from 'next/script'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import parse from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 import Header from './Header'
 import Footer from './Footer'
 import settings from '../src/siteSettings';
@@ -15,6 +15,16 @@ export default function Page({ metadata, title, description, children, darkHeade
   const ref = useRef(null);
   const router = useRouter();
 
+  // TODO - remove this when we have a better solution
+  // Currently rankmath is adding a robots meta tag with noindex and nofollow to all pages and posts even when those are not selected
+  // This is a temporary fix to remove that tag
+  const removeRobotsMeta = (node) => {
+    if (node.name === 'meta' && node.attribs.name === 'robots') {
+      return <></>;
+    }
+
+    return domToReact(node);
+  }
   const containsMetaTag = (name) => metadata && metadata.search(`name="${name}"`) > -1;
 
   const pageTitle = `${settings.name} | ${title || settings.defaultPageTitle}`;
@@ -23,7 +33,7 @@ export default function Page({ metadata, title, description, children, darkHeade
   return (
     <>
       <Head>
-        {metadata ? parse(metadata) : null}
+        {metadata ? parse(metadata, { replace: removeRobotsMeta }) : null}
         {!containsMetaTag('robots') && (noindex || nofollow) ? <meta name="robots" content={`${noindex ? 'noindex' : ''}${noindex && nofollow ? ',' : ''}${nofollow ? 'nofollow' : ''}`} /> : null}
         {!containsMetaTag('title') ? <title>{pageTitle}</title> : null}
         {!containsMetaTag('description') ? <meta name="description" content={pageDescription} /> : null}
