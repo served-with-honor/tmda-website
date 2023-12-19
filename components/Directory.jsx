@@ -1,15 +1,13 @@
-import { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 import { motion } from 'framer-motion'
+import PersonCard from '../components/PersonCard'
 import { slugify } from '../src/utils';
-import defaultProfile from '../public/default-profile.png'
-import Chip from '@mui/material/Chip';
-import { blue, green, red } from '@mui/material/colors'
 
 export default function Directory({ items }) {
   const [value, setValue] = useState(0);
@@ -21,24 +19,11 @@ export default function Directory({ items }) {
 
     {items ? items.map(({ people }, index) => (
       <TabPanel key={`directory-panel-${index}`} value={value} index={index}>
-        {people ? (
-          <Grid container spacing={5} sx={{ justifyContent: 'center' }}>
-            {people.map((person, index) => {
-              return (
-                <Grid key={`directory-person-${slugify(person.name)}`} item xs={12} sm={6} md={3} lg={2}>
-                  <motion.div
-                    align="center"
-                    initial={{ opacity: 0, y: -10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 * index }}
-                  >
-                    <Person {...person} />
-                  </motion.div>
-                </Grid>
-              );
-            })}
-          </Grid>
-        ) : null}
+        {items[value].label === 'Providers' ? (
+          <ProviderContent people={people} />
+        ) : 
+          <Content people={people} />
+        }
       </TabPanel>
     )) : null}
   </>
@@ -72,35 +57,63 @@ const TabPanel = ({ children, value, index, ...other }) => (
     {...other}
   >
     {value === index && (
-      <Box sx={{ p: 3 }}>
+      <Box sx={{ py: 3 }}>
         {children}
       </Box>
     )}
   </div>
 );
 
-function getCategoryColor(categoryName) {
-  switch (categoryName) {
-    case 'Psych': return blue[300];
-    case 'Nexus': return red[400];
-    case 'Telemedicine': return green[400];
-    default: return;
-  }
-}
+const Content = ({ people }) => (
+  <Grid container rowSpacing={{ xs: 1, sm: 2, md: 5 }} columnSpacing={{ sm: 2, md: 5 }} >
+    {people.map((person, index) => {
+      return (
+        <Grid key={`directory-person-${slugify(person.name)}`} item xs={12} sm={6} md={3} lg={2}>
+          <motion.div
+            align="center"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 * index }}
+          >
+            <PersonCard {...person} />
+          </motion.div>
+        </Grid>
+      );
+    })}
+  </Grid >
+);
 
-const Person = ({ name, position, image, isTeamLead, team }) => {
-  const imageUrl = image && Array.isArray(image) ? image[0] : image ? image : defaultProfile.src;
-  const srcset = image && Array.isArray(image) && image.length > 0 ? image.join(', ') : null;
-  const label = `${team} Team${isTeamLead ? ' Lead' : ''}`;
+const ProviderContent = ({ people }) => {
+  const selectedCategoryPeople = ({ category }) => category.includes(selectedCategory);
+
+  const categories = Array.from(new Set(people.map(({ category }) => category.replace(/Team Lead|Team/, '').trim())));
+  const [selectedCategory, setSelectedCategory] = useState(categories[0] || []);
+  const [filteredPeople, setFilteredPeople] = useState(people);
+  
+  useEffect(() => {
+    setFilteredPeople(people.filter(selectedCategoryPeople));
+  }, [selectedCategory]);
 
   return <>
-    <Avatar srcSet={srcset} src={imageUrl} alt={`${name} profile photo`} sx={{ width: 150, height: 150, marginBottom: 3, mx: 'auto' }} />
-    <Typography variant='h6' component='p' gutterBottom sx={{ lineHeight: 1 }}>{name}</Typography>
-    {team ?
-      <Chip label={label} size='small' sx={{ color: '#fff', backgroundColor: getCategoryColor(team) }}></Chip> : null
-    }
-    {position ? (
-      <Typography variant='body2'>{position}</Typography>
+    {categories?.length > 0 ? (
+      <Box sx={{ textAlign: 'center', mb: 5 }}>
+        <ButtonGroup variant="outlined" size='small' aria-label="Provider Categories">
+          {categories.map((category) => (
+            <Button
+              key={`provider-category-${slugify(category)}`}
+              onClick={() => setSelectedCategory(category)}
+              variant={selectedCategory === category ? 'contained' : 'outlined'}
+              color='secondary'
+              sx={{ fontSize: 12 }}
+            >
+              {category}
+            </Button>
+          ))}
+        </ButtonGroup>
+      </Box>
     ) : null}
-  </>
-};
+    {filteredPeople?.length > 0 ? (
+      <Content people={filteredPeople} />
+    ) : null}
+  </>;
+}
