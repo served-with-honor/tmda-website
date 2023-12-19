@@ -20,24 +20,24 @@ export default function Page({ metadata, title, description, children, darkHeade
     // if (ref.current) setHeaderHeight(ref.current.clientHeight);
   }, [ref])
 
+  const containsMetaTag = (name) => metadata && metadata.search(`name="${name}"`) > -1;
+
   const pageTitle = `${settings.name} | ${title || settings.defaultPageTitle}`;
   const pageDescription = description || settings.defaultPageDescription;
-  const url = `${settings.url}${router.asPath}`;
 
   return (
     <>
       <Head>
         {metadata ? parse(metadata) : null}
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <meta property="og:url" content={url} />
-        <meta property="og:site_name" content={settings.name} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:locale" content="en_US" />
-        {noindex || nofollow ? (
-          <meta name="robots" content={`${noindex ? 'noindex' : ''}${noindex && nofollow ? ',' : ''}${nofollow ? 'nofollow' : ''}`} />
-         ) : null}
+        {!containsMetaTag('robots') && (noindex || nofollow) ? <meta name="robots" content={`${noindex ? 'noindex' : ''}${noindex && nofollow ? ',' : ''}${nofollow ? 'nofollow' : ''}`} /> : null}
+        {!containsMetaTag('title') ? <title>{pageTitle}</title> : null}
+        {!containsMetaTag('description') ? <meta name="description" content={pageDescription} /> : null}
+        {!containsMetaTag('og:locale') ? <meta property="og:locale" content="en_US" /> : null}
+        {!containsMetaTag('og:site_name') ? <meta property="og:site_name" content={settings.name} /> : null}
+        {!containsMetaTag('og:url') ? <meta property="og:url" content={`${settings.url}${router.asPath}`} /> : null}
+        {!containsMetaTag('og:title') ? <meta property="og:title" content={pageTitle} /> : null}
+        {!containsMetaTag('og:description') ? <meta property="og:description" content={pageDescription} /> : null}
+        {!containsMetaTag('twitter:description') ? <meta property="twitter:description" content={pageDescription} /> : null}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
