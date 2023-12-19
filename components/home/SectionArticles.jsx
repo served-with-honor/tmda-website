@@ -8,7 +8,13 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json()).then(res => res.data.posts);
+const fetcher = (...args) => fetch(...args).then((res) => {
+  if (!res.ok) {
+    console.error(res.status, res.statusText);
+    throw new Error('There was a problem loading the lastest posts');
+  }
+  return res.json()
+}).then(res => res.data.posts);
 
 export default forwardRef(function SectionArticles(props, ref) {
   const { data: posts, error, isLoading } = useSWR('/api/posts?first=3', fetcher);
@@ -21,7 +27,7 @@ export default forwardRef(function SectionArticles(props, ref) {
 
         <Box sx={{ mb: 8 }}>
           {error ? (
-            <Alert severity="error">There was a problem loading the lastest posts</Alert>
+            <Alert severity="error">{error.message}</Alert>
           ) : (
             <Grid container spacing={{ xs: 3, lg: 10 }}>
               {isLoading ? <>
