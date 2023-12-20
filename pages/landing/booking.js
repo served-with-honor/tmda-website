@@ -27,6 +27,11 @@ import mentalHealthImage from '../../public/images/mental-health-evaluation.svg'
 import rebuttalLetterImage from '../../public/images/logo-rebuttal-letter.svg';
 import veteranWithPhone from '../../public/images/veteran-with-phone-cutout.png';
 import clientPhotoJim from '../../public/images/client-photo-jim.jpg';
+import LooksOneIcon from '@mui/icons-material/LooksOne';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import LooksThreeIcon from '@mui/icons-material/Looks3';
+import LooksFourIcon from '@mui/icons-material/Looks4';
+import LooksFiveIcon from '@mui/icons-material/Looks5';
 
 // https://learn.telemedicallc.com/15-minute-consult-booking1693585205261?preview=true&track=0&updated_at=a392a0c93b6be40f9542fb632cc8f071v2#section--88576
 export default function LandingBookingPage() {
@@ -210,28 +215,64 @@ export default function LandingBookingPage() {
 			<Box sx={{ py: 12 }}>
 				<Container>
 					<Typography variant='h2' color='secondary' align='center'>How It Works</Typography>
-					<ol>
-						<li>
-							<Typography variant='h6' component='h3'>Book Online</Typography>
-							<Typography variant='body1'>Choose a service a book online through our booking portal.</Typography>
-						</li>
-						<li>
-							<Typography variant='h6' component='h3'>Complete Intake</Typography>
-							<Typography variant='body1'>Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).</Typography>
-						</li>
-						<li>
-							<Typography variant='h6' component='h3'>Connect:</Typography>
-							<Typography variant='body1'>Connect with your provider via our convenient Telehealth platform and receive your medical evidence. You will receive an email to join your appointment.</Typography>
-						</li>
-						<li>
-							<Typography variant='h6' component='h3'>Medical Evidence:</Typography>
-							<Typography variant='body1'>Receive your expert medical evidence from our professional independent providers directly to your patient portal.</Typography>
-						</li>
-						<li>
-							<Typography variant='h6' component='h3'>Submit Your Claim:</Typography>
-							<Typography variant='body1'>After you receive your medical, your VA claim submission is in your hands! Use your documentation to bolster your claim. </Typography>
-						</li>
-					</ol>
+					<Typography variant='lead' align='center'>Get Your Medical Evidence in 5 Easy Steps!</Typography>
+					<List>
+						<ListItem>
+							<ListItemIcon>
+								<LooksOneIcon color='secondary' />
+							</ListItemIcon>
+							<ListItemText 
+								primary='Book Online:' 
+								secondary='Choose a service a book online through our booking portal.'
+								primaryTypographyProps={{variant: 'h6', component: 'h3'}}
+								secondaryTypographyProps={{variant: 'body1'}}
+							/>
+						</ListItem>
+						<ListItem>
+							<ListItemIcon>
+								<LooksTwoIcon color='secondary' />
+							</ListItemIcon>
+							<ListItemText 
+								primary='Complete Intake:' 
+								secondary='Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).'
+								primaryTypographyProps={{variant: 'h6', component: 'h3'}}
+								secondaryTypographyProps={{variant: 'body1'}}
+							/>
+						</ListItem>
+						<ListItem>
+							<ListItemIcon>
+								<LooksThreeIcon color='secondary' />
+							</ListItemIcon>
+							<ListItemText 
+								primary='Connect:' 
+								secondary='Connect with your provider via our convenient Telehealth platform and receive your medical evidence. You will receive an email to join your appointment.'
+								primaryTypographyProps={{variant: 'h6', component: 'h3'}}
+								secondaryTypographyProps={{variant: 'body1'}}
+							/>
+						</ListItem>
+						<ListItem>
+							<ListItemIcon>
+								<LooksFourIcon color='secondary' />
+							</ListItemIcon>
+							<ListItemText 
+								primary='Medical Evidence:' 
+								secondary='Receive your expert medical evidence from our professional independent providers directly to your patient portal.'
+								primaryTypographyProps={{variant: 'h6', component: 'h3'}}
+								secondaryTypographyProps={{variant: 'body1'}}
+							/>
+						</ListItem>
+						<ListItem>
+							<ListItemIcon>
+								<LooksFiveIcon color='secondary' />
+							</ListItemIcon>
+							<ListItemText 
+								primary='Submit Your Claim:' 
+								secondary='After you receive your medical, your VA claim submission is in your hands! Use your documentation to bolster your claim.'
+								primaryTypographyProps={{variant: 'h6', component: 'h3'}}
+								secondaryTypographyProps={{variant: 'body1'}}
+							/>
+						</ListItem>
+					</List>
 					<Box sx={{ textAlign: 'center' }}><Button variant='contained' color='primary' size='large' href='#booking'>Book Now</Button></Box>
 				</Container>
 			</Box>
