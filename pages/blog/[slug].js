@@ -37,7 +37,7 @@ export default function Post({ post }) {
       });
     });
 
-	const headings = document.querySelectorAll('[id^="ftoc-heading"]');
+	const headings = document.querySelectorAll('h2[id],h3[id],h4[id],h5[id],h6[id]');
 
     headings.forEach((section) => {
       observer.observe(section);
@@ -76,20 +76,24 @@ export default function Post({ post }) {
 		replace: (element) => isSimpleTOC(element) ? SimpleTOC(element, currentSection) : <></>
 	}).filter(removeFragments);
 	
+	const hasSideContent = sideContent && sideContent.length > 0;
+
 	return (
 		<Page title={title} metadata={metadata}>
 			<BlogHero {...{ title, author, date, modifed, categories, featuredImage }} />
 			
 			<Box sx={{ my: 10 }}>
 				<Container>
-					<Grid container spacing={4}>
-							<Grid item xs={12} md={4}>
-								<Box sx={{position: 'sticky', top: '8rem'}}>
-									{sideContent}
-								</Box>
-							</Grid>
-						<Grid item xs={12} md={8}>{contentComponents}</Grid>
+					{hasSideContent ? (
+						<Grid container spacing={4}>
+								<Grid item xs={12} md={4}>
+									<Box sx={{position: 'sticky', top: '8rem'}}>
+										{sideContent}
+									</Box>
+								</Grid>
+							<Grid item xs={12} md={8}>{contentComponents}</Grid>
 					</Grid>
+				) : contentComponents}
 				</Container>
 			</Box>
 
