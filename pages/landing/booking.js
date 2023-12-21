@@ -27,11 +27,7 @@ import mentalHealthImage from '../../public/images/mental-health-evaluation.svg'
 import rebuttalLetterImage from '../../public/images/logo-rebuttal-letter.svg';
 import veteranWithPhone from '../../public/images/veteran-with-phone-cutout.png';
 import clientPhotoJim from '../../public/images/client-photo-jim.jpg';
-import LooksOneIcon from '@mui/icons-material/LooksOne';
-import LooksTwoIcon from '@mui/icons-material/LooksTwo';
-import LooksThreeIcon from '@mui/icons-material/Looks3';
-import LooksFourIcon from '@mui/icons-material/Looks4';
-import LooksFiveIcon from '@mui/icons-material/Looks5';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 // https://learn.telemedicallc.com/15-minute-consult-booking1693585205261?preview=true&track=0&updated_at=a392a0c93b6be40f9542fb632cc8f071v2#section--88576
 export default function LandingBookingPage() {
@@ -217,10 +213,8 @@ export default function LandingBookingPage() {
 					<Typography variant='h2' color='secondary'>How It Works</Typography>
 					<Typography variant='lead'>Get Your Medical Evidence in 5 Easy Steps!</Typography>
 					<List sx={{ maxWidth: 720 }}>
-						<ListItem>
-							<Avatar sx={{bgcolor: 'secondary.main'}}>
-								1
-							</Avatar>
+						<ListItem alignItems='flex-start'>
+							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>1</Avatar></ListItemAvatar>
 							<ListItemText 
 								primary='Book Online:' 
 								secondary='Choose a service a book online through our booking portal.'
@@ -228,10 +222,8 @@ export default function LandingBookingPage() {
 								secondaryTypographyProps={{variant: 'body1'}}
 							/>
 						</ListItem>
-						<ListItem>
-							<Avatar sx={{bgcolor: 'secondary.main'}}>
-								2
-							</Avatar>
+						<ListItem alignItems='flex-start'>
+							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>2</Avatar></ListItemAvatar>
 							<ListItemText 
 								primary='Complete Intake:' 
 								secondary='Register in the Patient Portal, fill out intake forms, pay remaining balance, and upload required documents (DD214, benefits summary, etc).'
@@ -239,10 +231,8 @@ export default function LandingBookingPage() {
 								secondaryTypographyProps={{variant: 'body1'}}
 							/>
 						</ListItem>
-						<ListItem>
-							<Avatar sx={{bgcolor: 'secondary.main'}}>
-								3
-							</Avatar>
+						<ListItem alignItems='flex-start'>
+							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>3</Avatar></ListItemAvatar>
 							<ListItemText 
 								primary='Connect:' 
 								secondary='Connect with your provider via our convenient Telehealth platform and receive your medical evidence. You will receive an email to join your appointment.'
@@ -250,10 +240,8 @@ export default function LandingBookingPage() {
 								secondaryTypographyProps={{variant: 'body1'}}
 							/>
 						</ListItem>
-						<ListItem>
-							<Avatar sx={{bgcolor: 'secondary.main'}}>
-								4
-							</Avatar>
+						<ListItem alignItems='flex-start'>
+							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>4</Avatar></ListItemAvatar>
 							<ListItemText 
 								primary='Medical Evidence:' 
 								secondary='Receive your expert medical evidence from our professional independent providers directly to your patient portal.'
@@ -261,10 +249,8 @@ export default function LandingBookingPage() {
 								secondaryTypographyProps={{variant: 'body1'}}
 							/>
 						</ListItem>
-						<ListItem>
-							<Avatar sx={{bgcolor: 'secondary.main'}}>
-								5
-							</Avatar>
+						<ListItem alignItems='flex-start'>
+							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>5</Avatar></ListItemAvatar>
 							<ListItemText 
 								primary='Submit Your Claim:' 
 								secondary='After you receive your medical, your VA claim submission is in your hands! Use your documentation to bolster your claim.'
