@@ -1,5 +1,3 @@
-import { blue, green, purple, red } from '@mui/material/colors';
-
 export default {
   siteName: 'Telemedica',
   defaultPageTitle: '#1 Telehealth Platform for Veterans | Nexus Letter Experts',
@@ -20,12 +18,6 @@ export default {
     form: {
       subject: 'Contact Form Submission',
     },
-  },
-  articleCategoryColors: {
-    'nexus-letter': red[400],
-    'mental-health': blue[300],
-    'physical-conditions': green[400],
-    'veteran-resources': purple[400],
   },
   externalLinks: {
     booking: 'https://booking.telemedicallc.com/',
