@@ -209,10 +209,10 @@ export default function LandingBookingPage() {
 			</Box>
 			
 			<Box sx={{ py: 12 }}>
-				<Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-					<Typography variant='h2' color='secondary'>How It Works</Typography>
-					<Typography variant='lead'>Get Your Medical Evidence in 5 Easy Steps!</Typography>
-					<List sx={{ maxWidth: 720, my: 2}}>
+				<Container>
+					<Typography variant='h2' color='secondary' align='center'>How It Works</Typography>
+					<Typography variant='lead' align='center'>Get Your Medical Evidence in 5 Easy Steps!</Typography>
+					<List sx={{ maxWidth: 'sm', my: 2, mx: 'auto'}}>
 						<ListItem alignItems='flex-start'>
 							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>1</Avatar></ListItemAvatar>
 							<ListItemText 
