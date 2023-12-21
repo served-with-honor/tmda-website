@@ -4,8 +4,11 @@ import { getPosts } from '../lib/wordpress';
 import settings from '../src/siteSettings'
 
 export default async function generateRssFeed() {
-    const site_url = settings.url
-    
+    const {
+        siteUrl,
+        defaultPageTitle,
+        defaultPageDescription,
+    } = settings;
     let posts = [];
     try {
         // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
@@ -16,10 +19,10 @@ export default async function generateRssFeed() {
     }
 
     const feedOptions = {
-        title: settings.defaultPageTitle,
-        description: settings.defaultPageDescription,
-        site_url: site_url,
-        feed_url: `${site_url}/rss.xml`,
+        title: defaultPageTitle,
+        description: defaultPageDescription,
+        site_url: siteUrl,
+        feed_url: `${siteUrl}/rss.xml`,
         image_url: '../public/images/logo.svg',
         pubDate: new Date(),
     };
@@ -31,7 +34,7 @@ export default async function generateRssFeed() {
         feed.item({
             title: post.title,
             description: post.excerpt,
-            url: `${site_url}/blog/${post.slug}`,
+            url: `${siteUrl}/blog/${post.slug}`,
             date: post.date,
             author: post.author,
             custom_elements: [

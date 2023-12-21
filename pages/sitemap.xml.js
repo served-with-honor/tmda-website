@@ -2,11 +2,12 @@ import settings from '../src/siteSettings';
 import { getPosts } from '../lib/wordpress';
 
 function generateSiteMap(pages, posts) {
+  const { siteUrl } = settings;
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <url><loc>${settings.url}</loc></url>
-     ${pages.map(page => `<url><loc>${settings.url}/${page}</loc></url>`).join('')}
-     ${posts.map(({ slug }) => `<url><loc>${settings.url}/blog/${slug}</loc></url>`).join('')}
+     <url><loc>${siteUrl}</loc></url>
+     ${pages.map(page => `<url><loc>${siteUrl}/${page}</loc></url>`).join('')}
+     ${posts.map(({ slug }) => `<url><loc>${siteUrl}/blog/${slug}</loc></url>`).join('')}
    </urlset>
  `;
 }

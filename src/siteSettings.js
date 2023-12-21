@@ -1,11 +1,11 @@
 import { blue, green, purple, red } from '@mui/material/colors';
 
 export default {
-  name: 'Telemedica',
+  siteName: 'Telemedica',
   defaultPageTitle: '#1 Telehealth Platform for Veterans | Nexus Letter Experts',
   defaultPageDescription: 'Telemedica provides high-quality Disability Examinations, VA Nexus Letters, VA DBQs, and Independent Psychological Evaluations for Veterans worldwide.',
-  url: 'https://telemedicallc.com',
-  company: 'Telemedica LLC',
+  siteUrl: 'https://telemedicallc.com',
+  companyName: 'Telemedica LLC',
   copyrightYearInitial: 2020,
   copyrightYearInitial: 2020,
   social: [
