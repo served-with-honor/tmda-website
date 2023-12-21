@@ -212,7 +212,7 @@ export default function LandingBookingPage() {
 				<Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
 					<Typography variant='h2' color='secondary'>How It Works</Typography>
 					<Typography variant='lead'>Get Your Medical Evidence in 5 Easy Steps!</Typography>
-					<List sx={{ maxWidth: 720 }}>
+					<List sx={{ maxWidth: 720, my: 2}}>
 						<ListItem alignItems='flex-start'>
 							<ListItemAvatar><Avatar sx={{bgcolor: 'secondary.main'}}>1</Avatar></ListItemAvatar>
 							<ListItemText 
