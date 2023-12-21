@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles';
 import TextFlipper from '../TextFlipper';
 import { BookingContext } from '../../context/BookingContext'
-import siteSettings from '../../src/siteSettings';
+import constants from '../../src/constants';
 
 export default function Hero() {
   const { setIsOpen } = useContext(BookingContext);
@@ -64,7 +64,7 @@ export default function Hero() {
                 color='secondary'
                 size='large'
                 sx={{ backgroundColor: 'secondary.100' }}
-                href={siteSettings.externalLinks.patientPortal}
+                href={constants.externalLinks.patientPortal}
                 target='_blank'
               >
                 Patient Portal

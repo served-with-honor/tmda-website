@@ -1,8 +1,8 @@
-import settings from '../src/siteSettings';
+import constants from '../src/constants';
 import { getPosts } from '../lib/wordpress';
 
 function generateSiteMap(pages, posts) {
-  const { siteUrl } = settings;
+  const siteUrl = constants.site.url;
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url><loc>${siteUrl}</loc></url>

@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu'
 import { visuallyHidden } from '@mui/utils';
 import { slugify } from '../src/utils';
-import settings from '../src/siteSettings';
+import constants from '../src/constants';
 import { BookingContext } from '../context/BookingContext'
 import { useTheme } from "@mui/material/styles";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -35,7 +35,7 @@ export default function MainMenu() {
         { text: 'Services', href: '/services' },
         { text: 'Book Now', action: handleBookingClick },
         { text: 'Blog', href: '/blog' },
-        { text: 'Patient Portal', href: settings.externalLinks.patientPortal, target: '_blank' },
+        { text: 'Patient Portal', href: constants.externalLinks.patientPortal, target: '_blank' },
         { text: 'FAQs', href: '/faqs' },
       ],
     },
@@ -43,7 +43,7 @@ export default function MainMenu() {
       text: 'For Providers',
       children: [
         { text: 'Administrative Services', href: '/administrative-services' },
-        { text: 'Provider Portal', href: settings.externalLinks.providerPortal, target: '_blank' },
+        { text: 'Provider Portal', href: constants.externalLinks.providerPortal, target: '_blank' },
         { text: 'Careers', href: '/careers' },
       ],
     },

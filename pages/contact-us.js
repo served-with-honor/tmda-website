@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Page from '../components/Page'
 import ContactForm from '../components/ContactForm'
 import NewsletterDialog from '../components/NewsletterDialog'
-import settings from '../src/siteSettings';
+import constants from '../src/constants';
 import CustomCard from '../components/CustomCard';
 import eventImage from '../public/images/event.svg'
 import monitorImage from '../public/images/monitor.svg'
@@ -33,8 +33,8 @@ export default function ContactUsPage({ title, description, actionItems }) {
 					<Typography variant='h1' color='primary'>Get In Touch</Typography>
 					<Typography variant='body1' gutterBottom sx={{ fontSize: 32, }}>Please let us know how we can assist you.</Typography>
 					<Stack direction={'row'} gap={3}>
-						<Button size='large' color='primary' variant={'contained'} href={`tel:${settings.contact.phone}`} target="_blank">Call Us</Button>
-						<Button size='large' color='primary' variant={'contained'} href={settings.externalLinks.helpDesk} target="_blank">Help Desk</Button>
+						<Button size='large' color='primary' variant={'contained'} href={`tel:${constants.company.contact.phone}`} target="_blank">Call Us</Button>
+						<Button size='large' color='primary' variant={'contained'} href={constants.externalLinks.helpDesk} target="_blank">Help Desk</Button>
 					</Stack>
 				</Container>
 			</Box>
@@ -66,7 +66,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 
 export async function getStaticProps() {
 	const title = 'Contact Us';
-	const description = `CONTACT INFO: Call ${formatPhoneNumber(settings.contact.phone)} ${settings.contact.email} QUESTIONS? How Can We Help You?`;
+	const description = `CONTACT INFO: Call ${formatPhoneNumber(constants.company.contact.phone)} ${constants.company.contact.email} QUESTIONS? How Can We Help You?`;
 
 	const actionItems = [
 		{
@@ -79,13 +79,13 @@ export async function getStaticProps() {
 			image: { ...monitorImage, width: 85, height: 85 }, 
 			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
-			button: { label: 'Log In', url: settings.externalLinks.patientPortal, target: '_blank' },
+			button: { label: 'Log In', url: constants.externalLinks.patientPortal, target: '_blank' },
 		},
 		{
 			image: { ...stethoscopeImage, width: 85, height: 85 },
 			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
-			button: { label: 'Log In', url: settings.externalLinks.providerPortal, target: '_blank' },
+			button: { label: 'Log In', url: constants.externalLinks.providerPortal, target: '_blank' },
 		},
 	]
 

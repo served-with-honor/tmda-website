@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import logo from '../../public/images/logo.svg';
-import settings from '../../src/siteSettings';
+import constants from '../../src/constants';
 import Link from '../../src/Link';
 import { getSocialIcon, formatPhoneNumber } from '../../src/utils';
 
@@ -28,7 +28,7 @@ const fetcher = (...args) => fetch(...args).then((res) => {
 export default function Footer() {
 	const { data: posts, error, isLoading } = useSWR('/api/posts?first=4', fetcher);
 	
-	const firstYear = settings.copyrightYearInitial;
+	const firstYear = constants.company.copyrightYearInitial;
 	const thisYear = new Date().getFullYear();
 	const copyrightYear = thisYear > firstYear ? `${firstYear} - ${thisYear}` : firstYear;
 	return (
@@ -64,13 +64,13 @@ export default function Footer() {
 								<Grid item xs={12} sm={6} md={3}>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get Help</Typography>
 									<ul>
-										<li><Link href={settings.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></li>
+										<li><Link href={constants.externalLinks.helpDesk} target='_blank'>Submit a Ticket</Link></li>
 										<li><Link href={'/contact-us'}>Contact Us</Link></li>
 									</ul>
 									<Typography variant={'h6'} component={'h3'} color={'secondary.700'}>Get In Touch</Typography>
 									<ul>
-										<li><Link href={`tel:${settings.contact.phone}`}>{formatPhoneNumber(settings.contact.phone)}</Link></li>
-										<li><Link href={`mailto:${settings.contact.email}`}>Email Us</Link></li>
+										<li><Link href={`tel:${constants.company.contact.phone}`}>{formatPhoneNumber(constants.company.contact.phone)}</Link></li>
+										<li><Link href={`mailto:${constants.company.contact.email}`}>Email Us</Link></li>
 									</ul>
 								</Grid>
 
@@ -104,15 +104,15 @@ export default function Footer() {
 						<Grid container spacing={3} alignItems={'center'} justifyContent={'space-between'}>
 							<Grid item>
 								<Grid container spacing={2} alignItems={'center'}>
-									<Grid item><Typography variant={'body2'}>Copyright @ {copyrightYear} | {settings.companyName}</Typography></Grid>
+									<Grid item><Typography variant={'body2'}>Copyright @ {copyrightYear} | {constants.company.name}</Typography></Grid>
 									<Grid item><Link  variant={'body2'} href={'/privacy-policy'}>Privacy Policy</Link></Grid>
 									<Grid item><Link  variant={'body2'} href={'/terms-and-conditions'}>Terms & Conditions</Link></Grid>
 								</Grid>
 								</Grid>
-								{settings.social ? (
+								{constants.social ? (
 									<Grid item>
 										<Stack direction={'row'} spacing={1}>
-											{settings.social.map((item, index) => {
+											{constants.social.map((item, index) => {
 												const key = `social-link-${index}`;
 												const { Icon, text, name } = getSocialIcon(item);
 												return (

@@ -1,14 +1,14 @@
 import fs from 'fs';
 import RSS from 'rss';
 import { getPosts } from '../lib/wordpress';
-import settings from '../src/siteSettings'
+import constants from '../src/constants'
 
 export default async function generateRssFeed() {
     const {
-        siteUrl,
+        url: siteUrl,
         defaultPageTitle,
         defaultPageDescription,
-    } = settings;
+    } = constants.site;
     let posts = [];
     try {
         // TODO - Eventually the blog posts will exceed this limit and we'll need to address this

@@ -1,10 +1,10 @@
 import Script from 'next/script'
-import { googleMeasurementId } from '../../src/siteSettings';
-import { google } from '../../src/constants';
+import constants from '../../src/constants';
 
 export default function Analytics() {
+  const { google } = constants;
   return (
-    googleMeasurementId ? <>
+    google.measurementId ? <>
       <Script src={google.gtmWidgetUrl} />
       <Script id="google-analytics">
         {`
@@ -12,7 +12,7 @@ export default function Analytics() {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${googleMeasurementId}');
+          gtag('config', '${google.measurementId}');
         `}
       </Script>
       <noscript>

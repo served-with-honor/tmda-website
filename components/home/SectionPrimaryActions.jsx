@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { BookingContext } from '../../context/BookingContext'
-import siteSettings from '../../src/siteSettings';
+import constants from '../../src/constants';
 
 export default function SectionPrimaryActions() {
   const { setIsOpen } = useContext(BookingContext);
@@ -17,11 +17,11 @@ export default function SectionPrimaryActions() {
     },
     {
       text: 'Booking, pay invoices, upload documents',
-      button: { text: 'Patient Portal', url: siteSettings.externalLinks.patientPortal, target: '_blank' },
+      button: { text: 'Patient Portal', url: constants.externalLinks.patientPortal, target: '_blank' },
     },
     {
       text: 'For current Telemedica providers',
-      button: { text: 'Provider Portal', url: siteSettings.externalLinks.providerPortal, target: '_blank' },
+      button: { text: 'Provider Portal', url: constants.externalLinks.providerPortal, target: '_blank' },
     },
   ];
 

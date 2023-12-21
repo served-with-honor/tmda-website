@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import MapAnim from '../components/MapAnim'
 import { getTeamMembers, getProviders } from '../lib/sanity'
-import siteSettings from '../src/siteSettings';
+import constants from '../src/constants';
 import Counter from '../components/Counter'
 import CustomTabs from '../components/CustomTabs'
 import Directory from '../components/Directory'
@@ -85,7 +85,7 @@ export default function AboutPage({ title, description, teamMembers, providers, 
 							<Typography variant='h1' color='primary' gutterBottom>Stop Fighting. <br />Start Winning.</Typography>
 							<Typography variant='body1' sx={{ fontSize: 32, marginBottom: 5 }}>High-quality medical evidence for veterans nationwide</Typography>
 							<Grid container spacing={2}>
-								<Grid item><Button variant='outlined' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
+								<Grid item><Button variant='outlined' color='secondary' size='large' href={constants.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 								<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
 							</Grid>
 							<Box sx={{ marginTop: 10 }}>
@@ -203,7 +203,7 @@ export default function AboutPage({ title, description, teamMembers, providers, 
 				<Container>
 					<Grid container spacing={2} justifyContent='center'>
 						<Grid item><Button variant='contained' color='secondary' size='large' onClick={() => setIsBookingOpen(true)}>Book Now</Button></Grid>
-						<Grid item><Button variant='contained' color='secondary' size='large' href={siteSettings.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
+						<Grid item><Button variant='contained' color='secondary' size='large' href={constants.externalLinks.patientPortal} target='_blank'>Patient Portal</Button></Grid>
 					</Grid>
 				</Container>
 			</Box>

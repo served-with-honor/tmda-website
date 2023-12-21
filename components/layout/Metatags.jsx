@@ -1,14 +1,14 @@
 import parse, { domToReact } from 'html-react-parser';
-import settings from '../../src/siteSettings';
+import constants from '../../src/constants';
 import Head from 'next/head';
 
 export default function Metatags({ metadata, title, description, noindex, nofollow, path }) {
   const {
-    siteUrl,
-    siteName,
+    url: siteUrl,
+    name: siteName,
     defaultPageTitle,
     defaultPageDescription,
-  } = settings;
+  } = constants.site;
 
   // TODO - remove this when we have a better solution
   // Currently rankmath is adding a robots meta tag with noindex and nofollow to all pages and posts even when those are not selected
