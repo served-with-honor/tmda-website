@@ -20,11 +20,14 @@ export default function Metatags({ metadata, title, description, noindex, nofoll
 
     return domToReact(node);
   }
-  const containsMetaTag = (name) => metadata && metadata.search(`name="${name}"`) > -1;
-  
+
+  const containsMetaTag = (name) => {
+    const pattern = new RegExp(`(name|property)="${name}"`);
+    return metadata?.search(pattern) > -1;
+  };
+
   const pageTitle = `${siteName} | ${title || defaultPageTitle}`;
   const pageDescription = description || defaultPageDescription;
-  
   return <Head>
     {metadata ? parse(metadata, { replace: removeRobotsMeta }) : null}
     {!containsMetaTag('robots') && (noindex || nofollow) ? <meta name="robots" content={`${noindex ? 'noindex' : ''}${noindex && nofollow ? ',' : ''}${nofollow ? 'nofollow' : ''}`} /> : null}
