@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import useSWR from 'swr'
 import Image from 'next/image';
 import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme } from '../theme';
+import { darkTheme } from '../../theme';
 import { visuallyHidden } from '@mui/utils';
 import Avatar from '@mui/material/Avatar';
 import Alert from '@mui/material/Alert';
@@ -12,10 +12,10 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import logo from '../public/images/logo.svg';
-import settings from '../src/siteSettings';
-import Link from '../src/Link';
-import { getSocialIcon, formatPhoneNumber } from '../src/utils';
+import logo from '../../public/images/logo.svg';
+import settings from '../../src/siteSettings';
+import Link from '../../src/Link';
+import { getSocialIcon, formatPhoneNumber } from '../../src/utils';
 
 const fetcher = (...args) => fetch(...args).then((res) => {
 	if (!res.ok) {
