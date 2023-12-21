@@ -10,7 +10,7 @@ import SectionFAQs from '../components/home/SectionFAQs'
 import SectionTestimonials from '../components/home/SectionTestimonials'
 import SectionArticles from '../components/home/SectionArticles'
 import NewsletterDialog from '../components/NewsletterDialog'
-import generateRssFeed from '../utils/generateRSSFeed';
+import generateRssFeed from '../src/generateRSSFeed';
 import { getPostMetaData } from '../lib/wordpress';
 
 export default function Home({ metadata }) {

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import RSS from 'rss';
 import { getPosts } from '../lib/wordpress';
-import constants from '../src/constants'
+import constants from './constants'
 
 export default async function generateRssFeed() {
     const {
