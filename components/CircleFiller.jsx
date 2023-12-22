@@ -26,7 +26,7 @@ export default function CircleFiller({
     } else if (!inViewSome) {
       offset.set(circumference);
     }
-  }, [offset, inViewAll, inViewSome]);
+  }, [offset, inViewAll, inViewSome, percent]);
 
   return (
     <div ref={ref}>

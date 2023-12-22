@@ -52,7 +52,8 @@
     "rss": "^1.2.2",
     "sharp": "^0.32.6",
     "slick-carousel": "^1.8.1",
-    "swr": "^2.2.2"
+    "swr": "^2.2.2",
+    "va-disability-ratings": "file:../va-disability-ratings"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.41.1",
