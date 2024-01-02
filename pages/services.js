@@ -12,7 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
-import siteSettings from '../src/siteSettings';
+import constants from '../src/constants';
 import { BookingContext } from '../context/BookingContext'
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
@@ -98,7 +98,7 @@ export default function ServicesPage({ title, description, prices }) {
 											variant='contained' 
 											color='secondary' 
 											size='large' 
-											href={siteSettings.externalLinks.patientPortal}
+											href={constants.externalLinks.patientPortal}
 											target='_blank'
 										>
 											Patient Portal

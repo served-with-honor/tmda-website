@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { PopupModal } from "react-calendly";
-import siteSettings from '../../src/siteSettings';
+import constants from '../../src/constants';
 
 export default function SectionIntro() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ export default function SectionIntro() {
 			</Container>
 
 			<PopupModal
-				url={siteSettings.calendly.discoveryCall}
+				url={constants.calendly.discoveryCall}
 				rootElement={ref.current}
 				open={isOpen}
 				onModalClose={() => setIsOpen(false)}

@@ -8,7 +8,6 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import { useCookies } from 'react-cookie';
-import siteSettings from '../src/siteSettings';
 import { slugify } from '../src/utils';
 import constants from '../src/constants';
 
@@ -75,7 +74,7 @@ export default function BookingWidget({ service = null }) {
   const [cookies, setCookie] = useCookies(['booking-location']);
 
   useEffect(() => {
-    window.intakeq = siteSettings.booking.id;
+    window.intakeq = constants.intakeq.id;
     if (cookies['booking-location']) {
       setRegion(cookies['booking-location']);
       return;
@@ -100,14 +99,14 @@ export default function BookingWidget({ service = null }) {
     if (!region) return;
     setCookie('booking-location', region);
 
-    const formId = siteSettings.booking.locations[region];
+    const formId = constants.intakeq.locations[region];
     if (formId) {
       window.intakeqLocationId = formId;
     } else {
       delete window.intakeqLocationId;
     }
     
-    const serviceId = siteSettings.booking.services[service];
+    const serviceId = constants.intakeq.services[service];
     if (serviceId) {
       window.intakeqServiceId = serviceId;
     } else {

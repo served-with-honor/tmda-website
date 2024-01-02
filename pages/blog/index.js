@@ -41,10 +41,10 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			.then(({ data, error }) => {
 				if (error) throw error;
 				
-				const newPosts = data.posts.nodes;
+				const newPosts = data.posts;
 				setPosts(prev => [...prev, ...newPosts]);
 
-				const { hasNextPage, endCursor } = data.posts.pageInfo
+				const { hasNextPage, endCursor } = data.pageInfo
 				setNextPage(hasNextPage ? endCursor : null);
 				
 				setA11yAlertText('');
@@ -58,6 +58,10 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 			.finally(() => setIsLoading(false))
 		;
 	}
+
+	useEffect(() => {
+		if(!initialPosts || initialPosts.length < 1) setError('There was an issue trying to load the articles.');
+	}, [initialPosts]);
 
 	useEffect(() => {
 		if (loadMoreInView && !isLoading && nextPage) loadMore(nextPage);
@@ -125,9 +129,9 @@ export default function Blog({ initialPosts, categories, selection, initialNextP
 					{nextPage ? <>
 						<div ref={loadMoreRef} />
 						<Link href={`blog?after=${nextPage}`} sx={visuallyHidden}>Next Page</Link>
-					</> : (
+					</> : posts ? (
 						<Typography variant='subtitle2' align='center' sx={{ mt: 10 }}>There are no more articles.</Typography>
-					)}
+					) : null}
 				</Container>
 			</Box>
   	</Page>
@@ -138,20 +142,34 @@ export async function getServerSideProps({ query }) {
 	const after = query.after || null;
 	let selection = null;
 	let queryCategory = null;
+	let categories = [];
+	let initialPosts = [];
+	let initialNextPage = null;
 
 	if (query.category) {
-		const { category } = await getCategory(query.category);
-		selection = category;
-		queryCategory = [category.id];
+		const currentCategory = await getCategory(query.category);
+		if (currentCategory) {
+			selection = currentCategory;
+			queryCategory = [currentCategory.id];
+		}
 	}
 
-	const response = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
-	const initialPosts = response.posts.nodes;
-	const { hasNextPage, endCursor } = response.posts.pageInfo;
-	const initialNextPage = hasNextPage ? endCursor : null;
+	try {
+		const { posts, pageInfo } = await getPosts({ first: LISTING_COUNT, after, categories: queryCategory });
+		if(!posts || posts.length < 1) throw new Error('No posts found');
+		
+		initialPosts = posts;
+		initialNextPage = pageInfo.hasNextPage ? pageInfo.endCursor : null;
+	} catch (error) {
+		console.error(error);
+	}
 	
-	const categoriesResponse = await getCategories();
-	const categories = categoriesResponse.categories.nodes.filter(item => item.slug !== 'uncategorized');
-	
-  return { props: { initialPosts, categories, selection, initialNextPage }}
+	try {
+		categories = await getCategories();
+		categories = categories.filter(({ slug }) => slug !== 'uncategorized');
+	} catch (error) {
+		console.error(error);
+	}
+
+	return { props: { initialPosts, categories, selection, initialNextPage }}
 }

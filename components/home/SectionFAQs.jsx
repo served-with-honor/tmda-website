@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import siteSettings from '../../src/siteSettings';
+import constants from '../../src/constants';
 import { formatPhoneNumber } from '../../src/utils';
 
 export default function SectionFAQs() {
@@ -28,7 +28,7 @@ export default function SectionFAQs() {
     },
     {
       title: 'Can I book over the phone?',
-      text: `You may book through our booking link - ${siteSettings.externalLinks.booking} or by phone at ${formatPhoneNumber(siteSettings.contact.phone)}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
+      text: `You may book through our booking link - ${constants.externalLinks.booking} or by phone at ${formatPhoneNumber(constants.company.contact.phone)}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
     }
   ];
 

@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import settings from '../../src/siteSettings';
 import constants from '../../src/constants';
 
 export default async function handler(
@@ -14,7 +13,7 @@ export default async function handler(
       u: process.env.MAILCHIMP_USER_ID,
       id: process.env.MAILCHIMP_AUDIENCE_ID,
       EMAIL: email,
-      tags: settings.mailchimp.tags.join(','),
+      tags: constants.mailchimp.tags.join(','),
     }).toString();
 
     const result = await fetch(url, { method: 'POST' });

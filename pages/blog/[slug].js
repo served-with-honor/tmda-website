@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import parse from 'html-react-parser';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
@@ -11,7 +12,19 @@ import SimpleTOC from '../../src/wp-blocks/SimpleTOC';
 import NewsletterDialog from '../../components/NewsletterDialog'
 
 export default function Post({ post }) {
-	const { author, categories, title, content, featuredImage, date, modifed } = post;
+	if (!post) return (
+		<Page>
+			<Box sx={{ mt: 20, mb: 10 }}>
+				<Container>
+					<Alert severity="error">There was a problem loading this post</Alert>
+				</Container>
+			</Box>
+
+			<NewsletterDialog delay={10000} />
+  	</Page>
+  );
+
+	const { author, categories, title, content, featuredImage, date, modifed, metadata } = post;
 	const [currentSection, setCurrentSection] = useState(null);
 
   useEffect(() => {
@@ -66,7 +79,7 @@ export default function Post({ post }) {
 	const hasSideContent = sideContent && sideContent.length > 0;
 
 	return (
-		<Page title={title}>
+		<Page title={title} metadata={metadata}>
 			<BlogHero {...{ title, author, date, modifed, categories, featuredImage }} />
 			
 			<Box sx={{ my: 10 }}>
@@ -92,6 +105,6 @@ export default function Post({ post }) {
 export const getServerSideProps = async ({ params, query }) => {
 	const { slug } = params;
 	const { preview } = query;
-	const { post } = await getPost({ slug, preview });
+	const post = await getPost(slug, { asPreview: preview });
 	return { props: { post } }
 }

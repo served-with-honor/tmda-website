@@ -12,7 +12,7 @@ import Page from '../components/Page'
 import Image from 'next/image';
 import doctorImage from '../public/images/admin-services-image.png'
 import CustomCard from '../components/CustomCard';
-import siteSettings from '../src/siteSettings';
+import constants from '../src/constants';
 import heroImage from '../public/images/admin-services-hero.jpg'
 
 export default function AdministrativeServicesPage({ title, description, services, benefits }) {
@@ -35,7 +35,7 @@ export default function AdministrativeServicesPage({ title, description, service
 					<Button 
 						variant="contained" 
 						size='large'
-						href={siteSettings.externalLinks.providerPortal}
+						href={constants.externalLinks.providerPortal}
 						target='_blank'
 					>
 						Provider Portal
