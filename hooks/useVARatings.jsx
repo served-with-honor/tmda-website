@@ -12,17 +12,21 @@ export default function useVARatings(disabilities, dependents) {
   const [payment, setPayment] = useState(0);
     
   useEffect(() => {
-    // TODO: fix this
-    // const [ bilateralRatings, otherRatings ] = filterBilateralMatches(disabilities);
-    // const items = otherRatings.map(d => d.value);
+    const isLimb = (item) => item.match(/(Arm)|(Leg)/);
+    const limbs = ({ label }) => isLimb(label);
+    const nonLimbs = ({ label }) => !isLimb(label);
 
-    // if (bilateralRatings.length > 0) {
-    //   const bilateral = calculateBilateral(bilateralRatings);
-    //   setBilateralFactor(bilateral.factor);
-    //   items.push(bilateral.percent);
-    // }
-    const ratingData = calculateRating(disabilities.map(d => d.value));
-
+    const limbsDisabilities = disabilities.filter(limbs);
+    const items = disabilities.filter(nonLimbs).map(({ value }) => value);
+    
+    const [matches, noMatches] = filterBilateralMatches(limbsDisabilities);
+    items.push(...noMatches);
+    
+    const bilateral = calculateBilateral(matches);
+    if (bilateral?.percent) items.push(bilateral.percent);
+    setBilateralFactor(bilateral?.factor || 0);
+    
+    const ratingData = calculateRating(items);
     setRating(ratingData);
   }, [disabilities]);
 
