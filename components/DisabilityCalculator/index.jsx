@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -13,6 +13,7 @@ import Children from './Children';
 import Selector from './Selector';
 import CircleFiller from '../CircleFiller'
 import Counter from '../Counter'
+import Divider from '@mui/material/Divider';
 
 export default function DisabilityCalculator() {
   const theme = useTheme();
@@ -26,17 +27,6 @@ export default function DisabilityCalculator() {
   });
   const { rating, payment, bilateralFactor } = useVARatings(disabilities, dependents);
 
-  // THIS IS FOR TESTING ONLY
-  useEffect(() => {
-    setDisabilities([
-      { label: 'Left Leg', value: 20 },
-      // { label: 'Left Arm', value: 40 },
-      { label: 'Right Arm', value: 40 },
-      { label: 'PTSD', value: 20 },
-    ]);
-    setDependents({ isMarried: true });
-  }, []);
-
   const handleDisabilityAdd = disability => setDisabilities(prev => [...prev, disability]);
   const handleDisabilityRemove = index => setDisabilities(prev => prev.toSpliced(index, 1));
   const handleMarriageChange = spouseData => setDependents(prev => ({ ...prev, ...spouseData }));
@@ -47,8 +37,8 @@ export default function DisabilityCalculator() {
   return <>
     <Grid container alignContent='stretch' sx={{ borderRadius: 5, overflow: 'hidden', boxShadow: 10 }}>
       <Grid item sm={12} md={6}>
-        <Box sx={{ backgroundColor: 'secondary.100', p: 5, height: '100%', }}>
-          <Typography variant='body2' sx={{ mb: 3 }}>What percentage is your disability rated at now, or what level would you like to achieve?</Typography>
+        <Box sx={{ backgroundColor: 'secondary.100', p: [2,5], height: '100%', }}>
+          <Typography variant='body2' sx={{ mb: [1,3] }}>What percentage is your disability rated at now, or what level would you like to achieve?</Typography>
 
           <Selector addNewDisability={handleDisabilityAdd} />
           
@@ -62,8 +52,9 @@ export default function DisabilityCalculator() {
               />
             ))}
           </Stack> : null}
-
-          <Typography>Family</Typography>
+          <Divider component="div" role="presentation">
+            <Typography variant='subtitle1' component='p'>Family</Typography>
+          </Divider>
           <Box sx={{ my: 1 }}><Spouse isMarried={dependents.isMarried} set={handleMarriageChange} /></Box>
           <Box sx={{ my: 1 }}><Children count={[dependents.children, dependents.adultChildren]} setCount={handleChildrenChange} /></Box>
           <Box sx={{ my: 1 }}><Parents count={dependents.parents} setCount={handleParentsChange} /></Box>
@@ -75,7 +66,7 @@ export default function DisabilityCalculator() {
       </Grid>
 
       <Grid item sm={12} md={6}>
-        <Box sx={{ backgroundColor: 'secondary.800', color: 'secondary.contrastText', height: '100%', textAlign: 'center', p: 5 }}>
+        <Box sx={{ backgroundColor: 'secondary.800', color: 'secondary.contrastText', height: '100%', textAlign: 'center', p: [3,5] }}>
           <Box sx={[
             { transition: 'all 0.25s ease-in-out' },
             !payment && !rating?.rounded ? {
