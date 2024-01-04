@@ -6407,8 +6407,9 @@ v8-to-istanbul@^9.0.1:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^2.0.0"
 
-"va-disability-ratings@file:../va-disability-ratings":
+"va-disability-ratings@https://github.com/served-with-honor/va-disability-ratings":
   version "1.0.0"
+  resolved "https://github.com/served-with-honor/va-disability-ratings#b20102fcfa524b250afec8696e1e42c8dc274053"
   dependencies:
     "@jest/globals" "^29.7.0"
 
