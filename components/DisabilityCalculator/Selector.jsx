@@ -10,7 +10,7 @@ import Select from '@mui/material/Select';
 import AddIcon from '@mui/icons-material/Add';
 
 export default function Selector({ addNewDisability }) {
-  const disabilitiesList = ['Right Arm', 'Left Arm', 'Right Leg', 'Left Leg', 'Right Foot', 'Left Foot', 'Back', 'SSD', 'PTSD', 'Tinnitus', 'Migraines', 'Sleep Apnea', 'Other', ];
+  const disabilitiesList = ['Right Arm', 'Left Arm', 'Right Leg', 'Left Leg', 'Back', 'SSD', 'PTSD', 'Tinnitus', 'Migraines', 'Sleep Apnea', 'Other', ];
   
   const [newDisability, setNewDisability] = useState(null);
 
@@ -29,7 +29,7 @@ export default function Selector({ addNewDisability }) {
   }
 
   return (
-    <Grid container alignItems='center' gap={3}>
+    <Grid container alignItems='center' gap={[1,3]}>
       <Grid item xs>
         <FormControl fullWidth>
           <InputLabel id='demo-simple-select-label'>Disability</InputLabel>
@@ -61,13 +61,17 @@ export default function Selector({ addNewDisability }) {
           onChange={handlePercentageChange}
         />
       </Grid>
-      <Grid item>
+      <Grid item xs={12} md>
         <Button
           variant='contained'
           size='small'
           endIcon={<AddIcon />}
           disabled={!newDisability?.label}
-          onClick={handleAdd}>Add</Button>
+          onClick={handleAdd}
+          sx={{ width: '100%' }}
+        >
+          Add
+        </Button>
       </Grid>
     </Grid>
   );
