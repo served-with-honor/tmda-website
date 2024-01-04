@@ -1,12 +1,13 @@
-import settings from '../src/siteSettings';
+import constants from '../src/constants';
 import { getPosts } from '../lib/wordpress';
 
 function generateSiteMap(pages, posts) {
+  const siteUrl = constants.site.url;
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <url><loc>${settings.url}</loc></url>
-     ${pages.map(page => `<url><loc>${settings.url}/${page}</loc></url>`).join('')}
-     ${posts.map(({ slug }) => `<url><loc>${settings.url}/blog/${slug}</loc></url>`).join('')}
+     <url><loc>${siteUrl}</loc></url>
+     ${pages.map(page => `<url><loc>${siteUrl}/${page}</loc></url>`).join('')}
+     ${posts.map(({ slug }) => `<url><loc>${siteUrl}/blog/${slug}</loc></url>`).join('')}
    </urlset>
  `;
 }
@@ -28,10 +29,15 @@ export async function getServerSideProps({ res }) {
     'blog',
   ];
 
-  // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
-  const response = await getPosts({ first: 100 });
-  const posts = response.posts.nodes;
-
+  let posts = [];
+  try {
+    // TODO - Eventually the blog posts will exceed this limit and we'll need to address this
+    const postsData = await getPosts({ first: 100 });
+    posts = postsData.posts;
+  } catch (error) {
+    console.error(error);
+  }
+  
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(pages, posts);
 

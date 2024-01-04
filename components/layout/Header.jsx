@@ -6,10 +6,10 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { motion, useAnimate, useScroll, useMotionValueEvent } from 'framer-motion';
-import MainMenu from './MainMenu';
-import Logo from '../public/images/logo.svg';
-import LogoWhite from '../public/images/logo-white.svg';
-import siteSettings from '../src/siteSettings';
+import MainMenu from '../MainMenu';
+import Logo from '../../public/images/logo.svg';
+import LogoWhite from '../../public/images/logo-white.svg';
+import constants from '../../src/constants';
 
 export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
   const [scope, animate] = useAnimate();
@@ -93,7 +93,7 @@ export default forwardRef(function Header({ isDark, hasHeroVideo }, ref) {
             <Link href="/">
               <Image
                 src={isDark && headerState !== 'sticky' ? LogoWhite : Logo}
-                alt={`${siteSettings.name} logo`}
+                alt={`${constants.site.name} logo`}
                 width={225}
                 height={49}
               />

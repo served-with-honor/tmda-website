@@ -3,6 +3,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LinkIcon from '@mui/icons-material/Link';
+import { blue, green, purple, red } from '@mui/material/colors';
 
 const slugify = (str: string): string => str.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
 
@@ -60,7 +61,17 @@ const parserFixClass = (attribs) => {
 	if (attribs && 'class' in attribs) {
 		attribs.className = attribs.class;
 		delete attribs.class;
-	}
+  }
+}
+
+const getCategoryColor = (category: string): string => {
+  switch (slugify(category)) {
+    case 'nexus-letter': return red[400];
+    case 'mental-health': return blue[300];
+    case 'physical-conditions': return green[400];
+    case 'veteran-resources': return purple[400];
+    default: return '';
+  }
 }
 
 export {
@@ -71,4 +82,5 @@ export {
   splitTitle,
   parserStripStyles,
   parserFixClass,
+  getCategoryColor,
 }

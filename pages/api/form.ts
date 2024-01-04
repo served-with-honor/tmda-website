@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { emailContactForm, logContactForm } from '../../lib';
-import siteSettings from '../../src/siteSettings';
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +8,7 @@ export default async function handler(
   try {
     const { firstName, lastName, phone, type, email, message } = JSON.parse(req.body) || {};
     const data = {
-      subject: siteSettings.contact.form.subject,
+      subject: 'Contact Form Submission',
       html: `<table>
         <tr><td>Name:</td><td>${firstName} ${lastName}</td></tr>
         <tr><td>Phone:</td><td>${phone}</td></tr>

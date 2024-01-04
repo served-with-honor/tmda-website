@@ -9,9 +9,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import MuiLink from '@mui/material/Link';
 import Link from '../src/Link';
-import { slugify } from '../src/utils';
-import settings from '../src/siteSettings';
-import { splitTitle } from '../src/utils';
+import { slugify, splitTitle, getCategoryColor } from '../src/utils';
 
 export default function ArticleCard({ isLoading = false, slug: articleSlug, image, categories, title, excerpt }) {
   const router = useRouter();
@@ -57,7 +55,7 @@ export default function ArticleCard({ isLoading = false, slug: articleSlug, imag
           {categories && categories.length > 0 ? (
             <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5, }}>
               {categories.map(({ slug: categorySlug, name }) => {
-                const color = settings.articleCategoryColors[categorySlug];
+                const color = getCategoryColor(categorySlug);
                 return <Chip
                   key={`post-listing-${categorySlug}-category-${categorySlug || slugify(name)}`}
                   variant={'contained'}

@@ -10,7 +10,7 @@ import { BookingContext } from '../context/BookingContext'
 import eventImage from '../public/images/event.svg'
 import monitorImage from '../public/images/monitor.svg'
 import stethoscopeImage from '../public/images/stethoscope.svg'
-import settings from '../src/siteSettings';
+import constants from '../src/constants';
 import CustomCard from '../components/CustomCard';
 
 export default function ErrorPage({ actionItems }) {
@@ -67,13 +67,13 @@ export async function getStaticProps() {
 			image: { ...monitorImage, width: 85, height: 85 }, 
 			heading: 'Patient Portal', 
 			description: 'For returning clients. Log in to our secure, HIPAA-compliant platform to access your documents, connect with your provider, and check your appointment schedule.',
-			button: { label: 'Log In', url: settings.externalLinks.patientPortal, target: '_blank' },
+			button: { label: 'Log In', url: constants.externalLinks.patientPortal, target: '_blank' },
 		},
 		{
 			image: { ...stethoscopeImage, width: 85, height: 85 },
 			heading: 'Provider Portal', 
 			description: 'For providers in the Telemedica network. Log in to your portal to connect with your clients.',
-			button: { label: 'Log In', url: settings.externalLinks.providerPortal, target: '_blank' },
+			button: { label: 'Log In', url: constants.externalLinks.providerPortal, target: '_blank' },
 		},
 	]
 

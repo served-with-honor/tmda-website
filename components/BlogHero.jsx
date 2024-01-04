@@ -6,8 +6,8 @@ import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
-import settings from '../src/siteSettings';
 import FancyTitle from './FancyTitle';
+import { getCategoryColor } from '../src/utils';
 
 export default function BlogHero({ title, author, date, modifed, categories, featuredImage }) {
 	const router = useRouter();
@@ -55,7 +55,7 @@ export default function BlogHero({ title, author, date, modifed, categories, fea
 				{categories ? (
 					<Grid container spacing={1} sx={{ mt: 5 }}>
 						{categories.map(({ slug, name }) => {
-							const color = settings.articleCategoryColors[slug];
+							const color = getCategoryColor(slug);
 							return (
 								<Grid item key={`post-category-${slug}`}>
 									<Chip
