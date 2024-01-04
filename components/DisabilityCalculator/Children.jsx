@@ -1,40 +1,80 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import Switch from '@mui/material/Switch';
-import CustomNumberInput from '../CustomNumberInput';
-
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 export default function Children({ count, setCount }) {
-  const [hasChildren, setHasChildren] = useState(count && (count[0] > 0 || count[1] > 0));
+  const [isToggled, setIsToggled] = useState(false);
+
+  useEffect(() => {
+    setIsToggled(count && (count[0] > 0 || count[1] > 0));
+  }, [count]);
 
   const handleToggle = (a) => {
     const isChecked = a.target.checked;
-    setHasChildren(isChecked);
+    setIsToggled(isChecked);
     if (!isChecked) setCount([0,0]);
   }
 
-  const handleChildrenChange = (event, value) => {
+  const handleChildrenChange = (event) => {
+    const value = event.target.value;
     setCount([value, count[1]]);
   }
-
-  const handleAdultChildrenChange = (event, value) => {
+  
+  const handleAdultChildrenChange = (event) => {
+    const value = event.target.value;
     setCount([count[0], value]);
   }
 
   return (
-    <Grid container>
+    <Grid container spacing={1}>
       <Grid item>
         <FormGroup>
-          <FormControlLabel label='Children' control={<Switch onChange={handleToggle} />} />
+          <FormControlLabel label='Children' control={<Switch checked={isToggled} onChange={handleToggle} />} />
         </FormGroup>
       </Grid>
-      {hasChildren ? <>
-        <Grid item><CustomNumberInput aria-label="Children" placeholder="Children" value={count[0] || 0}  onChange={handleChildrenChange} /></Grid>
-        <Grid item><CustomNumberInput aria-label="Adult Children" placeholder="Adult Children" value={count[1] || 0} onChange={handleAdultChildrenChange} /></Grid>
-          {/* <NumberInput aria-label="Children" min={0} max={9} value={count[0]} onChange={handleChildrenChange} /> */}
-          {/* <NumberInput aria-label="Adult Children" min={0} max={9} value={count[1]} onChange={handleAdultChildrenChange} /> */}
+      {isToggled ? <>
+        <Grid item xs container spacing={1}>
+          <Grid item xs>
+            <FormControl fullWidth>
+              <InputLabel id='children-input-label'>Children</InputLabel>
+              <Select
+                labelId='children-input-label'
+                id='children-input'
+                value={count[0] || 0}
+                onChange={handleChildrenChange}
+                label='Children'
+                size='small'
+              >
+                {[...Array(10).keys()].map(i => (
+                  <MenuItem key={i} value={i} selected={i === count[0]}>{i}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs>
+            <FormControl fullWidth>
+              <InputLabel id='adult-children-input-label'>Adult Children</InputLabel>
+              <Select
+                labelId='adult-children-input-label'
+                id='adult-children-input'
+                value={count[1] || 0}
+                onChange={handleAdultChildrenChange}
+                label='Adult Children'
+                size='small'
+              >
+                {[...Array(10).keys()].map(i => (
+                  <MenuItem key={i} value={i} selected={i === count[0]}>{i}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
       </> : null}
     </Grid>
   )
