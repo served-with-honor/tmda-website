@@ -5,7 +5,7 @@ import Page from '../components/Page'
 import texture01 from '../public/images/texture-01.jpg';
 import DisabilityCalculator from '../components/DisabilityCalculator';
 
-export default function DiscoveryCallConfirmedPage() {
+export default function DisabilityCalculatorPage() {
 	return (
 		<Page title={'Disability Calculator'} noindex>
 
