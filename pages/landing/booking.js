@@ -17,7 +17,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
-import settings from '../../src/siteSettings';
+import constants from '../../src/constants';
 import Counter from '../../components/Counter'
 import Logo from '../../public/images/logo-white.svg';
 import BookingWidget from '../../components/BookingWidget'
@@ -31,7 +31,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 // https://learn.telemedicallc.com/15-minute-consult-booking1693585205261?preview=true&track=0&updated_at=a392a0c93b6be40f9542fb632cc8f071v2#section--88576
 export default function LandingBookingPage() {
-	const firstYear = settings.copyrightYearInitial;
+	const firstYear = constants.company.copyrightYearInitial;
 	const thisYear = new Date().getFullYear();
 	const copyrightYear = thisYear > firstYear ? `${firstYear} - ${thisYear}` : firstYear;
 
@@ -77,7 +77,7 @@ export default function LandingBookingPage() {
 				// minHeight: '100vh',
 			}}>
 				<Container sx={{ height: '100%' }}>
-					<Box sx={{ mb: 3 }}><Image src={Logo} alt={`${settings.name} logo`} width={225} height={49} /></Box>
+					<Box sx={{ mb: 3 }}><Image src={Logo} alt={`${constants.company.name} logo`} width={225} height={49} /></Box>
 					<Box sx={{
 						color: 'common.white',
 						maxWidth: 600,
@@ -285,7 +285,7 @@ export default function LandingBookingPage() {
 
 			<Box sx={{ backgroundColor: 'grey.100', py: 1 }}>
 				<Container>
-				<Typography variant={'body2'} align='center'>Copyright &copy; {copyrightYear} | {settings.company}</Typography>
+				<Typography variant={'body2'} align='center'>Copyright &copy; {copyrightYear} | {constants.company.company}</Typography>
 				</Container>
 			</Box>
 			
