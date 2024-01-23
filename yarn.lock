@@ -2779,6 +2779,11 @@ csstype@^3.0.2, csstype@^3.1.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
+currency.js@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/currency.js/-/currency.js-2.0.4.tgz#a8a4d69be3b2e509bf67a560c78220bc04809cf1"
+  integrity sha512-6/OplJYgJ0RUlli74d93HJ/OsKVBi8lB1+Z6eJYS1YZzBuIp4qKKHpJ7ad+GvTlWmLR/hLJOWTykN5Nm8NJ7+w==
+
 data-urls@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/data-urls/-/data-urls-3.0.2.tgz#9cf24a477ae22bcef5cd5f6f0bfbc1d2d3be9143"
@@ -6409,9 +6414,9 @@ v8-to-istanbul@^9.0.1:
 
 "va-disability-ratings@https://github.com/served-with-honor/va-disability-ratings":
   version "1.0.0"
-  resolved "https://github.com/served-with-honor/va-disability-ratings#b20102fcfa524b250afec8696e1e42c8dc274053"
+  resolved "https://github.com/served-with-honor/va-disability-ratings#713e6a1f642addee25ba6e9a5a05eb71ec6e1007"
   dependencies:
-    "@jest/globals" "^29.7.0"
+    currency.js "^2.0.4"
 
 w3c-xmlserializer@^4.0.0:
   version "4.0.0"
