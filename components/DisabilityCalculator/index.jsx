@@ -83,12 +83,12 @@ export default function DisabilityCalculator() {
                     justifyContent: 'center',
                     alignItems: 'center',
               }}>
-                <CircleFiller color={theme.palette.primary.main} color2={theme.palette.primary['100']} radius={110} stroke={20} percent={rating.rounded} />
+                <CircleFiller color={theme.palette.primary.main} color2={theme.palette.primary['100']} radius={110} stroke={20} percent={rating.rounded} animateOnce />
               </Box>
               <Box sx={{ position: 'relative' }}>
                 <Typography variant='body2' sx={{ mb: 0, lineHeight: 1.1 }}>
                   Disability Rating
-                  <Typography variant='h2' component='span' sx={{ display: 'block', mt: 0, lineHeight: 1.1 }}><Counter to={rating.rounded} digits={2} />%</Typography>
+                  <Typography variant='h2' component='span' sx={{ display: 'block', mt: 0, lineHeight: 1.1 }}><Counter to={rating.rounded} digits={2} animateOnce />%</Typography>
                 </Typography>
                 {rating.total !== rating.rounded ? (
                   <Typography variant='caption' component='p' sx={{ mt: 1 }}>{rating.total}% Combined</Typography>
@@ -99,7 +99,7 @@ export default function DisabilityCalculator() {
               </Box>
             </Box>
             <Typography variant='lead'>Your Monthly Payment From The VA</Typography>
-            <Typography variant='h1' color='success.light'>$<Counter to={payment} digits={7} /></Typography>
+            <Typography variant='h1' color='success.light'>$<Counter to={payment} digits={7} animateOnce /></Typography>
             <Typography variant='caption' component='p'>If approved & based on the criteria you selected</Typography>
           </Box>
         </Box>
