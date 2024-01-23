@@ -21,8 +21,7 @@ export default function useVARatings(disabilities, dependents) {
     
     const [matches, noMatches] = filterBilateralMatches(limbsDisabilities);
     items.push(...noMatches);
-    
-    const bilateral = calculateBilateral(matches);
+    const bilateral = matches.length > 1 ? calculateBilateral(matches) : null;
     if (bilateral?.percent) items.push(bilateral.percent);
     setBilateralFactor(bilateral?.factor || 0);
     
