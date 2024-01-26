@@ -88,7 +88,7 @@ export default function DisabilityCalculator() {
               <Box sx={{ position: 'relative' }}>
                 <Typography variant='body2' sx={{ mb: 0, lineHeight: 1.1 }}>
                   Disability Rating
-                  <Typography variant='h2' component='span' sx={{ display: 'block', mt: 0, lineHeight: 1.1 }}><Counter to={rating.rounded} digits={2} animateOnce />%</Typography>
+                  <Typography variant='h2' component='span' sx={{ display: 'block', mt: 0, lineHeight: 1.1 }}><Counter to={rating.rounded} animateOnce />%</Typography>
                 </Typography>
                 {rating.total !== rating.rounded ? (
                   <Typography variant='caption' component='p' sx={{ mt: 1 }}>{rating.total}% Combined</Typography>
@@ -99,7 +99,7 @@ export default function DisabilityCalculator() {
               </Box>
             </Box>
             <Typography variant='lead'>Your Monthly Payment From The VA</Typography>
-            <Typography variant='h1' color='success.light'>$<Counter to={payment} digits={7} animateOnce /></Typography>
+            <Typography variant='h1' color='success.light'>$<Counter to={payment} decimals={2} animateOnce /></Typography>
             <Typography variant='caption' component='p'>If approved & based on the criteria you selected</Typography>
           </Box>
         </Box>
