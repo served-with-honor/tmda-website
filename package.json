@@ -32,6 +32,7 @@
     "@mui/system": "^5.11.15",
     "@sanity/client": "^6.0.1",
     "@sanity/image-url": "^1.0.2",
+    "@served-with-honor/va-disability-ratings": "^1.0.3",
     "@testing-library/jest-dom": "^5.16.5",
     "firebase": "^9.23.0",
     "firebase-admin": "^11.11.0",
@@ -52,8 +53,7 @@
     "rss": "^1.2.2",
     "sharp": "^0.32.6",
     "slick-carousel": "^1.8.1",
-    "swr": "^2.2.2",
-    "va-disability-ratings": "git+ssh://git@github.com:served-with-honor/va-disability-ratings.git"
+    "swr": "^2.2.2"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.41.1",

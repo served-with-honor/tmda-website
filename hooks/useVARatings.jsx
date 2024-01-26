@@ -3,8 +3,8 @@ import {
   calculateRating,
   calculatePayment,
   calculateBilateral,
-  filterBilateralMatches
-} from 'va-disability-ratings';
+  filterBilateralMatches,
+} from '@served-with-honor/va-disability-ratings';
 
 export default function useVARatings(disabilities, dependents) {
   const [rating, setRating] = useState(0);

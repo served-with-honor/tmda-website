@@ -1754,6 +1754,13 @@
   resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-1.0.2.tgz"
   integrity sha512-C4+jb2ny3ZbMgEkLd7Z3C75DsxcTEoE+axXQJsQ75ou0AKWGdVsP351hqK6mJUUxn5HCSlu3vznoh7Yljye4cQ==
 
+"@served-with-honor/va-disability-ratings@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@served-with-honor/va-disability-ratings/-/va-disability-ratings-1.0.3.tgz#a9373d1d7fc5a5419d207b8a878493da0085b066"
+  integrity sha512-uA3wpp9k27QSF/sjDWha4cb4AYYmyQTrA5HxBek4h5VKnic+qgxWgwdIszw6LP0A+Oa4SqZzg9QwQ4Iro7xScg==
+  dependencies:
+    currency.js "^2.0.4"
+
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.8.tgz"
@@ -2755,7 +2762,7 @@ csstype@^3.0.2, csstype@^3.1.2:
 
 currency.js@^2.0.4:
   version "2.0.4"
-  resolved "https://registry.npmjs.org/currency.js/-/currency.js-2.0.4.tgz"
+  resolved "https://registry.yarnpkg.com/currency.js/-/currency.js-2.0.4.tgz#a8a4d69be3b2e509bf67a560c78220bc04809cf1"
   integrity sha512-6/OplJYgJ0RUlli74d93HJ/OsKVBi8lB1+Z6eJYS1YZzBuIp4qKKHpJ7ad+GvTlWmLR/hLJOWTykN5Nm8NJ7+w==
 
 data-urls@^3.0.2:
@@ -6318,12 +6325,6 @@ v8-to-istanbul@^9.0.1:
     "@jridgewell/trace-mapping" "^0.3.12"
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^2.0.0"
-
-"va-disability-ratings@git+ssh://git@github.com:served-with-honor/va-disability-ratings.git":
-  version "1.0.0"
-  resolved "git+ssh://git@github.com/served-with-honor/va-disability-ratings.git#713e6a1f642addee25ba6e9a5a05eb71ec6e1007"
-  dependencies:
-    currency.js "^2.0.4"
 
 w3c-xmlserializer@^4.0.0:
   version "4.0.0"
