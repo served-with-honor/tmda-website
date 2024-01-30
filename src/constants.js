@@ -117,7 +117,7 @@ export default {
     },
   },
   calendly: {
-    discoveryCall: 'https://calendly.com/rrealsola/discovery-call',
+    discoveryCall: 'https://calendly.com/brian_hornaday/discovery-call',
   },
   geoPlugin: {
     url: new URL('http://www.geoplugin.net/json.gp?'),
