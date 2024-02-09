@@ -2,6 +2,7 @@ import { domToReact } from 'html-react-parser';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid'
 import { getJustification, getSize, getGridDirection } from './generics';
+import { parserStripStyles, parserFixClass } from '../utils';
 
 export default function WPBlockButtons({ attribs, children }) {
 	const { class: classes } = attribs || {};
