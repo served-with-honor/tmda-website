@@ -1,4 +1,5 @@
 import { domToReact } from 'html-react-parser';
+import Typography from '@mui/material/Typography';
 import Link from '../Link';
 import { parserStripStyles, parserFixClass } from '../utils'
 
