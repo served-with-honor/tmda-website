@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import { domToReact } from 'html-react-parser';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid'
 import { getJustification, getSize, getGridDirection, getButtonStyle } from './generics';
 import { parserStripStyles } from '../utils';
+import { BookingContext } from '../../context/BookingContext'
 
 export default function WPBlockButtons({ attribs, children }) {
 	const { class: classes } = attribs || {};
@@ -33,15 +35,19 @@ const WPButtonWrapper = ({ children, attribs }) => {
 const WPButton = ({ attribs, children }) => {
 	const { class: classes, href, target, rel } = attribs;
 	parserStripStyles(attribs);
-	
+
+	const { setIsOpen: setIsBookingOpen } = useContext(BookingContext);
+	const handleClick = href === '#booking' ? () => setIsBookingOpen(true) : undefined;
+
 	return (
 		<Button
 			color='primary'
 			variant={getButtonStyle(classes)}
 			size={getSize(classes)}
-			href={href}
+			href={handleClick ? undefined : href}
 			target={target}
 			rel={rel}
+			onClick={handleClick}
 		>
 			{domToReact(children)}
 		</Button>
