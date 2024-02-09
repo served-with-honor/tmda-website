@@ -1,7 +1,7 @@
 import { domToReact } from 'html-react-parser';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid'
-import { getJustification, getSize, getGridDirection } from './generics';
+import { getJustification, getSize, getGridDirection, getButtonStyle } from './generics';
 import { parserStripStyles } from '../utils';
 
 export default function WPBlockButtons({ attribs, children }) {
@@ -37,7 +37,7 @@ const WPButton = ({ attribs, children }) => {
 	return (
 		<Button
 			color='primary'
-			variant={classes?.includes('is-style-outline') ? 'outlined' : 'contained'}
+			variant={getButtonStyle(classes)}
 			size={getSize(classes)}
 			href={href}
 			target={target}

@@ -34,6 +34,8 @@ export const getSize = (classes) => {
 
 export const getGridDirection = (classes) => classes?.includes('is-vertical') ? 'column' : 'row';
 
+export const getButtonStyle = (classes) => classes?.includes('is-style-outline') ? 'outlined' : 'contained';
+
 export const getGridVerticalAlignment = (classes) => {
 	if (classes.includes('is-vertically-aligned-center')) return 'center';
 	if(classes.includes('is-vertically-aligned-bottom')) return 'flex-end';
