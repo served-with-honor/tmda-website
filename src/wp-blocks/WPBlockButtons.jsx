@@ -8,7 +8,7 @@ export default function WPBlockButtons({ attribs, children }) {
 	const { class: classes } = attribs || {};
 	const justification = getJustification(classes);
 	const direction = getGridDirection(classes);
-
+	
 	return (
 		<Grid container gap={2} justifyContent={justification} direction={direction}>
 			{domToReact(children, { replace: WPButtonWrapper })}
@@ -19,7 +19,7 @@ export default function WPBlockButtons({ attribs, children }) {
 const WPButtonWrapper = ({ children, attribs }) => {
 	if (!children) return;
 
-	children?.forEach((child) => {
+	children.forEach((child) => {
 		child.attribs.class = `${child.attribs.class} ${attribs.class}`;
 	});
 	
@@ -30,16 +30,19 @@ const WPButtonWrapper = ({ children, attribs }) => {
 	);
 }
 
-
 const WPButton = ({ attribs, children }) => {
+	const { class: classes, href, target, rel } = attribs;
 	parserStripStyles(attribs);
 	
-	const { class: classes } = attribs;
-	const variant = classes?.includes('is-style-outline') ? 'outlined' : 'contained';
-	const size = getSize(classes);
-
 	return (
-		<Button variant={variant} color='primary' size={size} {...attribs}>
+		<Button
+			color='primary'
+			variant={classes?.includes('is-style-outline') ? 'outlined' : 'contained'}
+			size={getSize(classes)}
+			href={href}
+			target={target}
+			rel={rel}
+		>
 			{domToReact(children)}
 		</Button>
 	);
