@@ -1,6 +1,6 @@
 import { domToReact } from 'html-react-parser';
 import Box from '@mui/material/Box';
-import { replaceContent, getGridVerticalAlignment } from './generics';
+import { renderElementContents, getGridVerticalAlignment } from './generics';
 
 export default function WPBlockMedia({ attribs, children }) {
 	const { class: classes, style } = attribs || {};
@@ -27,7 +27,7 @@ export default function WPBlockMedia({ attribs, children }) {
 						'> *:first-child': { mt: 0 },
 						'> *:last-child': { mb: 0 },
 					}}>
-						{domToReact(element.children, { replace: replaceContent })}
+						{domToReact(element.children, { replace: renderElementContents })}
 					</Box>
 				)})}
 		</Box>
