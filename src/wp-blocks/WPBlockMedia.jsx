@@ -7,7 +7,7 @@ export default function WPBlockMedia({ attribs, children }) {
 	
 	// The styles come through as something like this: `grid-template-columns:15% auto`
 	// But we only need the value so we split it on the colon and take the second item
-	const cols = (style?.split(':')[1] || '').trim();
+	const cols = (style?.split(':')[1] || '').trim() || '50% auto';
 	const align = getGridVerticalAlignment(classes);
 	
 	return (
