@@ -231,7 +231,7 @@ export async function getStaticProps() {
 			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
 			{ label: 'Telemedicine Evaluation (DX)', disclaimer: '*', amount: 985, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '*', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
-			{ label: 'P& T Request/Specialty Letter', disclaimer: '**', amount: 1595, category: 'Medical/Nexus Services', },
+			{ label: 'P&T Request/Specialty Letter', disclaimer: '**', amount: 1595, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Letter', disclaimer: '**', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Letter Enhanced', disclaimer: '**', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
 			{ label: 'DBQ', disclaimer: '**', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
