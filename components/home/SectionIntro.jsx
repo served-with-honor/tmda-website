@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { PopupModal } from "react-calendly";
 import constants from '../../src/constants';
+import Link from 'next/link';
 
 export default function SectionIntro() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -35,13 +36,14 @@ export default function SectionIntro() {
 				>
 					Book Your Free Call Now
 				</Button> */}
-				<Button
-					variant='contained'
-					color='secondary'
-					onClick={() => setIsOpen(true)}
-				>
-					Book Your Free Call Now
-				</Button>
+				<Link href='/contact-us'>
+					<Button
+						variant='contained'
+						color='secondary'
+					>
+						Book Your Free Call Now
+					</Button>
+				</Link>
 
 			</Container>
 
