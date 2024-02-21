@@ -1,34 +1,55 @@
+import { useContext } from 'react';
 import { domToReact } from 'html-react-parser';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid'
-import { getJustification, getSize, getGridDirection } from './generics';
+import { getJustification, getSize, getGridDirection, getButtonStyle } from './generics';
+import { parserStripStyles } from '../utils';
+import { BookingContext } from '../../context/BookingContext'
 
 export default function WPBlockButtons({ attribs, children }) {
 	const { class: classes } = attribs || {};
 	const justification = getJustification(classes);
 	const direction = getGridDirection(classes);
-
+	
 	return (
 		<Grid container gap={2} justifyContent={justification} direction={direction}>
-			{domToReact(children, { replace: replaceButtons })}
+			{domToReact(children, { replace: WPButtonWrapper })}
 		</Grid>
 	);
 }
 
-const replaceButtons = ({ children, attribs }) => {
-	const { class: classes } = attribs || {};
+const WPButtonWrapper = ({ children, attribs }) => {
 	if (!children) return;
-	const variant = classes?.includes('is-style-outline') ? 'outlined' : 'contained';
-	const size = getSize(classes);
+
+	children.forEach((child) => {
+		child.attribs.class = `${child.attribs.class} ${attribs.class}`;
+	});
 	
-	const button = children.find(({ name }) => name === 'a');
-	parserStripStyles(button.attribs);
-	parserFixClass(button.attribs);
 	return (
 		<Grid item>
-			<Button variant={variant} color='primary' size={size} {...button.attribs}>
-				{domToReact(children)}
-			</Button>
+			{domToReact(children, { replace: WPButton })}
 		</Grid>
+	);
+}
+
+const WPButton = ({ attribs, children }) => {
+	const { class: classes, href, target, rel } = attribs;
+	parserStripStyles(attribs);
+
+	const { setIsOpen: setIsBookingOpen } = useContext(BookingContext);
+	const handleClick = href === '#booking' ? () => setIsBookingOpen(true) : undefined;
+
+	return (
+		<Button
+			color='primary'
+			variant={getButtonStyle(classes)}
+			size={getSize(classes)}
+			href={handleClick ? undefined : href}
+			target={target}
+			rel={rel}
+			onClick={handleClick}
+		>
+			{domToReact(children)}
+		</Button>
 	);
 }

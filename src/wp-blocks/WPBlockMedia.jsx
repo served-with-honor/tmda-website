@@ -1,13 +1,13 @@
 import { domToReact } from 'html-react-parser';
 import Box from '@mui/material/Box';
-import { replaceContent, getGridVerticalAlignment } from './generics';
+import { renderElementContents, getGridVerticalAlignment } from './generics';
 
 export default function WPBlockMedia({ attribs, children }) {
 	const { class: classes, style } = attribs || {};
 	
 	// The styles come through as something like this: `grid-template-columns:15% auto`
 	// But we only need the value so we split it on the colon and take the second item
-	const cols = (style?.split(':')[1] || '').trim();
+	const cols = (style?.split(':')[1] || '').trim() || '50% auto';
 	const align = getGridVerticalAlignment(classes);
 	
 	return (
@@ -27,7 +27,7 @@ export default function WPBlockMedia({ attribs, children }) {
 						'> *:first-child': { mt: 0 },
 						'> *:last-child': { mb: 0 },
 					}}>
-						{domToReact(element.children, { replace: replaceContent })}
+						{domToReact(element.children, { replace: renderElementContents })}
 					</Box>
 				)})}
 		</Box>
