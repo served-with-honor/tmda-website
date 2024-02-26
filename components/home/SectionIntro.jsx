@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { PopupModal } from "react-calendly";
 import constants from '../../src/constants';
+import Link from 'next/link';
 
 export default function SectionIntro() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +29,21 @@ export default function SectionIntro() {
 				<Typography variant="body1" sx={{ my: 6 }}>Did you know that a lack of medical evidence is the #1 reason VA disability claims are denied? Medical evidence is a crucial piece of the puzzle that VA raters consider when reviewing a disability claim. Telemedica provides solutions for veterans looking to bolster their claims through high-quality medical evidence that wins claims!</Typography>
 				<Typography variant="body1" sx={{ my: 6 }}>Schedule your FREE 20-minute consultation, get answers for your service-connected disability, and start on your path to well-being.</Typography>
 				
-				<Button
+				{/* <Button
 					variant='contained'
 					color='secondary'
 					onClick={() => setIsOpen(true)}
 				>
 					Book Your Free Call Now
-				</Button>
+				</Button> */}
+				<Link href='/contact-us'>
+					<Button
+						variant='contained'
+						color='secondary'
+					>
+						Book Your Free Call Now
+					</Button>
+				</Link>
 
 			</Container>
 
