@@ -1,0 +1,26 @@
+name: main
+
+on:
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rsync Deployments Action
+        uses: Burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete --exclude="/.git/" --exclude="/.github/" --exclude="/node_modules/"
+          path: backend/tmda-plugin.php
+          remote_path: ${{secrets.THEME_PATH}}
+          remote_host: ${{secrets.IP}}
+          remote_user: ${{secrets.USERNAME}}
+          remote_key: ${{secrets.DEPLOY_KEY}}
+          remote_port: ${{secrets.PORT}}
