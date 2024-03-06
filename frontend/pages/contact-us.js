@@ -16,9 +16,11 @@ import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
 import texture01 from '../public/images/texture-01.jpg'
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function ContactUsPage({ title, description, actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
+  const isMobile = useMediaQuery('(max-width:600px)');
 
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 	
@@ -33,7 +35,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 					<Typography variant='h1' color='primary'>Get In Touch</Typography>
 					<Typography variant='body1' gutterBottom sx={{ fontSize: 32, }}>Please let us know how we can assist you.</Typography>
 					<Stack direction={'row'} gap={3}>
-						<Button size='large' color='primary' variant={'contained'} href={`tel:${constants.company.contact.phone}`} target="_blank">Call Us</Button>
+						<Button size='large' color='primary' variant={'contained'} href={`tel:${constants.company.contact.phone}`} target="_blank">{isMobile ? 'Call Us' : 'Call Us: +1 512-883-8446'}</Button>
 						<Button size='large' color='primary' variant={'contained'} href={constants.externalLinks.helpDesk} target="_blank">Help Desk</Button>
 					</Stack>
 				</Container>
