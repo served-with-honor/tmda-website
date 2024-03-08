@@ -28,9 +28,8 @@ export default function BookingWidget({ service = null }) {
     
     fetch(constants.ipGeolocation)
       .then(response => response.json())
-      .then(body => {
-        const { countryCode, regionName: state } = body;
-        setRegion(countryCode === 'US' ? state : 'Out of US');
+      .then(({ countryCode, regionName }) => {
+        setRegion(countryCode === 'US' ? regionName : 'Out of US');
       })
       .catch(error => {
         setRegion(null);
