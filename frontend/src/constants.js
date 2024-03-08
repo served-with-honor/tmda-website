@@ -119,9 +119,7 @@ export default {
   calendly: {
     discoveryCall: 'https://calendly.com/brian_hornaday/discovery-call',
   },
-  geoPlugin: {
-    url: new URL('http://www.geoplugin.net/json.gp?'),
-  },
+  ipGeolocation: new URL('http://ip-api.com/json'),
   termly: {
     embedUrl: new URL('https://app.termly.io/embed-policy.min.js'),
   },

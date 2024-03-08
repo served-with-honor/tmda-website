@@ -80,13 +80,10 @@ export default function BookingWidget({ service = null }) {
       return;
     }
     
-    fetch(constants.geoPlugin.url)
+    fetch(constants.ipGeolocation)
       .then(response => response.json())
       .then(body => {
-        const {
-          geoplugin_countryCode: countryCode,
-          geoplugin_region: state
-        } = body;
+        const { countryCode, regionName: state } = body;
         setRegion(countryCode === 'US' ? state : 'Out of US');
       })
       .catch(error => {
