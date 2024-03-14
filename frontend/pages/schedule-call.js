@@ -20,7 +20,7 @@ export default function ScheduleCallPage({ title }) {
                 </Container>
             </Box>
             <Box sx={{ pb:12, mt: {xs: -8, lg: -14} }}>
-                <InlineWidget url={constants.calendly.discoveryCall} />
+                <InlineWidget styles={{height: '735px'}} url={constants.calendly.discoveryCall} />
             </Box>
         </Page>
     )
