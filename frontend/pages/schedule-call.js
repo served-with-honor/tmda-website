@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import texture01 from '../public/images/texture-01.jpg';
+import constants from '../src/constants';
+import { InlineWidget } from 'react-calendly';
 
 export default function ScheduleCallPage({ title }) {
     return (
@@ -17,10 +19,8 @@ export default function ScheduleCallPage({ title }) {
                     <Typography variant='body1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima laudantium beatae ratione officiis mollitia iste eveniet harum minus deleniti rem rerum animi neque sit fugit, numquam, magni reprehenderit nostrum excepturi.</Typography>
                 </Container>
             </Box>
-            <Box sx={{ pb:12, mt: -10,}}>
-                <Container sx={{ border: 5, borderRadius: 5, height: 500, width: '90%'}}>
-                    <Typography>Calendly embed</Typography>
-                </Container>
+            <Box sx={{ pb:12, mt: {xs: -8, lg: -14} }}>
+                <InlineWidget url={constants.calendly.discoveryCall} />
             </Box>
         </Page>
     )
