@@ -14,12 +14,12 @@ export default [
 	},
 	{
 		question: 'Where do I need to go for my appointment?',
-		answer: 'You will be matched with a provider who is licensed in the state you choose, so you need to be physically located in that state at the time of the appointment.',
+		answer: 'You will be matched with a provider who is licensed in the state you choose, so you need to be physically located in that state at the time of the appointment. You will access your appointment via a link that will be sent to you prior to your appointment.',
 		topic: 'General',
 	},
 	{
 		question: 'Where and how do I upload my documents?',
-		answer: 'You may upload your documents in the secure Patient Portal.',
+		answer: "Your intake package will walk you through the documents you’ll need to upload in order to proceed with your desired service. Any records you’d like to add after you’ve completed your intake package may be uploaded using the paperclip in the bottom left corner of the messaging section of the patient portal. (please note additional fees may apply. See “What is the 90 day plan and do I need it?” for more information.",
 		topic: 'General',
 	},
 	{
@@ -39,7 +39,7 @@ export default [
 	},
 	{
 		question: 'When will I receive my document?',
-		answer: '14 business days for the Mental Health IMO. 10 business days or 2 business days (extra $100 per document for rush service) for the Nexus documents.',
+		answer: 'Within 10 business days from the time your invoice is paid for physical medical conditions and within 10 business days of the completion of your mental health evaluation for Psych. For Nexus, you may also pay a rush fee ($100 per document) to receive them within 2 business days.',
 		topic: 'General',
 	},
 	{
@@ -48,33 +48,28 @@ export default [
 		topic: 'General',
 	},
 	{
-		question: 'I already created a portal before. Do I need/Why do I need to register again?',
-		answer: 'Yes, if you are still in the old portal (Prognocis), you will need to register to the new Patient Portal.',
-		topic: 'General',
-	},
-	{
 		question: 'Do I need to set up an appointment to request a Nexus Letter?',
-		answer: 'No, you just need to sign up online, complete the Nexus intake package, and upload your records for the Nexus provider to review.',
+		answer: "No, the medical Nexus service does not require an appointment. To proceed with the records review process, you’ll need to sign up for the Medical Nexus Service. If you do not have a current diagnosis for your requested condition, you’ll need to sign up for a Telemedicine evaluation. The Telemedicine evaluation does require an appointment.",
 		topic: 'General',
 	},
 	{
-		question: 'What is my next step after I complete the Nexus Intake Package form?',
-		answer: 'A provider will be assigned to review your records and after 3 business days, you will receive a Comprehensive Chart Review that shows which documents can be provided based on your uploaded records.',
+		question: 'What is the next step after I complete the Nexus Intake Package form?',
+		answer: 'You will be assigned to a Nexus provider. The provider will send your comprehensive chart review and summary document to you in the patient portal within 3 business days. You will also be sent an order form which will allow you to order your Nexus documents.',
 		topic: 'General',
 	},
 	{
-		question: 'What is the $199 fee for?',
-		answer: 'This is a non-refundable Nexus records review request fee.',
+		question: 'What is the $299 fee for?',
+		answer: "The $299 fee covers the Nexus records review process. With the records review process you’ll receive a comprehensive chart review, summary document and document order form(if applicable). Please note that a medical Nexus letter and/or DBQ is a separate charge and is not included in this cost.",
 		topic: 'General',
 	},
 	{
-		question: 'What is the difference between the regular and enhanced letter?',
-		answer: 'A regular Nexus is one connection per letter, while an enhanced Nexus is multiple connections per letter.',
+		question: 'What is the difference between a regular and enhanced letter?',
+		answer: 'A Nexus letter links one potential service-connected condition to one already service-connected condition. A Nexus letter enhanced links one potential service-connected condition to 2 or more already service-connected conditions.',
 		topic: 'General',
 	},
 	{
 		question: 'How do I contact the Nexus provider? Can the Nexus provider call me?',
-		answer: 'Nexus providers do not do phone calls, but you can reach them by sending a message in the portal.',
+		answer: "All communication with your Nexus provider will take place within the patient portal. If you have questions you’d like to address over the phone, please reach out to our customer service team so that they can assist.",
 		topic: 'General',
 	},
 	{
@@ -88,8 +83,8 @@ export default [
 		topic: 'General',
 	},
 	{
-		question: "Is the $199 deducted from my total invoice?",
-		answer: 'The $199 is a separate payment from the cost of the Nexus document.',
+		question: "Is the $299 deducted from my total invoice?",
+		answer: 'The $299 fee covers the Nexus records review process only. Medical Nexus letters and/or DBQs are a separate charge.',
 		topic: 'General',
 	},
 	{
@@ -105,13 +100,7 @@ export default [
 	{
 		question: "Can I book over the phone?",
 		answer: `You may book through our booking link - ${constants.externalLinks.booking} or by phone at ${formatPhoneNumber(constants.company.contact.phone)}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
-    topic: 'General',
-    
-	},
-	{
-		question: "Will there be other charges after I pay for the document?",
-		answer: "There won't be other charges after you pay for the document/s.",
-		topic: 'General',
+    	topic: 'General',
 	},
 	{
 		question: "Is TMDA the same as VACI?",
@@ -125,12 +114,32 @@ export default [
 	},
 	{
 		question: "When do I have to pay for the Mental Health Evaluation?",
-		answer: "A $100 non-refundable initial fee is required to book the appointment. The remaining balance needs to be paid 48 hours prior to the scheduled appointment.",
+		answer: "A payment of $599 is required to book the appointment. The remaining balance needs to be paid 48 hours prior to the scheduled appointment.",
 		topic: 'General',
 	},
 	{
 		question: "Will my Mental Health Evaluation be in-person or online?",
 		answer: "Your evaluation will be conducted online via video call. The link is sent a few minutes before the appointment.",
+		topic: 'General',
+	},
+	{
+		question: "What is the 3rd party rate?",
+		answer: "We do offer a discount to veterans that are working with some 3rd party companies. The customer service team can help you determine if you qualify for the 3rd party discount or not.",
+		topic: 'General',
+	},
+	{
+		question: "What is the 90 day plan and do I need it?",
+		answer: "The 90 day plan is required if you upload 500 or more pages of records or if you upload additional records for review after the review process has started. It also allows you to upload additional records within the 90 day timeframe without paying any additional review fees. The cost is $99 and the plan does not auto renew.",
+		topic: 'General',
+	},
+	{
+		question: 'Do you take my insurance?',
+		answer: 'No, we do not accept any forms of insurance at this time.',
+		topic: 'General',
+	},
+	{
+		question: 'This process feels overwhelming. Can I speak with someone to help me understand the service I need?',
+		answer: "Yes, on our homepage you’ll find a link to book a free 20 minute discovery call with one of our veteran ambassadors. They’ll be able to answer any questions you may have to make the process a little less overwhelming. You can also call customer service at 512-883-8446 to book this service.",
 		topic: 'General',
 	},
 	{
@@ -172,12 +181,12 @@ export default [
 	},
 	{
 		question: 'What records should I provide prior to my appointment?',
-		answer: "In order to book an appointment, the minimum records required are your DD214 and Blue Button Records. You can attend an appointment with only these two records, however, if you can provide concrete, written evidence then it is more likely that the psychologist can recommend a service connection and that the VA will agree. We recommend that you provide the psychologist with any evidence that shows 1) a mental health condition and 2) difficulty managing your life after the military. This includes items like formal write ups or Performance Improvement Plans (PIPs) at work, divorce decrees, police records, and any other information gathered from someone else who does not have a vested interest in you obtaining a service connection for mental health.",
+		answer: "The minimum documentations are the DD214 and a screenshot of their Benefits Summary for psych. The Blue button report is recommended but we can still do the appointment without them. For nexus, you need to upload your medical records and DD214 and benefits screenshot. For medical diagnosis, we do not require any medical records although encouraged.",
 		topic: 'Psych',
 	},
 	{
 		question: 'How long will it take to get my completed IMO after the evaluation?',
-		answer: "Providers have 48 hours to complete the IMO and upload it to the secure portal.",
+		answer: "Your IMO and comprehensive chart review will be sent to you within 10 business days after the completion of your appointment.",
 		topic: 'Psych',
 	},
 	{
@@ -206,8 +215,8 @@ export default [
 		topic: 'Psych',
 	},
 	{
-		question: 'What is the benefit of getting a nexus letter and DBQ if I qualify for one?',
-		answer: "The benefit is twofold. It highlights the severity of your condition according to the VA rating system. For example, specific conditions such as GERD and headache conditions have a question on the DBQ that is very pertinent to receiving at least a 30% rating. Secondly, if you submit sufficient evidence that fulfills the VA’s fully developed claim criteria, you may be able to bypass a C&P exam and get rated based on the information you submit.",
+		question: 'What is a DBQ and why should I purchase it?',
+		answer: "A DBQ is a disability benefits questionnaire. The benefit is twofold. It highlights the severity of your condition according to the VA rating system. For example, specific conditions such as GERD and headache conditions have a question on the DBQ that is very pertinent to receiving at least a 30% rating. Secondly, if you submit sufficient evidence that fulfills the VA’s fully developed claim criteria, you may be able to bypass a C&P exam and get rated based on the information you submit. It’s up to you if you’d like to purchase this additional document to submit with your claim.",
 		topic: 'Nexus',
 	},
 	{
@@ -231,8 +240,8 @@ export default [
 		topic: 'Nexus',
 	},
 	{
-		question: 'How many conditions can I be diagnosed with in 1 visit?',
-		answer: 'Each visit can render up to 2 diagnoses without the need to add additional time or schedule a second appointment.',
+		question: 'How many conditions can I be diagnosed within 1 visit?',
+		answer: 'Our Telehealth providers can diagnose 2 conditions per appointment. Please note that only one condition is included in the cost of the initial appointment. Each additional diagnosis will incur an additional charge.',
 		topic: 'Telemedicine',
 	},
 	{
@@ -251,18 +260,8 @@ export default [
 		topic: 'Telemedicine',
 	},
 	{
-		question: 'Do you take my insurance?',
-		answer: 'No, we do not accept any forms of insurance at this time.',
-		topic: 'Telemedicine',
-	},
-	{
 		question: 'Do you have a physical location that I can be seen in person?',
 		answer: 'No, not at this time.',
-		topic: 'Telemedicine',
-	},
-	{
-		question: 'Do you write medical opinion letters?',
-		answer: 'No, opinion letters are written by medical nexus or mental health teams.',
 		topic: 'Telemedicine',
 	},
 ];
