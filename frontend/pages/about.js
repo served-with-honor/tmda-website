@@ -97,7 +97,7 @@ export default function AboutPage({ title, description, teamMembers, providers, 
 									].map(({ num, suffix, text }, index) => (
 										<Grid item key={`hero-metric-${index}`}>
 											<Typography color='secondary' sx={{ fontSize: 40, fontWeight: 700, lineHeight: 1 }}>
-												<Counter to={num} duration={1.5} digits={2} />{suffix}
+												<Counter to={num} duration={1.5} />{suffix}
 											</Typography>
 											<Typography variant='body1'>{text}</Typography>
 										</Grid>
