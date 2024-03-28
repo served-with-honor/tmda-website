@@ -12,6 +12,7 @@ import constants from '../src/constants';
 import CustomCard from '../components/CustomCard';
 import eventImage from '../public/images/event.svg'
 import monitorImage from '../public/images/monitor.svg'
+import phoneImage from '../public/images/call.svg'
 import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
@@ -78,7 +79,7 @@ export async function getStaticProps() {
 			button: { label: 'Book Now' },
 		},
 		{
-			image: { ...eventImage, width: 85, height: 85 },
+			image: { ...phoneImage, width: 85, height: 85 },
 			heading: 'Book a Consultation Call', 
 			description: 'Not sure where to start? Book a FREE 20-minute Consultation Call with one of our Veteran Ambassadors.',
 			button: { label: 'Schedule Now', url: "/schedule-call" },
