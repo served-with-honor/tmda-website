@@ -53,7 +53,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 				<Container>
 					<Grid container spacing={5}>
 						{actionItems.map((item, index) => (
-							<Grid key={`actions-card-${index}`} item md={4}>
+							<Grid key={`actions-card-${index}`} item md={6}>
 								<CustomCard {...item} />
 							</Grid>
 						))}
@@ -73,9 +73,15 @@ export async function getStaticProps() {
 	const actionItems = [
 		{
 			image: { ...eventImage, width: 85, height: 85 },
-			heading: 'Booking', 
+			heading: 'Book a Service', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
 			button: { label: 'Book Now' },
+		},
+		{
+			image: { ...eventImage, width: 85, height: 85 },
+			heading: 'Book a Consultation Call', 
+			description: 'Not sure where to start? Book a FREE 20-minute Consultation Call with one of our Veteran Ambassadors.',
+			button: { label: 'Schedule Now', url: "/schedule-call" },
 		},
 		{
 			image: { ...monitorImage, width: 85, height: 85 }, 
