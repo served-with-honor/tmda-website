@@ -14,9 +14,9 @@ export default function ScheduleCallPage({ title }) {
                 background: `url(${texture01.src}) center / cover no-repeat`,
             }}>
                 <Container maxWidth='md' sx={{ textAlign: 'center'}}>
-                    <Typography variant='h2' component='h1' color='primary'> Schedule A Call</Typography>
-                    <Typography variant='lead' component='p' sx={{ mb: 3 }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, libero.</Typography>
-                    <Typography variant='body1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima laudantium beatae ratione officiis mollitia iste eveniet harum minus deleniti rem rerum animi neque sit fugit, numquam, magni reprehenderit nostrum excepturi.</Typography>
+                    <Typography variant='h2' component='h1' color='primary'> Schedule A Consultation Call</Typography>
+                    <Typography variant='lead' component='p' sx={{ mb: 3 }}>Learn how our medical evidence experts can help you strengthen your VA disability claim.</Typography>
+                    <Typography variant='body1'>We understand the VA disability claims process can be confusing—and that includes knowing what to include when you submit your VA claim. The good news is, you don't have to figure it out alone. Get personalized guidance with a <strong>FREE</strong> Telemedica Consultation Call by scheduling below!</Typography>
                 </Container>
             </Box>
             <Box sx={{ pb:12, mt: {xs: -8, lg: -14} }}>
