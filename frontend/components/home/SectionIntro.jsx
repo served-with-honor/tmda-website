@@ -48,7 +48,7 @@ export default function SectionIntro() {
 			</Container>
 
 			<PopupModal
-				url={constants.calendly.discoveryCall}
+				url={constants.calendly.consultationCall}
 				rootElement={ref.current}
 				open={isOpen}
 				onModalClose={() => setIsOpen(false)}

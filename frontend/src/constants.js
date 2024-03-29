@@ -117,7 +117,7 @@ export default {
     },
   },
   calendly: {
-    discoveryCall: 'https://calendly.com/vet-ambassadors-tmda/consultation-call',
+    consultationCall: 'https://calendly.com/vet-ambassadors-tmda/consultation-call',
   },
   ipGeolocation: new URL('http://ip-api.com/json'),
   termly: {
