@@ -139,7 +139,7 @@ export default [
 	},
 	{
 		question: 'This process feels overwhelming. Can I speak with someone to help me understand the service I need?',
-		answer: "Yes, on our homepage you’ll find a link to book a free 20 minute discovery call with one of our veteran ambassadors. They’ll be able to answer any questions you may have to make the process a little less overwhelming. You can also call customer service at 512-883-8446 to book this service.",
+		answer: "Yes, on our homepage you’ll find a link to book a free 20 minute consultation call with one of our veteran ambassadors. They’ll be able to answer any questions you may have to make the process a little less overwhelming. You can also call customer service at 512-883-8446 to book this service.",
 		topic: 'General',
 	},
 	{
