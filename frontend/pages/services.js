@@ -244,7 +244,7 @@ export async function getStaticProps() {
 			{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medical/Nexus Services', },
 		],
 		disclaimers: [
-			{ indicator: '*', text: 'The non-refundable appointment/booking fee covers the cost of the Telemedica provider\'s time/effort to review the veteran\'s case and to ensure they can assist the veteran.', },
+			{ indicator: '*', text: 'The $299 Records Review fee is required at the time of booking and is non-refundable. Document fees are payable before service delivery if a provider determines that a document can be written based on the chart review. A Records Review is a comprehensive analysis and summary of a veteran\'s medical records but does not include a medical opinion.', },
 		],
 	};
 
