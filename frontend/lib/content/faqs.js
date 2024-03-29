@@ -143,6 +143,11 @@ export default [
 		topic: 'General',
 	},
 	{
+		question: 'I’d like to have my records reviewed for possible physical medical conditions and I’d like to schedule a mental health evaluation. Do I need to sign up for both services?',
+		answer: "No, the Nexus records review process is included in the cost of your mental health evaluation.",
+		topic: 'General',
+	},
+	{
 		question: 'What is an Independent Medical Opinion (IMO) from Telemedica, and why should I get one?',
 		answer: "An Independent Medical Opinion (IMO) is a document that is completed by someone who does not work with and/or is not contracted with the VA. This document provides evidence of mental health conditions and how they have affected your life. You can use an IMO to help you obtain a service connection for mental health. Many veterans' mental health was impacted by their time in service, and obtaining an IMO can help document these concerns clearly and concisely.",
 		topic: 'Psych',
