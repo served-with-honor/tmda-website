@@ -36,7 +36,7 @@ export default function SectionIntro() {
 				>
 					Book Your Free Call Now
 				</Button> */}
-				<Link href='/contact-us'>
+				<Link href='/consultation-call'>
 					<Button
 						variant='contained'
 						color='secondary'
@@ -48,7 +48,7 @@ export default function SectionIntro() {
 			</Container>
 
 			<PopupModal
-				url={constants.calendly.discoveryCall}
+				url={constants.calendly.consultationCall}
 				rootElement={ref.current}
 				open={isOpen}
 				onModalClose={() => setIsOpen(false)}

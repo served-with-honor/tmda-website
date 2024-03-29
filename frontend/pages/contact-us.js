@@ -82,7 +82,7 @@ export async function getStaticProps() {
 			image: { ...phoneImage, width: 85, height: 85 },
 			heading: 'Book a Consultation Call', 
 			description: 'Not sure where to start? Book a FREE 20-minute Consultation Call with one of our Veteran Ambassadors.',
-			button: { label: 'Schedule Now', url: "/schedule-call" },
+			button: { label: 'Schedule Now', url: "/consultation-call" },
 		},
 		{
 			image: { ...monitorImage, width: 85, height: 85 }, 
