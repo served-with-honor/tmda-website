@@ -230,23 +230,21 @@ export async function getStaticProps() {
 
 	const prices = {
 		items: [
-			{ label: 'Psych Eval & Independent Medical Opinion', disclaimer: '*', amount: 1495, category: 'Mental Health Evaluations', },
+			{ label: 'Psych Eval & Independent Medical Opinion', amount: 1495, category: 'Mental Health Evaluations', },
 			{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
 			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
-			{ label: 'Telemedicine Evaluation (DX)', disclaimer: '*', amount: 985, category: 'Medical/Nexus Services', },
+			{ label: 'Telemedicine Evaluation (DX)', amount: 985, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '*', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
-			{ label: 'P& T Request/Specialty Letter', disclaimer: '**', amount: 1345, category: 'Medical/Nexus Services', },
-			{ label: 'Medical Nexus Letter', disclaimer: '**', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
-			{ label: 'Medical Nexus Letter Enhanced', disclaimer: '**', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
-			{ label: 'DBQ', disclaimer: '**', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
-			{ label: 'DBQ Enhanced', disclaimer: '**', subtext: '4+ pages', amount: 1400, category: 'Medical/Nexus Services', },
+			{ label: 'P&T Request/Specialty Letter', amount: 1595, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Letter', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Letter Enhanced', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
+			{ label: 'DBQ', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
+			{ label: 'DBQ Enhanced', subtext: '4+ pages', amount: 1400, category: 'Medical/Nexus Services', },
 			{ label: 'Rebuttal Letter', amount: 275, category: 'Medical/Nexus Services', },
-			{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Medical/Nexus Services', },
 			{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medical/Nexus Services', },
 		],
 		disclaimers: [
-			{ indicator: '*', text: 'The non-refundable appointment/booking fee covers the cost of the Telemedica provider\'s time/effort to review the veteran\'s case and to ensure they can assist the veteran.', },
-			{ indicator: '**', text: '$50 fee not applicable in all cases.Fee charged on a case-by -case basis.', },
+			{ indicator: '*', text: 'The $299 Records Review fee is required at the time of booking and is non-refundable. Document fees are payable before service delivery if a provider determines that a document can be written based on the chart review. A Records Review is a comprehensive analysis and summary of a veteran\'s medical records but does not include a medical opinion.', },
 		],
 	};
 
