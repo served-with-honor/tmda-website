@@ -235,18 +235,16 @@ export async function getStaticProps() {
 			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
 			{ label: 'Telemedicine Evaluation (DX)', disclaimer: '*', amount: 985, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '*', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
-			{ label: 'P& T Request/Specialty Letter', disclaimer: '**', amount: 1345, category: 'Medical/Nexus Services', },
+			{ label: 'P&T Request/Specialty Letter', disclaimer: '**', amount: 1595, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Letter', disclaimer: '**', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Letter Enhanced', disclaimer: '**', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
 			{ label: 'DBQ', disclaimer: '**', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
 			{ label: 'DBQ Enhanced', disclaimer: '**', subtext: '4+ pages', amount: 1400, category: 'Medical/Nexus Services', },
 			{ label: 'Rebuttal Letter', amount: 275, category: 'Medical/Nexus Services', },
-			{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Medical/Nexus Services', },
 			{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medical/Nexus Services', },
 		],
 		disclaimers: [
 			{ indicator: '*', text: 'The non-refundable appointment/booking fee covers the cost of the Telemedica provider\'s time/effort to review the veteran\'s case and to ensure they can assist the veteran.', },
-			{ indicator: '**', text: '$50 fee not applicable in all cases.Fee charged on a case-by -case basis.', },
 		],
 	};
 
