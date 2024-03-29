@@ -111,11 +111,7 @@ export default function ServicesPage({ title, description, prices }) {
 				{/* SECTION */}
 				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
 					<Container>
-						<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 5, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
-						<Box sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto', }}>
-							<Typography variant='subtitle2' component='p' sx={{ marginBottom: 2 }}>If you’ve already been diagnosed with a condition and only need Nexus documents please go back and book the "Medical Nexus Service". </Typography>
-							<Typography variant='subtitle2' component='p'>If you’re requesting an evaluation for a mental health condition, please go back and book the mental health evaluation.</Typography>
-						</Box>
+						<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
 						{services ? (
 						<Box mb={10}>
 							<CustomAccordion items={services} />

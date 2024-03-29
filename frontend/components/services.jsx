@@ -83,6 +83,12 @@ export default [
     icon: { ...telemedicineImage, height: 40, width: 40},
     body:
       <>
+        <Typography variant='subtitle2' component='p' sx={{marginBottom: 2}}>
+          If you’ve already been diagnosed with a condition and only need Nexus documents please go back and book the "Medical Nexus Service". 
+        </Typography>
+				<Typography variant='subtitle2' component='p' sx={{marginBottom: 2}}>
+          If you’re requesting an evaluation for a mental health condition, please go back and book the mental health evaluation.
+        </Typography>
         <Typography variant='body1' gutterBottom>
           Our medical team offers telemedicine examinations for initial medical diagnoses and confirmation or updated evaluations of 20 applicable conditions.
         </Typography>
