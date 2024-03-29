@@ -245,6 +245,7 @@ export async function getStaticProps() {
 		],
 		disclaimers: [
 			{ indicator: '*', text: 'The non-refundable appointment/booking fee covers the cost of the Telemedica provider\'s time/effort to review the veteran\'s case and to ensure they can assist the veteran.', },
+			{ indicator: '**', text: '$50 fee not applicable in all cases.Fee charged on a case-by -case basis.', },
 		],
 	};
 
