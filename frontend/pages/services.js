@@ -12,16 +12,20 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
-import constants from '../src/constants';
 import { BookingContext } from '../context/BookingContext'
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
 import services from '../components/services'
 import Counter from '../components/Counter'
-import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
+import eventImage from '../public/images/event.svg'
+import phoneImage from '../public/images/call.svg'
+import CustomCard from '../components/CustomCard'
+import sectionBackground from '../public/images/service-section-background.jpg'
 
-export default function ServicesPage({ title, description, prices }) {
+
+export default function ServicesPage({ title, description, prices, actionItems }) {
+	actionItems[0].button.action = () => handleBookNowClick();
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = () => {
@@ -39,7 +43,8 @@ export default function ServicesPage({ title, description, prices }) {
 			<Page title={title} description={description} darkHeader bookingAction={() => handleBookNowClick()}>	
 				{/* HERO */}
 				<Box sx={{ 
-					pt: 15, 
+					pt: 12,
+					pb: 2, 
 					background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
 					color: 'secondary.contrastText',
 					'br': { display: { xs: 'none', md: 'initial' } }
@@ -47,87 +52,70 @@ export default function ServicesPage({ title, description, prices }) {
 					<Container sx={{ pb: 3 }}>
 						<Box sx={{ my: { xs: 5, md: 10 } }}>
 							<Typography 
-								variant='h2' 
+								variant='sectionHeading' 
 								component='h1' 
 								sx={{ mb: 1}}
 							>
-								Serving Those Who Served
-							</Typography>
-							<Typography variant='lead' sx={{ fontSize: 32 }}>
-								The #1 Health Resource For Veterans
+								Services from the Medical Evidence Experts
 							</Typography>
 						</Box>
-					</Container>
-					<Container maxWidth='md'>
-						<Box 
-							sx={{
-								backgroundColor: 'background.paper', 
-								position: 'relative',
-								mb: '-75px',
-								p: [3, 5]
-							}}
-						>
-							<LiteYouTubeEmbed
-								id="SR1F23LUe-8"
-								title="video_title"
-								aspectWidth={16}
-								aspectHeight={9}
-								params={`rel=0&color=white`}
-							/>
-								<Grid
-									container 
-									spacing={2}
-									sx={{ 
-										justifyContent: 'center',
-										mt: 1 
-									}}
-								>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large'
-											href='#booking'
-											onClick={handleBookNowClick}
-										>
-											Book Now
-										</Button>
-									</Grid>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large' 
-											href={constants.externalLinks.patientPortal}
-											target='_blank'
-										>
-											Patient Portal
-										</Button>
-									</Grid>
-								</Grid>
-						</Box>
-						</Container>
-						</Box>
-				{/* SECTION */}
-				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
-					<Container>
-						<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
-						{services ? (
-						<Box mb={10}>
-							<CustomAccordion items={services} />
-							<Box sx={{textAlign: 'center'}}>
-								<Button variant='contained' href='#booking' sx={{mt: 2}}>Book Now</Button>
+						<Container>
+							{services ? (
+								<Box mb={8}>
+								<CustomAccordion items={services} />
 							</Box>
-						</Box>
-						) : null}
-						<Container sx={{ textAlign: 'center' }}>
-							<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
-							<Typography variant='subtitle1' component='p'>
-								<MuiLink href='/about#how-it-works'>How it Works</MuiLink>
-							</Typography>
+							) : null}
+							<Container sx={{ textAlign: 'center' }}>
+								<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence!</Typography>
+								<Typography variant='subtitle1' component='p'>
+									<MuiLink color='primary.main' href='/about#how-it-works'>How it Works</MuiLink>
+								</Typography>
+							</Container>
 						</Container>
 					</Container>
 				</Box>
+				{/* SECTION */}
+				<Box sx={{ backgroundColor: 'secondary.100', pt: 10, pb: 10 }}>
+					<Container maxWidth="md">
+						<Grid container spacing={5}>
+							{actionItems.map((item, index) => (
+								<Grid key={`actions-card-${index}`} item md={6}>
+									<CustomCard {...item} />
+								</Grid>
+							))}
+						</Grid>
+					</Container>
+				</Box>
+				{/* SECTION */}
+				<Box sx={{ 
+					py: 10,
+					background: `url(${sectionBackground.src}) right / cover no-repeat`,
+				}}
+				>
+					<Container>
+						<Typography color='secondary.contrastText' variant={'h2'} sx={{ maxWidth: 'md' }}>
+							Medical Evidence Wins VA Claims
+						</Typography>
+						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2 }}>
+							<Typography component="span" sx={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+								Did you know...
+							</Typography>
+							{' '}Medical evidence is needed for all VA disability claims and is the #1 reason a claim is denied. 
+						</Typography>
+						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2, pb: 5}}>
+							Skip the denial and submit a claim that wins!
+						</Typography>
+						<Button
+							color='secondary' 
+							variant="contained" 
+							size='large'
+							href='/consultation-call'
+						>
+							Book Your Consultation Call Now
+						</Button>
+					</Container>
+				</Box>
+				
 				{/* SECTION */}
 				<Box id='pricing' sx={{ py: 10 }}>
 					<Container maxWidth='md'>
@@ -244,5 +232,18 @@ export async function getStaticProps() {
 		],
 	};
 
-	return { props: { title, description, prices, } }
+	const actionItems = [
+		{
+			image: { ...eventImage, width: 85, height: 85 },
+			description: 'Know which medical evidence service you need for your VA Claim?',
+			button: { label: 'Book Your Medical Evidence Service' },
+		},
+		{
+			image: { ...phoneImage, width: 85, height: 85 },
+			description: 'Dont\'t know which medical evidence service is the right fit for you?',
+			button: { label: 'Book Your Free Consultation Call', url: "/consultation-call" },
+		}
+	]
+
+	return { props: { title, description, prices, actionItems} }
 }
