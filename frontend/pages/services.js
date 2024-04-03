@@ -47,18 +47,28 @@ export default function ServicesPage({ title, description, prices }) {
 					<Container sx={{ pb: 3 }}>
 						<Box sx={{ my: { xs: 5, md: 10 } }}>
 							<Typography 
-								variant='h2' 
+								variant='sectionHeading' 
 								component='h1' 
 								sx={{ mb: 1}}
 							>
-								Serving Those Who Served
-							</Typography>
-							<Typography variant='lead' sx={{ fontSize: 32 }}>
-								The #1 Health Resource For Veterans
+								Services from the Medical Evidence Experts
 							</Typography>
 						</Box>
+						<Container>
+							{services ? (
+								<Box mb={8}>
+								<CustomAccordion items={services} />
+							</Box>
+							) : null}
+							<Container sx={{ textAlign: 'center' }}>
+								<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence!</Typography>
+								<Typography variant='subtitle1' component='p'>
+									<MuiLink color='primary.main' href='/about#how-it-works'>How it Works</MuiLink>
+								</Typography>
+							</Container>
+						</Container>
 					</Container>
-					<Container maxWidth='md'>
+					{/* <Container maxWidth='md'>
 						<Box 
 							sx={{
 								backgroundColor: 'background.paper', 
@@ -106,27 +116,10 @@ export default function ServicesPage({ title, description, prices }) {
 									</Grid>
 								</Grid>
 						</Box>
-						</Container>
-						</Box>
+						</Container> */}
+				</Box>
 				{/* SECTION */}
 				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
-					<Container>
-						<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
-						{services ? (
-						<Box mb={10}>
-							<CustomAccordion items={services} />
-							<Box sx={{textAlign: 'center'}}>
-								<Button variant='contained' href='#booking' sx={{mt: 2}}>Book Now</Button>
-							</Box>
-						</Box>
-						) : null}
-						<Container sx={{ textAlign: 'center' }}>
-							<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
-							<Typography variant='subtitle1' component='p'>
-								<MuiLink href='/about#how-it-works'>How it Works</MuiLink>
-							</Typography>
-						</Container>
-					</Container>
 				</Box>
 				{/* SECTION */}
 				<Box id='pricing' sx={{ py: 10 }}>
