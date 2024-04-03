@@ -148,7 +148,10 @@ export default function ServicesPage({ title, description, prices, actionItems }
 							Medical Evidence Wins VA Claims
 						</Typography>
 						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2 }}>
-							Did you know... Medical evidence is needed for all VA disability claims and is the #1 reason a claim is denied. 
+							<Typography component="span" sx={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+								Did you know...
+							</Typography>
+							{' '}Medical evidence is needed for all VA disability claims and is the #1 reason a claim is denied. 
 						</Typography>
 						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2, pb: 5}}>
 							Skip the denial and submit a claim that wins!
