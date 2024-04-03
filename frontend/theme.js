@@ -38,12 +38,10 @@ const baseTheme = responsiveFontSizes(createTheme({
       fontWeight: 700,
     },
     lead: {
-      component: 'p',
       fontSize: 24,
       lineHeight: 1.5,
     },
     sectionHeading: {
-      component: 'h2',
       fontSize: 42,
       lineHeight: 1,
       textAlign: 'center',
