@@ -75,8 +75,8 @@ export default function ServicesPage({ title, description, prices, actionItems }
 					</Container>
 				</Box>
 				{/* SECTION */}
-				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
-					<Container>
+				<Box sx={{ backgroundColor: 'secondary.100', pt: 10, pb: 10 }}>
+					<Container maxWidth="md">
 						<Grid container spacing={5}>
 							{actionItems.map((item, index) => (
 								<Grid key={`actions-card-${index}`} item md={6}>
