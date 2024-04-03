@@ -96,13 +96,13 @@ export default function ServicesPage({ title, description, prices, actionItems }
 						<Typography color='secondary.contrastText' variant={'h2'} sx={{ maxWidth: 'md' }}>
 							Medical Evidence Wins VA Claims
 						</Typography>
-						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2 }}>
-							<Typography component="span" sx={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+						<Typography color='secondary.contrastText' variant={'lead'} sx={{ pt: 2 }}>
+							<Box component="span" sx={{ fontWeight: 'bold', fontStyle: 'italic' }}>
 								Did you know...
-							</Typography>
+							</Box>
 							{' '}Medical evidence is needed for all VA disability claims and is the #1 reason a claim is denied. 
 						</Typography>
-						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2, pb: 5}}>
+						<Typography color='secondary.contrastText' variant={'lead'} sx={{ pt: 2, pb: 5}}>
 							Skip the denial and submit a claim that wins!
 						</Typography>
 						<Button
@@ -111,7 +111,7 @@ export default function ServicesPage({ title, description, prices, actionItems }
 							size='large'
 							href='/consultation-call'
 						>
-							Book Your Consultation Call Now
+							Book Your Consultation Call
 						</Button>
 					</Container>
 				</Box>
