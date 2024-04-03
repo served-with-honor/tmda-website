@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -20,8 +20,13 @@ import services from '../components/services'
 import Counter from '../components/Counter'
 import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
+import eventImage from '../public/images/event.svg'
+import phoneImage from '../public/images/call.svg'
+import CustomCard from '../components/CustomCard'
 
-export default function ServicesPage({ title, description, prices }) {
+
+export default function ServicesPage({ title, description, prices, actionItems }) {
+	actionItems[0].button.action = () => handleBookNowClick();
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = () => {
@@ -121,6 +126,15 @@ export default function ServicesPage({ title, description, prices }) {
 				</Box>
 				{/* SECTION */}
 				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
+					<Container>
+						<Grid container spacing={5}>
+							{actionItems.map((item, index) => (
+								<Grid key={`actions-card-${index}`} item md={6}>
+									<CustomCard {...item} />
+								</Grid>
+							))}
+						</Grid>
+					</Container>
 				</Box>
 				{/* SECTION */}
 				<Box id='pricing' sx={{ py: 10 }}>
@@ -238,5 +252,18 @@ export async function getStaticProps() {
 		],
 	};
 
-	return { props: { title, description, prices, } }
+	const actionItems = [
+		{
+			image: { ...eventImage, width: 85, height: 85 },
+			description: 'Know which medical evidence service you need for your VA Claim?',
+			button: { label: 'Book Your Medical Evidence Service' },
+		},
+		{
+			image: { ...phoneImage, width: 85, height: 85 },
+			description: 'Dont\'t know which medical evidence service is the right fit for you?',
+			button: { label: 'Book Your Free Consultation Call', url: "/consultation-call" },
+		}
+	]
+
+	return { props: { title, description, prices, actionItems} }
 }
