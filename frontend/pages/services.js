@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -12,13 +12,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
-import constants from '../src/constants';
 import { BookingContext } from '../context/BookingContext'
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
 import services from '../components/services'
 import Counter from '../components/Counter'
-import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 import eventImage from '../public/images/event.svg'
 import phoneImage from '../public/images/call.svg'
@@ -75,55 +73,6 @@ export default function ServicesPage({ title, description, prices, actionItems }
 							</Container>
 						</Container>
 					</Container>
-					{/* <Container maxWidth='md'>
-						<Box 
-							sx={{
-								backgroundColor: 'background.paper', 
-								position: 'relative',
-								mb: '-75px',
-								p: [3, 5]
-							}}
-						>
-							<LiteYouTubeEmbed
-								id="SR1F23LUe-8"
-								title="video_title"
-								aspectWidth={16}
-								aspectHeight={9}
-								params={`rel=0&color=white`}
-							/>
-								<Grid
-									container 
-									spacing={2}
-									sx={{ 
-										justifyContent: 'center',
-										mt: 1 
-									}}
-								>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large'
-											href='#booking'
-											onClick={handleBookNowClick}
-										>
-											Book Now
-										</Button>
-									</Grid>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large' 
-											href={constants.externalLinks.patientPortal}
-											target='_blank'
-										>
-											Patient Portal
-										</Button>
-									</Grid>
-								</Grid>
-						</Box>
-						</Container> */}
 				</Box>
 				{/* SECTION */}
 				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
