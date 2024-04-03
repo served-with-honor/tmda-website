@@ -23,6 +23,7 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 import eventImage from '../public/images/event.svg'
 import phoneImage from '../public/images/call.svg'
 import CustomCard from '../components/CustomCard'
+import sectionBackground from '../public/images/service-section-background.jpg'
 
 
 export default function ServicesPage({ title, description, prices, actionItems }) {
@@ -136,6 +137,33 @@ export default function ServicesPage({ title, description, prices, actionItems }
 						</Grid>
 					</Container>
 				</Box>
+				{/* SECTION */}
+				<Box sx={{ 
+					py: 10,
+					background: `url(${sectionBackground.src}) right / cover no-repeat`,
+				}}
+				>
+					<Container>
+						<Typography color='secondary.contrastText' variant={'h2'} sx={{ maxWidth: 'md' }}>
+							Medical Evidence Wins VA Claims
+						</Typography>
+						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2 }}>
+							Did you know... Medical evidence is needed for all VA disability claims and is the #1 reason a claim is denied. 
+						</Typography>
+						<Typography color='secondary.contrastText' variant={'body1'} sx={{ pt: 2, pb: 5}}>
+							Skip the denial and submit a claim that wins!
+						</Typography>
+						<Button
+							color='secondary' 
+							variant="contained" 
+							size='large'
+							href='/consultation-call'
+						>
+							Book Your Consultation Call Now
+						</Button>
+					</Container>
+				</Box>
+				
 				{/* SECTION */}
 				<Box id='pricing' sx={{ py: 10 }}>
 					<Container maxWidth='md'>
