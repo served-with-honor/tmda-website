@@ -39,7 +39,8 @@ export default function ServicesPage({ title, description, prices }) {
 			<Page title={title} description={description} darkHeader bookingAction={() => handleBookNowClick()}>	
 				{/* HERO */}
 				<Box sx={{ 
-					pt: 15, 
+					pt: 12,
+					pb: 2, 
 					background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
 					color: 'secondary.contrastText',
 					'br': { display: { xs: 'none', md: 'initial' } }
