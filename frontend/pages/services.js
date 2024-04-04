@@ -12,16 +12,20 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
 import PriceTable from '../components/PriceTable'
-import constants from '../src/constants';
 import { BookingContext } from '../context/BookingContext'
 import BookingWidget from '../components/BookingWidget'
 import CustomAccordion from '../components/CustomAccordion'
 import services from '../components/services'
 import Counter from '../components/Counter'
-import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
+import eventImage from '../public/images/event.svg'
+import phoneImage from '../public/images/call.svg'
+import CustomCard from '../components/CustomCard'
+import sectionBackground from '../public/images/service-section-background.jpg'
 
-export default function ServicesPage({ title, description, prices }) {
+
+export default function ServicesPage({ title, description, prices, actionItems }) {
+	actionItems[0].button.action = () => handleBookNowClick();
 	const mobileBookingSectionRef = useRef(null);
 	const desktopBookingSectionRef = useRef(null);
 	const handleBookNowClick = () => {
@@ -39,7 +43,8 @@ export default function ServicesPage({ title, description, prices }) {
 			<Page title={title} description={description} darkHeader bookingAction={() => handleBookNowClick()}>	
 				{/* HERO */}
 				<Box sx={{ 
-					pt: 15, 
+					pt: 12,
+					pb: 2, 
 					background: 'linear-gradient(to right, #2e4074 30%, #1d2646 90%)', 
 					color: 'secondary.contrastText',
 					'br': { display: { xs: 'none', md: 'initial' } }
@@ -47,87 +52,70 @@ export default function ServicesPage({ title, description, prices }) {
 					<Container sx={{ pb: 3 }}>
 						<Box sx={{ my: { xs: 5, md: 10 } }}>
 							<Typography 
-								variant='h2' 
+								variant='sectionHeading' 
 								component='h1' 
 								sx={{ mb: 1}}
 							>
-								Serving Those Who Served
-							</Typography>
-							<Typography variant='lead' sx={{ fontSize: 32 }}>
-								The #1 Health Resource For Veterans
+								Services from the Medical Evidence Experts
 							</Typography>
 						</Box>
-					</Container>
-					<Container maxWidth='md'>
-						<Box 
-							sx={{
-								backgroundColor: 'background.paper', 
-								position: 'relative',
-								mb: '-75px',
-								p: [3, 5]
-							}}
-						>
-							<LiteYouTubeEmbed
-								id="SR1F23LUe-8"
-								title="video_title"
-								aspectWidth={16}
-								aspectHeight={9}
-								params={`rel=0&color=white`}
-							/>
-								<Grid
-									container 
-									spacing={2}
-									sx={{ 
-										justifyContent: 'center',
-										mt: 1 
-									}}
-								>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large'
-											href='#booking'
-											onClick={handleBookNowClick}
-										>
-											Book Now
-										</Button>
-									</Grid>
-									<Grid item>
-										<Button 
-											variant='contained' 
-											color='secondary' 
-											size='large' 
-											href={constants.externalLinks.patientPortal}
-											target='_blank'
-										>
-											Patient Portal
-										</Button>
-									</Grid>
-								</Grid>
-						</Box>
-						</Container>
-						</Box>
-				{/* SECTION */}
-				<Box sx={{ backgroundColor: 'secondary.100', pt: 20, pb: 10 }}>
-					<Container>
-						<Typography variant='sectionHeading' component='h2' sx={{ marginBottom: 10, maxWidth: 'md', marginX: 'auto' }}>Services from the Medical Evidence Experts</Typography>
-						{services ? (
-						<Box mb={10}>
-							<CustomAccordion items={services} />
-							<Box sx={{textAlign: 'center'}}>
-								<Button variant='contained' href='#booking' sx={{mt: 2}}>Book Now</Button>
+						<Container>
+							{services ? (
+								<Box mb={8}>
+								<CustomAccordion items={services} />
 							</Box>
-						</Box>
-						) : null}
-						<Container sx={{ textAlign: 'center' }}>
-							<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence in less time!</Typography>
-							<Typography variant='subtitle1' component='p'>
-								<MuiLink href='/about#how-it-works'>How it Works</MuiLink>
-							</Typography>
+							) : null}
+							<Container sx={{ textAlign: 'center' }}>
+								<Typography variant='h6' component='h3' gutterBottom sx={{ textTransform: 'capitalize'}}>The 5 easy steps to obtaining your medical evidence!</Typography>
+								<Typography variant='subtitle1' component='p'>
+									<MuiLink color='primary.main' href='/about#how-it-works'>How it Works</MuiLink>
+								</Typography>
+							</Container>
 						</Container>
 					</Container>
 				</Box>
+				{/* SECTION */}
+				<Box sx={{ backgroundColor: 'secondary.100', pt: 10, pb: 10 }}>
+					<Container maxWidth="md">
+						<Grid container spacing={5}>
+							{actionItems.map((item, index) => (
+								<Grid key={`actions-card-${index}`} item md={6}>
+									<CustomCard {...item} />
+								</Grid>
+							))}
+						</Grid>
+					</Container>
+				</Box>
+				{/* SECTION */}
+				<Box sx={{ 
+					py: 10,
+					background: `url(${sectionBackground.src}) right / cover no-repeat`,
+				}}
+				>
+					<Container>
+						<Typography color='secondary.contrastText' variant={'h2'} sx={{ maxWidth: 'md' }}>
+							Medical Evidence Wins VA Claims
+						</Typography>
+						<Typography color='secondary.contrastText' variant={'lead'} sx={{ pt: 2 }}>
+							<Box component="span" sx={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+								Did you know...
+							</Box>
+							{' '}Medical evidence is needed for all VA disability claims and is the #1 reason a claim is denied. 
+						</Typography>
+						<Typography color='secondary.contrastText' variant={'lead'} sx={{ pt: 2, pb: 5}}>
+							Skip the denial and submit a claim that wins!
+						</Typography>
+						<Button
+							color='secondary' 
+							variant="contained" 
+							size='large'
+							href='/consultation-call'
+						>
+							Book Your Consultation Call
+						</Button>
+					</Container>
+				</Box>
+				
 				{/* SECTION */}
 				<Box id='pricing' sx={{ py: 10 }}>
 					<Container maxWidth='md'>
@@ -226,25 +214,36 @@ export async function getStaticProps() {
 
 	const prices = {
 		items: [
-			{ label: 'Psych Eval & Independent Medical Opinion', disclaimer: '*', amount: 1495, category: 'Mental Health Evaluations', },
+			{ label: 'Psych Eval & Independent Medical Opinion', amount: 1495, category: 'Mental Health Evaluations', },
 			{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
 			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
-			{ label: 'Telemedicine Evaluation (DX)', disclaimer: '*', amount: 985, category: 'Medical/Nexus Services', },
+			{ label: 'Telemedicine Evaluation (DX)', amount: 985, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '*', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
-			{ label: 'P& T Request/Specialty Letter', disclaimer: '**', amount: 1345, category: 'Medical/Nexus Services', },
-			{ label: 'Medical Nexus Letter', disclaimer: '**', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
-			{ label: 'Medical Nexus Letter Enhanced', disclaimer: '**', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
-			{ label: 'DBQ', disclaimer: '**', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
-			{ label: 'DBQ Enhanced', disclaimer: '**', subtext: '4+ pages', amount: 1400, category: 'Medical/Nexus Services', },
+			{ label: 'P&T Request/Specialty Letter', amount: 1595, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Letter', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Letter Enhanced', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
+			{ label: 'DBQ', subtext: '1-4 pages', amount: 1145, category: 'Medical/Nexus Services', },
+			{ label: 'DBQ Enhanced', subtext: '4+ pages', amount: 1400, category: 'Medical/Nexus Services', },
 			{ label: 'Rebuttal Letter', amount: 275, category: 'Medical/Nexus Services', },
-			{ label: 'Additional Pages for Record Review', subtext: '500 pages', amount: '+$99', category: 'Medical/Nexus Services', },
 			{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medical/Nexus Services', },
 		],
 		disclaimers: [
-			{ indicator: '*', text: 'The non-refundable appointment/booking fee covers the cost of the Telemedica provider\'s time/effort to review the veteran\'s case and to ensure they can assist the veteran.', },
-			{ indicator: '**', text: '$50 fee not applicable in all cases.Fee charged on a case-by -case basis.', },
+			{ indicator: '*', text: 'The $299 Records Review fee is required at the time of booking and is non-refundable. Document fees are payable before service delivery if a provider determines that a document can be written based on the chart review. A Records Review is a comprehensive analysis and summary of a veteran\'s medical records but does not include a medical opinion.', },
 		],
 	};
 
-	return { props: { title, description, prices, } }
+	const actionItems = [
+		{
+			image: { ...eventImage, width: 85, height: 85 },
+			description: 'Know which medical evidence service you need for your VA Claim?',
+			button: { label: 'Book Your Medical Evidence Service' },
+		},
+		{
+			image: { ...phoneImage, width: 85, height: 85 },
+			description: 'Dont\'t know which medical evidence service is the right fit for you?',
+			button: { label: 'Book Your Free Consultation Call', url: "/consultation-call" },
+		}
+	]
+
+	return { props: { title, description, prices, actionItems} }
 }

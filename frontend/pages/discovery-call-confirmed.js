@@ -6,7 +6,7 @@ import texture01 from '../public/images/texture-01.jpg';
 
 export default function DiscoveryCallConfirmedPage() {
 	return (
-		<Page title={'Discovery Call Confirmation'} noindex>
+		<Page title={'Consultation Call Confirmation'} noindex>
 
 			{/* HERO */}
 			<Box sx={{
@@ -22,7 +22,7 @@ export default function DiscoveryCallConfirmedPage() {
 			}}>
 				<Container maxWidth='sm' sx={{ textAlign: 'center' }}>
 					<Typography variant='h2' component={'h1'} color='primary'>Thank You!</Typography>
-					<Typography variant='lead' gutterBottom>Your Discovery Call is Booked!</Typography>
+					<Typography variant='lead' gutterBottom>Your Consultation Call is Booked!</Typography>
 					<Typography variant='body1'>You may now safely exit this page & we look forward to speaking with you on the day & time of your call.</Typography>
 				</Container>
 			</Box>

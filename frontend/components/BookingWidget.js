@@ -12,61 +12,7 @@ import { slugify } from '../src/utils';
 import constants from '../src/constants';
 
 export default function BookingWidget({ service = null }) {
-  const regionsList = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming',
-    'District of Columbia',
-    'Puerto Rico',
-    'Out of US',
-  ];
+  const regionsList = Object.keys(constants.intakeq.locations);
 
   const [newLocation, setNewLocation] = useState('');
   const [region, setRegion] = useState(null);
@@ -80,14 +26,10 @@ export default function BookingWidget({ service = null }) {
       return;
     }
     
-    fetch(constants.geoPlugin.url)
+    fetch(constants.ipGeolocation)
       .then(response => response.json())
-      .then(body => {
-        const {
-          geoplugin_countryCode: countryCode,
-          geoplugin_region: state
-        } = body;
-        setRegion(countryCode === 'US' ? state : 'Out of US');
+      .then(({ countryCode, regionName }) => {
+        setRegion(countryCode === 'US' ? regionName : 'Out of US');
       })
       .catch(error => {
         setRegion(null);

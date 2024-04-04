@@ -12,13 +12,16 @@ import constants from '../src/constants';
 import CustomCard from '../components/CustomCard';
 import eventImage from '../public/images/event.svg'
 import monitorImage from '../public/images/monitor.svg'
+import phoneImage from '../public/images/call.svg'
 import stethoscopeImage from '../public/images/stethoscope.svg'
 import { BookingContext } from '../context/BookingContext'
 import { formatPhoneNumber } from '../src/utils';
 import texture01 from '../public/images/texture-01.jpg'
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function ContactUsPage({ title, description, actionItems }) {
   const { setIsOpen: setIsBookingDialogOpen } = useContext(BookingContext);
+  const isMobile = useMediaQuery('(max-width:600px)');
 
 	actionItems[0].button.action = () => setIsBookingDialogOpen(true);
 	
@@ -33,7 +36,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 					<Typography variant='h1' color='primary'>Get In Touch</Typography>
 					<Typography variant='body1' gutterBottom sx={{ fontSize: 32, }}>Please let us know how we can assist you.</Typography>
 					<Stack direction={'row'} gap={3}>
-						<Button size='large' color='primary' variant={'contained'} href={`tel:${constants.company.contact.phone}`} target="_blank">Call Us</Button>
+						<Button size='large' color='primary' variant={'contained'} href={`tel:${constants.company.contact.phone}`} target="_blank">{isMobile ? 'Call Us' : 'Call Us: +1 512-883-8446'}</Button>
 						<Button size='large' color='primary' variant={'contained'} href={constants.externalLinks.helpDesk} target="_blank">Help Desk</Button>
 					</Stack>
 				</Container>
@@ -51,7 +54,7 @@ export default function ContactUsPage({ title, description, actionItems }) {
 				<Container>
 					<Grid container spacing={5}>
 						{actionItems.map((item, index) => (
-							<Grid key={`actions-card-${index}`} item md={4}>
+							<Grid key={`actions-card-${index}`} item md={6}>
 								<CustomCard {...item} />
 							</Grid>
 						))}
@@ -71,9 +74,15 @@ export async function getStaticProps() {
 	const actionItems = [
 		{
 			image: { ...eventImage, width: 85, height: 85 },
-			heading: 'Booking', 
+			heading: 'Book a Service', 
 			description: 'For new and returning clients. Book your medical evidence service now!',
 			button: { label: 'Book Now' },
+		},
+		{
+			image: { ...phoneImage, width: 85, height: 85 },
+			heading: 'Book a Consultation Call', 
+			description: 'Not sure where to start? Book a FREE 20-minute Consultation Call with one of our Veteran Ambassadors.',
+			button: { label: 'Schedule Now', url: "/consultation-call" },
 		},
 		{
 			image: { ...monitorImage, width: 85, height: 85 }, 

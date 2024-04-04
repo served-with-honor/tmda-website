@@ -9,6 +9,7 @@ export default function CircleFiller({
   color2 = '#999',
   duration = 1,
   parentRef,
+  animateOnce = false,
   children
 }) {
   const ref = useRef(null);
@@ -20,13 +21,17 @@ export default function CircleFiller({
   const transform = `rotate(-90, ${radius}, ${radius})`;
   
   useEffect(() => {
-    if (inViewAll) {
-      const amount = circumference - (circumference * (percent / 100));
+    const amount = circumference - (circumference * (percent / 100));
+    if (animateOnce) {
       animate(offset, amount, { duration });
-    } else if (!inViewSome) {
-      offset.set(circumference);
+    } else {
+      if (inViewAll) {
+        animate(offset, amount, { duration });
+      } else if (!inViewSome) {
+        offset.set(circumference);
+      }
     }
-  }, [offset, inViewAll, inViewSome]);
+  }, [offset, inViewAll, inViewSome, percent, animateOnce]);
 
   return (
     <div ref={ref}>

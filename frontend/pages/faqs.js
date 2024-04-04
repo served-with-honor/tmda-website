@@ -16,7 +16,7 @@ export default function FAQsPage({ title, description, items }) {
 	const topics = [...new Set(items.map(({ topic }) => topic))];
 
 	const [expanded, setExpanded] = useState(false);
-	const [selectedCategory, setSelectedCategory] = useState('')
+	const [selectedCategory, setSelectedCategory] = useState('general')
 	const [filteredItems, setFilteredItems] = useState(items)	
 
   const handlePanelChange = (panel) => (event, isExpanded) => {
@@ -86,7 +86,8 @@ export default function FAQsPage({ title, description, items }) {
 									</Grid>
 								)
 							})}
-							{selectedCategory !== '' ? (
+							{/* All filter feature */}
+							{/* {selectedCategory !== '' ? (
 								<Grid item>
 									<Button
 										onClick={() => handleTopicChange('')}
@@ -98,7 +99,7 @@ export default function FAQsPage({ title, description, items }) {
 										All
 									</Button>
 								</Grid>
-							) : null}
+							) : null} */}
 						</Grid>
 					): null}
 					
