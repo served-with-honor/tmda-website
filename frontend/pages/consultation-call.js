@@ -8,7 +8,7 @@ import { InlineWidget } from 'react-calendly';
 
 export default function ScheduleCallPage({ title }) {
     return (
-        <Page title={title} noindex>
+        <Page title={title}>
             <Box sx={{
                 py: 20,
                 background: `url(${texture01.src}) center / cover no-repeat`,
