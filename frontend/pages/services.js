@@ -214,11 +214,11 @@ export async function getStaticProps() {
 
 	const prices = {
 		items: [
-			{ label: 'Psych Eval & Independent Medical Opinion', amount: 1495, category: 'Mental Health Evaluations', },
+			{ label: 'Psych Eval & Independent Medical Opinion', disclaimer: '*', amount: 1495, category: 'Mental Health Evaluations', },
 			{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
 			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
 			{ label: 'Telemedicine Evaluation (DX)', amount: 985, category: 'Medical/Nexus Services', },
-			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '*', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
+			{ label: 'Medical Nexus Chart Review Fee', disclaimer: '**', subtext: 'up to 500 pages', amount: 299, category: 'Medical/Nexus Services', },
 			{ label: 'P&T Request/Specialty Letter', amount: 1595, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Letter', subtext: '1 connection', amount: 1345, category: 'Medical/Nexus Services', },
 			{ label: 'Medical Nexus Letter Enhanced', subtext: '2+ connections', amount: 1595, category: 'Medical/Nexus Services', },
@@ -228,7 +228,8 @@ export async function getStaticProps() {
 			{ label: 'Unlimited Pages & Reviews for 90 days', amount: '+$99', category: 'Medical/Nexus Services', },
 		],
 		disclaimers: [
-			{ indicator: '*', text: 'The $299 Records Review fee is required at the time of booking and is non-refundable. Document fees are payable before service delivery if a provider determines that a document can be written based on the chart review. A Records Review is a comprehensive analysis and summary of a veteran\'s medical records but does not include a medical opinion.', },
+			{ indicator: '*', text: 'A records review fee is included in the total service price and will be applied at the time of booking. This fee is non-refundable. A records review is a comprehensive analysis and summary of a veteran\'s medical records but does not include a medical opinion.', },
+			{ indicator: '**', text: 'The $299 Records Review fee is required at the time of booking and is non-refundable. Document fees are payable before service delivery if a provider determines that a document can be written based on the chart review. A Records Review is a comprehensive analysis and summary of a veteran\'s medical records but does not include a medical opinion.', },
 		],
 	};
 

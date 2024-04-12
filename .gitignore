@@ -16,6 +16,7 @@
 /frontend/out/
 /frontend/node_modules
 /frontend/env.local
+/frontend/yarn.lock
 
 # production
 /frontend/build/
