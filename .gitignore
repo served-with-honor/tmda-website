@@ -30,6 +30,7 @@ yarn-error.log*
 
 # local env files
 **/.env*
+/frontend/env.local
 
 # Local Netlify folder
 /frontend/.netlify
