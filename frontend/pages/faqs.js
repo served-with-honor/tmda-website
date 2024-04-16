@@ -23,7 +23,7 @@ export default function FAQsPage({ title, description, items }) {
     setExpanded(isExpanded ? panel : false);
 	};
 
-	const handleTopicChange = (topic) => {
+	const handleTopicChange = (topic = 'General') => {
 		setSelectedCategory(topic);
 		const hash = topic ? `#${slugify(topic)}` : location.href.split('#')[0];
 		window.history.replaceState({}, '', hash);
@@ -33,11 +33,6 @@ export default function FAQsPage({ title, description, items }) {
 		const newItems = selectedCategory ? items.filter(item => slugify(item.topic) === selectedCategory) : items;
 		setFilteredItems(newItems);
 	}, [selectedCategory]);
-
-	useEffect(() => {
-		const initialCategory = window.location.hash.split('#')[1];
-		setSelectedCategory(initialCategory);
-	}, []);
 
 	return (
 		<Page title={title} description={description}>
@@ -70,6 +65,7 @@ export default function FAQsPage({ title, description, items }) {
 					{topics ? (
 						<Grid container spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 							{topics.map((topic) => {
+								console.log(topics)
 								const topicSlug = slugify(topic);
 								const isSelected = selectedCategory === topicSlug;
 								return (
@@ -86,20 +82,6 @@ export default function FAQsPage({ title, description, items }) {
 									</Grid>
 								)
 							})}
-							{/* All filter feature */}
-							{/* {selectedCategory !== '' ? (
-								<Grid item>
-									<Button
-										onClick={() => handleTopicChange('')}
-										variant='text'
-										size='small'
-										color="inherit"
-										sx={{ margin: 1, textTransform: "none", }}
-									>
-										All
-									</Button>
-								</Grid>
-							) : null} */}
 						</Grid>
 					): null}
 					
