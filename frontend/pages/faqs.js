@@ -65,7 +65,6 @@ export default function FAQsPage({ title, description, items }) {
 					{topics ? (
 						<Grid container spacing={2} sx={{ my: 3, justifyContent: 'center' }}>
 							{topics.map((topic) => {
-								console.log(topics)
 								const topicSlug = slugify(topic);
 								const isSelected = selectedCategory === topicSlug;
 								return (
