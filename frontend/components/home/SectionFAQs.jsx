@@ -16,15 +16,15 @@ export default function SectionFAQs() {
   const items = [
     {
       title: 'Will my appointment be in person or online?',
-      text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere.Mental Health and Telemedicine Evaluations will be conducted online via video call.The link is sent a few minutes before the appointment.Nexus Letter services do not require an appointment.',
+      text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere. Mental Health and Telemedicine Evaluations will be conducted online via video call. The link is sent a few minutes before the appointment. Nexus Letter services do not require an appointment.',
     },
     {
       title: 'Do you take insurance or offer payment plans?',
-      text: 'Telemedica does not accept insurance or offer payment plants at this time.',
+      text: 'Telemedica does not accept insurance or offer payment plans at this time.',
     },
     {
       title: 'How long will it take for me to receive my documents?',
-      text: 'Our average turnaround time is 7-10 business days.Turnaround time for Nexus Letter rush services is two(2) business days(please note that rush services are an extra $100 per document).',
+      text: 'Our average turnaround time is 7-10 business days. Turnaround time for Nexus Letter rush services is two(2) business days (please note that rush services are an extra $100 per document).',
     },
     {
       title: 'Can I book over the phone?',
