@@ -28,7 +28,7 @@ export default function SectionFAQs() {
     },
     {
       title: 'Can I book over the phone?',
-      text: `You may book through our booking link - ${constants.externalLinks.booking} or by phone at ${formatPhoneNumber(constants.company.contact.phone)}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
+      text: `You may book through our booking link - <a style="color: #2F4177" href="${constants.externalLinks.booking}">${constants.externalLinks.booking}</a> or by phone at <a style="color: #2F4177" href="tel:${constants.company.contact.phone}">${formatPhoneNumber(constants.company.contact.phone)}</a>, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
     }
   ];
 
@@ -59,7 +59,9 @@ export default function SectionFAQs() {
               <Typography variant={'subtitle1'} component='p'>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant={'body1'}>{text}</Typography>
+            <Typography variant={'body1'} 
+              dangerouslySetInnerHTML={{__html: text}}
+              ></Typography>
             </AccordionDetails>
           </Accordion>
         )) : null}
