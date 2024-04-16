@@ -117,7 +117,7 @@ export default function FAQsPage({ title, description, items }) {
 										<Typography variant='subtitle1' sx={{pl:1}}>{question}</Typography>
 									</AccordionSummary>
 									<AccordionDetails>
-										<Typography variant='body1'>{answer}</Typography>
+										<Typography variant='body1' dangerouslySetInnerHTML={{__html: answer}}></Typography>
 									</AccordionDetails>
 								</Accordion>
 							))
