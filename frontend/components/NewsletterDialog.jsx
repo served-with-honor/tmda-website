@@ -13,9 +13,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+import SendIcon from '@mui/icons-material/Send';
 import Link from '../src/Link';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function NewsletterDialog({ delay, closeDelay = 2000, openCondition, onPopupOpen, scrollRef }) {
+  const isMobile = useMediaQuery('(max-width:600px)');
   const cookieExpireClose = 30;
   const cookieExpireSignup = 365;
   const endpoint = '/api/newsletter';
@@ -136,8 +139,8 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
                         )}
                       />
                     </Box>
-                    <Box>
-                      <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: 5 }}>Subscribe</Button>
+                    <Box sx={{display: 'flex'}}>
+                      <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: 2 }}>{isMobile ? <SendIcon /> : 'Subscribe'}</Button>
                     </Box>
                   </Stack>
                 {error ? <Alert severity="error" sx={{ marginTop: 3 }}>{error}</Alert> : null}
