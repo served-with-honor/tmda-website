@@ -49,7 +49,7 @@ export default [
 	},
 	{
 		question: 'Do I need to set up an appointment to request a Nexus Letter?',
-		answer: "This depends on your knowledge of the VA disability claims process and the services offered by Telemedica. You can purchase our Nexus Services using this <a href='/services#booking' style='color: #2F4177'>link</a>. If you aren't certain or would like assistance with discovering which of our services would be best for you, you can use this <a href='/consultation-call' style='color: #2F4177'>link</a> to schedule an appointment with one of our Veteran Ambassadors. (Calendly Round Robin link)",
+		answer: "This depends on your knowledge of the VA disability claims process and the services offered by Telemedica. You can purchase our Nexus Services using this <a href='/services#booking' style='color: #2F4177'>link</a>. If you aren't certain or would like assistance with discovering which of our services would be best for you, you can use this <a href='/consultation-call' style='color: #2F4177'>link</a> to schedule an appointment with one of our Veteran Ambassadors.",
 		topic: 'General',
 	},
 	{
