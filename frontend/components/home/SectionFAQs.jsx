@@ -16,19 +16,19 @@ export default function SectionFAQs() {
   const items = [
     {
       title: 'Will my appointment be in person or online?',
-      text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere.Mental Health and Telemedicine Evaluations will be conducted online via video call.The link is sent a few minutes before the appointment.Nexus Letter services do not require an appointment.',
+      text: 'Telemedica provides telehealth services that allows veterans to access their medical evidence anytime, anywhere. Mental Health and Telemedicine Evaluations will be conducted online via video call. The link is sent a few minutes before the appointment. Nexus Letter services do not require an appointment.',
     },
     {
       title: 'Do you take insurance or offer payment plans?',
-      text: 'Telemedica does not accept insurance or offer payment plants at this time.',
+      text: 'Telemedica does not accept insurance or offer payment plans at this time.',
     },
     {
       title: 'How long will it take for me to receive my documents?',
-      text: 'Our average turnaround time is 7-10 business days.Turnaround time for Nexus Letter rush services is two(2) business days(please note that rush services are an extra $100 per document).',
+      text: 'Our average turnaround time is 7-10 business days. Turnaround time for Nexus Letter rush services is two(2) business days (please note that rush services are an extra $100 per document).',
     },
     {
       title: 'Can I book over the phone?',
-      text: `You may book through our booking link - ${constants.externalLinks.booking} or by phone at ${formatPhoneNumber(constants.company.contact.phone)}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
+      text: `You may book through our booking link - <a style="color: #2F4177" href="${constants.externalLinks.booking}">${constants.externalLinks.booking}</a> or by phone at <a style="color: #2F4177" href="tel:${constants.company.contact.phone}">${formatPhoneNumber(constants.company.contact.phone)}</a>, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
     }
   ];
 
@@ -59,7 +59,9 @@ export default function SectionFAQs() {
               <Typography variant={'subtitle1'} component='p'>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant={'body1'}>{text}</Typography>
+            <Typography variant={'body1'} 
+              dangerouslySetInnerHTML={{__html: text}}
+              ></Typography>
             </AccordionDetails>
           </Accordion>
         )) : null}
