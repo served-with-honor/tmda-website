@@ -138,12 +138,10 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
                         )}
                       />
                     </Box>
-                    <Box sx={{display: 'flex'}}>
-                      <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: 2 }}>
-                        <SendIcon sx={{display: {xs: 'inline-block', sm: 'none'}}}/>
-                        <Box component='span' sx={theme => ({ [theme.breakpoints.down('sm')]: visuallyHidden, })}>Subscribe</Box>
-                      </Button>
-                    </Box>
+                    <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: 2 }}>
+                      <SendIcon sx={{display: {xs: 'inline-block', sm: 'none'}}}/>
+                      <Box component='span' sx={theme => ({ [theme.breakpoints.down('sm')]: visuallyHidden, })}>Subscribe</Box>
+                    </Button>
                   </Stack>
                 {error ? <Alert severity="error" sx={{ marginTop: 3 }}>{error}</Alert> : null}
               </form>
