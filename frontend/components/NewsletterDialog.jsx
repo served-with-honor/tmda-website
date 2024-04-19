@@ -138,7 +138,7 @@ export default function NewsletterDialog({ delay, closeDelay = 2000, openConditi
                         )}
                       />
                     </Box>
-                    <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: 2 }}>
+                    <Button variant='contained' type="submit" name="subscribe" onClick={handleSubmit(onSubmit)} disabled={Object.values(errors).length > 0} sx={{ px: { sm: 5 } }}>
                       <SendIcon sx={{display: {xs: 'inline-block', sm: 'none'}}}/>
                       <Box component='span' sx={theme => ({ [theme.breakpoints.down('sm')]: visuallyHidden, })}>Subscribe</Box>
                     </Button>
