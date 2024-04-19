@@ -28,7 +28,7 @@ export default function SectionFAQs() {
     },
     {
       title: 'Can I book over the phone?',
-      text: `You may book through our booking link - <a style="color: #2F4177" href="${constants.externalLinks.booking}">${constants.externalLinks.booking}</a> or by phone at <a style="color: #2F4177" href="tel:${constants.company.contact.phone}">${formatPhoneNumber(constants.company.contact.phone)}</a>, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
+      text: `You may book through our <a style="color: #2F4177" href="/services#booking">booking link</a> or by phone at <a style="color: #2F4177" href="tel:${constants.company.contact.phone}">${formatPhoneNumber(constants.company.contact.phone)}</a>, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
     }
   ];
 
