@@ -99,7 +99,7 @@ export default [
 	},
 	{
 		question: "Can I book over the phone?",
-		answer: `You may book through our booking link - ${constants.externalLinks.booking} or by phone at ${formatPhoneNumber(constants.company.contact.phone)}, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
+		answer: `You may book through our <a href='${constants.externalLinks.booking}' style='color: #2F4177'>booking link</a>  or by phone at <a style="color: #2F4177" href="tel:${constants.company.contact.phone}">${formatPhoneNumber(constants.company.contact.phone)}</a>, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
     	topic: 'General',
 	},
 	{
@@ -196,7 +196,7 @@ export default [
 	},
 	{
 		question: 'I noticed a mistake on my IMO or I do not agree with my IMO. What should I do?',
-		answer: `If you notice a mistake on your IMO, you should create a ticket in the Telemedica Help Desk. This way your psychologist can respond to you and ensure that any factual corrections are made in a timely manner and that your concerns are reviewed. It is up to the discretion of the independent provider to use their clinical judgement and provide a determination. The Help Desk can be found at: ${constants.externalLinks.helpDesk}.`,
+		answer: `If you notice a mistake on your IMO, you should create a ticket in the Telemedica Help Desk. This way your psychologist can respond to you and ensure that any factual corrections are made in a timely manner and that your concerns are reviewed. It is up to the discretion of the independent provider to use their clinical judgement and provide a determination. The Help Desk can be found at: <a style="color: #2F4177" href="${constants.externalLinks.helpDesk}" target="_blank">${constants.externalLinks.helpDesk}</a>.`,
 		topic: 'Psych',
 	},
 	{
