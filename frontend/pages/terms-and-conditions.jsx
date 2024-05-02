@@ -36,56 +36,70 @@ export default function ContactUsPage() {
 					
 					<Typography variant='h4' component={'h2'} sx={{ my: 5 }}>Fee Disclosures</Typography>
 					<Typography variant='h6' component={'h3'}>Telemedica Rates:</Typography>
-					<List sx={{ listStyleType: 'disc', pl: 4, 'sup': { fontSize: 10 } }}>
-						<ListItem variant='body1' gutterBottom>Mental Health Evaluation<sup>1/4</sup>&nbsp;- $1,495</ListItem>
+					<List sx={{
+						listStyleType:
+							'disc', pl: 4,
+						'& .MuiListItem-root': {
+							display: 'list-item'
+						},
+						'sup': { fontSize: 10, mx: 1 }
+					}}>
+						<ListItem variant='body1' gutterBottom>Mental Health Evaluation<sup>1, 4</sup> - $1,495</ListItem>
 						<ListItem variant='body1' gutterBottom>Psych Re-evaluation - $150</ListItem>
 						<ListItem variant='body1' gutterBottom>Psych Rebuttal Letter - $200</ListItem>
-						<ListItem variant='body1' gutterBottom>Telemedicine Medical Diagnosis Evaluation<sup>1/4</sup>&nbsp;- $985</ListItem>
+						<ListItem variant='body1' gutterBottom>Telemedicine Medical Diagnosis Evaluation<sup>1, 4</sup> - $985</ListItem>
 						<ListItem variant='body1' gutterBottom>Additional Telemedicine Medical Diagnosis Evaluation - $860</ListItem>
-						<ListItem variant='body1' gutterBottom>Medical Nexus Records Review (up to 500 pages)<sup>1</sup>&nbsp;- $299</ListItem>
+						<ListItem variant='body1' gutterBottom>Medical Nexus Records Review (up to 500 pages)<sup>1</sup> - $299</ListItem>
 						<ListItem variant='body1' gutterBottom>Additional Pages For Records Review (500 pages) - $99</ListItem>
-						<ListItem variant='body1' gutterBottom>Unlimited Pages & Medical Records Review for 90 days<sup>1</sup>&nbsp;- $99</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Letter (1 connection)<sup>1/2</sup>&nbsp;- $1,345</ListItem>
-						<ListItem variant='body1' gutterBottom>P&T Document/Specialty Letter<sup>1/2</sup>&nbsp;- $1,345</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Letter Enhanced (2+ connections)<sup>1/2</sup>&nbsp;- $1,595</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Service DBQ (1-4 pages)<sup>1/2</sup>&nbsp;- $1,145</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Service DBQ Enhanced (4+ pages)<sup>1/2</sup>&nbsp;- $1,400</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Service Rebuttal Letter<sup>1/3</sup>&nbsp;- $275</ListItem>
-						<ListItem variant='body1' gutterBottom><strong><sup>*</sup>This fee is made up of two separate charges: (i) a portion is retained for the Professional Fee charged by the Independent Provider’s PLLC, and (ii) a portion is retained for an Administrative Management Fee charged by Telemedica LLC.</strong></ListItem>
-						<ListItem variant='body1' gutterBottom><sup>1</sup> For Mental Health Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>1</sup> For Telemedicine Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>1</sup> For Nexus Letter/DBQ Services, there is a $299 ($398 for unlimited chart review) Non-Refundable Technology & Access Fee. This is obtained when services are initiated.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>2</sup> Chart review must be completed prior to service</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>3</sup> In some cases, a targeted chart review must be completed before confirmation that this document is possible with a cost of $50</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>4</sup> This fee includes a medical chart review of up to 500 pages. Additional fees apply if uploading more than 500 pages. See fee breakdown for chart review pages</ListItem>
+						<ListItem variant='body1' gutterBottom>Unlimited Pages & Medical Records Review for 90 days<sup>1</sup> - $99</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Letter (1 connection)<sup>1, 2</sup> - $1,345</ListItem>
+						<ListItem variant='body1' gutterBottom>P&T Document/Specialty Letter<sup>1, 2</sup> - $1,345</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Letter Enhanced (2+ connections)<sup>1, 2</sup> - $1,595</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Service DBQ (1-4 pages)<sup>1, 2</sup> - $1,145</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Service DBQ Enhanced (4+ pages)<sup>1, 2</sup> - $1,400</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Service Rebuttal Letter<sup>1, 3</sup> - $275</ListItem>
+						<Typography variant='body1' gutterBottom><strong><sup>1</sup>This fee is made up of two separate charges: (i) a portion is retained for the Professional Fee charged by the Independent Provider’s PLLC, and (ii) a portion is retained for an Administrative Management Fee charged by Telemedica LLC.</strong></Typography>
+						<Typography variant='body1' gutterBottom><sup>1</sup> For Mental Health Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</Typography>
+						<Typography variant='body1' gutterBottom><sup>1</sup> For Telemedicine Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</Typography>
+						<Typography variant='body1' gutterBottom><sup>1</sup> For Nexus Letter/DBQ Services, there is a $299 ($398 for unlimited chart review) Non-Refundable Technology & Access Fee. This is obtained when services are initiated.</Typography>
+						<Typography variant='body1' gutterBottom><sup>2</sup> Chart review must be completed prior to service</Typography>
+						<Typography variant='body1' gutterBottom><sup>3</sup> In some cases, a targeted chart review must be completed before confirmation that this document is possible with a cost of $50</Typography>
+						<Typography variant='body1' gutterBottom><sup>4</sup> This fee includes a medical chart review of up to 500 pages. Additional fees apply if uploading more than 500 pages. See fee breakdown for chart review pages</Typography>
 						
 					</List>
 
 
 					<Typography variant='h6' component={'h3'}>Third-Party Member Discounted Rates:</Typography>
-					<List sx={{ listStyleType: 'disc', pl: 4, 'sup': { fontSize: 10 } }}>
-						<ListItem variant='body1' gutterBottom>Mental Health Evaluation<sup>1/4</sup>&nbsp;- $599</ListItem>
+					<List sx={{
+						listStyleType:
+							'disc', pl: 4,
+						'& .MuiListItem-root': {
+							display: 'list-item'
+						},
+						'sup': { fontSize: 10, mx: 1 }
+					}}>
+						<ListItem variant='body1' gutterBottom>Mental Health Evaluation<sup>1, 4</sup> - $599</ListItem>
 						<ListItem variant='body1' gutterBottom>Psych Re-evaluation - $150</ListItem>
 						<ListItem variant='body1' gutterBottom>Psych Rebuttal Letter - $200</ListItem>
-						<ListItem variant='body1' gutterBottom>Telemedicine Medical Diagnosis Evaluation<sup>1/4</sup>&nbsp;- $524</ListItem>
+						<ListItem variant='body1' gutterBottom>Telemedicine Medical Diagnosis Evaluation<sup>1, 4</sup> - $524</ListItem>
 						<ListItem variant='body1' gutterBottom>Additional Telemedicine Medical Evaluation - $399</ListItem>
-						<ListItem variant='body1' gutterBottom>Medical Nexus Records Review (up to 500 pages)<sup>1</sup>&nbsp;- $299</ListItem>
+						<ListItem variant='body1' gutterBottom>Medical Nexus Records Review (up to 500 pages)<sup>1</sup> - $299</ListItem>
 						<ListItem variant='body1' gutterBottom>Additional Pages For Records Review (500 pages) - $99</ListItem>
-						<ListItem variant='body1' gutterBottom>Unlimited Pages & Medical Records Review for 90 days<sup>1</sup>&nbsp;- $99</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Letter<sup>1/2</sup>&nbsp;- $520</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Letter Enhanced/Specialty Letter/P&T Document<sup>1/2</sup>&nbsp;- $620</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Service DBQ (1-4 pages)<sup>1/2</sup>&nbsp;- $325</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Service DBQ Enhanced (4+ pages)<sup>1/2</sup>&nbsp;- $425</ListItem>
-						<ListItem variant='body1' gutterBottom>Nexus Service Rebuttal Letter<sup>1/3</sup>&nbsp;- $275</ListItem>
-						<ListItem variant='body1' gutterBottom><strong><sup>*</sup>This fee is made up of two separate charges: (i) a portion is retained for the Professional Fee charged by the Independent Provider’s PLLC, and (ii) a portion is retained for an Administrative Management Fee charged by Telemedica LLC.</strong></ListItem>
-						<ListItem variant='body1' gutterBottom><strong><sup>*</sup>You will only be eligible for the preferred third-party discount rate if you have an active contract with the preferred third-party.</strong></ListItem>
-						<ListItem variant='body1' gutterBottom><strong><sup>*</sup>Please note that if you cancel your third-party membership 72 hours or more prior to your appointment, you will be billed at the non-discounted rate. Failure to pay the remaining balance will result in the cancelation of your appointment.</strong></ListItem>
-						<ListItem variant='body1' gutterBottom><sup>1</sup> For Mental Health Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>1</sup> For Telemedicine Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>1</sup> For Nexus Letter/DBQ Services, there is a $299 ($398 for unlimited chart review) Non-Refundable Technology & Access Fee. This is obtained when services are initiated.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>2</sup> Chart review must be completed prior to service.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>3</sup> In some cases, a targeted chart review must be completed before confirmation that this document is possible with a cost of $50.</ListItem>
-						<ListItem variant='body1' gutterBottom><sup>4</sup> This fee includes a medical chart review up to 500 pages. Additional fees apply if uploading more than 500 pages. See fee breakdown for chart review pages.</ListItem>
+						<ListItem variant='body1' gutterBottom>Unlimited Pages & Medical Records Review for 90 days<sup>1</sup> - $99</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Letter<sup>1, 2</sup> - $520</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Letter Enhanced/Specialty Letter/P&T Document<sup>1, 2</sup> - $620</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Service DBQ (1-4 pages)<sup>1, 2</sup> - $325</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Service DBQ Enhanced (4+ pages)<sup>1, 2</sup> - $425</ListItem>
+						<ListItem variant='body1' gutterBottom>Nexus Service Rebuttal Letter<sup>1, 3</sup> - $275</ListItem>
+						<Typography variant='body1' gutterBottom><strong><sup>1</sup>This fee is made up of two separate charges: (i) a portion is retained for the Professional Fee charged by the Independent Provider’s PLLC, and (ii) a portion is retained for an Administrative Management Fee charged by Telemedica LLC.</strong></Typography>
+						<Typography variant='body1' gutterBottom><strong><sup>1</sup>You will only be eligible for the preferred third-party discount rate if you have an active contract with the preferred third-party.</strong></Typography>
+						<Typography variant='body1' gutterBottom><strong><sup>1</sup>Please note that if you cancel your third-party membership 72 hours or more prior to your appointment, you will be billed at the non-discounted rate. Failure to pay the remaining balance will result in the cancelation of your appointment.</strong></Typography>
+						<Typography variant='body1' gutterBottom><sup>1</sup> For Mental Health Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</Typography>
+						<Typography variant='body1' gutterBottom><sup>1</sup> For Telemedicine Evaluation, there is a $125 Non-Refundable Technology & Access Fee. There is an additional $54 Non-Refundable Chart Review Fee. This is obtained when services are initiated.</Typography>
+						<Typography variant='body1' gutterBottom><sup>1</sup> For Nexus Letter/DBQ Services, there is a $299 ($398 for unlimited chart review) Non-Refundable Technology & Access Fee. This is obtained when services are initiated.</Typography>
+						<Typography variant='body1' gutterBottom><sup>2</sup> Chart review must be completed prior to service.</Typography>
+						<Typography variant='body1' gutterBottom><sup>3</sup> In some cases, a targeted chart review must be completed before confirmation that this document is possible with a cost of $50.</Typography>
+						<Typography variant='body1' gutterBottom><sup>4</sup> This fee includes a medical chart review up to 500 pages. Additional fees apply if uploading more than 500 pages. See fee breakdown for chart review pages.</Typography>
 					</List>
 					<Typography variant='body1' gutterBottom><strong>Please note that for the customer’s convenience, Telemedica LLC collects all of the fees and passes the professional fees directly to the appropriate professional entity without offset. For the avoidance of doubt, Telemedica does not provide any professional services, including but not limited to health evaluations or medical diagnostic services.</strong></Typography>
 					<Typography variant='h4' component={'h2'} sx={{ my: 5 }}>Refund/Missed Appointment Policy</Typography>
