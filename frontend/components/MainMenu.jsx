@@ -37,6 +37,7 @@ export default function MainMenu() {
         { text: 'Blog', href: '/blog' },
         { text: 'Patient Portal', href: constants.externalLinks.patientPortal, target: '_blank' },
         { text: 'FAQs', href: '/faqs' },
+        { text: 'Disability Calculator', href: '/disability-calculator' },
       ],
     },
     {

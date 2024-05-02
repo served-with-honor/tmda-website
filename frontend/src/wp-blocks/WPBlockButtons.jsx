@@ -26,7 +26,7 @@ const WPButtonWrapper = ({ children, attribs }) => {
 	});
 	
 	return (
-		<Grid item>
+		<Grid item sx={{ mb: 3 }}>
 			{domToReact(children, { replace: WPButton })}
 		</Grid>
 	);
