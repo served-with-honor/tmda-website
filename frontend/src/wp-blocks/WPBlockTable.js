@@ -11,9 +11,9 @@ import { getTextAlignment } from './generics';
 
 export default function WPBlockTable({ children }) {
 	const table = children.find(({ name }) => name === 'table');
-	const tableHeader = table?.children.find(({ name }) => name === 'thead')?.children[0];
+	const tableHeader = table?.children.find(({ name }) => name === 'thead');
 	const tableBody = table?.children.find(({ name }) => name === 'tbody');
-	const tableFooter = table?.children.find(({ name }) => name === 'tfoot')?.children[0];
+	const tableFooter = table?.children.find(({ name }) => name === 'tfoot');
 	const caption = children.find(({ name }) => name === 'figcaption');
 	
 	return (
@@ -26,47 +26,42 @@ export default function WPBlockTable({ children }) {
 
 				{tableHeader ? (
 					<TableHead>
-						<TableRow>
-							{domToReact(tableHeader.children, {
-								replace: (element) => {
-									const align = getTextAlignment(element.attribs.class || '');
-									return <TableCell align={align} colSpan={element.attribs.colspan || 1}>{domToReact(element.children)}</TableCell>
-								}
-							})}
-						</TableRow>
+						{domToReact(tableHeader.children, { replace: replaceRow })}
 					</TableHead>
 				) : null}
 
-			{tableBody ? (
-				<TableBody>
-					{domToReact(tableBody.children, { replace: (row) => (
-						<TableRow>
-							{domToReact(row.children, {
-								replace: (cell) => {
-									const align = getTextAlignment(cell.attribs.class || '');
-									return (
-										<TableCell align={align} colSpan={cell.attribs.colspan || 1}>{domToReact(cell.children)}</TableCell>
-									)
-								}
-							})}
-						</TableRow>
-					)})}
-				</TableBody>
-			): null}
+				{tableBody ? (
+					<TableBody>
+						{domToReact(tableBody.children, { replace: replaceRow })}
+					</TableBody>
+				): null}
 
-			{tableFooter ? (
-				<TableFooter>
-					<TableRow>
-						{domToReact(tableFooter.children, {
-							replace: (element) => {
-								return <TableCell>{domToReact(element.children)}</TableCell>
-							}
-						})}
-					</TableRow>
-				</TableFooter>
-			) : null}
+				{tableFooter ? (
+					<TableFooter>
+						{domToReact(tableFooter.children, { replace: replaceRow })}
+					</TableFooter>
+				) : null}
 
 			</Table>
 		</TableContainer>
 	);
+}
+
+const replaceRow = (row) => {
+	return (
+		<TableRow>
+			{domToReact(row.children, { replace: replaceCell })}
+		</TableRow>
+	);
+}
+
+const replaceCell = (cell) => {
+	const align = getTextAlignment(cell.attribs.class || '');
+	const colspan = cell.attribs.colspan || 1;
+
+	return (
+		<TableCell align={align} colSpan={colspan}>
+			{domToReact(cell.children)}
+		</TableCell>
+	)
 }
