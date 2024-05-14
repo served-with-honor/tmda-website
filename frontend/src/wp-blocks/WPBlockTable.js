@@ -28,7 +28,7 @@ export default function WPBlockTable({ children }) {
 						<TableRow>
 							{domToReact(tableHeader.children, {
 								replace: (element) => {
-									return <TableCell>{domToReact(element.children)}</TableCell>
+									return <TableCell colSpan={element.attribs.colspan || 1}>{domToReact(element.children)}</TableCell>
 								}
 							})}
 						</TableRow>
@@ -40,7 +40,7 @@ export default function WPBlockTable({ children }) {
 					{domToReact(tableBody.children, { replace: (row) => (
 						<TableRow>
 							{domToReact(row.children, { replace: (cell) => (
-								<TableCell>{domToReact(cell.children)}</TableCell>
+								<TableCell colSpan={cell.attribs.colspan || 1}>{domToReact(cell.children)}</TableCell>
 							)})}
 						</TableRow>
 					)})}
