@@ -24,6 +24,13 @@ export const getJustification = (classes) => {
 	return '';
 }
 
+export const getTextAlignment = (classes) => {
+	if (classes.includes('has-text-align-right')) return 'right';
+	if (classes.includes('has-text-align-center')) return 'center';
+	if (classes.includes('has-text-align-left')) return 'left';
+	return '';
+}
+
 export const getSize = (classes) => {
 	if (!classes) return '';
 	if (classes.includes('has-x-large-font-size')) return 'large';

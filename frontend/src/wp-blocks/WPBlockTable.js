@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { getTextAlignment } from './generics';
 
 export default function WPBlockTable({ children }) {
 	const table = children.find(({ name }) => name === 'table');
@@ -28,7 +29,8 @@ export default function WPBlockTable({ children }) {
 						<TableRow>
 							{domToReact(tableHeader.children, {
 								replace: (element) => {
-									return <TableCell colSpan={element.attribs.colspan || 1}>{domToReact(element.children)}</TableCell>
+									const align = getTextAlignment(element.attribs.class || '');
+									return <TableCell align={align} colSpan={element.attribs.colspan || 1}>{domToReact(element.children)}</TableCell>
 								}
 							})}
 						</TableRow>
@@ -39,9 +41,14 @@ export default function WPBlockTable({ children }) {
 				<TableBody>
 					{domToReact(tableBody.children, { replace: (row) => (
 						<TableRow>
-							{domToReact(row.children, { replace: (cell) => (
-								<TableCell colSpan={cell.attribs.colspan || 1}>{domToReact(cell.children)}</TableCell>
-							)})}
+							{domToReact(row.children, {
+								replace: (cell) => {
+									const align = getTextAlignment(cell.attribs.class || '');
+									return (
+										<TableCell align={align} colSpan={cell.attribs.colspan || 1}>{domToReact(cell.children)}</TableCell>
+									)
+								}
+							})}
 						</TableRow>
 					)})}
 				</TableBody>
