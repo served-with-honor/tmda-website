@@ -10,6 +10,7 @@ import BlogHero from '../../components/BlogHero'
 import WPBlocks from '../../src/wp-blocks';
 import SimpleTOC from '../../src/wp-blocks/SimpleTOC';
 import NewsletterDialog from '../../components/NewsletterDialog'
+import ReviewerBlock from '../../components/ReviewerBlock';
 
 export default function Post({ post }) {
 	if (!post) return (
@@ -86,10 +87,10 @@ export default function Post({ post }) {
 				<Container>
 					{hasSideContent ? (
 						<Grid container spacing={4}>
-							<Box sx={{ paddingY: 15 }}>
-        						<ReviewerBlock />
-      						</Box>
 								<Grid item xs={12} md={4}>
+									<Box sx={{ paddingY: 15 }}>
+										<ReviewerBlock />
+									</Box>
 									<Box sx={{position: 'sticky', top: '8rem'}}>
 										{sideContent}
 									</Box>
