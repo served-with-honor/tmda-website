@@ -1,4 +1,8 @@
-import { Card, Grid, Typography, Box, Avatar, Stack } from "@mui/material";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
 
 export default function ReviewerBlock({ date, name, imageUrl, bio }) {
   return (
