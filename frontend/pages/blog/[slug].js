@@ -37,8 +37,11 @@ export default function Post({ post }) {
     date,
     modifed,
     metadata,
+    articles: { reviewed },
   } = post;
   const [currentSection, setCurrentSection] = useState(null);
+
+  console.log(reviewed);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -108,7 +111,12 @@ export default function Post({ post }) {
             <Grid container spacing={4}>
               <Grid item xs={12} md={4}>
                 <Box sx={{ paddingY: 5 }}>
-                  <ReviewerBlock />
+                  <ReviewerBlock
+                    date={reviewed.date}
+                    name={reviewed.reviewer.nodes[0]?.name}
+                    bio={reviewed.reviewer.nodes[0]?.description}
+                    imageUrl={reviewed.reviewer.nodes[0]?.avatar.url}
+                  />
                 </Box>
                 <Box sx={{ position: "sticky", top: "8rem" }}>
                   {sideContent}
