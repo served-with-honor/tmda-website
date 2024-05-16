@@ -41,8 +41,6 @@ export default function Post({ post }) {
   } = post;
   const [currentSection, setCurrentSection] = useState(null);
 
-  console.log(reviewed);
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

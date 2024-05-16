@@ -35,7 +35,9 @@ export default function ReviewerBlock({ date, name, imageUrl, bio }) {
             <Typography variant="subtitle2">Last Date Modified</Typography>
           </Grid>
           <Grid item xs={5}>
-            <Typography variant="subtitle2">{date}</Typography>
+            <Typography variant="subtitle2">
+              {new Date(date).toLocaleDateString()}
+            </Typography>
           </Grid>
         </Grid>
       </Box>
