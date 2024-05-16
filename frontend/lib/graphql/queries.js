@@ -42,6 +42,20 @@ export const GetPostQuery = `
           }
         }
       }
+      articles {
+        reviewed {
+          reviewer {
+            nodes {
+              name
+              description
+              avatar {
+                url
+              }
+            }
+          }
+          date
+        }
+      }
     }
   }
   ${PostFragment}
