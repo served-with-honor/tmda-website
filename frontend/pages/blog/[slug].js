@@ -37,7 +37,8 @@ export default function Post({ post }) {
     date,
     modifed,
     metadata,
-    articles: { reviewed },
+    reviewedDate,
+    reviewer,
   } = post;
   const [currentSection, setCurrentSection] = useState(null);
 
@@ -110,10 +111,10 @@ export default function Post({ post }) {
               <Grid item xs={12} md={4}>
                 <Box sx={{ paddingY: 5 }}>
                   <ReviewerBlock
-                    date={reviewed.date}
-                    name={reviewed.reviewer.nodes[0]?.name}
-                    bio={reviewed.reviewer.nodes[0]?.description}
-                    imageUrl={reviewed.reviewer.nodes[0]?.avatar.url}
+                    date={reviewedDate}
+                    name={reviewer.name}
+                    bio={reviewer.description}
+                    imageUrl={reviewer.imageUrl}
                   />
                 </Box>
                 <Box sx={{ position: "sticky", top: "8rem" }}>

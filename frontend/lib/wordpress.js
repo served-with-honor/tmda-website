@@ -80,6 +80,13 @@ async function getPost(id, { idType, asPreview } = { idType: 'SLUG', asPreview: 
     };
     post.categories = post.categories.nodes;
     post.featuredImage = post.featuredImage.node.mediaItemUrl;
+    post.reviewedDate = post.articles.reviewed.date;
+    post.reviewer = {
+      name: post.articles.reviewed.reviewer.nodes[0]?.name,
+      description: post.articles.reviewed.reviewer.nodes[0]?.description,
+      imageUrl:
+        post.articles.reviewed.reviewer.nodes[0]?.user.photo.node.sourceUrl,
+    };
     return post;
   } catch (error) {
     console.log(error);
