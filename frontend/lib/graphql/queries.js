@@ -37,8 +37,12 @@ export const GetPostQuery = `
       author {
         node {
           name
-          avatar {
-            url
+          user {
+            photo {
+              node {
+                sourceUrl
+              }
+            }
           }
         }
       }
