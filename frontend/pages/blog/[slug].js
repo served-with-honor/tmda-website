@@ -109,14 +109,16 @@ export default function Post({ post }) {
           {hasSideContent ? (
             <Grid container spacing={4}>
               <Grid item xs={12} md={4}>
-                <Box sx={{ paddingY: 5 }}>
-                  <ReviewerBlock
-                    date={reviewedDate}
-                    name={reviewer.name}
-                    bio={reviewer.description}
-                    imageUrl={reviewer.imageUrl}
-                  />
-                </Box>
+                {reviewedDate !== null ? (
+                  <Box sx={{ paddingY: 5 }}>
+                    <ReviewerBlock
+                      date={reviewedDate}
+                      name={reviewer.name}
+                      bio={reviewer.description}
+                      imageUrl={reviewer.imageUrl}
+                    />
+                  </Box>
+                ) : null}
                 <Box sx={{ position: "sticky", top: "8rem" }}>
                   {sideContent}
                 </Box>
