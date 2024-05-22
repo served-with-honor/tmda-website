@@ -28,6 +28,27 @@ function modify_post_link( $url, $post, $leavename=false ) {
 	return $url;
 }
 
+add_filter( 'graphql_connection_query_args', function( $query_args, $connection_resolver ) {
+
+  if ( $connection_resolver instanceof \WPGraphQL\Data\Connection\UserConnectionResolver ) {
+  unset( $query_args['has_published_posts'] );
+  }
+  
+  return $query_args;
+  
+  }, 10, 2 );
+  
+  add_filter( 'graphql_object_visibility', function( $visibility, $model_name, $data, $owner, $current_user ) {
+  
+  // only apply our adjustments to the UserObject Model
+  if ( 'UserObject' === $model_name ) {
+  $visibility = 'public';
+  }
+  
+  return $visibility;
+  
+  }, 10, 5 );
+
 // Customize the admin top bar menu
 add_action( 'admin_bar_menu', 'modify_admin_bar_menu', 80 );
 function modify_admin_bar_menu( $wp_admin_bar ) {
@@ -104,6 +125,8 @@ function custom_dashboard_help() {
   echo '<hr />';
   echo '<p>Need more help? <a href="mailto:tecth@vaclaimsinsider.com">Contact our tech team</a>.</p>';
 }
+
+
 
 // function send_webhook($post_id, $post) {
 //   global $buildWebhookEndpoint;
