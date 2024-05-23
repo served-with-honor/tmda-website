@@ -214,7 +214,7 @@ export async function getStaticProps() {
 
 	const prices = {
 		items: [
-			{ label: 'Psych Eval & Independent Medical Opinion', disclaimer: '*', amount: 1495, category: 'Mental Health Evaluations', },
+			{ label: 'Psych Eval & Independent Medical Opinion', amount: 1495, category: 'Mental Health Evaluations', },
 			{ label: 'Psych Re-Evaluation', amount: 150, category: 'Mental Health Evaluations', },
 			{ label: 'Rebuttal Letter', amount: 200, category: 'Mental Health Evaluations', },
 			{ label: 'Telemedicine Evaluation (DX)', amount: 985, category: 'Medical/Nexus Services', },

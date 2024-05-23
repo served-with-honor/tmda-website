@@ -14,9 +14,6 @@
 # next.js
 /frontend/.next/
 /frontend/out/
-/frontend/node_modules
-/frontend/env.local
-/frontend/yarn.lock
 
 # production
 /frontend/build/
@@ -31,7 +28,6 @@ yarn-error.log*
 
 # local env files
 **/.env*
-/frontend/env.local
 
 # Local Netlify folder
 /frontend/.netlify

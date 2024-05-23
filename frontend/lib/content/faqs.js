@@ -100,7 +100,7 @@ export default [
 	{
 		question: "Can I book over the phone?",
 		answer: `You may book through our <a href='\services#booking' style='color: #2F4177'>booking link</a>  or by phone at <a style="color: #2F4177" href="tel:${constants.company.contact.phone}">${formatPhoneNumber(constants.company.contact.phone)}</a>, but if you encounter any issues, feel free to reach out to customer service for assistance.`,
-    	topic: 'General',
+    topic: 'General',
 	},
 	{
 		question: "Is TMDA the same as VACI?",
