@@ -110,7 +110,7 @@ export default function Post({ post }) {
             <Grid container spacing={4}>
               <Grid item xs={12} md={4}>
                 {reviewedDate !== null ? (
-                  <Box sx={{ paddingY: 5 }}>
+                  <Box sx={{ mb: 5 }}>
                     <ReviewerBlock
                       date={reviewedDate}
                       name={reviewer.name}
