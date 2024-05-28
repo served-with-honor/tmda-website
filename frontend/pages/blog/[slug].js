@@ -37,6 +37,7 @@ export default function Post({ post }) {
     date,
     modifed,
     metadata,
+    reviewedDate,
     reviewer,
   } = post;
   const [currentSection, setCurrentSection] = useState(null);
@@ -108,7 +109,7 @@ export default function Post({ post }) {
           {hasSideContent ? (
             <Grid container spacing={4}>
               <Grid item xs={12} md={4}>
-                {reviewer !== null ? (
+                {reviewedDate !== null ? (
                   <Box sx={{ mb: 5 }}>
                     <ReviewerBlock
                       name={reviewer.name}
