@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 
-export default function ReviewerBlock({ date, name, imageUrl, bio }) {
+export default function ReviewerBlock({ name, imageUrl, bio }) {
   return (
     <Card
       sx={{
