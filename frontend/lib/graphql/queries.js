@@ -1,4 +1,4 @@
-import { PostFragment, CategoryFragment } from './fragments';
+import { PostFragment, CategoryFragment } from "./fragments";
 
 export const GetCategoriesQuery = `
   query Categories {
@@ -37,11 +37,33 @@ export const GetPostQuery = `
       author {
         node {
           name
-          avatar {
-            url
+          user {
+            photo {
+              node {
+                sourceUrl
+              }
+            }
           }
         }
       }
+      articles {
+      reviewed {
+        reviewer {
+          nodes {
+            name
+            description
+            user {
+              photo {
+                node {
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+        date
+      }
+    }
     }
   }
   ${PostFragment}

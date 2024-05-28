@@ -8,7 +8,7 @@ import { renderElementContents } from './generics';
 
 export default function WPBlockList(element) {
 	return (
-		<List disablePadding>
+		<List disablePadding sx={{my: 2}}>
 			{domToReact(element.children, { replace: renderListItem })}
 		</List>
 	);
