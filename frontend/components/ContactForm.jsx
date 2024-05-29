@@ -179,7 +179,7 @@ export default function ContactForm() {
             render={({ field }) => (
               <FormControlLabel
                 control={<Checkbox {...field} />}
-                label="By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt-out of further messaging."
+                label="By checking this box and by providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt-out of further messaging."
               />
             )}
           />
