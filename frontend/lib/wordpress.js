@@ -88,7 +88,7 @@ async function getPost(
     post.categories = post.categories.nodes;
     post.featuredImage = post.featuredImage.node.mediaItemUrl;
     post.reviewedDate = post.articles?.reviewed?.date;
-    post.reviewer = post.reviewer = post.articles?.reviewed?.reviewer
+    post.reviewer = post.articles?.reviewed?.reviewer
       ? {
           name: post.articles?.reviewed?.reviewer?.nodes[0]?.name || null,
           description:
