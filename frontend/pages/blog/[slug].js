@@ -109,7 +109,7 @@ export default function Post({ post }) {
           {hasSideContent ? (
             <Grid container spacing={4}>
               <Grid item xs={12} md={4}>
-                {reviewedDate !== null ? (
+                {reviewedDate && reviewer.name !== null ? (
                   <Box sx={{ mb: 5 }}>
                     <ReviewerBlock
                       name={reviewer.name}
