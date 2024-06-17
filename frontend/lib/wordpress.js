@@ -88,14 +88,16 @@ async function getPost(
     post.categories = post.categories.nodes;
     post.featuredImage = post.featuredImage.node.mediaItemUrl;
     post.reviewedDate = post.articles?.reviewed?.date;
-    post.reviewer = {
-      name: post.articles?.reviewed?.reviewer?.nodes[0]?.name || null,
-      description:
-        post.articles?.reviewed?.reviewer?.nodes[0]?.description || null,
-      imageUrl:
-        post.articles?.reviewed?.reviewer?.nodes[0]?.user?.photo?.node
-          ?.sourceUrl || null,
-    };
+    post.reviewer = post.articles?.reviewed?.reviewer
+      ? {
+          name: post.articles?.reviewed?.reviewer?.nodes[0]?.name || null,
+          description:
+            post.articles?.reviewed?.reviewer?.nodes[0]?.description || null,
+          imageUrl:
+            post.articles?.reviewed?.reviewer?.nodes[0]?.user?.photo?.node
+              ?.sourceUrl || null,
+        }
+      : null;
     return post;
   } catch (error) {
     console.log(error);
