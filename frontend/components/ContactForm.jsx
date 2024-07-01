@@ -14,6 +14,8 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Select from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 export default function ContactForm() {
   const formName = "Contact Form Home";
@@ -167,6 +169,27 @@ export default function ContactForm() {
                 helperText={errors?.message?.message}
                 error={!!errors?.message}
                 {...field}
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Controller
+            name="agreeTermsAndConditions"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <FormControlLabel
+                control={<Checkbox {...field} />}
+                label={
+                  <Typography component="span">
+                    I agree to the{" "}
+                    <Link href="/terms-and-conditions">
+                      terms and condition
+                    </Link>{" "}
+                    and <Link href="/privacy-policy">privacy policy</Link>.
+                  </Typography>
+                }
               />
             )}
           />
