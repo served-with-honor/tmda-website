@@ -184,10 +184,14 @@ export default function ContactForm() {
                 label={
                   <Typography component="span">
                     I agree to the{" "}
-                    <Link href="/terms-and-conditions">
+                    <Link href="/terms-and-conditions" target="_blank">
                       terms and condition
                     </Link>{" "}
-                    and <Link href="/privacy-policy">privacy policy</Link>.
+                    and{" "}
+                    <Link href="/privacy-policy" target="_blank">
+                      privacy policy
+                    </Link>
+                    .
                   </Typography>
                 }
               />
