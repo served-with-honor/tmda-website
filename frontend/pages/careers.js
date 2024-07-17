@@ -29,7 +29,7 @@ export default function CareersPage({ title, description }) {
 							lineHeight: 1,
 							mb: 5,
 						}}>100% remote working opportunities.</Typography>
-						<Button href={constants.externalLinks.jobs} target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button>
+						<Button href="/careers-portal/index.html" target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button>
 					</Box>
 				</Container>
 			</Box>
