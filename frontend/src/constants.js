@@ -118,6 +118,7 @@ export default {
   },
   calendly: {
     consultationCall: 'https://calendly.com/vet-ambassadors-tmda/consultation-call',
+    routingCall: 'https://calendly.com/d/ck8s-rtd-p2z',
   },
   ipGeolocation: new URL('http://ip-api.com/json'),
   termly: {
