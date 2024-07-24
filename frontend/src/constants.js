@@ -9,7 +9,7 @@ export default {
     name: 'Telemedica LLC',
     copyrightYearInitial: 2020,
     contact: {
-      phone: '+15128838446',
+      phone: '+18882514430',
       email: 'customerservice@telemedicallc.com',
     },
   },
