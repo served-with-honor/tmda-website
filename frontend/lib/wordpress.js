@@ -83,7 +83,7 @@ async function getPost(
 
     post.author = {
       name: post.author.node.name,
-      image: post.author.node.user?.photo?.node?.sourceUrl || null,
+      image: post.author.node.user?.avatar?.url || null,
     };
     post.categories = post.categories.nodes;
     post.featuredImage = post.featuredImage.node.mediaItemUrl;
@@ -94,8 +94,8 @@ async function getPost(
           description:
             post.articles?.reviewed?.reviewer?.nodes[0]?.description || null,
           imageUrl:
-            post.articles?.reviewed?.reviewer?.nodes[0]?.user?.photo?.node
-              ?.sourceUrl || null,
+            post.articles?.reviewed?.reviewer?.nodes[0]?.user?.avatar?.url ||
+            null,
         }
       : null;
     return post;
