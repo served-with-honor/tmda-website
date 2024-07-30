@@ -19,7 +19,7 @@ export default async function handler(
     };
 
     await Promise.all([
-      // logContactForm({ firstName, lastName, phone, email, type, message }),
+      logContactForm({ firstName, lastName, phone, email, type, message }),
       emailContactForm(data),
     ])
     
