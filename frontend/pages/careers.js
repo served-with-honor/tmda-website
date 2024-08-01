@@ -29,13 +29,14 @@ export default function CareersPage({ title, description }) {
 							lineHeight: 1,
 							mb: 5,
 						}}>100% remote working opportunities.</Typography>
-						<Button href={constants.externalLinks.jobs} target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button>
+						{/* <Button href={constants.externalLinks.jobs} target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button> */}
 					</Box>
 				</Container>
 			</Box>
 			
 			<Box sx={{ py: 10 }}>
 				<Container>
+				<Alert severity="warning">Currently there are no job postings.</Alert>
 					<Typography variant={'h2'} gutterBottom align='center'>The Benefits of a Career with Telemedica</Typography>
 					<List sx={{ columns: { xs: 1, md: 2 } }}>
 						{[
