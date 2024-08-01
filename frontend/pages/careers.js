@@ -57,7 +57,7 @@ export default function CareersPage({ title, description }) {
 							)
 						})}
 					</List>
-					<Alert sx={{ mt: 2 }} severity="warning">Currently there are no job postings.</Alert>
+					<Alert sx={{ mt: 2 }} severity="warning">Currently there are no job postings. Please check back later.</Alert>
 				</Container>
 			</Box>
   	</Page>
