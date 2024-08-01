@@ -37,6 +37,7 @@ export default function CareersPage({ title, description }) {
 			
 			<Box sx={{ py: 10 }}>
 				<Container>
+				<Alert sx={{ mt: 2 }} severity="warning">Currently there are no job postings. Please check back later.</Alert>
 					<Typography variant={'h2'} gutterBottom align='center'>The Benefits of a Career with Telemedica</Typography>
 					<List sx={{ columns: { xs: 1, md: 2 } }}>
 						{[
@@ -57,7 +58,6 @@ export default function CareersPage({ title, description }) {
 							)
 						})}
 					</List>
-					<Alert sx={{ mt: 2 }} severity="warning">Currently there are no job postings. Please check back later.</Alert>
 				</Container>
 			</Box>
   	</Page>
