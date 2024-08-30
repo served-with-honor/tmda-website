@@ -17,6 +17,7 @@ export const renderElementContents = (element) => {
 }
 
 export const getJustification = (classes) => {
+	if (!classes) return '';
 	if (classes.includes('is-content-justification-center')) return 'center';
 	if (classes.includes('is-content-justification-right')) return 'flex-end';
 	if (classes.includes('is-content-justification-left')) return 'flex-start';
@@ -25,6 +26,7 @@ export const getJustification = (classes) => {
 }
 
 export const getTextAlignment = (classes) => {
+	if (!classes) return '';
 	if (classes.includes('has-text-align-right')) return 'right';
 	if (classes.includes('has-text-align-center')) return 'center';
 	if (classes.includes('has-text-align-left')) return 'left';
@@ -45,6 +47,7 @@ export const getGridDirection = (classes) => classes?.includes('is-vertical') ? 
 export const getButtonStyle = (classes) => classes?.includes('is-style-outline') ? 'outlined' : 'contained';
 
 export const getGridVerticalAlignment = (classes) => {
+	if (!classes) return;
 	if (classes.includes('is-vertically-aligned-center')) return 'center';
 	if(classes.includes('is-vertically-aligned-bottom')) return 'flex-end';
 	if(classes.includes('is-vertically-aligned-top')) return 'flex-start';
