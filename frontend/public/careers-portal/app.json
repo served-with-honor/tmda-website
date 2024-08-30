@@ -61,8 +61,8 @@
     "keywordSearchFields": ["publicDescription", "title"]
   },
   "additionalJobCriteria": {
-    "field": "[ FILTER FIELD HERE ]",
-    "values": ["[ FILTER VALUE HERE ]"],
+    "field": "clientCorporation.id",
+    "values": [5],
     "sort": "-dateLastPublished"
   },
   "integrations": {
