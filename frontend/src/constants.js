@@ -30,7 +30,7 @@ export default {
     patientPortal: 'https://telemedicallc.intakeq.com/portal',
     helpDesk: 'https://help.telemedicallc.com/',
     providerPortal: 'https://intakeq.com/',
-    jobs: 'https://telemedica.rippling-ats.com/',
+    jobs: 'https://careers.telemedicallc.com/',
     googleReviews: 'https://g.page/r/CXLI9fZbuI4iEB0/review',
   },
   google: {

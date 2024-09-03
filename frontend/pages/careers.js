@@ -8,8 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import AddIcon from '@mui/icons-material/Add';
 import Page from '../components/Page'
-import constants from '../src/constants';
-import Alert from '@mui/material/Alert';
+import constants from '../src/constants'
 
 export default function CareersPage({ title, description }) {
 	return (
@@ -30,14 +29,13 @@ export default function CareersPage({ title, description }) {
 							lineHeight: 1,
 							mb: 5,
 						}}>100% remote working opportunities.</Typography>
-						{/* <Button href={constants.externalLinks.jobs} target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button> */}
+						<Button href={constants.externalLinks.jobs} target='_blank' rel='noopener noreferer' variant='contained' size='lg' sx={{ fontWeight: 700, px: 3, py: 1 }}>View Job Postings</Button>
 					</Box>
 				</Container>
 			</Box>
 			
 			<Box sx={{ py: 10 }}>
 				<Container>
-				<Alert sx={{ mb: 4 }} severity="warning">Currently there are no job postings. Please check back later.</Alert>
 					<Typography variant={'h2'} gutterBottom align='center'>The Benefits of a Career with Telemedica</Typography>
 					<List sx={{ columns: { xs: 1, md: 2 } }}>
 						{[
