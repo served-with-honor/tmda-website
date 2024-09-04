@@ -37,7 +37,13 @@ export const GetPostQuery = `
       author {
         node {
           name
-
+          userInfo {
+            photoUrl {
+              node {
+                sourceUrl
+              }
+            }
+          }
         }
       }
       articles {
