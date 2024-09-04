@@ -83,7 +83,7 @@ async function getPost(
 
     post.author = {
       name: post.author.node.name,
-      image: post.author.node.user?.avatar?.url || null,
+      image: post.author.node.userInfo?.photoUrl?.node.sourceUrl || null,
     };
     post.categories = post.categories.nodes;
     post.featuredImage = post.featuredImage.node.mediaItemUrl;
