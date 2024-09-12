@@ -113,7 +113,8 @@ export default {
       // 'American Samoa': '0',
       // 'U.S. Virgin Islands': '0',
       // 'Northern Mariana Islands': '0',
-      'Out of US': '53'
+      'Out of US': '53',
+      'ZA': '54',
     },
   },
   calendly: {
