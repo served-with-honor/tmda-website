@@ -130,7 +130,6 @@ export default [
               <CustomListItem>GERD</CustomListItem>
               <CustomListItem>Headaches</CustomListItem>
               <CustomListItem>Chronic Fatigue Syndrome</CustomListItem>
-              <CustomListItem>Female Sexual Arousal Disorder</CustomListItem>
               <CustomListItem>Lumbosacral Strain / Lumbago</CustomListItem>
               <CustomListItem>Chronic Tonsilitis</CustomListItem>
               <CustomListItem>Fibromyalgia</CustomListItem>
