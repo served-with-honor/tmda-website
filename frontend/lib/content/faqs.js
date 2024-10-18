@@ -94,7 +94,7 @@ export default [
 	},
 	{
 		question: "Can I pay in installments?",
-		answer: 'No, we do not accept installment payments.',
+		answer: 'Yes, we now offer Afterpay, a "buy now, pay later" service that enables veterans to spread the cost of Telemedica’s services over four biweekly payments or monthly installments. This service can be used for mental health evaluations, telemedicine consultations, and Nexus documents. However, it cannot be applied to the initial $299 payment required when booking a service.',
 		topic: 'General',
 	},
 	{
